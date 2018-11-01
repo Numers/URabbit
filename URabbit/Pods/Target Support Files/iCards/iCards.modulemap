@@ -1,0 +1,6 @@
+framework module iCards {
+  umbrella header "iCards-umbrella.h"
+
+  export *
+  module * { export * }
+}

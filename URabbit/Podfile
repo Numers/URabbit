@@ -1,0 +1,21 @@
+#source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+target "URabbit" do
+project 'URabbit.xcodeproj'
+pod 'Masonry'
+pod 'SDWebImage', '~>3.8'
+pod 'MBProgressHUD', '~> 1.0.0'
+#pod 'ReactiveCocoa', '~> 2.5'
+pod 'AFNetworking', '~> 3.0'
+#pod 'LGAlertView', '~> 2.0.0'
+#pod 'MJRefresh'
+#pod 'WebViewJavascriptBridge'
+#pod 'KINWebBrowser'
+#pod 'BEMCheckBox'
+#pod 'BaiduMapKit'
+pod 'IconFont', '~> 0.0.2'
+pod 'WZLBadge'
+#pod 'MMDrawerController', '~> 0.5.7'
+pod 'iCards'
+end
