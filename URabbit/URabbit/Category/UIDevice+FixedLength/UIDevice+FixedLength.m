@@ -23,35 +23,46 @@
 #define IS_IPHONE_6_OR_Iphone7 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
 #define IS_IPHONE_6P_OR_Iphone7P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
+
+#define IPHONE_X \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+
+/**
+ *导航栏高度
+ */
+#define SafeAreaTopHeight (IPHONE_X ? 88 : 64)
+
+/**
+ *tabbar高度
+ */
+#define SafeAreaBottomHeight (IPHONE_X ? (49 + 34) : 49)
+
+
 @implementation UIDevice (FixedLength)
-+(CGFloat)adaptLengthWithIphone6Length:(CGFloat)length
++(CGFloat)adaptHeightWithIphone6Length:(CGFloat)height
 {
-    CGFloat tempLength = length;
-    if(IS_IPHONE_4){
-        tempLength = length *(480.0 / 667.0);
-    }else if (IS_IPHONE_5){
-        tempLength = length * (568.0 / 667.0);
-    }else if (IS_IPHONE_6_OR_Iphone7){
-        tempLength = length;
-    }else if (IS_IPHONE_6P_OR_Iphone7P){
-        tempLength = length * (736.0 / 667.0);
-    }
+    CGFloat tempLength = height * (SCREEN_HEIGHT / 667.0f);
     return tempLength;
 }
 
 +(CGFloat)adaptWidthWithIphone6Width:(CGFloat)width
 {
-    CGFloat tempLength = width;
-    if(IS_IPHONE_4){
-        tempLength = width *(320.0 / 375.0);
-    }else if (IS_IPHONE_5){
-        tempLength = width * (320.0 / 375.0);
-    }else if (IS_IPHONE_6_OR_Iphone7){
-        tempLength = width;
-    }else if (IS_IPHONE_6P_OR_Iphone7P){
-        tempLength = width * (414.0 / 375.0);
-    }
+    CGFloat tempLength = width * (SCREEN_WIDTH / 375.0f);
     return tempLength;
+}
+
++(CGFloat)safeAreaTopHeight
+{
+    return SafeAreaTopHeight;
+}
+
++(CGFloat)safeAreaBottomHeight
+{
+    return SafeAreaBottomHeight;
 }
 
 +(CGFloat)adaptFontSizeWithIphone6FontSize:(CGFloat)fontSize needFixed:(BOOL)needFixed
@@ -64,6 +75,12 @@
     }else if (IS_IPHONE_6_OR_Iphone7){
         
     }else if (IS_IPHONE_6P_OR_Iphone7P){
+        if (needFixed) {
+            size = fontSize + 2;
+        }else{
+            size = fontSize;
+        }
+    }else if (IPHONE_X){
         if (needFixed) {
             size = fontSize + 2;
         }else{

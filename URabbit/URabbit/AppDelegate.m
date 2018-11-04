@@ -21,7 +21,6 @@
     [TBCityIconFont setFontName:@"iconfont"];
     [[AppStartManager shareManager] startApp];
     [self.window makeKeyAndVisible];
-    self.window.backgroundColor = [UIColor colorFromHexString:ThemeHexColor];
     return YES;
 }
 

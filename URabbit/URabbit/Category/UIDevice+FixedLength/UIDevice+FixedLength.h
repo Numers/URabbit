@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UIDevice (FixedLength)
-+(CGFloat)adaptLengthWithIphone6Length:(CGFloat)length;
++(CGFloat)safeAreaTopHeight;
++(CGFloat)safeAreaBottomHeight;
++(CGFloat)adaptHeightWithIphone6Length:(CGFloat)height;
 +(CGFloat)adaptWidthWithIphone6Width:(CGFloat)width;
 +(CGFloat)adaptFontSizeWithIphone6FontSize:(CGFloat)fontSize needFixed:(BOOL)needFixed;
 @end

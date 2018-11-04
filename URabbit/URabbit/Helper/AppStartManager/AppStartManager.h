@@ -14,6 +14,7 @@
     Member *host;
 }
 @property(nonatomic, strong) UINavigationController *navigationController;
+@property(nonatomic, strong) UITabBarController *tabBarController;
 
 +(instancetype)shareManager;
 

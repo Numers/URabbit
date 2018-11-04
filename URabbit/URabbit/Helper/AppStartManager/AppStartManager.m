@@ -13,12 +13,16 @@
 #import "AppLaunchManager.h"
 #import "PushMessageManager.h"
 #import "UTHomeViewController.h"
+#import "UTUserCenterViewController.h"
 #import "UTGuidViewController.h"
 #import "UTLoginScrollViewController.h"
 #import "UINavigationController+NavigationBar.h"
+#import "LLTabBar.h"
 
 
 #define HostProfilePlist @"PersonProfile.plist"
+@interface AppStartManager()<LLTabBarDelegate>
+@end
 @implementation AppStartManager
 +(instancetype)shareManager
 {
@@ -154,6 +158,8 @@
     [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:ThemeHexColor])]];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
+    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
+    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     [[GeneralManager defaultManager] getGlovalVarWithVersion];
     [self currentMember];
     if (host) {
@@ -164,14 +170,14 @@
             [self setLoginView];
         }
     }else{
-        [self setGuidView];
+        [self setHomeView];
     }
 }
 
--(void)navColor
+-(void)setNavigationColor:(UINavigationController *)nav
 {
-    if (_navigationController) {
-        [_navigationController setNavigationViewColor:[UIColor whiteColor]];
+    if (nav) {
+        [nav setNavigationViewColor:[UIColor whiteColor]];
 //        [_navigationController setStatusBarStyle:UIStatusBarStyleLightContent];
     }
 }
@@ -186,18 +192,51 @@
     return _navigationController?_navigationController.topViewController:nil;
 }
 
+-(void)generateTabBarController
+{
+    _tabBarController = [[UITabBarController alloc] init];
+    [_tabBarController.navigationItem setHidesBackButton:YES];
+    
+    UTHomeViewController *homeVC = [[UTHomeViewController alloc] init];
+    UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:homeVC];
+    [self setNavigationColor:nav1];
+    
+    UTUserCenterViewController *userCenterVC = [[UTUserCenterViewController alloc] init];
+    UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:userCenterVC];
+    [self setNavigationColor:nav2];
+    
+    [_tabBarController setViewControllers:@[nav1,nav2]];
+    LLTabBar *tabBar = [[LLTabBar alloc] initWithFrame:_tabBarController.tabBar.bounds];
+    tabBar.tabBarItemAttributes = @[@{kLLTabBarItemAttributeTitle:@"首页",kLLTabBarItemAttributeNormalImageName:@"tabbar_home_normal",kLLTabBarItemAttributeSelectedImageName:@"tabbar_home_select",kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},@{kLLTabBarItemAttributeTitle:@"拍摄",kLLTabBarItemAttributeNormalImageName:@"tabbar_camera_normal",kLLTabBarItemAttributeSelectedImageName:@"tabbar_camera_select",kLLTabBarItemAttributeType : @(LLTabBarItemRise)},@{kLLTabBarItemAttributeTitle:@"我的",kLLTabBarItemAttributeNormalImageName:@"tabbar_usercenter_normal",kLLTabBarItemAttributeSelectedImageName:@"tabbar_usercenter_select",kLLTabBarItemAttributeType : @(LLTabBarItemNormal)}];
+    tabBar.delegate = self;
+    [_tabBarController.tabBar addSubview:tabBar];
+}
+
+#pragma -mark protocol LLTabBarDelegate
+- (void)tabBarDidSelectedRiseButton {
+    
+}
+
+-(id)currentTabbarController
+{
+    return _tabBarController;
+}
+///////////////////////////////////////////////////////
 -(void)setHomeView
 {
-    UTHomeViewController *homeVC = [[UTHomeViewController alloc] init];
-    _navigationController = [[UINavigationController alloc] initWithRootViewController:homeVC];
+    [self generateTabBarController];
+    _navigationController = [[UINavigationController alloc] initWithRootViewController:_tabBarController];
+    [_navigationController setNavigationBarHidden:YES];
     [[(AppDelegate *)[UIApplication sharedApplication].delegate window] setRootViewController:_navigationController];
-    [self navColor];
+    [_tabBarController setSelectedIndex:0];
 }
 
 -(void)pushHomeView
 {
-    UTHomeViewController *homeVC = [[UTHomeViewController alloc] init];
-    [_navigationController pushViewController:homeVC animated:YES];
+    [self generateTabBarController];
+    [_navigationController setNavigationBarHidden:YES];
+    [_navigationController pushViewController:_tabBarController animated:YES];
+    [_tabBarController setSelectedIndex:0];
 }
 
 -(void)setGuidView
@@ -205,7 +244,6 @@
     UTGuidViewController *guidVC = [[UTGuidViewController alloc] init];
     _navigationController = [[UINavigationController alloc] initWithRootViewController:guidVC];
     [[(AppDelegate *)[UIApplication sharedApplication].delegate window] setRootViewController:_navigationController];
-    [self navColor];
 }
 
 -(void)setLoginView
@@ -214,7 +252,6 @@
     _navigationController = [[UINavigationController alloc] initWithRootViewController:loginScrollVC];
     [[(AppDelegate *)[UIApplication sharedApplication].delegate window] setRootViewController:_navigationController];
     
-    [self navColor];
 }
 
 

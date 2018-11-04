@@ -56,7 +56,7 @@
     [_axiosInfos addObject:info];
     
     _frames = [NSMutableArray array];
-    for (int i = 0; i < 412; i++) {
+    for (int i = 0; i < 374; i++) {
         Frame *frame = [[Frame alloc] init];
         frame.axiosIndex = 0;
         [_frames addObject:frame];
@@ -107,7 +107,6 @@
             if (axiosInfo.algorithmType == AlgorithmTemplateFront) {
                 UIImage *tempResultImage = [axiosInfo.image imageWithMask:maskImage orginImagePoint:CGPointMake(0, 0) colorSpace:[[UTImageHanderManager shareManager] currentColorSpaceRef]];
                 //            UIImage *tempResultImage = [axiosInfo.image imageWithMask:maskImage orginImagePoint:CGPointMake(0, 0)];
-                
                 GPUImagePicture *tempPic1 = [[GPUImagePicture alloc] initWithImage:templateImage];
                 [tempPic1 addTarget:filter];
                 [tempPic1 processImage];
@@ -116,17 +115,25 @@
 //                [tempPic2 addTarget:filter];
 //                [tempPic2 processImage];
                 
-//                UIImage *resultImage = [filter imageFromCurrentFramebuffer];
                 UIImage *resultImage = [filter imageByFilteringImage:tempResultImage];
-                [tempPic1 removeTarget:filter];
-//                [tempPic2 removeTarget:filter];
                 
-                CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:pixelSize];
+                CVPixelBufferRef resultPixelBuffer = [[filter framebufferForOutput] pixelBuffer];
                 void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
                 memcpy(templatePixelBuffer, resultBaseAddress, 4*pixelSize.width*pixelSize.height);
+                [tempPic1 removeTarget:filter];
+//                UIImage *resultImage = [filter imageFromCurrentFramebuffer];
+//                UIImage *resultImage = [filter imageByFilteringImage:tempResultImage];
+//                CVPixelBufferRef resultPixelBuffer = [[filter framebufferForOutput] pixelBuffer];
                 
+//                [tempPic2 removeTarget:filter];
+                
+//                CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:pixelSize];
+//                void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
+//                memcpy(templatePixelBuffer, resultBaseAddress, 4*pixelSize.width*pixelSize.height);
+//
                 CFRelease(maskSampleBufferRef);
-                CVPixelBufferRelease(resultPixelBuffer);
+                
+//                CVPixelBufferRelease(resultPixelBuffer);
             }
         }
     }

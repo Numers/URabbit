@@ -14,6 +14,11 @@
 		14239B7221731F090033FB7D /* VideoComposeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14239B7121731F090033FB7D /* VideoComposeTest.m */; };
 		14239B7B2175B8970033FB7D /* UTImageProcessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14239B7A2175B8970033FB7D /* UTImageProcessManager.m */; };
 		14262A292189AC8E00768E6A /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14262A282189AC8E00768E6A /* music.mp3 */; };
+		14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2D218AF02300768E6A /* LLTabBarItem.m */; };
+		14262A30218AF02300768E6A /* LLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2E218AF02300768E6A /* LLTabBar.m */; };
+		14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A33218AF23200768E6A /* UTUserCenterViewController.m */; };
+		14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A37218BF94700768E6A /* UTHomeCollectionViewCell.m */; };
+		14262A48218C45F000768E6A /* LJJWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A46218C45F000768E6A /* LJJWaterFlowLayout.m */; };
 		1458035D216F2BCC006BB33D /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14580303216F2BCB006BB33D /* iconfont.ttf */; };
 		1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580306216F2BCB006BB33D /* GeneralManager.m */; };
 		14580362216F2BCC006BB33D /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580311216F2BCB006BB33D /* NetWorkManager.m */; };
@@ -66,6 +71,11 @@
 		145B613C216F27B700DA950E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 145B613B216F27B700DA950E /* Assets.xcassets */; };
 		145B613F216F27B700DA950E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 145B613D216F27B700DA950E /* LaunchScreen.storyboard */; };
 		145B6142216F27B700DA950E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B6141216F27B700DA950E /* main.m */; };
+		14678FF2218ECDBB00CD7F4B /* UTHomeRecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14678FF1218ECDBB00CD7F4B /* UTHomeRecommendView.m */; };
+		14678FF5218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14678FF4218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.m */; };
+		14678FF8218EDAFA00CD7F4B /* RecommendTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14678FF7218EDAFA00CD7F4B /* RecommendTemplate.m */; };
+		14678FFB218EE07500CD7F4B /* HomeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14678FFA218EE07500CD7F4B /* HomeTemplate.m */; };
+		14678FFE218EE11C00CD7F4B /* UTHomeTemplateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14678FFD218EE11C00CD7F4B /* UTHomeTemplateView.m */; };
 		BC0EEF5C062C06F4C3E98620 /* Pods_URabbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */; };
 /* End PBXBuildFile section */
 
@@ -256,6 +266,16 @@
 		14239B792175B8970033FB7D /* UTImageProcessManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTImageProcessManager.h; sourceTree = "<group>"; };
 		14239B7A2175B8970033FB7D /* UTImageProcessManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTImageProcessManager.m; sourceTree = "<group>"; };
 		14262A282189AC8E00768E6A /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
+		14262A2B218AF02300768E6A /* LLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBar.h; sourceTree = "<group>"; };
+		14262A2C218AF02300768E6A /* LLTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBarItem.h; sourceTree = "<group>"; };
+		14262A2D218AF02300768E6A /* LLTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTabBarItem.m; sourceTree = "<group>"; };
+		14262A2E218AF02300768E6A /* LLTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTabBar.m; sourceTree = "<group>"; };
+		14262A32218AF23200768E6A /* UTUserCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserCenterViewController.h; sourceTree = "<group>"; };
+		14262A33218AF23200768E6A /* UTUserCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserCenterViewController.m; sourceTree = "<group>"; };
+		14262A36218BF94700768E6A /* UTHomeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTHomeCollectionViewCell.h; sourceTree = "<group>"; };
+		14262A37218BF94700768E6A /* UTHomeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTHomeCollectionViewCell.m; sourceTree = "<group>"; };
+		14262A46218C45F000768E6A /* LJJWaterFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJJWaterFlowLayout.m; sourceTree = "<group>"; };
+		14262A47218C45F000768E6A /* LJJWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJJWaterFlowLayout.h; sourceTree = "<group>"; };
 		14580303216F2BCB006BB33D /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		14580306216F2BCB006BB33D /* GeneralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralManager.m; sourceTree = "<group>"; };
 		14580307216F2BCB006BB33D /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
@@ -352,6 +372,16 @@
 		145B613E216F27B700DA950E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		145B6140216F27B700DA950E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		145B6141216F27B700DA950E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		14678FF0218ECDBB00CD7F4B /* UTHomeRecommendView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTHomeRecommendView.h; sourceTree = "<group>"; };
+		14678FF1218ECDBB00CD7F4B /* UTHomeRecommendView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTHomeRecommendView.m; sourceTree = "<group>"; };
+		14678FF3218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTHomeRecommendCollectionViewCell.h; sourceTree = "<group>"; };
+		14678FF4218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTHomeRecommendCollectionViewCell.m; sourceTree = "<group>"; };
+		14678FF6218EDAFA00CD7F4B /* RecommendTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendTemplate.h; sourceTree = "<group>"; };
+		14678FF7218EDAFA00CD7F4B /* RecommendTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendTemplate.m; sourceTree = "<group>"; };
+		14678FF9218EE07500CD7F4B /* HomeTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTemplate.h; sourceTree = "<group>"; };
+		14678FFA218EE07500CD7F4B /* HomeTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTemplate.m; sourceTree = "<group>"; };
+		14678FFC218EE11C00CD7F4B /* UTHomeTemplateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTHomeTemplateView.h; sourceTree = "<group>"; };
+		14678FFD218EE11C00CD7F4B /* UTHomeTemplateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTHomeTemplateView.m; sourceTree = "<group>"; };
 		36AFCC5E9317FFA812781492 /* Pods-URabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_URabbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D640A9F686B5E9FFB7F4DB77 /* Pods-URabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.release.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.release.xcconfig"; sourceTree = "<group>"; };
@@ -591,6 +621,39 @@
 			path = UTImageProcessManager;
 			sourceTree = "<group>";
 		};
+		14262A2A218AF02300768E6A /* LLTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				14262A2B218AF02300768E6A /* LLTabBar.h */,
+				14262A2C218AF02300768E6A /* LLTabBarItem.h */,
+				14262A2D218AF02300768E6A /* LLTabBarItem.m */,
+				14262A2E218AF02300768E6A /* LLTabBar.m */,
+			);
+			path = LLTabBar;
+			sourceTree = "<group>";
+		};
+		14262A31218AF20A00768E6A /* UserCenterView */ = {
+			isa = PBXGroup;
+			children = (
+				14262A32218AF23200768E6A /* UTUserCenterViewController.h */,
+				14262A33218AF23200768E6A /* UTUserCenterViewController.m */,
+			);
+			path = UserCenterView;
+			sourceTree = "<group>";
+		};
+		14262A35218BF92700768E6A /* UTHomeTemplateView */ = {
+			isa = PBXGroup;
+			children = (
+				14262A47218C45F000768E6A /* LJJWaterFlowLayout.h */,
+				14262A46218C45F000768E6A /* LJJWaterFlowLayout.m */,
+				14262A36218BF94700768E6A /* UTHomeCollectionViewCell.h */,
+				14262A37218BF94700768E6A /* UTHomeCollectionViewCell.m */,
+				14678FFC218EE11C00CD7F4B /* UTHomeTemplateView.h */,
+				14678FFD218EE11C00CD7F4B /* UTHomeTemplateView.m */,
+			);
+			path = UTHomeTemplateView;
+			sourceTree = "<group>";
+		};
 		145802FC216F2BCB006BB33D /* Iconfont */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +690,7 @@
 		14580315216F2BCB006BB33D /* ThirdPartPlugins */ = {
 			isa = PBXGroup;
 			children = (
+				14262A2A218AF02300768E6A /* LLTabBar */,
 				14239ABD2172F9FA0033FB7D /* GPUImage */,
 				14580316216F2BCB006BB33D /* TPKeyboardAvoiding */,
 				1458033A216F2BCB006BB33D /* LaunchAnimateView */,
@@ -808,6 +872,10 @@
 				145803DE21708433001B9535 /* VideoCompose.m */,
 				14239B7021731F090033FB7D /* VideoComposeTest.h */,
 				14239B7121731F090033FB7D /* VideoComposeTest.m */,
+				14678FF6218EDAFA00CD7F4B /* RecommendTemplate.h */,
+				14678FF7218EDAFA00CD7F4B /* RecommendTemplate.m */,
+				14678FF9218EE07500CD7F4B /* HomeTemplate.h */,
+				14678FFA218EE07500CD7F4B /* HomeTemplate.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -815,6 +883,7 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				14262A31218AF20A00768E6A /* UserCenterView */,
 				145803A3216F3130006BB33D /* GuidView */,
 				1458039F216F3119006BB33D /* HomeView */,
 				1458039B216F30FD006BB33D /* LoginView */,
@@ -836,6 +905,8 @@
 		1458039F216F3119006BB33D /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				14678FEF218ECD8700CD7F4B /* UTHomeRecommendView */,
+				14262A35218BF92700768E6A /* UTHomeTemplateView */,
 				145803A0216F312C006BB33D /* UTHomeViewController.h */,
 				145803A1216F312C006BB33D /* UTHomeViewController.m */,
 			);
@@ -954,6 +1025,17 @@
 				14580380216F2CF4006BB33D /* URabbit-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		14678FEF218ECD8700CD7F4B /* UTHomeRecommendView */ = {
+			isa = PBXGroup;
+			children = (
+				14678FF0218ECDBB00CD7F4B /* UTHomeRecommendView.h */,
+				14678FF1218ECDBB00CD7F4B /* UTHomeRecommendView.m */,
+				14678FF3218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.h */,
+				14678FF4218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.m */,
+			);
+			path = UTHomeRecommendView;
 			sourceTree = "<group>";
 		};
 		7B66372339C95543FFFDEC4D /* Frameworks */ = {
@@ -1115,14 +1197,18 @@
 				1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */,
 				1458047D216F884C006BB33D /* TemplateInfo.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
+				14678FF8218EDAFA00CD7F4B /* RecommendTemplate.m in Sources */,
 				1458037E216F2BCC006BB33D /* AppUtils.m in Sources */,
+				14262A48218C45F000768E6A /* LJJWaterFlowLayout.m in Sources */,
 				145803DF21708433001B9535 /* VideoCompose.m in Sources */,
 				14580375216F2BCC006BB33D /* LaunchAnimateView.m in Sources */,
+				14262A30218AF02300768E6A /* LLTabBar.m in Sources */,
 				14239B7221731F090033FB7D /* VideoComposeTest.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
 				1458039E216F3114006BB33D /* UTLoginViewController.m in Sources */,
 				145803A9216F32E9006BB33D /* UTLoginScrollViewController.m in Sources */,
 				145B6142216F27B700DA950E /* main.m in Sources */,
+				14678FF5218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.m in Sources */,
 				14580394216F2D6F006BB33D /* UINavigationController+NavigationBar.m in Sources */,
 				14580362216F2BCC006BB33D /* NetWorkManager.m in Sources */,
 				1458037D216F2BCC006BB33D /* PushMessageManager.m in Sources */,
@@ -1130,12 +1216,16 @@
 				145803D82170705B001B9535 /* UTVideoManager.m in Sources */,
 				14580364216F2BCC006BB33D /* URLManager.m in Sources */,
 				14580391216F2D6F006BB33D /* UIImage+FixImage.m in Sources */,
+				14678FFB218EE07500CD7F4B /* HomeTemplate.m in Sources */,
+				14678FF2218ECDBB00CD7F4B /* UTHomeRecommendView.m in Sources */,
 				1458039A216F306E006BB33D /* Member.m in Sources */,
 				14580392216F2D6F006BB33D /* UITabBar+CustomerTabBar.m in Sources */,
 				14580377216F2BCC006BB33D /* FeThreeDotGlow.m in Sources */,
 				14580366216F2BCC006BB33D /* TPKeyboardAvoidingTableView.m in Sources */,
 				1458037B216F2BCC006BB33D /* AppLaunchManager.m in Sources */,
+				14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */,
 				14239AB82172F9D80033FB7D /* BlendViewEngine.m in Sources */,
+				14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */,
 				14580470216F50D3006BB33D /* ComposeStrategy.m in Sources */,
 				14239AB72172F9D80033FB7D /* BlendImageEngine.m in Sources */,
 				14580476216F590D006BB33D /* AxiosInfo.m in Sources */,
@@ -1147,9 +1237,11 @@
 				1458046D216F46A8006BB33D /* Material.m in Sources */,
 				145B6134216F27B600DA950E /* AppDelegate.m in Sources */,
 				14580368216F2BCC006BB33D /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				14678FFE218EE11C00CD7F4B /* UTHomeTemplateView.m in Sources */,
 				1458037C216F2BCC006BB33D /* AppStartManager.m in Sources */,
 				14580473216F526A006BB33D /* UTVideoReader.m in Sources */,
 				14580365216F2BCC006BB33D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */,
 				1458046A216F4665006BB33D /* ComposeStrategyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1291,7 +1383,7 @@
 			baseConfigurationReference = 36AFCC5E9317FFA812781492 /* Pods-URabbit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H7GKKY8D4D;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -1322,7 +1414,7 @@
 			baseConfigurationReference = D640A9F686B5E9FFB7F4DB77 /* Pods-URabbit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H7GKKY8D4D;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;

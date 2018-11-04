@@ -25,8 +25,7 @@
 #define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
-#define ViewBackgroundColor [UIColor redColor]
-#define ViewBackgroundMainColor [UIColor colorFromHexString:@"#F7FAFC"]
+#define ViewBackgroundColor [UIColor whiteColor]
 
 #define ThemeHexColor @"#55A8FD"
 
