@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14239AB72172F9D80033FB7D /* BlendImageEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 14239AB32172F9D80033FB7D /* BlendImageEngine.m */; };
-		14239AB82172F9D80033FB7D /* BlendViewEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 14239AB62172F9D80033FB7D /* BlendViewEngine.m */; };
 		14239ABC2172F9E50033FB7D /* UTBlendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14239ABA2172F9E50033FB7D /* UTBlendManager.m */; };
 		14239B6F2172F9FA0033FB7D /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14239B6E2172F9FA0033FB7D /* libGPUImage.a */; };
-		14239B7221731F090033FB7D /* VideoComposeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14239B7121731F090033FB7D /* VideoComposeTest.m */; };
 		14239B7B2175B8970033FB7D /* UTImageProcessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14239B7A2175B8970033FB7D /* UTImageProcessManager.m */; };
 		14262A292189AC8E00768E6A /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14262A282189AC8E00768E6A /* music.mp3 */; };
 		14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2D218AF02300768E6A /* LLTabBarItem.m */; };
@@ -80,10 +77,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14239AB32172F9D80033FB7D /* BlendImageEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlendImageEngine.m; sourceTree = "<group>"; };
-		14239AB42172F9D80033FB7D /* BlendViewEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlendViewEngine.h; sourceTree = "<group>"; };
-		14239AB52172F9D80033FB7D /* BlendImageEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlendImageEngine.h; sourceTree = "<group>"; };
-		14239AB62172F9D80033FB7D /* BlendViewEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlendViewEngine.m; sourceTree = "<group>"; };
 		14239ABA2172F9E50033FB7D /* UTBlendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTBlendManager.m; sourceTree = "<group>"; };
 		14239ABB2172F9E50033FB7D /* UTBlendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTBlendManager.h; sourceTree = "<group>"; };
 		14239ABF2172F9FA0033FB7D /* GPUImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBuffer.h; sourceTree = "<group>"; };
@@ -261,8 +254,6 @@
 		14239B6B2172F9FA0033FB7D /* GPUImageStretchDistortionFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageStretchDistortionFilter.h; sourceTree = "<group>"; };
 		14239B6C2172F9FA0033FB7D /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
 		14239B6E2172F9FA0033FB7D /* libGPUImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGPUImage.a; sourceTree = "<group>"; };
-		14239B7021731F090033FB7D /* VideoComposeTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoComposeTest.h; sourceTree = "<group>"; };
-		14239B7121731F090033FB7D /* VideoComposeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoComposeTest.m; sourceTree = "<group>"; };
 		14239B792175B8970033FB7D /* UTImageProcessManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTImageProcessManager.h; sourceTree = "<group>"; };
 		14239B7A2175B8970033FB7D /* UTImageProcessManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTImageProcessManager.m; sourceTree = "<group>"; };
 		14262A282189AC8E00768E6A /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
@@ -850,10 +841,6 @@
 		14580396216F2FEA006BB33D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				14239AB52172F9D80033FB7D /* BlendImageEngine.h */,
-				14239AB32172F9D80033FB7D /* BlendImageEngine.m */,
-				14239AB42172F9D80033FB7D /* BlendViewEngine.h */,
-				14239AB62172F9D80033FB7D /* BlendViewEngine.m */,
 				14580399216F306E006BB33D /* Member.h */,
 				14580398216F306E006BB33D /* Member.m */,
 				1458046B216F46A8006BB33D /* Material.h */,
@@ -870,8 +857,6 @@
 				1458047C216F884C006BB33D /* TemplateInfo.m */,
 				145803DD21708433001B9535 /* VideoCompose.h */,
 				145803DE21708433001B9535 /* VideoCompose.m */,
-				14239B7021731F090033FB7D /* VideoComposeTest.h */,
-				14239B7121731F090033FB7D /* VideoComposeTest.m */,
 				14678FF6218EDAFA00CD7F4B /* RecommendTemplate.h */,
 				14678FF7218EDAFA00CD7F4B /* RecommendTemplate.m */,
 				14678FF9218EE07500CD7F4B /* HomeTemplate.h */,
@@ -1203,7 +1188,6 @@
 				145803DF21708433001B9535 /* VideoCompose.m in Sources */,
 				14580375216F2BCC006BB33D /* LaunchAnimateView.m in Sources */,
 				14262A30218AF02300768E6A /* LLTabBar.m in Sources */,
-				14239B7221731F090033FB7D /* VideoComposeTest.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
 				1458039E216F3114006BB33D /* UTLoginViewController.m in Sources */,
 				145803A9216F32E9006BB33D /* UTLoginScrollViewController.m in Sources */,
@@ -1224,10 +1208,8 @@
 				14580366216F2BCC006BB33D /* TPKeyboardAvoidingTableView.m in Sources */,
 				1458037B216F2BCC006BB33D /* AppLaunchManager.m in Sources */,
 				14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */,
-				14239AB82172F9D80033FB7D /* BlendViewEngine.m in Sources */,
 				14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */,
 				14580470216F50D3006BB33D /* ComposeStrategy.m in Sources */,
-				14239AB72172F9D80033FB7D /* BlendImageEngine.m in Sources */,
 				14580476216F590D006BB33D /* AxiosInfo.m in Sources */,
 				145803A2216F312C006BB33D /* UTHomeViewController.m in Sources */,
 				14580395216F2D6F006BB33D /* UIColor+HexString.m in Sources */,
