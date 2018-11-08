@@ -61,9 +61,7 @@
     }
     
     if (_reader) {
-        if (_reader.status == AVAssetReaderStatusReading) {
-            [_reader cancelReading];
-        }
+        [_reader cancelReading];
         _reader = nil;
     }
 }

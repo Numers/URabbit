@@ -27,7 +27,7 @@
 
 #define ViewBackgroundColor [UIColor whiteColor]
 
-#define ThemeHexColor @"#55A8FD"
+#define ThemeHexColor @"#FFFFFF"
 
 #define IconfontGoBackDefaultSize 18
 

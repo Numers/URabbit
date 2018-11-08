@@ -10,6 +10,7 @@
 
 @interface UIDevice (FixedLength)
 +(CGFloat)safeAreaTopHeight;
++(CGFloat)safeAreaTabbarHeight;
 +(CGFloat)safeAreaBottomHeight;
 +(CGFloat)adaptHeightWithIphone6Length:(CGFloat)height;
 +(CGFloat)adaptWidthWithIphone6Width:(CGFloat)width;

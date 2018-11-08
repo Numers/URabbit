@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class EditInfo;
 @interface HomeTemplate : NSObject
 @property(nonatomic, copy) UIImage *image;
 @property(nonatomic, copy) NSString *name;
+@property(nonatomic, copy) NSString *desc;
+@property(nonatomic, copy) NSString *materialPath;
 @end

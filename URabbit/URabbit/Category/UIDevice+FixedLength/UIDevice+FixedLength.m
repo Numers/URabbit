@@ -39,9 +39,9 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 /**
  *tabbar高度
  */
-#define SafeAreaBottomHeight (IPHONE_X ? (49 + 34) : 49)
+#define SafeAreaTabbarHeight (IPHONE_X ? (49 + 34) : 49)
 
-
+#define SafeAreaBottomHeight (IPHONE_X ? 34 : 0)
 @implementation UIDevice (FixedLength)
 +(CGFloat)adaptHeightWithIphone6Length:(CGFloat)height
 {
@@ -58,6 +58,11 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 +(CGFloat)safeAreaTopHeight
 {
     return SafeAreaTopHeight;
+}
+
++(CGFloat)safeAreaTabbarHeight
+{
+    return SafeAreaTabbarHeight;
 }
 
 +(CGFloat)safeAreaBottomHeight

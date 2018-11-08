@@ -49,8 +49,8 @@
     NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     videoPath = [NSString stringWithFormat:@"%@/video.mp4",videoDic];
     
-    strategy = [[ComposeStrategy alloc] initWithMaterial:material];
-    [strategy createVideoReader];
+//    strategy = [[ComposeStrategy alloc] initWithMaterial:material];
+//    [strategy createVideoReader];
 
     float fps = [[UTVideoManager shareManager] getFpsWithVideoPath:material.templateVideo];
     compose = [[VideoCompose alloc] initWithVideoUrl:videoPath videoSize:CGSizeMake(544, 960) fps:fps];

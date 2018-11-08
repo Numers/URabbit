@@ -7,15 +7,18 @@
 //
 
 #import "Material.h"
+#import "UTVideoManager.h"
 
 @implementation Material
 -(instancetype)initWithFileUrl:(NSString *)fileUrl
 {
     self  = [super init];
     if (self) {
-        _totalFrames = 374;
         NSString *maskVideoPath = [[NSBundle mainBundle] pathForResource:@"video-2281" ofType:@"mp4"];
         _templateVideo = [[NSBundle mainBundle] pathForResource:@"video-2280" ofType:@"mp4"];
+        _fps = [[UTVideoManager shareManager] getFpsWithVideoPath:_templateVideo];
+        _totalFrames = [[UTVideoManager shareManager] getTotalFramesWithVideoPath:_templateVideo];
+        _seconds = _totalFrames / _fps;
         _videoMusic = [[NSBundle mainBundle] pathForResource:@"music" ofType:@"mp3"];
         _maskVideos = [NSMutableArray arrayWithObject:maskVideoPath];
     }

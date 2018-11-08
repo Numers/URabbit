@@ -68,6 +68,7 @@
 +(void)logAllFont;
 
 
+
 /**
  生成签名字符串
 
@@ -301,4 +302,13 @@
  @return 返回符合条件的数组元素
  */
 +(NSArray *)fiterArray:(NSArray *)list fieldName:(NSString *)fieldName value:(NSString *)value;
+
+
+/**
+ view转成图片
+
+ @param view 视图
+ @return 图片
+ */
++(UIImage *)convertViewToImage:(UIView *)view;
 @end

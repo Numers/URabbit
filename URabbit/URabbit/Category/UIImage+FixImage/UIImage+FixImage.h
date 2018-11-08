@@ -10,6 +10,7 @@
 
 @interface UIImage (FixImage)
 - (UIImage *)fixOrientationWithSize:(CGSize)size;
+-(UIImage *)fixOrientation;
 
 -(UIImage *)scaledToFillSize:(CGSize)size;
 

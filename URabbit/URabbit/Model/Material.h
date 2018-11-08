@@ -11,9 +11,11 @@
 @property(nonatomic) NSInteger totalFrames;
 @property(nonatomic, copy) NSString *templateVideo;
 @property(nonatomic, copy) NSString *videoMusic;
+@property(nonatomic) float fps;
+@property(nonatomic) float seconds;
 @property(nonatomic, strong) NSMutableArray *maskVideos;
 @property(nonatomic, copy) NSString *templateImage;
-@property(nonatomic, copy) NSString *axiosInfoFile;
+@property(nonatomic, copy) NSString *editInfoFile;
 
 -(instancetype)initWithFileUrl:(NSString *)fileUrl;
 @end

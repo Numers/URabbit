@@ -41,8 +41,8 @@
     self.navigationBar.shadowImage = [UIImage new];
     self.navigationBar.translucent = YES;
     [self adaptTitle:[UIColor whiteColor]];
-    self.navigationBar.tintColor = [UIColor colorFromHexString:@"#59AAFA"];
-    [self setStatusBarStyle:UIStatusBarStyleDefault];
+    self.navigationBar.tintColor = [UIColor whiteColor];
+    [self setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 -(void)adaptTitle:(UIColor *)color

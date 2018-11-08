@@ -116,7 +116,6 @@
                                                  size.height, 8, 4*size.width, colorSpace,
                                                  kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     NSParameterAssert(context);
-    CGContextConcatCTM(context, CGAffineTransformMakeRotation(0));
     CGImageRef imageRef = image.CGImage;
     CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(imageRef),
                                            CGImageGetHeight(imageRef)), imageRef);

@@ -12,6 +12,7 @@
 
 #import "UTHomeTemplateView.h"
 #import "HomeTemplate.h"
+#import "UTDownloadTemplateViewController.h"
 #define ChoosenTemplateViewIdentify @"jingxuan"
 #define LatestTemplateViewIdentify @"latest"
 @interface UTHomeViewController ()<HomeTemplateViewProtocol>
@@ -154,7 +155,7 @@
         make.top.equalTo(_topLineView.bottom);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaBottomHeight]);
+        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaTabbarHeight]);
     }];
 }
 
@@ -209,6 +210,7 @@
         HomeTemplate *template = [[HomeTemplate alloc] init];
         template.image = [UIImage imageNamed:@"template"];
         template.name = @"瞄准镜快闪";
+        template.desc = @"大吉大利，今晚吃鸡！瞄准镜快闪相册，制作出高大上真自我！可替换2张图片。";
         [choosenTemplateList addObject:template];
     }
     
@@ -225,6 +227,7 @@
         HomeTemplate *template = [[HomeTemplate alloc] init];
         template.image = [UIImage imageNamed:@"template"];
         template.name = @"瞄准镜快闪";
+        template.desc = @"大吉大利，今晚吃鸡！瞄准镜快闪相册，制作出高大上真自我！可替换2张图片。";
         [latestTemplateList addObject:template];
     }
     
@@ -259,6 +262,8 @@
 
 -(void)selectHomeTemplate:(HomeTemplate *)homeTemplate
 {
-    
+    UTDownloadTemplateViewController *downloadTemplateVC = [[UTDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
+    [downloadTemplateVC setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:downloadTemplateVC animated:YES];
 }
 @end

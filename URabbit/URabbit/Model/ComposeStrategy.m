@@ -12,9 +12,6 @@
 #import "AxiosInfo.h"
 #import "Frame.h"
 
-#import "ComposeStrategyManager.h"
-#import "BlendAlgorithmFrontView.h"
-#import "UTBlendManager.h"
 #import "UTImageHanderManager.h"
 
 #import "UIImage+FixImage.h"
@@ -24,15 +21,18 @@
 @interface ComposeStrategy()
 {
     GPUImageTwoInputFilter *filter;
+    int halfVideoFps;
 }
 @end
 
 @implementation ComposeStrategy
--(instancetype)initWithMaterial:(Material *)m
+-(instancetype)initWithMaterial:(Material *)m axiosInfos:(NSMutableArray *)axiosInfoList fps:(float)fps
 {
     self = [super init];
     if (self) {
         _material = m;
+        halfVideoFps = (int)(fps / 2);
+        _axiosInfos = [NSMutableArray arrayWithArray:axiosInfoList];
         [self initlizeData];
     }
     return self;
@@ -41,26 +41,26 @@
 -(void)initlizeData
 {
     filter = [[GPUImageAddBlendFilter alloc] init];
-    _axiosInfos = [NSMutableArray array];
-    AxiosInfo *info = [[AxiosInfo alloc] init];
-    info.range = NSMakeRange(0, 412);
-    info.centerX = 272.0f;
-    info.centerY = 100.0f;
-    info.offsetX = 0.0f;
-    info.offsetY = 0.0f;
-    info.image = [UIImage imageNamed:@"test"];
-    info.imageWith = info.image.size.width;
-    info.imageHeight = info.image.size.height;
-    info.algorithmType = AlgorithmTemplateFront;
-    info.maskAlgorithmType = MaskAlgorithmNone;
-    [_axiosInfos addObject:info];
-    
     _frames = [NSMutableArray array];
-    for (int i = 0; i < 374; i++) {
+    for (int i = 0; i < _material.totalFrames; i++) {
         Frame *frame = [[Frame alloc] init];
-        frame.axiosIndex = 0;
+        frame.axiosIndex = [self isInAxios:i];
         [_frames addObject:frame];
     }
+}
+
+-(NSInteger)isInAxios:(NSInteger)index
+{
+    NSInteger location = -1;
+    for (NSInteger i = 0; i < _axiosInfos.count; i++) {
+        AxiosInfo *info = [_axiosInfos objectAtIndex:i];
+        NSRange range = info.range;
+        if (index >= range.location && index <= (range.location + range.length - 1)) {
+            location = i;
+            break;
+        }
+    }
+    return location;
 }
 
 -(void)createVideoReader
@@ -104,9 +104,8 @@
             Frame *frame = [_frames objectAtIndex:index];
             AxiosInfo *axiosInfo = [_axiosInfos objectAtIndex:frame.axiosIndex];
             
-            if (axiosInfo.algorithmType == AlgorithmTemplateFront) {
-                UIImage *tempResultImage = [axiosInfo.image imageWithMask:maskImage orginImagePoint:CGPointMake(0, 0) colorSpace:[[UTImageHanderManager shareManager] currentColorSpaceRef]];
-                //            UIImage *tempResultImage = [axiosInfo.image imageWithMask:maskImage orginImagePoint:CGPointMake(0, 0)];
+            if (true) {
+                UIImage *tempResultImage = [self imageWithMask:maskImage axiosInfo:axiosInfo];
                 GPUImagePicture *tempPic1 = [[GPUImagePicture alloc] initWithImage:templateImage];
                 [tempPic1 addTarget:filter];
                 [tempPic1 processImage];
@@ -116,29 +115,43 @@
 //                [tempPic2 processImage];
                 
                 UIImage *resultImage = [filter imageByFilteringImage:tempResultImage];
-                
-                CVPixelBufferRef resultPixelBuffer = [[filter framebufferForOutput] pixelBuffer];
+                if (index % halfVideoFps == 0) {
+                    if ([self.delegate respondsToSelector:@selector(composeImage:)]) {
+                        [self.delegate composeImage:resultImage];
+                    }
+                }
+                CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:pixelSize];
                 void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
+//                CVPixelBufferRef resultPixelBuffer = [[filter framebufferForOutput] pixelBuffer];
+//                void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
                 memcpy(templatePixelBuffer, resultBaseAddress, 4*pixelSize.width*pixelSize.height);
                 [tempPic1 removeTarget:filter];
-//                UIImage *resultImage = [filter imageFromCurrentFramebuffer];
-//                UIImage *resultImage = [filter imageByFilteringImage:tempResultImage];
-//                CVPixelBufferRef resultPixelBuffer = [[filter framebufferForOutput] pixelBuffer];
-                
-//                [tempPic2 removeTarget:filter];
-                
-//                CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:pixelSize];
-//                void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
-//                memcpy(templatePixelBuffer, resultBaseAddress, 4*pixelSize.width*pixelSize.height);
-//
+                CVPixelBufferRelease(resultPixelBuffer);
                 CFRelease(maskSampleBufferRef);
-                
-//                CVPixelBufferRelease(resultPixelBuffer);
             }
         }
     }
      
     return templateSampleBufferRef;
+}
+
+-(UIImage *)imageWithMask:(UIImage *)maskImage axiosInfo:(AxiosInfo *)info
+{
+    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, maskImage.size.width, maskImage.size.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    
+    CGImageRef maskRef = maskImage.CGImage;
+    CGContextClipToMask(mainViewContentContext, CGRectMake(0, 0, maskImage.size.width, maskImage.size.height), maskRef);
+    CGContextSaveGState(mainViewContentContext);
+    CGContextTranslateCTM(mainViewContentContext, info.centerX, info.centerY);
+    CGContextRotateCTM(mainViewContentContext, -info.rotateAngle);
+    CGContextDrawImage(mainViewContentContext, CGRectMake(info.offsetX - info.imageWith / 2, info.offsetY - info.imageHeight / 2, info.imageWith, info.imageHeight), info.image.CGImage);
+    CGContextRestoreGState(mainViewContentContext);
+    CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    CGImageRelease(newImageRef);
+    CGContextRelease(mainViewContentContext);
+    return newImage;
 }
 
 -(void)cleanMemory
@@ -153,6 +166,12 @@
             [_templateVideoReader removeVideoReader];
         }
         _templateVideoReader = nil;
+    }
+    
+    if (_maskVideoReaders.count > 0) {
+        for (UTVideoReader *reader in _maskVideoReaders) {
+            [reader removeVideoReader];
+        }
     }
 }
 @end

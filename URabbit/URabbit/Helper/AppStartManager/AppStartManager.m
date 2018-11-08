@@ -7,6 +7,8 @@
 //
 
 #import "AppStartManager.h"
+#import <AVFoundation/AVFoundation.h>
+#import <Photos/Photos.h>
 #import "AppDelegate.h"
 #import "GeneralManager.h"
 #import "AFNetworkReachabilityManager.h"
@@ -127,6 +129,10 @@
  */
 -(void)startApp
 {
+    NSString *mediaType = AVMediaTypeVideo;
+    AVAuthorizationStatus authStatusVedio = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+    PHAuthorizationStatus authStatusAlbm  = [PHPhotoLibrary authorizationStatus];
+
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         switch (status) {
@@ -156,8 +162,9 @@
     
     [[UINavigationBar appearance] setBackIndicatorImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:ThemeHexColor])]];
     [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:ThemeHexColor])]];
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
-                                                         forBarMetrics:UIBarMetricsDefault];
+//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+//                                                         forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor clearColor]}forState:UIControlStateNormal];
     [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
     [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     [[GeneralManager defaultManager] getGlovalVarWithVersion];
@@ -199,7 +206,7 @@
     
     UTHomeViewController *homeVC = [[UTHomeViewController alloc] init];
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:homeVC];
-    [self setNavigationColor:nav1];
+    [nav1 setTranslucentView];
     
     UTUserCenterViewController *userCenterVC = [[UTUserCenterViewController alloc] init];
     UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:userCenterVC];
@@ -263,6 +270,10 @@
     if (_navigationController) {
         [_navigationController popToRootViewControllerAnimated:NO];
         _navigationController = nil;
+    }
+    
+    if (_tabBarController) {
+        _tabBarController = nil;
     }
     [AppUtils localUserDefaultsValue:@"0" forKey:KMY_AutoLogin];
     [self setLoginView];

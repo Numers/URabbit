@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14239ABC2172F9E50033FB7D /* UTBlendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14239ABA2172F9E50033FB7D /* UTBlendManager.m */; };
 		14239B6F2172F9FA0033FB7D /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14239B6E2172F9FA0033FB7D /* libGPUImage.a */; };
 		14239B7B2175B8970033FB7D /* UTImageProcessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14239B7A2175B8970033FB7D /* UTImageProcessManager.m */; };
 		14262A292189AC8E00768E6A /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14262A282189AC8E00768E6A /* music.mp3 */; };
@@ -73,12 +72,32 @@
 		14678FF8218EDAFA00CD7F4B /* RecommendTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14678FF7218EDAFA00CD7F4B /* RecommendTemplate.m */; };
 		14678FFB218EE07500CD7F4B /* HomeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14678FFA218EE07500CD7F4B /* HomeTemplate.m */; };
 		14678FFE218EE11C00CD7F4B /* UTHomeTemplateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14678FFD218EE11C00CD7F4B /* UTHomeTemplateView.m */; };
+		146B636B218FDAC200A3A679 /* UTDownloadTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B636A218FDAC200A3A679 /* UTDownloadTemplateViewController.m */; };
+		146B63732190243C00A3A679 /* UTDownloadButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63722190243C00A3A679 /* UTDownloadButtonView.m */; };
+		146B63792190274C00A3A679 /* UIButton+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63752190274C00A3A679 /* UIButton+Gradient.m */; };
+		146B637A2190274C00A3A679 /* UIImage+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63762190274C00A3A679 /* UIImage+Gradient.m */; };
+		146B637E219033B600A3A679 /* UTVideoInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B637D219033B600A3A679 /* UTVideoInfoView.m */; };
+		146B638221904DF900A3A679 /* UTVideoAuthorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B638121904DF900A3A679 /* UTVideoAuthorView.m */; };
+		146B63862190657F00A3A679 /* UTPhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63852190657F00A3A679 /* UTPhotoEditViewController.m */; };
+		146B638A219071EB00A3A679 /* UTPhotoEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B6389219071EB00A3A679 /* UTPhotoEditView.m */; };
+		146B638E2190723600A3A679 /* UTPictureImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B638D2190723600A3A679 /* UTPictureImageView.m */; };
+		146B63922190726D00A3A679 /* UTTplImageLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63912190726D00A3A679 /* UTTplImageLayerView.m */; };
+		146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B639521914AE800A3A679 /* UTPhotoEditCollectionViewCell.m */; };
+		146B63992191827300A3A679 /* EditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63982191827300A3A679 /* EditInfo.m */; };
+		146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B639C2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m */; };
+		146B63A1219191C900A3A679 /* UTMiddleEditContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63A0219191C900A3A679 /* UTMiddleEditContainerView.m */; };
+		146B63C72192B35400A3A679 /* UTVideoComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63C62192B35400A3A679 /* UTVideoComposeViewController.m */; };
+		146B63CD2192EAD400A3A679 /* UTSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63CC2192EAD400A3A679 /* UTSegmentView.m */; };
+		146B63D02192EAE700A3A679 /* UTSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63CF2192EAE700A3A679 /* UTSelectView.m */; };
+		146B63D32192EAF800A3A679 /* UTPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63D22192EAF800A3A679 /* UTPlayView.m */; };
+		146B63D72193064300A3A679 /* UTPlayCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63D62193064300A3A679 /* UTPlayCollectionViewCell.m */; };
+		1486C4EA21946DB400809626 /* UTFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4E921946DB400809626 /* UTFilterView.m */; };
+		1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4ED21946F6500809626 /* UTFilterCollectionViewCell.m */; };
+		1486C4F1219473A500809626 /* FilterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4F0219473A500809626 /* FilterInfo.m */; };
 		BC0EEF5C062C06F4C3E98620 /* Pods_URabbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14239ABA2172F9E50033FB7D /* UTBlendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTBlendManager.m; sourceTree = "<group>"; };
-		14239ABB2172F9E50033FB7D /* UTBlendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTBlendManager.h; sourceTree = "<group>"; };
 		14239ABF2172F9FA0033FB7D /* GPUImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBuffer.h; sourceTree = "<group>"; };
 		14239AC02172F9FA0033FB7D /* GPUImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageView.h; sourceTree = "<group>"; };
 		14239AC12172F9FA0033FB7D /* GPUImageShiTomasiFeatureDetectionFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageShiTomasiFeatureDetectionFilter.h; sourceTree = "<group>"; };
@@ -373,6 +392,50 @@
 		14678FFA218EE07500CD7F4B /* HomeTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTemplate.m; sourceTree = "<group>"; };
 		14678FFC218EE11C00CD7F4B /* UTHomeTemplateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTHomeTemplateView.h; sourceTree = "<group>"; };
 		14678FFD218EE11C00CD7F4B /* UTHomeTemplateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTHomeTemplateView.m; sourceTree = "<group>"; };
+		146B6369218FDAC200A3A679 /* UTDownloadTemplateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTDownloadTemplateViewController.h; sourceTree = "<group>"; };
+		146B636A218FDAC200A3A679 /* UTDownloadTemplateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTDownloadTemplateViewController.m; sourceTree = "<group>"; };
+		146B63712190243C00A3A679 /* UTDownloadButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTDownloadButtonView.h; sourceTree = "<group>"; };
+		146B63722190243C00A3A679 /* UTDownloadButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTDownloadButtonView.m; sourceTree = "<group>"; };
+		146B63752190274C00A3A679 /* UIButton+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Gradient.m"; sourceTree = "<group>"; };
+		146B63762190274C00A3A679 /* UIImage+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Gradient.m"; sourceTree = "<group>"; };
+		146B63772190274C00A3A679 /* UIImage+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gradient.h"; sourceTree = "<group>"; };
+		146B63782190274C00A3A679 /* UIButton+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Gradient.h"; sourceTree = "<group>"; };
+		146B637C219033B600A3A679 /* UTVideoInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTVideoInfoView.h; sourceTree = "<group>"; };
+		146B637D219033B600A3A679 /* UTVideoInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTVideoInfoView.m; sourceTree = "<group>"; };
+		146B638021904DF900A3A679 /* UTVideoAuthorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTVideoAuthorView.h; sourceTree = "<group>"; };
+		146B638121904DF900A3A679 /* UTVideoAuthorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTVideoAuthorView.m; sourceTree = "<group>"; };
+		146B63842190657F00A3A679 /* UTPhotoEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditViewController.h; sourceTree = "<group>"; };
+		146B63852190657F00A3A679 /* UTPhotoEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditViewController.m; sourceTree = "<group>"; };
+		146B6388219071EB00A3A679 /* UTPhotoEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditView.h; sourceTree = "<group>"; };
+		146B6389219071EB00A3A679 /* UTPhotoEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditView.m; sourceTree = "<group>"; };
+		146B638C2190723600A3A679 /* UTPictureImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPictureImageView.h; sourceTree = "<group>"; };
+		146B638D2190723600A3A679 /* UTPictureImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPictureImageView.m; sourceTree = "<group>"; };
+		146B63902190726D00A3A679 /* UTTplImageLayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTTplImageLayerView.h; sourceTree = "<group>"; };
+		146B63912190726D00A3A679 /* UTTplImageLayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTTplImageLayerView.m; sourceTree = "<group>"; };
+		146B639421914AE800A3A679 /* UTPhotoEditCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditCollectionViewCell.h; sourceTree = "<group>"; };
+		146B639521914AE800A3A679 /* UTPhotoEditCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditCollectionViewCell.m; sourceTree = "<group>"; };
+		146B63972191827300A3A679 /* EditInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditInfo.h; sourceTree = "<group>"; };
+		146B63982191827300A3A679 /* EditInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditInfo.m; sourceTree = "<group>"; };
+		146B639B2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditShowImageCollectionViewCell.h; sourceTree = "<group>"; };
+		146B639C2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditShowImageCollectionViewCell.m; sourceTree = "<group>"; };
+		146B639F219191C900A3A679 /* UTMiddleEditContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMiddleEditContainerView.h; sourceTree = "<group>"; };
+		146B63A0219191C900A3A679 /* UTMiddleEditContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMiddleEditContainerView.m; sourceTree = "<group>"; };
+		146B63C52192B35400A3A679 /* UTVideoComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTVideoComposeViewController.h; sourceTree = "<group>"; };
+		146B63C62192B35400A3A679 /* UTVideoComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTVideoComposeViewController.m; sourceTree = "<group>"; };
+		146B63CB2192EAD400A3A679 /* UTSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTSegmentView.h; sourceTree = "<group>"; };
+		146B63CC2192EAD400A3A679 /* UTSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTSegmentView.m; sourceTree = "<group>"; };
+		146B63CE2192EAE700A3A679 /* UTSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTSelectView.h; sourceTree = "<group>"; };
+		146B63CF2192EAE700A3A679 /* UTSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTSelectView.m; sourceTree = "<group>"; };
+		146B63D12192EAF800A3A679 /* UTPlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPlayView.h; sourceTree = "<group>"; };
+		146B63D22192EAF800A3A679 /* UTPlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPlayView.m; sourceTree = "<group>"; };
+		146B63D52193064300A3A679 /* UTPlayCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPlayCollectionViewCell.h; sourceTree = "<group>"; };
+		146B63D62193064300A3A679 /* UTPlayCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPlayCollectionViewCell.m; sourceTree = "<group>"; };
+		1486C4E821946DB400809626 /* UTFilterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTFilterView.h; sourceTree = "<group>"; };
+		1486C4E921946DB400809626 /* UTFilterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTFilterView.m; sourceTree = "<group>"; };
+		1486C4EC21946F6500809626 /* UTFilterCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTFilterCollectionViewCell.h; sourceTree = "<group>"; };
+		1486C4ED21946F6500809626 /* UTFilterCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTFilterCollectionViewCell.m; sourceTree = "<group>"; };
+		1486C4EF219473A500809626 /* FilterInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterInfo.h; sourceTree = "<group>"; };
+		1486C4F0219473A500809626 /* FilterInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterInfo.m; sourceTree = "<group>"; };
 		36AFCC5E9317FFA812781492 /* Pods-URabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_URabbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D640A9F686B5E9FFB7F4DB77 /* Pods-URabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.release.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.release.xcconfig"; sourceTree = "<group>"; };
@@ -396,15 +459,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		14239AB92172F9E50033FB7D /* UTBlendManager */ = {
-			isa = PBXGroup;
-			children = (
-				14239ABA2172F9E50033FB7D /* UTBlendManager.m */,
-				14239ABB2172F9E50033FB7D /* UTBlendManager.h */,
-			);
-			path = UTBlendManager;
-			sourceTree = "<group>";
-		};
 		14239ABD2172F9FA0033FB7D /* GPUImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -741,7 +795,6 @@
 			isa = PBXGroup;
 			children = (
 				14239B782175B8800033FB7D /* UTImageProcessManager */,
-				14239AB92172F9E50033FB7D /* UTBlendManager */,
 				145803D921707B5A001B9535 /* UTImageHanderManager */,
 				145803D52170703A001B9535 /* UTVideoManager */,
 				14580467216F3F5F006BB33D /* ComposeStrategyManager */,
@@ -784,6 +837,7 @@
 		14580381216F2D6F006BB33D /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				146B63742190272E00A3A679 /* UIButton+Gradient */,
 				14580382216F2D6F006BB33D /* UIImage+FixImage */,
 				14580385216F2D6F006BB33D /* UITabBar+CustomerTabBar */,
 				14580388216F2D6F006BB33D /* UIDevice+FixedLength */,
@@ -861,6 +915,10 @@
 				14678FF7218EDAFA00CD7F4B /* RecommendTemplate.m */,
 				14678FF9218EE07500CD7F4B /* HomeTemplate.h */,
 				14678FFA218EE07500CD7F4B /* HomeTemplate.m */,
+				146B63972191827300A3A679 /* EditInfo.h */,
+				146B63982191827300A3A679 /* EditInfo.m */,
+				1486C4EF219473A500809626 /* FilterInfo.h */,
+				1486C4F0219473A500809626 /* FilterInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -868,6 +926,9 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				146B63C42192B32A00A3A679 /* VideoComposeView */,
+				146B63832190652300A3A679 /* EditView */,
+				146B6368218FDA8100A3A679 /* DownloadTemplateView */,
 				14262A31218AF20A00768E6A /* UserCenterView */,
 				145803A3216F3130006BB33D /* GuidView */,
 				1458039F216F3119006BB33D /* HomeView */,
@@ -910,6 +971,8 @@
 		145803C321703C80001B9535 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				146B638F2190723B00A3A679 /* UTTplImageLayerView */,
+				146B638B2190720B00A3A679 /* UTPictureImageView */,
 				145803C421703C8C001B9535 /* BlendAlgorithmFrontView */,
 			);
 			path = View;
@@ -1023,6 +1086,192 @@
 			path = UTHomeRecommendView;
 			sourceTree = "<group>";
 		};
+		146B6368218FDA8100A3A679 /* DownloadTemplateView */ = {
+			isa = PBXGroup;
+			children = (
+				146B637F21904D2000A3A679 /* UTVideoAuthorView */,
+				146B637B219031FA00A3A679 /* UTVideoInfoView */,
+				146B63702190241500A3A679 /* UTDownloadButtonView */,
+				146B6369218FDAC200A3A679 /* UTDownloadTemplateViewController.h */,
+				146B636A218FDAC200A3A679 /* UTDownloadTemplateViewController.m */,
+			);
+			path = DownloadTemplateView;
+			sourceTree = "<group>";
+		};
+		146B63702190241500A3A679 /* UTDownloadButtonView */ = {
+			isa = PBXGroup;
+			children = (
+				146B63712190243C00A3A679 /* UTDownloadButtonView.h */,
+				146B63722190243C00A3A679 /* UTDownloadButtonView.m */,
+			);
+			path = UTDownloadButtonView;
+			sourceTree = "<group>";
+		};
+		146B63742190272E00A3A679 /* UIButton+Gradient */ = {
+			isa = PBXGroup;
+			children = (
+				146B63782190274C00A3A679 /* UIButton+Gradient.h */,
+				146B63752190274C00A3A679 /* UIButton+Gradient.m */,
+				146B63772190274C00A3A679 /* UIImage+Gradient.h */,
+				146B63762190274C00A3A679 /* UIImage+Gradient.m */,
+			);
+			path = "UIButton+Gradient";
+			sourceTree = "<group>";
+		};
+		146B637B219031FA00A3A679 /* UTVideoInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				146B637C219033B600A3A679 /* UTVideoInfoView.h */,
+				146B637D219033B600A3A679 /* UTVideoInfoView.m */,
+			);
+			path = UTVideoInfoView;
+			sourceTree = "<group>";
+		};
+		146B637F21904D2000A3A679 /* UTVideoAuthorView */ = {
+			isa = PBXGroup;
+			children = (
+				146B638021904DF900A3A679 /* UTVideoAuthorView.h */,
+				146B638121904DF900A3A679 /* UTVideoAuthorView.m */,
+			);
+			path = UTVideoAuthorView;
+			sourceTree = "<group>";
+		};
+		146B63832190652300A3A679 /* EditView */ = {
+			isa = PBXGroup;
+			children = (
+				146B639E2191919E00A3A679 /* UTMiddleEditContainerView */,
+				146B639A219190D200A3A679 /* UTPhotoEditShowImageCollectionViewCell */,
+				146B639321914AC200A3A679 /* UTPhotoEditCollectionViewCell */,
+				146B638721906B8D00A3A679 /* PhotoEditView */,
+				146B63842190657F00A3A679 /* UTPhotoEditViewController.h */,
+				146B63852190657F00A3A679 /* UTPhotoEditViewController.m */,
+			);
+			path = EditView;
+			sourceTree = "<group>";
+		};
+		146B638721906B8D00A3A679 /* PhotoEditView */ = {
+			isa = PBXGroup;
+			children = (
+				146B6388219071EB00A3A679 /* UTPhotoEditView.h */,
+				146B6389219071EB00A3A679 /* UTPhotoEditView.m */,
+			);
+			path = PhotoEditView;
+			sourceTree = "<group>";
+		};
+		146B638B2190720B00A3A679 /* UTPictureImageView */ = {
+			isa = PBXGroup;
+			children = (
+				146B638C2190723600A3A679 /* UTPictureImageView.h */,
+				146B638D2190723600A3A679 /* UTPictureImageView.m */,
+			);
+			path = UTPictureImageView;
+			sourceTree = "<group>";
+		};
+		146B638F2190723B00A3A679 /* UTTplImageLayerView */ = {
+			isa = PBXGroup;
+			children = (
+				146B63902190726D00A3A679 /* UTTplImageLayerView.h */,
+				146B63912190726D00A3A679 /* UTTplImageLayerView.m */,
+			);
+			path = UTTplImageLayerView;
+			sourceTree = "<group>";
+		};
+		146B639321914AC200A3A679 /* UTPhotoEditCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				146B639421914AE800A3A679 /* UTPhotoEditCollectionViewCell.h */,
+				146B639521914AE800A3A679 /* UTPhotoEditCollectionViewCell.m */,
+			);
+			path = UTPhotoEditCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		146B639A219190D200A3A679 /* UTPhotoEditShowImageCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				146B639B2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.h */,
+				146B639C2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m */,
+			);
+			path = UTPhotoEditShowImageCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		146B639E2191919E00A3A679 /* UTMiddleEditContainerView */ = {
+			isa = PBXGroup;
+			children = (
+				146B639F219191C900A3A679 /* UTMiddleEditContainerView.h */,
+				146B63A0219191C900A3A679 /* UTMiddleEditContainerView.m */,
+			);
+			path = UTMiddleEditContainerView;
+			sourceTree = "<group>";
+		};
+		146B63C42192B32A00A3A679 /* VideoComposeView */ = {
+			isa = PBXGroup;
+			children = (
+				146B63CA2192EAAA00A3A679 /* SegmentView */,
+				146B63C92192EA5800A3A679 /* SelectView */,
+				146B63C82192EA4900A3A679 /* PlayView */,
+				146B63C52192B35400A3A679 /* UTVideoComposeViewController.h */,
+				146B63C62192B35400A3A679 /* UTVideoComposeViewController.m */,
+			);
+			path = VideoComposeView;
+			sourceTree = "<group>";
+		};
+		146B63C82192EA4900A3A679 /* PlayView */ = {
+			isa = PBXGroup;
+			children = (
+				146B63D42193061F00A3A679 /* UTPlayCollectionViewCell */,
+				146B63D12192EAF800A3A679 /* UTPlayView.h */,
+				146B63D22192EAF800A3A679 /* UTPlayView.m */,
+			);
+			path = PlayView;
+			sourceTree = "<group>";
+		};
+		146B63C92192EA5800A3A679 /* SelectView */ = {
+			isa = PBXGroup;
+			children = (
+				1486C4E721946C5E00809626 /* UTFilterView */,
+				146B63CE2192EAE700A3A679 /* UTSelectView.h */,
+				146B63CF2192EAE700A3A679 /* UTSelectView.m */,
+			);
+			path = SelectView;
+			sourceTree = "<group>";
+		};
+		146B63CA2192EAAA00A3A679 /* SegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				146B63CB2192EAD400A3A679 /* UTSegmentView.h */,
+				146B63CC2192EAD400A3A679 /* UTSegmentView.m */,
+			);
+			path = SegmentView;
+			sourceTree = "<group>";
+		};
+		146B63D42193061F00A3A679 /* UTPlayCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				146B63D52193064300A3A679 /* UTPlayCollectionViewCell.h */,
+				146B63D62193064300A3A679 /* UTPlayCollectionViewCell.m */,
+			);
+			path = UTPlayCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		1486C4E721946C5E00809626 /* UTFilterView */ = {
+			isa = PBXGroup;
+			children = (
+				1486C4EB21946F4800809626 /* UTFilterCollectionViewCell */,
+				1486C4E821946DB400809626 /* UTFilterView.h */,
+				1486C4E921946DB400809626 /* UTFilterView.m */,
+			);
+			path = UTFilterView;
+			sourceTree = "<group>";
+		};
+		1486C4EB21946F4800809626 /* UTFilterCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1486C4EC21946F6500809626 /* UTFilterCollectionViewCell.h */,
+				1486C4ED21946F6500809626 /* UTFilterCollectionViewCell.m */,
+			);
+			path = UTFilterCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		7B66372339C95543FFFDEC4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1129,6 +1378,7 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/IconFont/IconFont.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/WZLBadge/WZLBadge.framework",
@@ -1139,6 +1389,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IconFont.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZLBadge.framework",
@@ -1175,12 +1426,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				14580363216F2BCC006BB33D /* NetWorkRequestManager.m in Sources */,
+				1486C4F1219473A500809626 /* FilterInfo.m in Sources */,
 				14580479216F7689006BB33D /* Frame.m in Sources */,
 				14580379216F2BCC006BB33D /* FXBlurView.m in Sources */,
 				14580393216F2D6F006BB33D /* UIDevice+FixedLength.m in Sources */,
+				146B638A219071EB00A3A679 /* UTPhotoEditView.m in Sources */,
+				146B63862190657F00A3A679 /* UTPhotoEditViewController.m in Sources */,
 				145803C72170427E001B9535 /* BlendAlgorithmFrontView.m in Sources */,
+				1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */,
 				1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */,
 				1458047D216F884C006BB33D /* TemplateInfo.m in Sources */,
+				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
 				14678FF8218EDAFA00CD7F4B /* RecommendTemplate.m in Sources */,
 				1458037E216F2BCC006BB33D /* AppUtils.m in Sources */,
@@ -1188,33 +1444,48 @@
 				145803DF21708433001B9535 /* VideoCompose.m in Sources */,
 				14580375216F2BCC006BB33D /* LaunchAnimateView.m in Sources */,
 				14262A30218AF02300768E6A /* LLTabBar.m in Sources */,
+				146B638E2190723600A3A679 /* UTPictureImageView.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
+				146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */,
 				1458039E216F3114006BB33D /* UTLoginViewController.m in Sources */,
 				145803A9216F32E9006BB33D /* UTLoginScrollViewController.m in Sources */,
 				145B6142216F27B700DA950E /* main.m in Sources */,
 				14678FF5218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.m in Sources */,
+				146B637A2190274C00A3A679 /* UIImage+Gradient.m in Sources */,
 				14580394216F2D6F006BB33D /* UINavigationController+NavigationBar.m in Sources */,
+				146B637E219033B600A3A679 /* UTVideoInfoView.m in Sources */,
 				14580362216F2BCC006BB33D /* NetWorkManager.m in Sources */,
 				1458037D216F2BCC006BB33D /* PushMessageManager.m in Sources */,
-				14239ABC2172F9E50033FB7D /* UTBlendManager.m in Sources */,
+				146B63D32192EAF800A3A679 /* UTPlayView.m in Sources */,
 				145803D82170705B001B9535 /* UTVideoManager.m in Sources */,
 				14580364216F2BCC006BB33D /* URLManager.m in Sources */,
+				146B63CD2192EAD400A3A679 /* UTSegmentView.m in Sources */,
+				1486C4EA21946DB400809626 /* UTFilterView.m in Sources */,
+				146B63C72192B35400A3A679 /* UTVideoComposeViewController.m in Sources */,
 				14580391216F2D6F006BB33D /* UIImage+FixImage.m in Sources */,
 				14678FFB218EE07500CD7F4B /* HomeTemplate.m in Sources */,
+				146B638221904DF900A3A679 /* UTVideoAuthorView.m in Sources */,
 				14678FF2218ECDBB00CD7F4B /* UTHomeRecommendView.m in Sources */,
 				1458039A216F306E006BB33D /* Member.m in Sources */,
 				14580392216F2D6F006BB33D /* UITabBar+CustomerTabBar.m in Sources */,
 				14580377216F2BCC006BB33D /* FeThreeDotGlow.m in Sources */,
+				146B63922190726D00A3A679 /* UTTplImageLayerView.m in Sources */,
 				14580366216F2BCC006BB33D /* TPKeyboardAvoidingTableView.m in Sources */,
+				146B63D72193064300A3A679 /* UTPlayCollectionViewCell.m in Sources */,
 				1458037B216F2BCC006BB33D /* AppLaunchManager.m in Sources */,
+				146B636B218FDAC200A3A679 /* UTDownloadTemplateViewController.m in Sources */,
 				14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */,
+				146B63D02192EAE700A3A679 /* UTSelectView.m in Sources */,
 				14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */,
 				14580470216F50D3006BB33D /* ComposeStrategy.m in Sources */,
 				14580476216F590D006BB33D /* AxiosInfo.m in Sources */,
 				145803A2216F312C006BB33D /* UTHomeViewController.m in Sources */,
 				14580395216F2D6F006BB33D /* UIColor+HexString.m in Sources */,
 				145803A6216F3143006BB33D /* UTGuidViewController.m in Sources */,
+				146B63792190274C00A3A679 /* UIButton+Gradient.m in Sources */,
+				146B63A1219191C900A3A679 /* UTMiddleEditContainerView.m in Sources */,
 				14580367216F2BCC006BB33D /* TPKeyboardAvoidingScrollView.m in Sources */,
+				146B63732190243C00A3A679 /* UTDownloadButtonView.m in Sources */,
 				14239B7B2175B8970033FB7D /* UTImageProcessManager.m in Sources */,
 				1458046D216F46A8006BB33D /* Material.m in Sources */,
 				145B6134216F27B600DA950E /* AppDelegate.m in Sources */,
@@ -1225,6 +1496,7 @@
 				14580365216F2BCC006BB33D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */,
 				1458046A216F4665006BB33D /* ComposeStrategyManager.m in Sources */,
+				146B63992191827300A3A679 /* EditInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
