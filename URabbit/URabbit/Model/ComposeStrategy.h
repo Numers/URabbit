@@ -11,6 +11,9 @@
 @class Material, UTVideoReader, AxiosInfo, Frame;
 @protocol ComposeStrategyProtocl <NSObject>
 -(void)composeImage:(UIImage *)image;
+
+-(void)sendSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame;
+-(void)sendResultImage:(UIImage *)image frame:(NSInteger)frame;
 @end
 @interface ComposeStrategy : NSObject
 @property(nonatomic, weak) id<ComposeStrategyProtocl> delegate;
@@ -21,7 +24,7 @@
 @property(nonatomic, strong) NSMutableArray<UTVideoReader *> *maskVideoReaders;
 -(instancetype)initWithMaterial:(Material *)m axiosInfos:(NSMutableArray *)axiosInfoList fps:(float)fps;
 -(void)createVideoReader;
--(CMSampleBufferRef)readVideoFrames:(int)index;
+-(void)readVideoFrames:(int)index;
 -(void)cleanMemory;
 -(void)removeVideoReader;
 @end

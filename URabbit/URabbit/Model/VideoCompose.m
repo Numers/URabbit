@@ -10,17 +10,100 @@
 #import "UTImageHanderManager.h"
 
 @implementation VideoCompose
--(instancetype)initWithVideoUrl:(NSString *)url videoSize:(CGSize)size fps:(int32_t)fps
+-(instancetype)initWithVideoUrl:(NSString *)url videoSize:(CGSize)size fps:(int32_t)fps totalFrames:(NSInteger)frames
 {
     self = [super init];
     if (self) {
         videoUrl = url;
         videoSize = size;
         currentFps = fps;
+        totalFrames = frames;
+        writeFrames = 0;
         [self createVideoWriter];
     }
     return self;
 }
+
+//-(void)createVideoWriter
+//{
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:videoUrl]) {
+//        [[NSFileManager defaultManager] removeItemAtPath:videoUrl error:nil];
+//    }
+//
+//    NSError *error = nil;
+//    videoWriter = [[AVAssetWriter alloc] initWithURL:[NSURL fileURLWithPath:videoUrl]
+//                                                           fileType:AVFileTypeMPEG4
+//                                                              error:&error];
+//    NSParameterAssert(videoWriter);
+//    if(error)
+//        NSLog(@"error = %@", [error localizedDescription]);
+//
+//    //视频
+////    //配置写数据，设置比特率，帧率等
+////    NSDictionary *compressionProperties = @{ AVVideoAverageBitRateKey : @(1.38*1024*1024),
+////                                             AVVideoExpectedSourceFrameRateKey: @(30),
+////                                             AVVideoProfileLevelKey : AVVideoProfileLevelH264HighAutoLevel };
+//    //配置编码器宽高等
+////    NSDictionary *videoSettings = @{
+////                                              AVVideoCodecKey                   : AVVideoCodecTypeH264,
+////                                              AVVideoWidthKey                   : @1080,
+////                                              AVVideoHeightKey                  : @1080,
+////                                              AVVideoCompressionPropertiesKey   : compressionProperties
+////                                              };
+//    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecH264, AVVideoCodecKey,
+//                                   [NSNumber numberWithInt:videoSize.width], AVVideoWidthKey,
+//                                   [NSNumber numberWithInt:videoSize.height], AVVideoHeightKey, nil];
+//    videoWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSettings];
+//    videoWriterInput.expectsMediaDataInRealTime = YES;
+//
+//    NSDictionary *sourcePixelBufferAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32ARGB], kCVPixelBufferPixelFormatTypeKey, nil];
+//
+//    adaptor = [AVAssetWriterInputPixelBufferAdaptor
+//                                                     assetWriterInputPixelBufferAdaptorWithAssetWriterInput:videoWriterInput sourcePixelBufferAttributes:sourcePixelBufferAttributesDictionary];
+//    NSParameterAssert(videoWriterInput);
+//    NSParameterAssert([videoWriter canAddInput:videoWriterInput]);
+//
+//    [videoWriter addInput:videoWriterInput];
+//
+//    [videoWriter startWriting];
+//    [videoWriter startSessionAtSourceTime:kCMTimeZero];
+//
+//    dispatch_group_t group = dispatch_group_create();
+//    dispatch_queue_t videoWriter = dispatch_queue_create("videoWriter", DISPATCH_QUEUE_CONCURRENT);
+//    __block BOOL isVideoComplete = NO;
+//    dispatch_group_enter(group);
+//    typeof(self) __weak weakSelf = self;
+//    __block int32_t currentFrame = 0;
+//    [videoWriterInput requestMediaDataWhenReadyOnQueue:videoWriter usingBlock:^{
+//        NSLog(@"did Write");
+//        while (!isVideoComplete && [[weakSelf returnVideoWriteInput] isReadyForMoreMediaData]) {
+//            CMSampleBufferRef sampleBufferRef = [weakSelf.delegate readNextPixelBuffer:currentFrame];
+//            if (sampleBufferRef) {
+//                BOOL success = [weakSelf writeToMovie:sampleBufferRef frame:currentFrame];
+//                if (success) {
+////                    NSLog(@"写入 %d video 成功",currentFrame);
+//                    if ([weakSelf.delegate respondsToSelector:@selector(didWriteToMovie:)]) {
+//                        [weakSelf.delegate didWriteToMovie:currentFrame];
+//                    }
+//                    currentFrame ++;
+//                }
+//            }else{
+//                isVideoComplete = YES;
+//            }
+////            [NSThread sleepForTimeInterval:0.015];
+//        }
+//        if (isVideoComplete) {
+//            [[weakSelf returnVideoWriteInput] markAsFinished];
+//        }
+//        dispatch_group_leave(group);
+//        NSLog(@"video group out");
+//    }];
+//
+//    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+//        NSLog(@"OKKK");
+//        [self stopWrite];
+//    });
+//}
 
 -(void)createVideoWriter
 {
@@ -30,24 +113,24 @@
     
     NSError *error = nil;
     videoWriter = [[AVAssetWriter alloc] initWithURL:[NSURL fileURLWithPath:videoUrl]
-                                                           fileType:AVFileTypeMPEG4
-                                                              error:&error];
+                                            fileType:AVFileTypeMPEG4
+                                               error:&error];
     NSParameterAssert(videoWriter);
     if(error)
         NSLog(@"error = %@", [error localizedDescription]);
     
     //视频
-//    //配置写数据，设置比特率，帧率等
-//    NSDictionary *compressionProperties = @{ AVVideoAverageBitRateKey : @(1.38*1024*1024),
-//                                             AVVideoExpectedSourceFrameRateKey: @(30),
-//                                             AVVideoProfileLevelKey : AVVideoProfileLevelH264HighAutoLevel };
+    //    //配置写数据，设置比特率，帧率等
+    //    NSDictionary *compressionProperties = @{ AVVideoAverageBitRateKey : @(1.38*1024*1024),
+    //                                             AVVideoExpectedSourceFrameRateKey: @(30),
+    //                                             AVVideoProfileLevelKey : AVVideoProfileLevelH264HighAutoLevel };
     //配置编码器宽高等
-//    NSDictionary *videoSettings = @{
-//                                              AVVideoCodecKey                   : AVVideoCodecTypeH264,
-//                                              AVVideoWidthKey                   : @1080,
-//                                              AVVideoHeightKey                  : @1080,
-//                                              AVVideoCompressionPropertiesKey   : compressionProperties
-//                                              };
+    //    NSDictionary *videoSettings = @{
+    //                                              AVVideoCodecKey                   : AVVideoCodecTypeH264,
+    //                                              AVVideoWidthKey                   : @1080,
+    //                                              AVVideoHeightKey                  : @1080,
+    //                                              AVVideoCompressionPropertiesKey   : compressionProperties
+    //                                              };
     NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecH264, AVVideoCodecKey,
                                    [NSNumber numberWithInt:videoSize.width], AVVideoWidthKey,
                                    [NSNumber numberWithInt:videoSize.height], AVVideoHeightKey, nil];
@@ -57,7 +140,7 @@
     NSDictionary *sourcePixelBufferAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32ARGB], kCVPixelBufferPixelFormatTypeKey, nil];
     
     adaptor = [AVAssetWriterInputPixelBufferAdaptor
-                                                     assetWriterInputPixelBufferAdaptorWithAssetWriterInput:videoWriterInput sourcePixelBufferAttributes:sourcePixelBufferAttributesDictionary];
+               assetWriterInputPixelBufferAdaptorWithAssetWriterInput:videoWriterInput sourcePixelBufferAttributes:sourcePixelBufferAttributesDictionary];
     NSParameterAssert(videoWriterInput);
     NSParameterAssert([videoWriter canAddInput:videoWriterInput]);
     
@@ -66,40 +149,51 @@
     [videoWriter startWriting];
     [videoWriter startSessionAtSourceTime:kCMTimeZero];
     
-    dispatch_group_t group = dispatch_group_create();
-    dispatch_queue_t videoWriter = dispatch_queue_create("videoWriter", DISPATCH_QUEUE_CONCURRENT);
-    __block BOOL isVideoComplete = NO;
-    dispatch_group_enter(group);
+    videoReaderQueue = dispatch_queue_create("videoReader", DISPATCH_QUEUE_CONCURRENT);
+    videoWriterQueue = dispatch_queue_create("videoWriter", DISPATCH_QUEUE_CONCURRENT);
     typeof(self) __weak weakSelf = self;
-    __block int32_t currentFrame = 0;
-    [videoWriterInput requestMediaDataWhenReadyOnQueue:videoWriter usingBlock:^{
-        NSLog(@"did Write");
-        while (!isVideoComplete && [[weakSelf returnVideoWriteInput] isReadyForMoreMediaData]) {
-            CMSampleBufferRef sampleBufferRef = [weakSelf.delegate readNextPixelBuffer:currentFrame];
-            if (sampleBufferRef) {
-                BOOL success = [weakSelf writeToMovie:sampleBufferRef frame:currentFrame];
-                if (success) {
-//                    NSLog(@"写入 %d video 成功",currentFrame);
-                    if ([weakSelf.delegate respondsToSelector:@selector(didWriteToMovie:)]) {
-                        [weakSelf.delegate didWriteToMovie:currentFrame];
-                    }
-                    currentFrame ++;
-                }
-            }else{
-                isVideoComplete = YES;
-            }
-//            [NSThread sleepForTimeInterval:0.001];
+    __block int currentFrame = 0;
+    NSLog(@"begin writer");
+    [videoWriterInput requestMediaDataWhenReadyOnQueue:videoReaderQueue usingBlock:^{
+        if (currentFrame == totalFrames) {
+            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
         }
-        if (isVideoComplete) {
-            [[weakSelf returnVideoWriteInput] markAsFinished];
+
+        if ([[weakSelf returnVideoWriteInput] isReadyForMoreMediaData]) {
+            [weakSelf.delegate readNextPixelBuffer:currentFrame];
+            currentFrame ++;
+            [NSThread sleepForTimeInterval:0.05];
         }
-        dispatch_group_leave(group);
-        NSLog(@"video group out");
+//        for (NSInteger i = 0; i < totalFrames; i++) {
+//            if ([[weakSelf returnVideoWriteInput] isReadyForMoreMediaData]) {
+//                [weakSelf.delegate readNextPixelBuffer:i];
+//                if (i == totalFrames -1) {
+//
+//                }
+////                [NSThread sleepForTimeInterval:0.15];
+//            }
+//        }
     }];
-    
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        NSLog(@"OKKK");
-        [self stopWrite];
+}
+
+-(void)writeSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame
+{
+    dispatch_async(videoWriterQueue, ^{
+        NSLog(@"did write %ld",frame);
+        if (sampleBufferRef) {
+            BOOL success = [self writeToMovie:sampleBufferRef frame:frame];
+            if (success) {
+                
+            }
+            if (frame == totalFrames - 1) {
+                [videoWriterInput markAsFinished];
+                [self stopWrite];
+            }
+        }else{
+            [videoWriterInput markAsFinished];
+            [self stopWrite];
+        }
+        [NSThread sleepForTimeInterval:0.05];
     });
 }
 
@@ -123,9 +217,10 @@
     return videoWriterInput;
 }
 
--(BOOL)writeToMovie:(CMSampleBufferRef)sampleBufferRef frame:(int32_t)frame
+-(BOOL)writeToMovie:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame
 {
     //合成多张图片为一个视频文件
+//    [videoWriter startSessionAtSourceTime:CMTimeMake(frame, currentFps)];
     if(![videoWriterInput appendSampleBuffer:sampleBufferRef]) {
         return NO;
     }else {

@@ -62,19 +62,36 @@
     float templateCenterX = editInfo.originSize.width * editInfo.editImageCenterXPercent;
     float templateCenterY = editInfo.originSize.height *  editInfo.editImageCenterYPercent;
     
-    float offsetX = imageCenterX - templateCenterX;
-    float offsetY = -(imageCenterY - templateCenterY);
-    
     info.centerX = templateCenterX;
     info.centerY = editInfo.originSize.height *  (1 - editInfo.editImageCenterYPercent);
-    info.offsetX = offsetX;
-    info.offsetY = offsetY;
     info.range = editInfo.range;
+    info.animationType = editInfo.animationType;
     info.rotateAngle = editView.useRotateAngle;
-    info.imageWith = editView.useImageSize.width * scale;
-    info.imageHeight = editView.useImageSize.height * scale;
-    info.image = [editView.pictureImage fixOrientation];
+    CGFloat imageWith = editView.useImageSize.width * scale;
+    CGFloat imageHeight = editView.useImageSize.height * scale;
+    info.imageWith = editInfo.originSize.width;
+    info.imageHeight = editInfo.originSize.height;
+    UIImage *image = [self imageWithCenter:CGPointMake(imageCenterX, editInfo.originSize.height - imageCenterY) image:[editView.pictureImage fixOrientation] imageSize:CGSizeMake(imageWith, imageHeight) rotation:info.rotateAngle toSize:editInfo.originSize];
+    info.image = image;
     return info;
+}
+
+-(UIImage *)imageWithCenter:(CGPoint)center image:(UIImage *)image imageSize:(CGSize)imageSize rotation:(CGFloat)rotation toSize:(CGSize)size
+{
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, size.width, size.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    
+    CGImageRef imageRef = image.CGImage;
+    CGContextSaveGState(mainViewContentContext);
+    CGContextTranslateCTM(mainViewContentContext, center.x, center.y);
+    CGContextRotateCTM(mainViewContentContext, -rotation);
+    CGContextDrawImage(mainViewContentContext, CGRectMake( - imageSize.width / 2,  - imageSize.height / 2, imageSize.width, imageSize.height), imageRef);
+    CGContextRestoreGState(mainViewContentContext);
+    CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    CGImageRelease(newImageRef);
+    CGContextRelease(mainViewContentContext);
+    return newImage;
 }
 #pragma -mark UTPhotoEditViewProtocol
 -(void)openImagePickerView

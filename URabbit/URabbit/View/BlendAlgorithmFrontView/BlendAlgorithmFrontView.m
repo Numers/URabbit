@@ -25,7 +25,7 @@
 {
     _backGroundImageView = [[UIImageView alloc] initWithImage:currentAxiosInfo.image];
     [_backGroundImageView setFrame:CGRectMake(0, 0, currentAxiosInfo.imageWith, currentAxiosInfo.imageHeight)];
-    _backGroundImageView.center = CGPointMake(currentAxiosInfo.centerX + currentAxiosInfo.offsetX, currentAxiosInfo.centerY + currentAxiosInfo.offsetY);
+//    _backGroundImageView.center = CGPointMake(currentAxiosInfo.centerX + currentAxiosInfo.offsetX, currentAxiosInfo.centerY + currentAxiosInfo.offsetY);
     [self addSubview:_backGroundImageView];
 //    self.layer.contents = (id)currentAxiosInfo.image.CGImage;
     

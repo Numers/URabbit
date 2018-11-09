@@ -53,7 +53,7 @@
 //    [strategy createVideoReader];
 
     float fps = [[UTVideoManager shareManager] getFpsWithVideoPath:material.templateVideo];
-    compose = [[VideoCompose alloc] initWithVideoUrl:videoPath videoSize:CGSizeMake(544, 960) fps:fps];
+    compose = [[VideoCompose alloc] initWithVideoUrl:videoPath videoSize:CGSizeMake(544, 960) fps:fps totalFrames:material.totalFrames];
     compose.delegate = self;
     
 }
@@ -64,14 +64,14 @@
     NSLog(@"内存警告");
 }
 
--(CMSampleBufferRef)readNextPixelBuffer:(int)frame
-{
-    if (frame == totalFrames-1) {
-        return nil;
-    }
-    CMSampleBufferRef sampleBufferRef = [strategy readVideoFrames:frame];
-    return sampleBufferRef;
-}
+//-(CMSampleBufferRef)readNextPixelBuffer:(int)frame
+//{
+//    if (frame == totalFrames-1) {
+//        return nil;
+//    }
+//    CMSampleBufferRef sampleBufferRef = [strategy readVideoFrames:frame];
+//    return sampleBufferRef;
+//}
 
 -(void)didWriteToMovie:(int)frame
 {

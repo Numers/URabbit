@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @interface EditInfo : NSObject
 @property(nonatomic, strong) UIImage *editImage;
 @property(nonatomic) NSRange range;
 @property(nonatomic) CGSize originSize;
 @property(nonatomic) CGFloat editImageCenterXPercent;
 @property(nonatomic) CGFloat editImageCenterYPercent;
+@property(nonatomic) AnimationType animationType;
 @end

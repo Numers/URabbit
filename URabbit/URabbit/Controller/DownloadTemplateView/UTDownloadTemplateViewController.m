@@ -111,7 +111,8 @@
     info.originSize = info.editImage.size;
     info.editImageCenterXPercent = 0.5;
     info.editImageCenterYPercent = (544.0f/2)/960.0f;
-    info.range = NSMakeRange(0, 374);
+    info.range = NSMakeRange(0, 375);
+    info.animationType = AnimationRotation;
     [editInfoList addObject:info];
     UTPhotoEditViewController *photoEditVC = [[UTPhotoEditViewController alloc] initWithMaterial:materia editInfo:editInfoList];
     [self.navigationController pushViewController:photoEditVC animated:YES];

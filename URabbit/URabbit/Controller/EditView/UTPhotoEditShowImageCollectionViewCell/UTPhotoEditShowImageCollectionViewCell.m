@@ -31,6 +31,11 @@
     [imageView setImage:editInfo.editImage];
 }
 
+-(void)setPictureImage:(UIImage *)image
+{
+    [imageView setImage:image];
+}
+
 -(void)setIsSelected:(BOOL)selected
 {
     isSelected = selected;

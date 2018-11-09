@@ -20,10 +20,9 @@ typedef enum{
 @property(nonatomic) NSRange range;
 @property(nonatomic) float centerX;  //用户图片相对于模板图片旋转的center
 @property(nonatomic) float centerY;
-@property(nonatomic) float offsetX;  //相对上面模板图片的centerX用户图像中心偏移
-@property(nonatomic) float offsetY; //相对上面模板图片的centerY用户图像中心偏移
 @property(nonatomic) float imageWith;
 @property(nonatomic) float imageHeight;
+@property(nonatomic) AnimationType animationType;
 @property(nonatomic) float rotateAngle;
 @property(nonatomic, strong) UIImage *image;
 @property(nonatomic) AlgorithmType algorithmType;

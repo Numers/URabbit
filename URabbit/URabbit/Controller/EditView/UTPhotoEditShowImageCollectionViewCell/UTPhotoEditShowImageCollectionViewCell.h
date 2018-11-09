@@ -17,5 +17,6 @@
 
 -(void)setupCellWithEditInfo:(EditInfo *)info;
 -(void)updateImageView;
+-(void)setPictureImage:(UIImage *)image;
 -(void)setIsSelected:(BOOL)selected;
 @end

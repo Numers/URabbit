@@ -12,6 +12,7 @@
 #import "HomeTemplate.h"
 #import "UTPhotoEditView.h"
 #import "Material.h"
+#import "AxiosInfo.h"
 #import "ComposeStrategy.h"
 #import "VideoCompose.h"
 #import "UTVideoManager.h"
@@ -141,13 +142,16 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     strategy.delegate = self;
     [strategy createVideoReader];
 
-    compose = [[VideoCompose alloc] initWithVideoUrl:videoPath videoSize:CGSizeMake(544, 960) fps:fps];
+    compose = [[VideoCompose alloc] initWithVideoUrl:videoPath videoSize:CGSizeMake(544, 960) fps:fps totalFrames:material.totalFrames];
     compose.delegate = self;
 }
 
 -(void)saveInDraft
 {
-    
+    NSMutableArray *axiosInfos = [containerView imagesAxiosToCompose];
+    UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    AxiosInfo *info = [axiosInfos objectAtIndex:0];
+    [cell setPictureImage:info.image];
 }
 
 -(void)importPhotos
@@ -252,13 +256,9 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 }
 
 #pragma -mark VideoComposeProtocol
--(CMSampleBufferRef)readNextPixelBuffer:(int)frame
+-(void)readNextPixelBuffer:(int)frame
 {
-    if (frame == material.totalFrames-1) {
-        return nil;
-    }
-    CMSampleBufferRef sampleBufferRef = [strategy readVideoFrames:frame];
-    return sampleBufferRef;
+    [strategy readVideoFrames:frame];
 }
 
 -(void)didWriteToMovie:(int)frame
@@ -280,6 +280,16 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 
 #pragma -mark ComposeStrategyProtocl
 -(void)composeImage:(UIImage *)image
+{
+    [imageList addObject:image];
+}
+
+-(void)sendSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame
+{
+    [compose writeSampleBufferRef:sampleBufferRef frame:frame];
+}
+
+-(void)sendResultImage:(UIImage *)image frame:(NSInteger)frame
 {
     [imageList addObject:image];
 }

@@ -68,6 +68,7 @@
     [self insertSubview:pictureImageView belowSubview:templateImageView];
     [pictureImageView setCenter:_tplCenterPoint];
     currentCenterPoint = _tplCenterPoint;
+    _useRotateAngle = 0;
 }
 
 -(CGSize)sizeFitWithSize:(CGSize)size inRect:(CGRect)rect

@@ -45,7 +45,7 @@
     AVAssetTrack *assertTrack = [videoTracks firstObject];
     CMTime cmtime = videoAsset.duration; //视频时间信息结构体
     Float64 durationSeconds = CMTimeGetSeconds(cmtime); //视频总秒数
-    int totalFrames = durationSeconds * assertTrack.nominalFrameRate; //获得视频总帧数
+    int totalFrames = floor(durationSeconds * assertTrack.nominalFrameRate); //获得视频总帧数
     return totalFrames;
 }
 

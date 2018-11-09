@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 @protocol VideoComposeProtocol <NSObject>
--(CMSampleBufferRef)readNextPixelBuffer:(int)frame;
+-(void)readNextPixelBuffer:(int)frame;
 -(void)didWriteToMovie:(int)frame;
 -(void)videoWriteDidFinished:(BOOL)success;
 @end
@@ -18,11 +18,16 @@
     NSString *videoUrl;
     CGSize videoSize;
     int32_t currentFps;
+    NSInteger totalFrames;
+    NSInteger writeFrames;
     AVAssetWriter *videoWriter;
     AVAssetWriterInput *videoWriterInput;
     AVAssetWriterInputPixelBufferAdaptor *adaptor;
+    dispatch_queue_t videoWriterQueue;
+    dispatch_queue_t videoReaderQueue;
 }
 @property(nonatomic, assign) id<VideoComposeProtocol> delegate;
--(instancetype)initWithVideoUrl:(NSString *)url videoSize:(CGSize)size fps:(int32_t)fps;
+-(instancetype)initWithVideoUrl:(NSString *)url videoSize:(CGSize)size fps:(int32_t)fps totalFrames:(NSInteger)frames;
 -(void)stopWrite;
+-(void)writeSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame;
 @end
