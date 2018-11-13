@@ -240,7 +240,7 @@
                 [videoWriterInput markAsFinished];
                 [self stopWrite];
             }
-            [NSThread sleepForTimeInterval:0.05];
+//            [NSThread sleepForTimeInterval:0.02];
         }
         
 //    });

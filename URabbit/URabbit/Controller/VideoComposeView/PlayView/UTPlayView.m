@@ -119,9 +119,10 @@ static NSString *playCollectionViewCellIdentify = @"PlayCollectionViewCellIdenti
 {
     UTPlayCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:playCollectionViewCellIdentify forIndexPath:indexPath];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        UIImage *image = [dataSource objectAtIndex:indexPath.row];
+        NSString *imagePath = [dataSource objectAtIndex:indexPath.row];
+        UIImage *img = [UIImage imageWithContentsOfFile:imagePath];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [cell setupCellWithImage:image];
+            [cell setupCellWithImage:img];
         });
     });
     return cell;

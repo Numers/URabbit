@@ -15,6 +15,8 @@
 -(void)sendSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame;
 -(void)sendPixelBufferRef:(CVPixelBufferRef)pixelBuffer frame:(NSInteger)frame;
 -(void)sendResultImage:(UIImage *)image frame:(NSInteger)frame;
+
+-(void)didFinishedVideoWriter;
 @end
 @interface ComposeStrategy : NSObject
 @property(nonatomic, weak) id<ComposeStrategyProtocl> delegate;

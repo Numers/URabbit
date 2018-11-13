@@ -464,7 +464,7 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     }
 }
 
--(UIImage *)zipScaleWithImage:(UIImage *)sourceImage{
+-(NSData *)zipScaleWithImage:(UIImage *)sourceImage{
     //进行图像尺寸的压缩
     CGSize imageSize = sourceImage.size;//取出要压缩的image尺寸
     CGFloat width = imageSize.width;    //图片宽度
@@ -499,8 +499,7 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     NSData *newImageData = UIImageJPEGRepresentation(newImage, 0.5);
-    UIImage *returnImage = [UIImage imageWithData:newImageData];
-    return returnImage;
+    return newImageData;
 }
 
 -(CMSampleBufferRef) GPUImageCreateResizedSampleBuffer:(CVPixelBufferRef)cameraFrame size: (CGSize) finalSize frame:(int)frame fps:(int32_t)fps

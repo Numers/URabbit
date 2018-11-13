@@ -33,7 +33,7 @@
 -(void)attachPixelBuffer:(CVImageBufferRef)fromPixelBuffer toPixelBuffer:(CVImageBufferRef)toPixelBuffer size:(CGSize)size;
 - (CVPixelBufferRef)pixelBufferFrom32BGRAData:(void *)framedata size:(CGSize)size;
 - (UIImage *)addImage:(UIImage *)image1 rect:(CGRect)rect1 toImage:(UIImage *)image2 rect:(CGRect)rect2 size:(CGSize)size;
--(UIImage *)zipScaleWithImage:(UIImage *)sourceImage;
+-(NSData *)zipScaleWithImage:(UIImage *)sourceImage;
 -(CMSampleBufferRef) GPUImageCreateResizedSampleBuffer:(CVPixelBufferRef)cameraFrame size: (CGSize) finalSize frame:(int)frame fps:(int32_t)fps;
 
 -(UIImage *)blendImage:(UIImage *)image1 withOtherImage:(void *)templateImageBuffer;

@@ -95,7 +95,6 @@
 		1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4ED21946F6500809626 /* UTFilterCollectionViewCell.m */; };
 		1486C4F1219473A500809626 /* FilterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4F0219473A500809626 /* FilterInfo.m */; };
 		1486C4F7219554C800809626 /* ComposeRotationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4F6219554C800809626 /* ComposeRotationOperation.m */; };
-		1486C4FA219583A000809626 /* ComposeNormalOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4F9219583A000809626 /* ComposeNormalOperation.m */; };
 		BC0EEF5C062C06F4C3E98620 /* Pods_URabbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */; };
 /* End PBXBuildFile section */
 
@@ -440,8 +439,6 @@
 		1486C4F0219473A500809626 /* FilterInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterInfo.m; sourceTree = "<group>"; };
 		1486C4F5219554C800809626 /* ComposeRotationOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeRotationOperation.h; sourceTree = "<group>"; };
 		1486C4F6219554C800809626 /* ComposeRotationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeRotationOperation.m; sourceTree = "<group>"; };
-		1486C4F8219583A000809626 /* ComposeNormalOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeNormalOperation.h; sourceTree = "<group>"; };
-		1486C4F9219583A000809626 /* ComposeNormalOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeNormalOperation.m; sourceTree = "<group>"; };
 		36AFCC5E9317FFA812781492 /* Pods-URabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_URabbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D640A9F686B5E9FFB7F4DB77 /* Pods-URabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.release.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.release.xcconfig"; sourceTree = "<group>"; };
@@ -927,8 +924,6 @@
 				1486C4F0219473A500809626 /* FilterInfo.m */,
 				1486C4F5219554C800809626 /* ComposeRotationOperation.h */,
 				1486C4F6219554C800809626 /* ComposeRotationOperation.m */,
-				1486C4F8219583A000809626 /* ComposeNormalOperation.h */,
-				1486C4F9219583A000809626 /* ComposeNormalOperation.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1462,7 +1457,6 @@
 				145B6142216F27B700DA950E /* main.m in Sources */,
 				14678FF5218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.m in Sources */,
 				146B637A2190274C00A3A679 /* UIImage+Gradient.m in Sources */,
-				1486C4FA219583A000809626 /* ComposeNormalOperation.m in Sources */,
 				14580394216F2D6F006BB33D /* UINavigationController+NavigationBar.m in Sources */,
 				146B637E219033B600A3A679 /* UTVideoInfoView.m in Sources */,
 				14580362216F2BCC006BB33D /* NetWorkManager.m in Sources */,

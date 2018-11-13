@@ -38,6 +38,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     NSMutableArray *imageList;
     VideoCompose *compose;
     NSString *videoPath;
+    CGSize videoSize;
 }
 @end
 
@@ -58,8 +59,9 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
     selectedRow = 0;
     imageList = [NSMutableArray array];
-    CGSize videoSize = [[UTVideoManager shareManager] getVideoSizeWithVideoPath:material.templateVideo];
+    videoSize = [[UTVideoManager shareManager] getVideoSizeWithVideoPath:material.templateVideo];
     [[UTImageHanderManager shareManager] setCurrentImageSize:videoSize];
+    
     
     importPhotosButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [importPhotosButton setImage:[UIImage imageNamed:@"draft"] forState:UIControlStateNormal];
@@ -282,6 +284,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         dispatch_async(dispatch_get_main_queue(), ^{
             UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithMaterial:material movieUrl:videoPath images:imageList];
             [self.navigationController pushViewController:videoComposeVC animated:YES];
+            [imageList removeAllObjects];
         });
     }
 }
@@ -304,6 +307,15 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 
 -(void)sendResultImage:(UIImage *)image frame:(NSInteger)frame
 {
-    [imageList addObject:image];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        NSString *imagePath = [NSString stringWithFormat:@"%@/image_%ld.png",videoDic,frame];
+        NSData *zipImage = [[UTImageHanderManager shareManager] zipScaleWithImage:image];
+        BOOL result = [zipImage writeToFile:imagePath atomically:YES];
+        if (result) {
+            [imageList addObject:imagePath];
+        }
+    });
 }
+
 @end

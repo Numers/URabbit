@@ -54,7 +54,10 @@
             }
             CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:currentPixelSize];
             void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
+//            [[filter framebufferForOutput] lockForReading];
+//            void *resultBaseAddress = [[filter framebufferForOutput] byteBuffer];
             memcpy(templatePixelBuffer, resultBaseAddress, 4*currentPixelSize.width*currentPixelSize.height);
+            [[filter framebufferForOutput] unlockAfterReading];
             [tempPic1 removeTarget:filter];
             [filter removeOutputFramebuffer];
 //            CVPixelBufferRelease(resultPixelBuffer);
