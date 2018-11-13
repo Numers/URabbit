@@ -49,6 +49,43 @@
     return totalFrames;
 }
 
+-(CGSize)getVideoSizeWithVideoPath:(NSString *)videoPath
+{
+    NSDictionary *optDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+    AVAsset *videoAsset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:videoPath] options:optDict];
+    NSArray *videoTracks = [videoAsset tracksWithMediaType:AVMediaTypeVideo];
+    AVAssetTrack *assertTrack = [videoTracks firstObject];
+    return assertTrack.naturalSize;
+}
+
+- (void)splitVideo:(NSURL *)fileUrl fps:(float)fps splitCompleteBlock:(void(^)(BOOL success, NSMutableArray *splitimgs))splitCompleteBlock  {
+    if (!fileUrl) {
+        return;
+    }
+    NSMutableArray *splitImages = [NSMutableArray array];
+    NSDictionary *optDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+    AVURLAsset *avasset = [[AVURLAsset alloc] initWithURL:fileUrl options:optDict];
+    
+    CMTime cmtime = avasset.duration; //视频时间信息结构体
+    Float64 durationSeconds = CMTimeGetSeconds(cmtime); //视频总秒数
+    Float64 totalFrames = durationSeconds * fps; //获得视频总帧数
+    AVAssetImageGenerator *imgGenerator = [[AVAssetImageGenerator alloc] initWithAsset:avasset]; //防止时间出现偏差
+    imgGenerator.requestedTimeToleranceBefore = kCMTimeZero;
+    imgGenerator.requestedTimeToleranceAfter = kCMTimeZero;
+    [imgGenerator setMaximumSize:CGSizeMake(544, 960)];
+    for (int i = 1; i <= totalFrames; i++) {
+        NSLog(@"generate image %d",i);
+        CMTime timeFrame = CMTimeMake(i, fps); //第i帧 帧率
+        CGImageRef imageRef = [imgGenerator copyCGImageAtTime:timeFrame actualTime:nil error:nil];
+        UIImage *frameImg = [UIImage imageWithCGImage:imageRef];
+        CGImageRelease(imageRef);
+        [splitImages addObject:frameImg];
+    }
+    
+    if (splitCompleteBlock) {
+        splitCompleteBlock(YES,splitImages);
+    }
+}
 #pragma mark ————————— 压缩视频 —————————————
 - (void)compressVideo:(NSURL*)url outputUrl:(NSString *)outputUrl{
     NSLog(@"压缩");

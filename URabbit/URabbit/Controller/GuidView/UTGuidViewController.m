@@ -81,7 +81,7 @@
 -(void)videoWriteDidFinished:(BOOL)success
 {
     if (success) {
-        [strategy removeVideoReader];
+        [strategy cleanMemory];
         NSLog(@"finishWriter");
         NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         NSString *movieOutputUrl = [NSString stringWithFormat:@"%@/videoaudio.mp4",videoDic];

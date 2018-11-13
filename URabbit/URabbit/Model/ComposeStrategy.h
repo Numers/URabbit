@@ -13,6 +13,7 @@
 -(void)composeImage:(UIImage *)image;
 
 -(void)sendSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame;
+-(void)sendPixelBufferRef:(CVPixelBufferRef)pixelBuffer frame:(NSInteger)frame;
 -(void)sendResultImage:(UIImage *)image frame:(NSInteger)frame;
 @end
 @interface ComposeStrategy : NSObject
@@ -26,5 +27,4 @@
 -(void)createVideoReader;
 -(void)readVideoFrames:(int)index;
 -(void)cleanMemory;
--(void)removeVideoReader;
 @end

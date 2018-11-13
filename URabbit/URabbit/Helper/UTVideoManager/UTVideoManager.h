@@ -19,6 +19,13 @@
 
 
 /**
+ 获取视频尺寸
+
+ @param videoPath 视频路径
+ @return 尺寸
+ */
+-(CGSize)getVideoSizeWithVideoPath:(NSString *)videoPath;
+/**
  获取视频总帧数
  
  @param videoPath 视频路径
@@ -45,7 +52,7 @@
  */
 -(void)filterMovieWithInputUrl:(NSString *)inputUrl outputUrl:(NSString *)outputUrl videoSize:(CGSize)size filter:(GPUImageFilter *)filter completely:(void (^)(BOOL result))callback;
 
-
+- (void)splitVideo:(NSURL *)fileUrl fps:(float)fps splitCompleteBlock:(void(^)(BOOL success, NSMutableArray *splitimgs))splitCompleteBlock ;
 /**
  音视频合成
 

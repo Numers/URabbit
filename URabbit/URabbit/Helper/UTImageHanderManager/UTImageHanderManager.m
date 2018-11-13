@@ -11,6 +11,8 @@
 @interface UTImageHanderManager()
 {
     CGColorSpaceRef colorSpace;
+    CVPixelBufferRef pxbuffer;
+    CGSize currentSize;
 }
 @end
 
@@ -30,10 +32,27 @@
     self = [super init];
     if (self) {
         colorSpace = CGColorSpaceCreateDeviceRGB();
+        pxbuffer = NULL;
     }
     return self;
 }
 
+-(void)setCurrentImageSize:(CGSize)size
+{
+    currentSize = size;
+    if (pxbuffer) {
+        CVPixelBufferRelease(pxbuffer);
+        pxbuffer = NULL;
+    }
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
+                             [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey,
+                             nil];
+    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, size.width,
+                                          size.height, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
+                                          &pxbuffer);
+    NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
+}
 
 -(void *)baseAddressFromSampleBuffer:(CMSampleBufferRef) sampleBuffer
 {
@@ -53,6 +72,7 @@
 {
     return colorSpace;
 }
+
 
 -(UIImage *) imageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size{
     size_t bytesPerRow = size.width * 4;
@@ -99,15 +119,25 @@
 }
 
 - (CVPixelBufferRef)pixelBufferFromImage:(UIImage *)image size:(CGSize)size {
-    CVPixelBufferRef pxbuffer = NULL;
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
-                             [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey,
-                             nil];
-    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, size.width,
-                                          size.height, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
-                                          &pxbuffer);
-    NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
+    if (pxbuffer == NULL) {
+        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
+                                 [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey,
+                                 nil];
+        CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, size.width,
+                                              size.height, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
+                                              &pxbuffer);
+        NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
+    }
+//    CVPixelBufferRef pxbuffer = NULL;
+//    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+//                             [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
+//                             [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey,
+//                             nil];
+//    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, size.width,
+//                                          size.height, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
+//                                          &pxbuffer);
+//    NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
     CVPixelBufferLockBaseAddress(pxbuffer, 0);
     void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);
     NSParameterAssert(pxdata != NULL);

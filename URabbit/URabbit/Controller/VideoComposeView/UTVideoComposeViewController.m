@@ -27,6 +27,8 @@
     AVPlayer *player;
     GPUImageFilter *filter;
     
+    AVAudioPlayer *audioPlayer;
+    
     UTPlayView *playView;
     UTSelectView *selectView;
     UTSegmentView *segmentView;
@@ -151,6 +153,8 @@
     [movieFile addTarget:filter];
     [filter addTarget:imageView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayFinished) name:AVPlayerItemDidPlayToEndTimeNotification object:playItem];
+    
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:material.videoMusic] error:nil];
 }
 
 -(void)stopVideo
@@ -166,12 +170,14 @@
     
 //    [movieFile cancelProcessing];
     [player setRate:0.0f];
+    [audioPlayer pause];
 }
 
 -(void)moviePlayFinished
 {
     pausedTime = CMTimeMake(0, material.fps);
     [playView playFinished];
+    [audioPlayer stop];
 }
 
 -(void)startVideo
@@ -183,6 +189,14 @@
         [player seekToTime:pausedTime toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
         [player play];
     }
+    
+    if (audioPlayer) {
+        [audioPlayer setVolume:1.0f];
+        NSTimeInterval time = CMTimeGetSeconds(pausedTime);
+        [audioPlayer setCurrentTime:time];
+        [audioPlayer prepareToPlay];
+        [audioPlayer play];
+    }
 }
 
 -(void)seekToTime:(CMTime)time
@@ -190,8 +204,12 @@
     if (player.rate != 0.0f) {
         [self stopVideo];
     }
+    
     pausedTime = time;
     [player seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
+
+    NSTimeInterval tempTime = CMTimeGetSeconds(time);
+    [audioPlayer setCurrentTime:tempTime];
 }
 
 -(void)filterProcessingBlock

@@ -17,6 +17,7 @@
 -(void *)baseAddressWithCVPixelBuffer:(CVPixelBufferRef)pixelBufferRef;
 - (CVPixelBufferRef)pixelBufferFromImage:(UIImage *)image size:(CGSize)size;
 -(CGColorSpaceRef)currentColorSpaceRef;
+-(void)setCurrentImageSize:(CGSize)size;
 
 
 

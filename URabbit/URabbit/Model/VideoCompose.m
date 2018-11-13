@@ -133,11 +133,19 @@
     //                                              };
     NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecH264, AVVideoCodecKey,
                                    [NSNumber numberWithInt:videoSize.width], AVVideoWidthKey,
-                                   [NSNumber numberWithInt:videoSize.height], AVVideoHeightKey, nil];
+                                   [NSNumber numberWithInt:videoSize.height], AVVideoHeightKey,
+                                   @{
+                                                                                                                            AVVideoMaxKeyFrameIntervalKey:@1,
+                                                                                                                                 
+                                                                                    AVVideoAverageBitRateKey:[NSNumber numberWithInteger:videoSize.width * videoSize.height * 7.5],
+                                                                                                                                 
+                                                                                                                                 AVVideoProfileLevelKey:AVVideoProfileLevelH264Main31
+                                                                                                                        },AVVideoCompressionPropertiesKey,
+ nil];
     videoWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSettings];
     videoWriterInput.expectsMediaDataInRealTime = YES;
     
-    NSDictionary *sourcePixelBufferAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32ARGB], kCVPixelBufferPixelFormatTypeKey, nil];
+    NSDictionary *sourcePixelBufferAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey, nil];
     
     adaptor = [AVAssetWriterInputPixelBufferAdaptor
                assetWriterInputPixelBufferAdaptorWithAssetWriterInput:videoWriterInput sourcePixelBufferAttributes:sourcePixelBufferAttributesDictionary];
@@ -146,54 +154,136 @@
     
     [videoWriter addInput:videoWriterInput];
     
-    [videoWriter startWriting];
-    [videoWriter startSessionAtSourceTime:kCMTimeZero];
+//    [videoWriter startWriting];
+//    [videoWriter startSessionAtSourceTime:kCMTimeZero];
     
-    videoReaderQueue = dispatch_queue_create("videoReader", DISPATCH_QUEUE_CONCURRENT);
-    videoWriterQueue = dispatch_queue_create("videoWriter", DISPATCH_QUEUE_CONCURRENT);
-    typeof(self) __weak weakSelf = self;
-    __block int currentFrame = 0;
-    NSLog(@"begin writer");
-    [videoWriterInput requestMediaDataWhenReadyOnQueue:videoReaderQueue usingBlock:^{
-        if (currentFrame == totalFrames) {
-            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
-        }
+    videoReaderQueue = dispatch_queue_create("videoReader", DISPATCH_QUEUE_SERIAL);
+    videoWriterQueue = dispatch_queue_create("videoWriter", DISPATCH_QUEUE_SERIAL);
+//    typeof(self) __weak weakSelf = self;
+//    __block int currentFrame = 0;
+    
+//    [videoWriterInput requestMediaDataWhenReadyOnQueue:videoReaderQueue usingBlock:^{
+//        if (currentFrame == totalFrames) {
+//            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
+//        }
+//
+//        if ([[weakSelf returnVideoWriteInput] isReadyForMoreMediaData]) {
+//            [weakSelf.delegate readNextPixelBuffer:currentFrame];
+//            currentFrame ++;
+//            [NSThread sleepForTimeInterval:0.05];
+//        }
+//    }];
+}
 
-        if ([[weakSelf returnVideoWriteInput] isReadyForMoreMediaData]) {
-            [weakSelf.delegate readNextPixelBuffer:currentFrame];
-            currentFrame ++;
+-(void)readFrames
+{
+    dispatch_async(videoReaderQueue, ^{
+        NSLog(@"begin reader");
+        for (int i = 0; i < totalFrames; i++) {
+            [self.delegate readNextPixelBuffer:i];
             [NSThread sleepForTimeInterval:0.05];
         }
-//        for (NSInteger i = 0; i < totalFrames; i++) {
-//            if ([[weakSelf returnVideoWriteInput] isReadyForMoreMediaData]) {
-//                [weakSelf.delegate readNextPixelBuffer:i];
-//                if (i == totalFrames -1) {
-//
-//                }
-////                [NSThread sleepForTimeInterval:0.15];
-//            }
+        NSLog(@"end reader");
+    });
+    
+//    typeof(self) __weak weakSelf = self;
+//    __block int currentFrame = 0;
+    
+//    [videoWriterInput requestMediaDataWhenReadyOnQueue:videoReaderQueue usingBlock:^{
+//        if (currentFrame == totalFrames) {
+//            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
 //        }
-    }];
+//
+//        if ([[weakSelf returnVideoWriteInput] isReadyForMoreMediaData]) {
+//            [weakSelf.delegate readNextPixelBuffer:currentFrame];
+//            currentFrame ++;
+//        }
+//    }];
+}
+
+-(void)writeCVPixelBuffer:(CVPixelBufferRef)pixelBuffer frame:(NSInteger)frame
+{
+//    dispatch_async(videoWriterQueue, ^{
+        NSLog(@"did write %ld",frame);
+        @autoreleasepool{
+            if (pixelBuffer) {
+                if (videoWriter.status > AVAssetWriterStatusWriting)
+                {
+                    NSLog(@"Warning: writer status is %ld", (long)videoWriter.status);
+                    
+                    if (videoWriter.status == AVAssetWriterStatusFailed)
+                    {
+                        NSLog(@"Error: %@", videoWriter.error);
+                        
+                    }
+                }
+                
+                if (videoWriter.status != AVAssetWriterStatusWriting) {
+                    NSLog(@"start writing");
+                    [videoWriter startWriting];
+                    
+                }
+                CMTime time = CMTimeMake(frame, currentFps);
+                [videoWriter startSessionAtSourceTime:time];
+                CVPixelBufferLockBaseAddress(pixelBuffer,0);
+                BOOL success = [adaptor appendPixelBuffer:pixelBuffer withPresentationTime:time];
+                CVPixelBufferUnlockBaseAddress(pixelBuffer,0);
+                if (success) {
+                    CVPixelBufferRelease(pixelBuffer);
+                }
+                
+                if (frame == totalFrames - 1) {
+                    [videoWriterInput markAsFinished];
+                    [self stopWrite];
+                }
+            }else{
+                [videoWriterInput markAsFinished];
+                [self stopWrite];
+            }
+            [NSThread sleepForTimeInterval:0.05];
+        }
+        
+//    });
 }
 
 -(void)writeSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame
 {
     dispatch_async(videoWriterQueue, ^{
         NSLog(@"did write %ld",frame);
-        if (sampleBufferRef) {
-            BOOL success = [self writeToMovie:sampleBufferRef frame:frame];
-            if (success) {
+        @autoreleasepool{
+            if (sampleBufferRef) {
+                if (videoWriter.status > AVAssetWriterStatusWriting)
+                {
+                    NSLog(@"Warning: writer status is %ld", (long)videoWriter.status);
+                    
+                    if (videoWriter.status == AVAssetWriterStatusFailed)
+                    {
+                        NSLog(@"Error: %@", videoWriter.error);
+                        
+                    }
+                }
                 
-            }
-            if (frame == totalFrames - 1) {
+                if (videoWriter.status != AVAssetWriterStatusWriting) {
+                    NSLog(@"start writing");
+                    [videoWriter startWriting];
+                }
+                
+                if([videoWriterInput isReadyForMoreMediaData]){
+                    BOOL success = [self writeToMovie:sampleBufferRef frame:frame];
+                    if (success) {
+                        
+                    }
+                    if (frame == totalFrames - 1) {
+                        [videoWriterInput markAsFinished];
+                        [self stopWrite];
+                    }
+                }
+            }else{
                 [videoWriterInput markAsFinished];
                 [self stopWrite];
             }
-        }else{
-            [videoWriterInput markAsFinished];
-            [self stopWrite];
+            [NSThread sleepForTimeInterval:0.05];
         }
-        [NSThread sleepForTimeInterval:0.05];
     });
 }
 
@@ -221,12 +311,34 @@
 {
     //合成多张图片为一个视频文件
 //    [videoWriter startSessionAtSourceTime:CMTimeMake(frame, currentFps)];
-    if(![videoWriterInput appendSampleBuffer:sampleBufferRef]) {
-        return NO;
-    }else {
-        CFRelease(sampleBufferRef);
+    BOOL result = YES;
+    CMTime sourceTime = CMSampleBufferGetPresentationTimeStamp(sampleBufferRef);
+    [videoWriter startSessionAtSourceTime:sourceTime];
+    if (frame == 312) {
+        NSLog(@"frame is %ld",frame);
     }
-    return YES;
+    if(![videoWriterInput appendSampleBuffer:sampleBufferRef]) {
+        result =  NO;
+    }
+    CFRelease(sampleBufferRef);
+    return result;
+}
+
+-(void)cleanMemory
+{
+    if (videoWriterInput) {
+        videoWriterInput = nil;
+    }
+    
+    if (videoWriter) {
+        videoWriter = nil;
+    }
+    
+    if (adaptor) {
+        adaptor = nil;
+    }
+    
+    
 }
 
 

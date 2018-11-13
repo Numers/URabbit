@@ -129,9 +129,9 @@
  */
 -(void)startApp
 {
-    NSString *mediaType = AVMediaTypeVideo;
-    AVAuthorizationStatus authStatusVedio = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
-    PHAuthorizationStatus authStatusAlbm  = [PHPhotoLibrary authorizationStatus];
+//    NSString *mediaType = AVMediaTypeVideo;
+//    AVAuthorizationStatus authStatusVedio = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+//    PHAuthorizationStatus authStatusAlbm  = [PHPhotoLibrary authorizationStatus];
 
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {

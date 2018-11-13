@@ -202,15 +202,18 @@
 
 -(void)cleanMemory
 {
-
-}
-
--(void)removeVideoReader
-{
+    if (_frames.count > 0) {
+        [_frames removeAllObjects];
+        _frames = nil;
+    }
+    
+    if (_axiosInfos.count > 0) {
+        [_axiosInfos removeAllObjects];
+        _axiosInfos = nil;
+    }
+    
     if (_templateVideoReader) {
-        if (_templateVideoReader) {
-            [_templateVideoReader removeVideoReader];
-        }
+        [_templateVideoReader removeVideoReader];
         _templateVideoReader = nil;
     }
     
@@ -218,13 +221,24 @@
         for (UTVideoReader *reader in _maskVideoReaders) {
             [reader removeVideoReader];
         }
+        [_maskVideoReaders removeAllObjects];
     }
+    
+    filter = nil;
+    operationQueue  = nil;
 }
 
 -(void)sendSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame
 {
     if ([self.delegate respondsToSelector:@selector(sendSampleBufferRef:frame:)]) {
         [self.delegate sendSampleBufferRef:sampleBufferRef frame:frame];
+    }
+}
+
+-(void)sendPixelBufferRef:(CVPixelBufferRef)pixelBuffer frame:(NSInteger)frame
+{
+    if ([self.delegate respondsToSelector:@selector(sendPixelBufferRef:frame:)]) {
+        [self.delegate sendPixelBufferRef:pixelBuffer frame:frame];
     }
 }
 

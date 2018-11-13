@@ -29,10 +29,10 @@
     }
     NSArray* videoTracks = [_asset tracksWithMediaType:AVMediaTypeVideo];
     _track = [videoTracks firstObject];
-    
     NSDictionary* options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:
                                                                 formatType] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
     _output = [[AVAssetReaderTrackOutput alloc] initWithTrack:_track outputSettings:options];
+    _output.alwaysCopiesSampleData = NO;
     if ([_reader canAddOutput:_output]) {
         [_reader addOutput:_output];
     }
@@ -45,6 +45,7 @@
     if ([_reader status] == AVAssetReaderStatusReading && _track.nominalFrameRate > 0) {
         imagePixelBuffer =  [_output copyNextSampleBuffer];
     }else{
+        
         [_reader cancelReading];
     }
     return imagePixelBuffer;

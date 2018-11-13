@@ -16,6 +16,7 @@
 #import "ComposeStrategy.h"
 #import "VideoCompose.h"
 #import "UTVideoManager.h"
+#import "UTImageHanderManager.h"
 
 #import "UTVideoComposeViewController.h"
 
@@ -57,6 +58,8 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
     selectedRow = 0;
     imageList = [NSMutableArray array];
+    CGSize videoSize = [[UTVideoManager shareManager] getVideoSizeWithVideoPath:material.templateVideo];
+    [[UTImageHanderManager shareManager] setCurrentImageSize:videoSize];
     
     importPhotosButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [importPhotosButton setImage:[UIImage imageNamed:@"draft"] forState:UIControlStateNormal];
@@ -87,6 +90,9 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 {
     [super viewWillAppear:animated];
     [self navigationBarSetting];
+    if (imageList.count > 0) {
+        [imageList removeAllObjects];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,7 +141,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     
     NSMutableArray *axiosInfos = [containerView imagesAxiosToCompose];
     NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    videoPath = [NSString stringWithFormat:@"%@/video.mp4",videoDic];
+    videoPath = [NSString stringWithFormat:@"%@/video-compose.mp4",videoDic];
     
     float fps = [[UTVideoManager shareManager] getFpsWithVideoPath:material.templateVideo];
     strategy = [[ComposeStrategy alloc] initWithMaterial:material axiosInfos:axiosInfos fps:fps];
@@ -144,6 +150,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 
     compose = [[VideoCompose alloc] initWithVideoUrl:videoPath videoSize:CGSizeMake(544, 960) fps:fps totalFrames:material.totalFrames];
     compose.delegate = self;
+    [compose readFrames];
 }
 
 -(void)saveInDraft
@@ -269,7 +276,8 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 -(void)videoWriteDidFinished:(BOOL)success
 {
     if (success) {
-        [strategy removeVideoReader];
+        [strategy cleanMemory];
+        [compose cleanMemory];
         NSLog(@"finishWriter");
         dispatch_async(dispatch_get_main_queue(), ^{
             UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithMaterial:material movieUrl:videoPath images:imageList];
@@ -287,6 +295,11 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 -(void)sendSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame
 {
     [compose writeSampleBufferRef:sampleBufferRef frame:frame];
+}
+
+-(void)sendPixelBufferRef:(CVPixelBufferRef)pixelBuffer frame:(NSInteger)frame
+{
+    [compose writeCVPixelBuffer:pixelBuffer frame:frame];
 }
 
 -(void)sendResultImage:(UIImage *)image frame:(NSInteger)frame

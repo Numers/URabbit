@@ -28,6 +28,9 @@
 }
 @property(nonatomic, assign) id<VideoComposeProtocol> delegate;
 -(instancetype)initWithVideoUrl:(NSString *)url videoSize:(CGSize)size fps:(int32_t)fps totalFrames:(NSInteger)frames;
+-(void)readFrames;
 -(void)stopWrite;
+-(void)cleanMemory;
 -(void)writeSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame;
+-(void)writeCVPixelBuffer:(CVPixelBufferRef)pixelBuffer frame:(NSInteger)frame;
 @end

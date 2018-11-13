@@ -11,6 +11,7 @@
 #import "AxiosInfo.h"
 #import "UTPhotoEditView.h"
 #import "UIImage+FixImage.h"
+#import "UTImageHanderManager.h"
 @interface UTPhotoEditCollectionViewCell()<UTPhotoEditViewProtocol>
 
 @end

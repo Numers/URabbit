@@ -56,12 +56,17 @@
             void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
             memcpy(templatePixelBuffer, resultBaseAddress, 4*currentPixelSize.width*currentPixelSize.height);
             [tempPic1 removeTarget:filter];
-            CVPixelBufferRelease(resultPixelBuffer);
+            [filter removeOutputFramebuffer];
+//            CVPixelBufferRelease(resultPixelBuffer);
             CFRelease(currentMaskSampleBufferRef);
             
             if ([self.delegate respondsToSelector:@selector(sendSampleBufferRef:frame:)]) {
                 [self.delegate sendSampleBufferRef:currentTemplateSampleBufferRef frame:currentFrame];
             }
+            
+//            if ([self.delegate respondsToSelector:@selector(sendPixelBufferRef:frame:)]) {
+//                [self.delegate sendPixelBufferRef:resultPixelBuffer frame:currentFrame];
+//            }
         }else{
             if ([self.delegate respondsToSelector:@selector(sendSampleBufferRef:frame:)]) {
                 [self.delegate sendSampleBufferRef:currentTemplateSampleBufferRef frame:currentFrame];
