@@ -143,7 +143,7 @@
                                                                                                                         },AVVideoCompressionPropertiesKey,
  nil];
     videoWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSettings];
-    videoWriterInput.expectsMediaDataInRealTime = NO;
+    videoWriterInput.expectsMediaDataInRealTime = YES;
     
     NSDictionary *sourcePixelBufferAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey, nil];
     
