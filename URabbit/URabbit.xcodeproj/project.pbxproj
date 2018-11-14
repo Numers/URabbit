@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		14239B6F2172F9FA0033FB7D /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14239B6E2172F9FA0033FB7D /* libGPUImage.a */; };
-		14239B7B2175B8970033FB7D /* UTImageProcessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14239B7A2175B8970033FB7D /* UTImageProcessManager.m */; };
 		14262A292189AC8E00768E6A /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14262A282189AC8E00768E6A /* music.mp3 */; };
 		14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2D218AF02300768E6A /* LLTabBarItem.m */; };
 		14262A30218AF02300768E6A /* LLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2E218AF02300768E6A /* LLTabBar.m */; };
@@ -273,8 +272,6 @@
 		14239B6B2172F9FA0033FB7D /* GPUImageStretchDistortionFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageStretchDistortionFilter.h; sourceTree = "<group>"; };
 		14239B6C2172F9FA0033FB7D /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
 		14239B6E2172F9FA0033FB7D /* libGPUImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGPUImage.a; sourceTree = "<group>"; };
-		14239B792175B8970033FB7D /* UTImageProcessManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTImageProcessManager.h; sourceTree = "<group>"; };
-		14239B7A2175B8970033FB7D /* UTImageProcessManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTImageProcessManager.m; sourceTree = "<group>"; };
 		14262A282189AC8E00768E6A /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		14262A2B218AF02300768E6A /* LLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBar.h; sourceTree = "<group>"; };
 		14262A2C218AF02300768E6A /* LLTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBarItem.h; sourceTree = "<group>"; };
@@ -657,15 +654,6 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
-		14239B782175B8800033FB7D /* UTImageProcessManager */ = {
-			isa = PBXGroup;
-			children = (
-				14239B792175B8970033FB7D /* UTImageProcessManager.h */,
-				14239B7A2175B8970033FB7D /* UTImageProcessManager.m */,
-			);
-			path = UTImageProcessManager;
-			sourceTree = "<group>";
-		};
 		14262A2A218AF02300768E6A /* LLTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -794,7 +782,6 @@
 		14580347216F2BCC006BB33D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				14239B782175B8800033FB7D /* UTImageProcessManager */,
 				145803D921707B5A001B9535 /* UTImageHanderManager */,
 				145803D52170703A001B9535 /* UTVideoManager */,
 				1458034B216F2BCC006BB33D /* AppStartManager */,
@@ -1478,7 +1465,6 @@
 				146B63A1219191C900A3A679 /* UTMiddleEditContainerView.m in Sources */,
 				14580367216F2BCC006BB33D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				146B63732190243C00A3A679 /* UTDownloadButtonView.m in Sources */,
-				14239B7B2175B8970033FB7D /* UTImageProcessManager.m in Sources */,
 				1458046D216F46A8006BB33D /* Material.m in Sources */,
 				145B6134216F27B600DA950E /* AppDelegate.m in Sources */,
 				14580368216F2BCC006BB33D /* TPKeyboardAvoidingCollectionView.m in Sources */,
