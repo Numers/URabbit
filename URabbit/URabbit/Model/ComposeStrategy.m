@@ -7,25 +7,10 @@
 //
 
 #import "ComposeStrategy.h"
-#import "Material.h"
-#import "UTVideoReader.h"
-#import "AxiosInfo.h"
-#import "Frame.h"
 
-#import "ComposeRotationOperation.h"
-
-#import "UTImageHanderManager.h"
-
-#import "UIImage+FixImage.h"
-
-#import "GPUImage.h"
-
-@interface ComposeStrategy()<ComposeOperationProtocol>
+@interface ComposeStrategy()
 {
-    GPUImageTwoInputFilter *filter;
     int halfVideoFps;
-    CGFloat currentFps;
-    NSOperationQueue *operationQueue;
 }
 @end
 
@@ -36,7 +21,7 @@
     if (self) {
         _material = m;
         halfVideoFps = (int)(fps / 2);
-        currentFps = fps;
+        _currentFps = fps;
         
         _axiosInfos = [NSMutableArray arrayWithArray:axiosInfoList];
         [self initlizeData];
@@ -46,10 +31,8 @@
 
 -(void)initlizeData
 {
-    operationQueue = [[NSOperationQueue alloc] init];
-    operationQueue.maxConcurrentOperationCount = 1;
-    
-    filter = [[GPUImageAddBlendFilter alloc] init];
+    _operationQueue = [[NSOperationQueue alloc] init];
+    _operationQueue.maxConcurrentOperationCount = 1;
     _frames = [NSMutableArray array];
     for (int i = 0; i < _material.totalFrames; i++) {
         Frame *frame = [[Frame alloc] init];
@@ -75,16 +58,25 @@
 -(void)createVideoReader
 {
     if (_templateVideoReader == nil) {
-        _templateVideoReader = [[UTVideoReader alloc] initWithUrl:_material.templateVideo pixelFormatType:kCVPixelFormatType_32BGRA];
+        if (_material.templateVideo) {
+            _templateVideoReader = [[UTVideoReader alloc] initWithUrl:_material.templateVideo pixelFormatType:kCVPixelFormatType_32BGRA];
+        }
     }
     
     if (_maskVideoReaders == nil) {
-        _maskVideoReaders = [NSMutableArray array];
-        for (NSString *maskVideoUrl in _material.maskVideos) {
-            UTVideoReader *maskReader = [[UTVideoReader alloc] initWithUrl:maskVideoUrl pixelFormatType:kCVPixelFormatType_32ARGB];
-            [_maskVideoReaders addObject:maskReader];
+        if (_material.maskVideos.count > 0) {
+            _maskVideoReaders = [NSMutableArray array];
+            for (NSString *maskVideoUrl in _material.maskVideos) {
+                UTVideoReader *maskReader = [[UTVideoReader alloc] initWithUrl:maskVideoUrl pixelFormatType:kCVPixelFormatType_32ARGB];
+                [_maskVideoReaders addObject:maskReader];
+            }
         }
     }
+}
+
+-(void)readVideoFrames:(int)index
+{
+    
 }
 
 //-(CMSampleBufferRef)readVideoFrames:(int)index
@@ -155,50 +147,7 @@
 //    return templateSampleBufferRef;
 //}
 
--(void)readVideoFrames:(int)index
-{
-    NSLog(@"read frame %d",index);
-    CMSampleBufferRef templateSampleBufferRef = [_templateVideoReader readVideoFrames:index];
-    CMSampleBufferRef maskSampleBufferRef = nil;
-    if (_maskVideoReaders && _maskVideoReaders.count == 1) {
-        maskSampleBufferRef = [[_maskVideoReaders objectAtIndex:0] readVideoFrames:index];
-    }
-    if (index < _frames.count) {
-        CGSize pixelSize = [[UTImageHanderManager shareManager] sizeForSampleBuffer:templateSampleBufferRef];
-        Frame *frame = [_frames objectAtIndex:index];
-        if (frame.axiosIndex != -1) {
-            AxiosInfo *axiosInfo = [_axiosInfos objectAtIndex:frame.axiosIndex];
-            
-            ComposeRotationOperation *operation = [[ComposeRotationOperation alloc] initWithTemplateSampleBufferRef:templateSampleBufferRef maskSampleBufferRef:maskSampleBufferRef frame:index axiosInfo:axiosInfo pixelSize:pixelSize fps:currentFps];
-            operation.delegate = self;
-            [operationQueue addOperation:operation];
-        }
-    }
-}
 
-
--(UIImage *)imageWithMask:(UIImage *)maskImage axiosInfo:(AxiosInfo *)info frameIndex:(NSInteger)index
-{
-    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
-    CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, maskImage.size.width, maskImage.size.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-    
-    CGImageRef maskRef = maskImage.CGImage;
-    CGContextClipToMask(mainViewContentContext, CGRectMake(0, 0, maskImage.size.width, maskImage.size.height), maskRef);
-    if (info.animationType == AnimationRotation) {
-        CGContextSaveGState(mainViewContentContext);
-        CGContextTranslateCTM(mainViewContentContext, info.centerX, info.centerY);
-        CGContextRotateCTM(mainViewContentContext, -0.005*index);
-        CGContextDrawImage(mainViewContentContext, CGRectMake(-info.centerX, -info.centerY, info.imageWith, info.imageHeight), info.image.CGImage);
-        CGContextRestoreGState(mainViewContentContext);
-    }else{
-        CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, info.imageWith, info.imageHeight), info.image.CGImage);
-    }
-    CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
-    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
-    CGImageRelease(newImageRef);
-    CGContextRelease(mainViewContentContext);
-    return newImage;
-}
 
 -(void)cleanMemory
 {
@@ -224,8 +173,7 @@
         [_maskVideoReaders removeAllObjects];
     }
     
-    filter = nil;
-    operationQueue  = nil;
+    _operationQueue = nil;
 }
 
 -(void)sendSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame

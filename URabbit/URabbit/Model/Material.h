@@ -7,14 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+typedef enum{
+    MaterialMask = 1,
+    MaterialAnimation,
+} MaterialType;
 @interface Material : NSObject
 @property(nonatomic) NSInteger totalFrames;
+@property(nonatomic) CGSize videoSize;
 @property(nonatomic, copy) NSString *templateVideo;
 @property(nonatomic, copy) NSString *videoMusic;
 @property(nonatomic) float fps;
 @property(nonatomic) float seconds;
 @property(nonatomic, strong) NSMutableArray *maskVideos;
 @property(nonatomic, copy) NSString *templateImage;
+@property(nonatomic) MaterialType materialType;
 @property(nonatomic, copy) NSString *editInfoFile;
 
 -(instancetype)initWithFileUrl:(NSString *)fileUrl;

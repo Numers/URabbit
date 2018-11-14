@@ -68,6 +68,8 @@ static NSString *photoEditCollectionViewCellIdentify = @"PhotoEditCollectionView
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         UTPhotoEditCollectionViewCell *cell = (UTPhotoEditCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
         AxiosInfo *axiosInfo = [cell generateAxiosInfo];
+        axiosInfo.filterType = FilterAddBlend;
+        axiosInfo.animationType = AnimationRotation;
         [axiosInfos addObject:axiosInfo];
     }
     return axiosInfos;

@@ -55,13 +55,11 @@
 		14580462216F3CA2006BB33D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14580461216F3CA2006BB33D /* OpenGLES.framework */; };
 		14580464216F3CAA006BB33D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14580463216F3CAA006BB33D /* CoreVideo.framework */; };
 		14580466216F3CB1006BB33D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14580465216F3CB1006BB33D /* CoreMedia.framework */; };
-		1458046A216F4665006BB33D /* ComposeStrategyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580469216F4665006BB33D /* ComposeStrategyManager.m */; };
 		1458046D216F46A8006BB33D /* Material.m in Sources */ = {isa = PBXBuildFile; fileRef = 1458046C216F46A8006BB33D /* Material.m */; };
 		14580470216F50D3006BB33D /* ComposeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1458046F216F50D3006BB33D /* ComposeStrategy.m */; };
 		14580473216F526A006BB33D /* UTVideoReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580472216F526A006BB33D /* UTVideoReader.m */; };
 		14580476216F590D006BB33D /* AxiosInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580475216F590D006BB33D /* AxiosInfo.m */; };
 		14580479216F7689006BB33D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580478216F7689006BB33D /* Frame.m */; };
-		1458047D216F884C006BB33D /* TemplateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1458047C216F884C006BB33D /* TemplateInfo.m */; };
 		145B6134216F27B600DA950E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B6133216F27B600DA950E /* AppDelegate.m */; };
 		145B613A216F27B600DA950E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 145B6138216F27B600DA950E /* Main.storyboard */; };
 		145B613C216F27B700DA950E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 145B613B216F27B700DA950E /* Assets.xcassets */; };
@@ -95,6 +93,7 @@
 		1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4ED21946F6500809626 /* UTFilterCollectionViewCell.m */; };
 		1486C4F1219473A500809626 /* FilterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4F0219473A500809626 /* FilterInfo.m */; };
 		1486C4F7219554C800809626 /* ComposeRotationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4F6219554C800809626 /* ComposeRotationOperation.m */; };
+		148D0F72219BF5F500B4E59A /* ComposeRotationStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F71219BF5F500B4E59A /* ComposeRotationStrategy.m */; };
 		BC0EEF5C062C06F4C3E98620 /* Pods_URabbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */; };
 /* End PBXBuildFile section */
 
@@ -361,8 +360,6 @@
 		14580461216F3CA2006BB33D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		14580463216F3CAA006BB33D /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		14580465216F3CB1006BB33D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		14580468216F4665006BB33D /* ComposeStrategyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeStrategyManager.h; sourceTree = "<group>"; };
-		14580469216F4665006BB33D /* ComposeStrategyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeStrategyManager.m; sourceTree = "<group>"; };
 		1458046B216F46A8006BB33D /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		1458046C216F46A8006BB33D /* Material.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Material.m; sourceTree = "<group>"; };
 		1458046E216F50D3006BB33D /* ComposeStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeStrategy.h; sourceTree = "<group>"; };
@@ -373,8 +370,6 @@
 		14580475216F590D006BB33D /* AxiosInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AxiosInfo.m; sourceTree = "<group>"; };
 		14580477216F7689006BB33D /* Frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
 		14580478216F7689006BB33D /* Frame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
-		1458047B216F884C006BB33D /* TemplateInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemplateInfo.h; sourceTree = "<group>"; };
-		1458047C216F884C006BB33D /* TemplateInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TemplateInfo.m; sourceTree = "<group>"; };
 		145B612F216F27B600DA950E /* URabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = URabbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145B6132216F27B600DA950E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		145B6133216F27B600DA950E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -439,6 +434,8 @@
 		1486C4F0219473A500809626 /* FilterInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterInfo.m; sourceTree = "<group>"; };
 		1486C4F5219554C800809626 /* ComposeRotationOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeRotationOperation.h; sourceTree = "<group>"; };
 		1486C4F6219554C800809626 /* ComposeRotationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeRotationOperation.m; sourceTree = "<group>"; };
+		148D0F70219BF5F500B4E59A /* ComposeRotationStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeRotationStrategy.h; sourceTree = "<group>"; };
+		148D0F71219BF5F500B4E59A /* ComposeRotationStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeRotationStrategy.m; sourceTree = "<group>"; };
 		36AFCC5E9317FFA812781492 /* Pods-URabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_URabbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D640A9F686B5E9FFB7F4DB77 /* Pods-URabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.release.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.release.xcconfig"; sourceTree = "<group>"; };
@@ -800,7 +797,6 @@
 				14239B782175B8800033FB7D /* UTImageProcessManager */,
 				145803D921707B5A001B9535 /* UTImageHanderManager */,
 				145803D52170703A001B9535 /* UTVideoManager */,
-				14580467216F3F5F006BB33D /* ComposeStrategyManager */,
 				1458034B216F2BCC006BB33D /* AppStartManager */,
 				14580350216F2BCC006BB33D /* PushMessageManager */,
 			);
@@ -910,8 +906,6 @@
 				14580475216F590D006BB33D /* AxiosInfo.m */,
 				14580477216F7689006BB33D /* Frame.h */,
 				14580478216F7689006BB33D /* Frame.m */,
-				1458047B216F884C006BB33D /* TemplateInfo.h */,
-				1458047C216F884C006BB33D /* TemplateInfo.m */,
 				145803DD21708433001B9535 /* VideoCompose.h */,
 				145803DE21708433001B9535 /* VideoCompose.m */,
 				14678FF6218EDAFA00CD7F4B /* RecommendTemplate.h */,
@@ -924,6 +918,8 @@
 				1486C4F0219473A500809626 /* FilterInfo.m */,
 				1486C4F5219554C800809626 /* ComposeRotationOperation.h */,
 				1486C4F6219554C800809626 /* ComposeRotationOperation.m */,
+				148D0F70219BF5F500B4E59A /* ComposeRotationStrategy.h */,
+				148D0F71219BF5F500B4E59A /* ComposeRotationStrategy.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1018,15 +1014,6 @@
 				145803DB21707B75001B9535 /* UTImageHanderManager.m */,
 			);
 			path = UTImageHanderManager;
-			sourceTree = "<group>";
-		};
-		14580467216F3F5F006BB33D /* ComposeStrategyManager */ = {
-			isa = PBXGroup;
-			children = (
-				14580468216F4665006BB33D /* ComposeStrategyManager.h */,
-				14580469216F4665006BB33D /* ComposeStrategyManager.m */,
-			);
-			path = ComposeStrategyManager;
 			sourceTree = "<group>";
 		};
 		145B6126216F27B600DA950E = {
@@ -1440,13 +1427,13 @@
 				145803C72170427E001B9535 /* BlendAlgorithmFrontView.m in Sources */,
 				1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */,
 				1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */,
-				1458047D216F884C006BB33D /* TemplateInfo.m in Sources */,
 				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
 				14678FF8218EDAFA00CD7F4B /* RecommendTemplate.m in Sources */,
 				1458037E216F2BCC006BB33D /* AppUtils.m in Sources */,
 				14262A48218C45F000768E6A /* LJJWaterFlowLayout.m in Sources */,
 				145803DF21708433001B9535 /* VideoCompose.m in Sources */,
+				148D0F72219BF5F500B4E59A /* ComposeRotationStrategy.m in Sources */,
 				14580375216F2BCC006BB33D /* LaunchAnimateView.m in Sources */,
 				14262A30218AF02300768E6A /* LLTabBar.m in Sources */,
 				146B638E2190723600A3A679 /* UTPictureImageView.m in Sources */,
@@ -1501,7 +1488,6 @@
 				14580473216F526A006BB33D /* UTVideoReader.m in Sources */,
 				14580365216F2BCC006BB33D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */,
-				1458046A216F4665006BB33D /* ComposeStrategyManager.m in Sources */,
 				146B63992191827300A3A679 /* EditInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

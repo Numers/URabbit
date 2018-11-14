@@ -8,24 +8,35 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-@class Material, UTVideoReader, AxiosInfo, Frame;
-@protocol ComposeStrategyProtocl <NSObject>
--(void)composeImage:(UIImage *)image;
+#import "Material.h"
+#import "UTVideoReader.h"
+#import "AxiosInfo.h"
+#import "Frame.h"
 
+#import "ComposeRotationOperation.h"
+
+#import "UTImageHanderManager.h"
+
+#import "GPUImage.h"
+
+@protocol ComposeStrategyProtocl <NSObject>
+@optional
 -(void)sendSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame;
 -(void)sendPixelBufferRef:(CVPixelBufferRef)pixelBuffer frame:(NSInteger)frame;
 -(void)sendResultImage:(UIImage *)image frame:(NSInteger)frame;
-
 -(void)didFinishedVideoWriter;
 @end
-@interface ComposeStrategy : NSObject
+@interface ComposeStrategy : NSObject<ComposeOperationProtocol>
 @property(nonatomic, weak) id<ComposeStrategyProtocl> delegate;
 @property(nonatomic, strong) Material *material;
 @property(nonatomic, strong) NSMutableArray<Frame *> *frames;
 @property(nonatomic, strong) NSMutableArray<AxiosInfo *> *axiosInfos;
 @property(nonatomic, strong) UTVideoReader *templateVideoReader;
 @property(nonatomic, strong) NSMutableArray<UTVideoReader *> *maskVideoReaders;
+@property(nonatomic, strong) NSOperationQueue *operationQueue;
+@property(nonatomic) CGFloat currentFps;
 -(instancetype)initWithMaterial:(Material *)m axiosInfos:(NSMutableArray *)axiosInfoList fps:(float)fps;
+-(void)initlizeData;
 -(void)createVideoReader;
 -(void)readVideoFrames:(int)index;
 -(void)cleanMemory;

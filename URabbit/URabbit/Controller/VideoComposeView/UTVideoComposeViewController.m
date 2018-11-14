@@ -107,6 +107,21 @@
         NSLog(@"pop");
         [imageList removeAllObjects];
         imageList = nil;
+        
+        if (player && player.rate != 0.0f ) {
+            player.rate = 0.0f;
+            player = nil;
+        }
+        
+        if (movieFile) {
+            [movieFile cancelProcessing];
+            movieFile = nil;
+        }
+        
+        if (audioPlayer && [audioPlayer isPlaying]) {
+            [audioPlayer stop];
+            audioPlayer = nil;
+        }
     }
 }
 
@@ -150,11 +165,7 @@
 
 -(void)save
 {
-    if (player.rate != 0.0f) {
-        [self stopVideo];
-    }
-    pausedTime = CMTimeMake(5, material.fps);
-    [player seekToTime:pausedTime];
+    [self stopVideo];
 }
 
 -(void)saveInDraft

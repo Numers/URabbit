@@ -143,7 +143,7 @@
                                                                                                                         },AVVideoCompressionPropertiesKey,
  nil];
     videoWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSettings];
-    videoWriterInput.expectsMediaDataInRealTime = YES;
+    videoWriterInput.expectsMediaDataInRealTime = NO;
     
     NSDictionary *sourcePixelBufferAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey, nil];
     
@@ -153,58 +153,34 @@
     NSParameterAssert([videoWriter canAddInput:videoWriterInput]);
     
     [videoWriter addInput:videoWriterInput];
+    [videoWriter startWriting];
+    [videoWriter startSessionAtSourceTime:kCMTimeZero];
     
-//    [videoWriter startWriting];
-//    [videoWriter startSessionAtSourceTime:kCMTimeZero];
-    
-    videoReaderQueue = dispatch_queue_create("videoReader", DISPATCH_QUEUE_SERIAL);
+    videoReaderQueue = dispatch_queue_create("videoReader", DISPATCH_QUEUE_CONCURRENT);
     videoWriterQueue = dispatch_queue_create("videoWriter", DISPATCH_QUEUE_SERIAL);
-//    typeof(self) __weak weakSelf = self;
-//    __block int currentFrame = 0;
-    
-//    [videoWriterInput requestMediaDataWhenReadyOnQueue:videoReaderQueue usingBlock:^{
-//        if (currentFrame == totalFrames) {
-//            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
-//        }
-//
-//        if ([[weakSelf returnVideoWriteInput] isReadyForMoreMediaData]) {
-//            [weakSelf.delegate readNextPixelBuffer:currentFrame];
-//            currentFrame ++;
-//            [NSThread sleepForTimeInterval:0.05];
-//        }
-//    }];
 }
 
 -(void)readFrames
 {
     dispatch_async(videoReaderQueue, ^{
         NSLog(@"begin reader");
-        for (int i = 0; i < totalFrames; i++) {
-            [self.delegate readNextPixelBuffer:i];
-            [NSThread sleepForTimeInterval:0.05];
+        int currentFrame = 0;
+        while (currentFrame < totalFrames) {
+            if((currentFrame - writeFrames) > 20){
+                [NSThread sleepForTimeInterval:0.05];
+            }else{
+                [self.delegate readNextPixelBuffer:currentFrame];
+                currentFrame ++;
+            }
         }
         NSLog(@"end reader");
     });
-    
-//    typeof(self) __weak weakSelf = self;
-//    __block int currentFrame = 0;
-    
-//    [videoWriterInput requestMediaDataWhenReadyOnQueue:videoReaderQueue usingBlock:^{
-//        if (currentFrame == totalFrames) {
-//            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
-//        }
-//
-//        if ([[weakSelf returnVideoWriteInput] isReadyForMoreMediaData]) {
-//            [weakSelf.delegate readNextPixelBuffer:currentFrame];
-//            currentFrame ++;
-//        }
-//    }];
 }
 
 -(void)writeCVPixelBuffer:(CVPixelBufferRef)pixelBuffer frame:(NSInteger)frame
 {
-//    dispatch_async(videoWriterQueue, ^{
-        NSLog(@"did write %ld",frame);
+    dispatch_async(videoWriterQueue, ^{
+//        NSLog(@"did write %ld",frame);
         @autoreleasepool{
             if (pixelBuffer) {
                 if (videoWriter.status > AVAssetWriterStatusWriting)
@@ -240,49 +216,31 @@
                 [videoWriterInput markAsFinished];
                 [self stopWrite];
             }
+            writeFrames = frame;
 //            [NSThread sleepForTimeInterval:0.02];
         }
         
-//    });
+    });
 }
 
 -(void)writeSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame
 {
-    dispatch_async(videoWriterQueue, ^{
-        NSLog(@"did write %ld",frame);
-        @autoreleasepool{
-            if (sampleBufferRef) {
-                if (videoWriter.status > AVAssetWriterStatusWriting)
-                {
-                    NSLog(@"Warning: writer status is %ld", (long)videoWriter.status);
-                    
-                    if (videoWriter.status == AVAssetWriterStatusFailed)
-                    {
-                        NSLog(@"Error: %@", videoWriter.error);
-                        
-                    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+//        NSLog(@"did write %ld",frame);
+        if (sampleBufferRef) {
+            if([videoWriterInput isReadyForMoreMediaData]){
+                BOOL success = [self writeToMovie:sampleBufferRef frame:frame];
+                if (success) {
+                    writeFrames = frame;
                 }
-                
-                if (videoWriter.status != AVAssetWriterStatusWriting) {
-                    NSLog(@"start writing");
-                    [videoWriter startWriting];
+                if (frame == totalFrames - 1) {
+                    [videoWriterInput markAsFinished];
+                    [self stopWrite];
                 }
-                
-                if([videoWriterInput isReadyForMoreMediaData]){
-                    BOOL success = [self writeToMovie:sampleBufferRef frame:frame];
-                    if (success) {
-                        
-                    }
-                    if (frame == totalFrames - 1) {
-                        [videoWriterInput markAsFinished];
-                        [self stopWrite];
-                    }
-                }
-            }else{
-                [videoWriterInput markAsFinished];
-                [self stopWrite];
             }
-            [NSThread sleepForTimeInterval:0.05];
+        }else{
+            [videoWriterInput markAsFinished];
+            [self stopWrite];
         }
     });
 }
@@ -312,11 +270,8 @@
     //合成多张图片为一个视频文件
 //    [videoWriter startSessionAtSourceTime:CMTimeMake(frame, currentFps)];
     BOOL result = YES;
-    CMTime sourceTime = CMSampleBufferGetPresentationTimeStamp(sampleBufferRef);
-    [videoWriter startSessionAtSourceTime:sourceTime];
-    if (frame == 312) {
-        NSLog(@"frame is %ld",frame);
-    }
+//    CMTime sourceTime = CMSampleBufferGetPresentationTimeStamp(sampleBufferRef);
+//    [videoWriter startSessionAtSourceTime:sourceTime];
     if(![videoWriterInput appendSampleBuffer:sampleBufferRef]) {
         result =  NO;
     }

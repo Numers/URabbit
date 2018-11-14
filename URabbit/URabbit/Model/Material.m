@@ -16,11 +16,13 @@
     if (self) {
         NSString *maskVideoPath = [[NSBundle mainBundle] pathForResource:@"video-2281" ofType:@"mp4"];
         _templateVideo = [[NSBundle mainBundle] pathForResource:@"video-2280" ofType:@"mp4"];
-        _fps = [[UTVideoManager shareManager] getFpsWithVideoPath:_templateVideo];
+        _videoSize = CGSizeMake(544, 960);
+        _fps = 25.0f;
         _totalFrames = [[UTVideoManager shareManager] getTotalFramesWithVideoPath:_templateVideo];
         _seconds = _totalFrames / _fps;
         _videoMusic = [[NSBundle mainBundle] pathForResource:@"music" ofType:@"mp3"];
         _maskVideos = [NSMutableArray arrayWithObject:maskVideoPath];
+        _materialType = MaterialMask;
     }
     return self;
 }

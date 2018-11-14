@@ -13,7 +13,7 @@
 #import "UTPhotoEditView.h"
 #import "Material.h"
 #import "AxiosInfo.h"
-#import "ComposeStrategy.h"
+#import "ComposeRotationStrategy.h"
 #import "VideoCompose.h"
 #import "UTVideoManager.h"
 #import "UTImageHanderManager.h"
@@ -59,7 +59,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
     selectedRow = 0;
     imageList = [NSMutableArray array];
-    videoSize = [[UTVideoManager shareManager] getVideoSizeWithVideoPath:material.templateVideo];
+    videoSize = material.videoSize;
     [[UTImageHanderManager shareManager] setCurrentImageSize:videoSize];
     
     
@@ -146,11 +146,13 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     videoPath = [NSString stringWithFormat:@"%@/video-compose.mp4",videoDic];
     
     float fps = [[UTVideoManager shareManager] getFpsWithVideoPath:material.templateVideo];
-    strategy = [[ComposeStrategy alloc] initWithMaterial:material axiosInfos:axiosInfos fps:fps];
-    strategy.delegate = self;
-    [strategy createVideoReader];
-
-    compose = [[VideoCompose alloc] initWithVideoUrl:videoPath videoSize:CGSizeMake(544, 960) fps:fps totalFrames:material.totalFrames];
+    if (material.materialType == MaterialMask) {
+        strategy = [[ComposeRotationStrategy alloc] initWithMaterial:material axiosInfos:axiosInfos fps:fps];
+        strategy.delegate = self;
+        [strategy createVideoReader];
+    }
+    
+    compose = [[VideoCompose alloc] initWithVideoUrl:videoPath videoSize:material.videoSize fps:fps totalFrames:material.totalFrames];
     compose.delegate = self;
     [compose readFrames];
 }
@@ -290,11 +292,6 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 }
 
 #pragma -mark ComposeStrategyProtocl
--(void)composeImage:(UIImage *)image
-{
-    [imageList addObject:image];
-}
-
 -(void)sendSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame
 {
     [compose writeSampleBufferRef:sampleBufferRef frame:frame];
@@ -317,5 +314,4 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         }
     });
 }
-
 @end

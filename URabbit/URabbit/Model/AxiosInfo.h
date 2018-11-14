@@ -7,15 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef enum{
-    AlgorithmMix = 1, //模板图片和上传图片像素混合
-    AlgorithmTemplateFront = 2,//模板图片在上传图片上面
-} AlgorithmType;
-
-typedef enum{
-    MaskAlgorithmMix = 1, //mask图片像素进行&操作
-    MaskAlgorithmNone = 2, //mask图片不进行任何处理，仅当MaskVideo只有一个时
-} MaskAlgorithmType;
 @interface AxiosInfo : NSObject
 @property(nonatomic) NSRange range;
 @property(nonatomic) float centerX;  //用户图片相对于模板图片旋转的center
@@ -25,6 +16,5 @@ typedef enum{
 @property(nonatomic) AnimationType animationType;
 @property(nonatomic) float rotateAngle;
 @property(nonatomic, strong) UIImage *image;
-@property(nonatomic) AlgorithmType algorithmType;
-@property(nonatomic) MaskAlgorithmType maskAlgorithmType;
+@property(nonatomic) FilterType filterType;
 @end

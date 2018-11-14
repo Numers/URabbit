@@ -28,7 +28,27 @@
 typedef enum
 {
     AnimationRotation = 1,
+    AnimationScale,
+    AnimationTransformLeft,
+    AnimationTransformRight,
 }AnimationType;
+
+typedef enum
+{
+    //图片渲染
+    FilterNormal = 0, //无
+    FilterToon, //卡通
+    FilterBulgeDistortion,//凸起
+    FilterSketch,//素描
+    FilterGamma, //伽马线
+    FilterToneCurve, //色调曲线
+    FilterSepia, //怀旧
+    FilterGrayscale, //灰度
+    FilterHistogram, //色彩直方图
+    
+    //像素处理
+    FilterAddBlend, //图片混合
+} FilterType;
 
 #define ViewBackgroundColor [UIColor whiteColor]
 

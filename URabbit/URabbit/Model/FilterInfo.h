@@ -7,18 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef enum
-{
-    FilterNormal = 0, //无
-    FilterToon, //卡通
-    FilterBulgeDistortion,//凸起
-    FilterSketch,//素描
-    FilterGamma, //伽马线
-    FilterToneCurve, //色调曲线
-    FilterSepia, //怀旧
-    FilterGrayscale, //灰度
-    FilterHistogram //色彩直方图
-} FilterType;
 @interface FilterInfo : NSObject
 @property(nonatomic, copy) NSString *filterName;
 @property(nonatomic, copy) NSString *filterImage;
