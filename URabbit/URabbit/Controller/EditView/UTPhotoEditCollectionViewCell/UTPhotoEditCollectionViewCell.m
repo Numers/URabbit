@@ -29,13 +29,14 @@
 -(void)setupCellWithEditInfo:(EditInfo *)info
 {
     if (editView) {
-        return;
+        [editView removeFromSuperview];
+        editView = nil;
     }
     editInfo = info;
     editView = [[UTPhotoEditView alloc] initWithTemplateImage:info.editImage];
     editView.delegate = self;
     CGFloat height = self.frame.size.height;
-    CGFloat width = height * (info.editImage.size.width / info.editImage.size.height);
+    CGFloat width = height * (info.originSize.width / info.originSize.height);
     CGRect rect = CGRectMake(0, 0, width, height);
     [editView setFrame:rect];
     [editView setBoundRect:rect];
@@ -66,7 +67,8 @@
     info.centerX = templateCenterX;
     info.centerY = editInfo.originSize.height *  (1 - editInfo.editImageCenterYPercent);
     info.range = editInfo.range;
-    info.animationType = editInfo.animationType;
+    [info.animationObjects addObjectsFromArray:editInfo.animationObjects];
+    info.filterType = editInfo.filterType;
     info.rotateAngle = editView.useRotateAngle;
     CGFloat imageWith = editView.useImageSize.width * scale;
     CGFloat imageHeight = editView.useImageSize.height * scale;

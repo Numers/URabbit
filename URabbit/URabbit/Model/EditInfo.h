@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 @interface EditInfo : NSObject
-@property(nonatomic, strong) UIImage *editImage;
+@property(nonatomic, copy) NSString *editImage;
 @property(nonatomic) NSRange range;
 @property(nonatomic) CGSize originSize;
 @property(nonatomic) CGFloat editImageCenterXPercent;
 @property(nonatomic) CGFloat editImageCenterYPercent;
-@property(nonatomic) AnimationType animationType;
+@property(nonatomic, strong) NSMutableArray *animationObjects;
+@property(nonatomic) FilterType filterType;
+
+-(instancetype)initWithDictinary:(NSDictionary *)dic;
 @end

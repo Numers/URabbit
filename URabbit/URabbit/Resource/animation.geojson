@@ -1,0 +1,76 @@
+{
+    "editInfo":[
+    {
+        "range":[0,50],       //帧范围
+        "editImage":"",       //编辑的模板图片
+        "centerX":0.5,        //导入图片应放置的位置相对宽度百分比
+        "centerY":0.5,        //导入图片应放置的位置相对高度百分比
+        "filterType":1,            //滤镜效果 1、无效果  2、卡通  3、凸起  4、素描  5、伽马线  6、色调曲线  7、怀旧  8、灰度  9、色彩直方图
+        "animationGroup":[
+            {
+                "animationType":1,  //旋转
+                "category":1,       //1、沿x轴旋转 2、沿y轴旋转  3、沿z轴旋转
+                "duration":2.0,     //动画时长（秒）,若无动画，请设置0.0001
+                "beginTime":0,      //开始时间（秒）
+                "fromValue":0,        //开始动画的角度  0表示0度  360表示360度
+                "toValue":360,        //结束动画的角度
+                "isRemoved":1         //动画结束后是否保持当前状态  1、回到动画开始时状态  0、保持动画结束时状态
+            },
+          {
+          "animationType":2,  //缩放
+          "category":1,       //1、比例缩放 2、宽比例缩放  3、高比例缩放
+          "duration":2.0,     //动画时长（秒）,若无动画，请设置0.0001
+          "beginTime":0,      //开始时间（秒）
+          "fromValue":1.0,        //开始缩放比例
+          "toValue":1.2,        //结束缩放比例
+          "isRemoved":1         //动画结束后是否保持当前状态  1、回到动画开始时状态  0、保持动画结束时状态
+          },
+                          
+          {
+          "animationType":3,  //移动
+          "category":1,       //1、沿x轴y轴移动  2、沿z轴移动 3、不规则移动
+          "duration":2.0,     //动画时长（秒）,若无动画，请设置0.0001
+          "beginTime":0,      //开始时间（秒）
+          "fromValue":[1.0,2.0,3.0,4.0,5.0,6.0],        //当category为1时，取第一和第二个数，表示开始移动中心；当category为2时，取数组中取第一个数字，标示z轴的坐标；当category为3时，前两个为center，后四个数字为曲线值
+          "toValue":[1.0,3.0],        //结束移动中心
+          "isRemoved":1         //动画结束后是否保持当前状态  1、回到动画开始时状态  0、保持动画结束时状态
+          },
+        ]
+    },
+    ],
+    
+    "animationInfo": [{
+        "range": [0, 50],
+        "filterType": 1,
+        "editIndex": 1,
+        "animationGroup": [{
+             "animationType": 1,
+             "category": 1,
+             "duration": 2.0,
+             "beginTime": 0,
+             "fromValue": 0,
+             "toValue": 360,
+             "isRemoved": 1
+             },
+             {
+             "animationType": 2,
+             "category": 1,
+             "duration": 2.0,
+             "beginTime": 0,
+             "fromValue": 1.0,
+             "toValue": 1.2,
+             "isRemoved": 1
+             },
+             
+             {
+             "animationType": 3,
+             "category": 1,
+             "duration": 2.0,
+             "beginTime": 0,
+             "fromValue": [1.0, 2.0, 3.0, 4.0],
+             "toValue": [1.0, 3.0],
+             "isRemoved": 1
+             }
+        ]
+    }]
+}

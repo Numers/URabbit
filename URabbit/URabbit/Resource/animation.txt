@@ -1,0 +1,72 @@
+{
+  "editInfo": [{
+    "range": [0, 50],
+    "editImage":"",
+    "centerX": 0.5,
+    "centerY": 0.5,
+    "filterType": 1,
+    "animationGroup": [{
+        "animationType": 1,
+        "category": 1,
+        "duration": 2.0,
+        "beginTime": 0,
+        "fromValue": 0,
+        "toValue": 360,
+        "isRemoved": 1
+      },
+      {
+        "animationType": 2,
+        "category": 1,
+        "duration": 2.0,
+        "beginTime": 0,
+        "fromValue": 1.0,
+        "toValue": 1.2,
+        "isRemoved": 1
+      },
+
+      {
+        "animationType": 3,
+        "category": 1,
+        "duration": 2.0,
+        "beginTime": 0,
+        "fromValue": [1.0, 2.0, 3.0, 4.0],
+        "toValue": [1.0, 3.0],
+        "isRemoved": 1
+      }
+    ]
+  }],
+  "animationInfo": [{
+    "range": [0, 50],
+    "filterType": 1,
+    "editIndex": 1,
+    "animationGroup": [{
+        "animationType": 1,
+        "category": 1,
+        "duration": 2.0,
+        "beginTime": 0,
+        "fromValue": 0,
+        "toValue": 360,
+        "isRemoved": 1
+      },
+      {
+        "animationType": 2,
+        "category": 1,
+        "duration": 2.0,
+        "beginTime": 0,
+        "fromValue": 1.0,
+        "toValue": 1.2,
+        "isRemoved": 1
+      },
+
+      {
+        "animationType": 3,
+        "category": 1,
+        "duration": 2.0,
+        "beginTime": 0,
+        "fromValue": [1.0, 2.0, 3.0, 4.0],
+        "toValue": [1.0, 3.0],
+        "isRemoved": 1
+      }
+    ]
+  }]
+}

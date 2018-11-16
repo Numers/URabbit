@@ -14,9 +14,11 @@
 #import "Material.h"
 #import "AxiosInfo.h"
 #import "ComposeRotationStrategy.h"
+#import "ComposeAnimationStrategy.h"
 #import "VideoCompose.h"
 #import "UTVideoManager.h"
 #import "UTImageHanderManager.h"
+#import "ComposeAnimation.h"
 
 #import "UTVideoComposeViewController.h"
 
@@ -39,6 +41,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     VideoCompose *compose;
     NSString *videoPath;
     CGSize videoSize;
+    NSMutableArray *axiosInfos;
 }
 @end
 
@@ -49,6 +52,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     if (self) {
         material = m;
         editInfoList = [NSMutableArray arrayWithArray:list];
+        axiosInfos = [NSMutableArray array];
     }
     return self;
 }
@@ -140,14 +144,20 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     if (imageList.count > 0) {
         [imageList removeAllObjects];
     }
-    
-    NSMutableArray *axiosInfos = [containerView imagesAxiosToCompose];
+    if (axiosInfos.count > 0) {
+        [axiosInfos removeAllObjects];
+    }
+    [axiosInfos addObjectsFromArray:[containerView imagesAxiosToCompose]];
     NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     videoPath = [NSString stringWithFormat:@"%@/video-compose.mp4",videoDic];
     
-    float fps = [[UTVideoManager shareManager] getFpsWithVideoPath:material.templateVideo];
+    float fps = material.fps;
     if (material.materialType == MaterialMask) {
         strategy = [[ComposeRotationStrategy alloc] initWithMaterial:material axiosInfos:axiosInfos fps:fps];
+        strategy.delegate = self;
+        [strategy createVideoReader];
+    }else if (material.materialType == MaterialAnimation){
+        strategy = [[ComposeAnimationStrategy alloc] initWithMaterial:material axiosInfos:axiosInfos fps:fps];
         strategy.delegate = self;
         [strategy createVideoReader];
     }
@@ -283,11 +293,20 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         [strategy cleanMemory];
         [compose cleanMemory];
         NSLog(@"finishWriter");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithMaterial:material movieUrl:videoPath images:imageList];
-            [self.navigationController pushViewController:videoComposeVC animated:YES];
-            [imageList removeAllObjects];
-        });
+        if (material.materialType == MaterialAnimation) {
+            ComposeAnimation *composeAnimation = [[ComposeAnimation alloc] initWithMaterial:material AxiosInfos:axiosInfos movieUrl:videoPath];
+            [composeAnimation addAnimationCompletionHandler:^(NSString *outPutURL, int code) {
+                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithMaterial:material movieUrl:outPutURL images:imageList];
+                [self.navigationController pushViewController:videoComposeVC animated:YES];
+                [imageList removeAllObjects];
+            }];
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithMaterial:material movieUrl:videoPath images:imageList];
+                [self.navigationController pushViewController:videoComposeVC animated:YES];
+                [imageList removeAllObjects];
+            });
+        }
     }
 }
 

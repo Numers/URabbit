@@ -31,10 +31,11 @@
         tapGesture.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tapGesture];
         
-        templateImageView = [[UTTplImageLayerView alloc] init];
-        [templateImageView setImage:templateImage];
-        [self addSubview:templateImageView];
-        
+        if (templateImage) {
+            templateImageView = [[UTTplImageLayerView alloc] init];
+            [templateImageView setImage:templateImage];
+            [self addSubview:templateImageView];
+        }
         [self makeConstraints];
     }
     return self;
@@ -42,12 +43,14 @@
 
 -(void)makeConstraints
 {
-    [templateImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self);
-        make.leading.equalTo(self);
-        make.trailing.equalTo(self);
-        make.bottom.equalTo(self);
-    }];
+    if (templateImageView) {
+        [templateImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self);
+            make.leading.equalTo(self);
+            make.trailing.equalTo(self);
+            make.bottom.equalTo(self);
+        }];
+    }
 }
 
 -(CGPoint)returnCurrentPictureCenter
@@ -65,7 +68,12 @@
     pictureImageView = [[UTPictureImageView alloc] initWithImage:image];
     _useImageSize = [self sizeFitWithSize:image.size inRect:_boundRect];
     [pictureImageView setFrame:CGRectMake(0, 0, _useImageSize.width, _useImageSize.height)];
-    [self insertSubview:pictureImageView belowSubview:templateImageView];
+    if (templateImageView) {
+        [self insertSubview:pictureImageView belowSubview:templateImageView];
+    }else{
+        [self addSubview:pictureImageView];
+    }
+    
     [pictureImageView setCenter:_tplCenterPoint];
     currentCenterPoint = _tplCenterPoint;
     _useRotateAngle = 0;

@@ -23,7 +23,7 @@
         halfVideoFps = (int)(fps / 2);
         _currentFps = fps;
         
-        _axiosInfos = [NSMutableArray arrayWithArray:axiosInfoList];
+        _axiosInfos = axiosInfoList;
         [self initlizeData];
     }
     return self;
@@ -154,11 +154,6 @@
     if (_frames.count > 0) {
         [_frames removeAllObjects];
         _frames = nil;
-    }
-    
-    if (_axiosInfos.count > 0) {
-        [_axiosInfos removeAllObjects];
-        _axiosInfos = nil;
     }
     
     if (_templateVideoReader) {

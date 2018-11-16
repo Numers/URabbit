@@ -13,4 +13,6 @@
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, copy) NSString *desc;
 @property(nonatomic, copy) NSString *materialPath;
+@property(nonatomic) CGSize videoSize;
+@property(nonatomic) CGFloat seconds;
 @end

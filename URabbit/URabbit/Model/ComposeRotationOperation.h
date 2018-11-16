@@ -8,12 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#import "Protocol.h"
 @class AxiosInfo;
-@protocol ComposeOperationProtocol <NSObject>
--(void)sendSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame;
--(void)sendPixelBufferRef:(CVPixelBufferRef)pixelBuffer frame:(NSInteger)frame;
--(void)sendImage:(UIImage *)image frame:(NSInteger)frame;
-@end
 @interface ComposeRotationOperation : NSOperation
 {
     CMSampleBufferRef currentTemplateSampleBufferRef;

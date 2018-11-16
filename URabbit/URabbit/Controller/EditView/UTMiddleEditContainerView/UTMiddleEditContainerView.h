@@ -16,6 +16,7 @@
 {
     NSMutableArray *dataSource;
     UICollectionView *collectionView;
+    NSMutableArray *cells;
 }
 @property(nonatomic, weak) id<UTMiddleEditContainerViewProtocol> delegate;
 -(instancetype)initWithEditInfo:(NSMutableArray *)editInfoList;

@@ -13,8 +13,9 @@
 @property(nonatomic) float centerY;
 @property(nonatomic) float imageWith;
 @property(nonatomic) float imageHeight;
-@property(nonatomic) AnimationType animationType;
+@property(nonatomic) NSMutableArray *animationObjects; //转场动画
 @property(nonatomic) float rotateAngle;
 @property(nonatomic, strong) UIImage *image;
+@property(nonatomic, strong) UIImage *filterImage;
 @property(nonatomic) FilterType filterType;
 @end

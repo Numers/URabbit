@@ -25,6 +25,7 @@ static NSString *photoEditCollectionViewCellIdentify = @"PhotoEditCollectionView
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
         dataSource = [NSMutableArray arrayWithArray:editInfoList];
+        cells = [NSMutableArray array];
         scrollPage = 0;
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -65,12 +66,11 @@ static NSString *photoEditCollectionViewCellIdentify = @"PhotoEditCollectionView
 {
     NSMutableArray *axiosInfos = [NSMutableArray array];
     for (NSInteger i = 0; i< dataSource.count; i++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-        UTPhotoEditCollectionViewCell *cell = (UTPhotoEditCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        AxiosInfo *axiosInfo = [cell generateAxiosInfo];
-        axiosInfo.filterType = FilterAddBlend;
-        axiosInfo.animationType = AnimationRotation;
-        [axiosInfos addObject:axiosInfo];
+        if (i < cells.count) {
+            UTPhotoEditCollectionViewCell *cell = (UTPhotoEditCollectionViewCell *)[cells objectAtIndex:i];
+            AxiosInfo *axiosInfo = [cell generateAxiosInfo];
+            [axiosInfos addObject:axiosInfo];
+        }
     }
     return axiosInfos;
 }
@@ -88,6 +88,9 @@ static NSString *photoEditCollectionViewCellIdentify = @"PhotoEditCollectionView
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UTPhotoEditCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:photoEditCollectionViewCellIdentify forIndexPath:indexPath];
+    if (![cells containsObject:cell]) {
+        [cells addObject:cell];
+    }
     cell.delegate = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         EditInfo *info = [dataSource objectAtIndex:indexPath.row];

@@ -1,14 +1,14 @@
 //
-//  AxiosInfo.m
+//  AnimationInfo.m
 //  URabbit
 //
-//  Created by 鲍利成 on 2018/10/11.
+//  Created by 鲍利成 on 2018/11/15.
 //  Copyright © 2018年 鲍利成. All rights reserved.
 //
 
-#import "AxiosInfo.h"
+#import "AnimationInfo.h"
 
-@implementation AxiosInfo
+@implementation AnimationInfo
 -(instancetype)init
 {
     self = [super init];

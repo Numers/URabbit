@@ -14,10 +14,6 @@
 
 #import "ComposeRotationOperation.h"
 
-#import "UTImageHanderManager.h"
-
-#import "GPUImage.h"
-
 @implementation ComposeRotationStrategy
 
 -(void)readVideoFrames:(int)index

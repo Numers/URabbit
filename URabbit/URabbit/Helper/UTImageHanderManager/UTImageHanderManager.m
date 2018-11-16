@@ -159,7 +159,35 @@
 }
 
 
-
+- (CVPixelBufferRef)pixelBufferAdaptFromImage:(UIImage *)image size:(CGSize)size {
+    CVPixelBufferRef pxbuffer = NULL;
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
+                             [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey,
+                             nil];
+    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, size.width,
+                                          size.height, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
+                                          &pxbuffer);
+    NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
+    CVPixelBufferLockBaseAddress(pxbuffer, 0);
+    void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);
+    NSParameterAssert(pxdata != NULL);
+    
+    CGContextRef context = CGBitmapContextCreate(pxdata, size.width,
+                                                 size.height, 8, 4*size.width, colorSpace,
+                                                kCGImageAlphaNoneSkipFirst);
+    NSParameterAssert(context);
+    CGImageRef imageRef = image.CGImage;
+    CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(imageRef),
+                                           CGImageGetHeight(imageRef)), imageRef);
+    
+    CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
+    CGContextRelease(context);
+    //    CGImageRelease(imageRef);
+    //        CFRelease(imageRef);
+    //    imageRef = nil;
+    return pxbuffer;
+}
 
 
 

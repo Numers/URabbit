@@ -21,7 +21,8 @@ typedef enum{
 @property(nonatomic, strong) NSMutableArray *maskVideos;
 @property(nonatomic, copy) NSString *templateImage;
 @property(nonatomic) MaterialType materialType;
-@property(nonatomic, copy) NSString *editInfoFile;
+@property(nonatomic, copy) NSString *animationFile;
+@property(nonatomic, copy) NSString *materialDirectoryPath;
 
 -(instancetype)initWithFileUrl:(NSString *)fileUrl;
 @end

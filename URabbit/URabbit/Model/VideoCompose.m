@@ -134,18 +134,11 @@
     NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecH264, AVVideoCodecKey,
                                    [NSNumber numberWithInt:videoSize.width], AVVideoWidthKey,
                                    [NSNumber numberWithInt:videoSize.height], AVVideoHeightKey,
-                                   @{
-                                                                                                                            AVVideoMaxKeyFrameIntervalKey:@1,
-                                                                                                                                 
-                                                                                    AVVideoAverageBitRateKey:[NSNumber numberWithInteger:videoSize.width * videoSize.height * 7.5],
-                                                                                                                                 
-                                                                                                                                 AVVideoProfileLevelKey:AVVideoProfileLevelH264Main31
-                                                                                                                        },AVVideoCompressionPropertiesKey,
  nil];
     videoWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSettings];
     videoWriterInput.expectsMediaDataInRealTime = YES;
     
-    NSDictionary *sourcePixelBufferAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey, nil];
+    NSDictionary *sourcePixelBufferAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32ARGB], kCVPixelBufferPixelFormatTypeKey, nil];
     
     adaptor = [AVAssetWriterInputPixelBufferAdaptor
                assetWriterInputPixelBufferAdaptorWithAssetWriterInput:videoWriterInput sourcePixelBufferAttributes:sourcePixelBufferAttributesDictionary];
@@ -180,31 +173,16 @@
 -(void)writeCVPixelBuffer:(CVPixelBufferRef)pixelBuffer frame:(NSInteger)frame
 {
     dispatch_async(videoWriterQueue, ^{
-//        NSLog(@"did write %ld",frame);
+        NSLog(@"did write %ld",frame);
         @autoreleasepool{
             if (pixelBuffer) {
-                if (videoWriter.status > AVAssetWriterStatusWriting)
-                {
-                    NSLog(@"Warning: writer status is %ld", (long)videoWriter.status);
-                    
-                    if (videoWriter.status == AVAssetWriterStatusFailed)
-                    {
-                        NSLog(@"Error: %@", videoWriter.error);
-                        
-                    }
-                }
                 
-                if (videoWriter.status != AVAssetWriterStatusWriting) {
-                    NSLog(@"start writing");
-                    [videoWriter startWriting];
-                    
-                }
                 CMTime time = CMTimeMake(frame, currentFps);
-                [videoWriter startSessionAtSourceTime:time];
                 CVPixelBufferLockBaseAddress(pixelBuffer,0);
                 BOOL success = [adaptor appendPixelBuffer:pixelBuffer withPresentationTime:time];
                 CVPixelBufferUnlockBaseAddress(pixelBuffer,0);
                 if (success) {
+                    writeFrames = frame;
                     CVPixelBufferRelease(pixelBuffer);
                 }
                 
@@ -216,7 +194,7 @@
                 [videoWriterInput markAsFinished];
                 [self stopWrite];
             }
-            writeFrames = frame;
+            
 //            [NSThread sleepForTimeInterval:0.02];
         }
         
