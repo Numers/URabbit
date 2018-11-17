@@ -218,4 +218,19 @@
     animation.delegate = animationObj;
     return animation;
 }
+
+-(CABasicAnimation *)opacityAnimationWithStartOpacity:(CGFloat)startOpacity endOpacity:(CGFloat)endOpacity startTime:(CGFloat)startTime duration:(CGFloat)duration removeOnComplete:(BOOL)isRemoved delegate:(id<CAAnimationDelegate>)animationObj
+{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    animation.fromValue = [NSNumber numberWithFloat:startOpacity];
+    animation.toValue = [NSNumber numberWithFloat:endOpacity];
+    animation.beginTime = AVCoreAnimationBeginTimeAtZero + startTime;
+    animation.duration = duration;
+    animation.removedOnCompletion = isRemoved;
+    if (!isRemoved) {
+        animation.fillMode = kCAFillModeForwards;
+    }
+    animation.delegate = animationObj;
+    return animation;
+}
 @end

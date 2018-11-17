@@ -71,6 +71,11 @@
             }
         }
             break;
+        case AnimationOpacity:
+        {
+            animation = [[AnimationManager shareManager] opacityAnimationWithStartOpacity:[_fromValue floatValue] endOpacity:[_toValue floatValue] startTime:_beginTime duration:_duration removeOnComplete:_isRemoved delegate:nil];
+        }
+            break;
         default:
             break;
     }

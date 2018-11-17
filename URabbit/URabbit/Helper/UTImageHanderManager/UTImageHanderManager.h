@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#import "GPUImage.h"
 
 @interface UTImageHanderManager : NSObject
 +(instancetype)shareManager;
@@ -19,6 +20,8 @@
 - (CVPixelBufferRef)pixelBufferAdaptFromImage:(UIImage *)image size:(CGSize)size;
 -(CGColorSpaceRef)currentColorSpaceRef;
 -(void)setCurrentImageSize:(CGSize)size;
+-(UIImage *)filterImage:(UIImage *)image filterName:(NSString *)filterName size:(CGSize)size;
+-(GPUImageFilter *)filterWithFilterType:(FilterType)type;
 
 
 

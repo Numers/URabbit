@@ -171,10 +171,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 
 -(void)saveInDraft
 {
-    NSMutableArray *axiosInfos = [containerView imagesAxiosToCompose];
-    UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    AxiosInfo *info = [axiosInfos objectAtIndex:0];
-    [cell setPictureImage:info.image];
+
 }
 
 -(void)importPhotos
@@ -298,6 +295,9 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         if (material.materialType == MaterialAnimation) {
             ComposeAnimation *composeAnimation = [[ComposeAnimation alloc] initWithMaterial:material AxiosInfos:axiosInfos animationInfos:animationInfoList movieUrl:videoPath];
             [composeAnimation addAnimationCompletionHandler:^(NSString *outPutURL, int code) {
+                if ([[NSFileManager defaultManager] fileExistsAtPath:videoPath]) {
+                    [[NSFileManager defaultManager] removeItemAtPath:videoPath error:nil];
+                }
                 UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithMaterial:material movieUrl:outPutURL images:imageList];
                 [self.navigationController pushViewController:videoComposeVC animated:YES];
                 [imageList removeAllObjects];

@@ -190,6 +190,78 @@
 }
 
 
+-(UIImage *)filterImage:(UIImage *)image filterName:(NSString *)filterName size:(CGSize)size
+{
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIFilter *filter = [CIFilter filterWithName:filterName];
+    CIImage *sourceImage = [image CIImage];
+    [filter setValue:sourceImage forKey:@"inputImage"];
+    CIImage *outputImage = [filter outputImage];
+    CGImageRef imageRef = [context createCGImage:outputImage fromRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *resultImage = [UIImage imageWithCGImage:imageRef];
+    return resultImage;
+}
+
+-(GPUImageFilter *)filterWithFilterType:(FilterType)type
+{
+    GPUImageFilter *filter = nil;
+    switch (type) {
+        case FilterNormal:
+            filter = [[GPUImageFilter alloc] init];
+            break;
+        case FilterToon:
+            filter = [[GPUImageToonFilter alloc] init];
+            break;
+        case FilterBulgeDistortion:
+            filter = [[GPUImageBulgeDistortionFilter alloc] init];
+            break;
+        case FilterSketch:
+            filter = [[GPUImageSketchFilter alloc] init];
+            break;
+        case FilterGamma:
+            filter = [[GPUImageGammaFilter alloc] init];
+            break;
+        case FilterToneCurve:
+            filter = [[GPUImageToneCurveFilter alloc] init];
+            break;
+        case FilterSepia:
+            filter = [[GPUImageSepiaFilter alloc] init];
+            break;
+        case FilterGrayscale:
+            filter = [[GPUImageGrayscaleFilter alloc] init];
+            break;
+        case FilterHistogram:
+            filter = [[GPUImageHistogramFilter alloc] init];
+            break;
+        default:
+            break;
+    }
+    if (filter == nil) {
+        filter = [[GPUImageFilter alloc] init];
+    }
+    return filter;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

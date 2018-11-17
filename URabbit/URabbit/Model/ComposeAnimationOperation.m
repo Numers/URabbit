@@ -24,22 +24,7 @@
         currentFrame = frame;
         currentPixelSize = pixelSize;
         currentAxiosInfo = axiosInfo;
-        switch (axiosInfo.filterType) {
-            case FilterNormal:
-                filter = [[GPUImageFilter alloc] init];
-                break;
-            case FilterGrayscale:
-                filter = [[GPUImageGrayscaleFilter alloc] init];
-                break;
-            case FilterToon:
-                filter = [[GPUImageToonFilter alloc] init];
-                break;
-            case FilterSketch:
-                filter = [[GPUImageSketchFilter alloc] init];
-                break;
-            default:
-                break;
-        }
+        filter = [[UTImageHanderManager shareManager] filterWithFilterType:axiosInfo.filterType];
     }
     return self;
 }

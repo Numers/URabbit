@@ -32,4 +32,6 @@
 -(CABasicAnimation *)scaleWidthAnimationWithStartScale:(CGFloat)startScale endScale:(CGFloat)endScale startTime:(CGFloat)startTime duration:(CGFloat)duration removeOnComplete:(BOOL)isRemoved delegate:(id<CAAnimationDelegate>)animationObj;
 
 -(CABasicAnimation *)scaleHeightAnimationWithStartScale:(CGFloat)startScale endScale:(CGFloat)endScale startTime:(CGFloat)startTime duration:(CGFloat)duration removeOnComplete:(BOOL)isRemoved delegate:(id<CAAnimationDelegate>)animationObj;
+
+-(CABasicAnimation *)opacityAnimationWithStartOpacity:(CGFloat)startOpacity endOpacity:(CGFloat)endOpacity startTime:(CGFloat)startTime duration:(CGFloat)duration removeOnComplete:(BOOL)isRemoved delegate:(id<CAAnimationDelegate>)animationObj;
 @end

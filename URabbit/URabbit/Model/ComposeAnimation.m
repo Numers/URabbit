@@ -9,6 +9,7 @@
 #import "ComposeAnimation.h"
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "UTImageHanderManager.h"
 #import "GPUImage.h"
 #import "Material.h"
 #import "AxiosInfo.h"
@@ -26,20 +27,8 @@
         currentMovieUrl = movieUrl;
         currentAxiosInfos = [NSMutableArray arrayWithArray:axiosInfos];
         currentAnimationInfos = [NSMutableArray arrayWithArray:animationInfos];
-        [self initlizedAnimationInfos];
     }
     return self;
-}
-
--(void)initlizedAnimationInfos
-{
-//    AnimationInfo *animationInfo = [[AnimationInfo alloc] init];
-//    animationInfo.range = NSMakeRange(100, 25);
-//    animationInfo.filterType = FilterGrayscale;
-//    animationInfo.axiosIndex = 0;
-//    animationInfo.animationType = AnimationTransformRight;
-//
-//    [animationInfos addObject:animationInfo];
 }
 
 -(void)addAnimationCompletionHandler:(void (^)(NSString* outPutURL, int code))handler{
@@ -59,7 +48,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyyMMdd";
+    formatter.dateFormat = @"yyyyMMddHHmmss";
     NSString *outPutFileName = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
     NSString *myPathDocs =  [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",outPutFileName]];
     NSURL* outPutVideoUrl = [NSURL fileURLWithPath:myPathDocs];
@@ -68,7 +57,6 @@
     }
     
     CGSize videoSize = [videoTrack naturalSize];
-    
     CALayer *parentLayer = [CALayer layer];
     CALayer *videoLayer = [CALayer layer];
     CALayer *frontLayer = [CALayer layer];
@@ -91,13 +79,16 @@
                 [imageLayer addAnimation:animation forKey:nil];
             }
         }
-        [parentLayer addSublayer:imageLayer];
+        [frontLayer addSublayer:imageLayer];
     }
     
     for (AnimationInfo *info in currentAnimationInfos) {
         AxiosInfo *axiosInfo = [currentAxiosInfos objectAtIndex:info.axiosIndex];
+        GPUImageFilter *filter = [[UTImageHanderManager shareManager] filterWithFilterType:info.filterType];
+        [filter useNextFrameForImageCapture];
+        UIImage *filterImage = [filter imageByFilteringImage:axiosInfo.image];
         CALayer *imageLayer = [CALayer layer];
-        imageLayer.contents = (id)axiosInfo.filterImage.CGImage;
+        imageLayer.contents = (id)filterImage.CGImage;
         [imageLayer setFrame:CGRectMake(axiosInfo.imageWith + videoSize.width, 0, axiosInfo.imageWith, axiosInfo.imageHeight)];
         for (AnimationObject *animationObj in info.animationObjects) {
             CABasicAnimation *animation = [animationObj generateAnimation];
@@ -105,7 +96,7 @@
                 [imageLayer addAnimation:animation forKey:nil];
             }
         }
-        [parentLayer addSublayer:imageLayer];
+        [backLayer addSublayer:imageLayer];
     }
     
     AVMutableVideoComposition* videoComp = [AVMutableVideoComposition videoComposition];

@@ -152,6 +152,10 @@
 
 -(void)mergeMovie:(NSString *)moviePath withAudio:(NSString *)audioPath output:(NSString *)outputPath completely:(void (^)(void))callback
 {
+    if([[NSFileManager defaultManager] fileExistsAtPath:outputPath])
+    {
+        [[NSFileManager defaultManager] removeItemAtPath:outputPath error:nil];
+    }
     NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
     NSURL *audioURL = [NSURL fileURLWithPath:audioPath];
     // 时间起点

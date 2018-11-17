@@ -16,18 +16,22 @@
 #import "UTSegmentView.h"
 
 #import "UTVideoManager.h"
+#import "UTImageHanderManager.h"
+#import "UTVideoComposeSuccessViewController.h"
 
 
 @interface UTVideoComposeViewController ()<UTPlaySubViewProtocol,UTSelectViewProtocol>
 {
     Material *material;
     NSString *movieURL;
+    NSString *audioURL;
     NSMutableArray *imageList;
     
     GPUImageView *imageView;
     GPUImageMovie *movieFile;
     AVPlayer *player;
     GPUImageFilter *filter;
+    FilterType currentFilterType;
     
     AVAudioPlayer *audioPlayer;
     
@@ -46,6 +50,7 @@
     if (self) {
         material = m;
         movieURL = url;
+        audioURL = material.videoMusic;
         imageList = [NSMutableArray arrayWithArray:images];
     }
     return self;
@@ -76,7 +81,7 @@
     [self.view addSubview:imageView];
     [self makeConstraints];
     
-    filter = [[GPUImageFilter alloc] init];
+    [self setCurrentFilterType:FilterNormal];
     [self filterProcessingBlock];
     pausedTime = CMTimeMake(0, material.fps);
     
@@ -170,26 +175,64 @@
 -(void)save
 {
     [self stopVideo];
+    if (movieFile) {
+        [movieFile endProcessing];
+    }
+    NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *tempVideoPath = [NSString stringWithFormat:@"%@/video-temp-compose.mp4",videoDic];
+    NSString *videoCompeletelyPath = [NSString stringWithFormat:@"%@/video-complete-compose.mp4",videoDic];
+    
+    [[UTVideoManager shareManager] mergeMovie:movieURL withAudio:audioURL output:tempVideoPath completely:^{
+        if ([[NSFileManager defaultManager] fileExistsAtPath:movieURL]) {
+            [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
+        }
+        GPUImageFilter *movieFilter = [[UTImageHanderManager shareManager] filterWithFilterType:currentFilterType];
+        [[UTVideoManager shareManager] filterMovieWithInputUrl:tempVideoPath outputUrl:videoCompeletelyPath videoSize:material.videoSize filter:movieFilter completely:^(BOOL result) {
+            if (result) {
+                if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoCompeletelyPath)) {
+                    //保存相册核心代码
+                    UISaveVideoAtPathToSavedPhotosAlbum(videoCompeletelyPath, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
+                }
+            }
+        }];
+    }];
+}
+
+//保存视频完成之后的回调
+- (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    if (error) {
+        NSLog(@"保存视频失败%@", error.localizedDescription);
+    }
+    else {
+        NSLog(@"保存视频成功");
+        UTVideoComposeSuccessViewController *videoComposeSuccessVC = [[UTVideoComposeSuccessViewController alloc] init];
+        [self.navigationController pushViewController:videoComposeSuccessVC animated:YES];
+    }
+    
 }
 
 -(void)saveInDraft
 {
-    if (player.rate == 0.0f) {
-        [self startVideo];
-    }else{
-        [self stopVideo];
-    }
+    
 }
 
 -(void)splitImages
 {
     [[UTVideoManager shareManager] splitVideo:[NSURL fileURLWithPath:movieURL] fps:material.fps splitCompleteBlock:^(BOOL success, NSMutableArray *splitimgs) {
         if (success) {
-            [playView setDatasource:splitimgs];
-            [self startVideo];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [playView setDatasource:splitimgs];
+                [self startVideo];
+            });
         }
         
     }];
+}
+
+-(void)setCurrentFilterType:(FilterType)type
+{
+    currentFilterType = type;
+    filter = [[UTImageHanderManager shareManager] filterWithFilterType:type];
 }
 
 -(void)setupVideo
@@ -205,7 +248,7 @@
     [filter addTarget:imageView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayFinished) name:AVPlayerItemDidPlayToEndTimeNotification object:playItem];
     
-    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:material.videoMusic] error:nil];
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:audioURL] error:nil];
 }
 
 -(void)stopVideo
@@ -285,38 +328,7 @@
             [filter removeAllTargets];
             filter = nil;
         }
-        switch (type) {
-            case FilterNormal:
-                filter = [[GPUImageFilter alloc] init];
-                break;
-            case FilterToon:
-                filter = [[GPUImageToonFilter alloc] init];
-                break;
-            case FilterBulgeDistortion:
-                filter = [[GPUImageBulgeDistortionFilter alloc] init];
-                break;
-            case FilterSketch:
-                filter = [[GPUImageSketchFilter alloc] init];
-                break;
-            case FilterGamma:
-                filter = [[GPUImageGammaFilter alloc] init];
-                break;
-            case FilterToneCurve:
-                filter = [[GPUImageToneCurveFilter alloc] init];
-                break;
-            case FilterSepia:
-                filter = [[GPUImageSepiaFilter alloc] init];
-                break;
-            case FilterGrayscale:
-                filter = [[GPUImageGrayscaleFilter alloc] init];
-                break;
-            case FilterHistogram:
-                filter = [[GPUImageHistogramFilter alloc] init];
-                break;
-            default:
-                break;
-        }
-        
+        [self setCurrentFilterType:type];
         [self filterProcessingBlock];
         [movieFile removeAllTargets];
         [movieFile addTarget:filter];
@@ -353,7 +365,7 @@
         FilterInfo *info = [[FilterInfo alloc] init];
         info.filterName = name;
         info.filterImage = @"recommend";
-        info.type = i;
+        info.type = (FilterType)i;
         [filterList addObject:info];
     }
     return filterList;

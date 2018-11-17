@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434F04621A03D1300A1B65F /* UTVideoComposeSuccessViewController.m */; };
 		141921F6219EA243001239EE /* animation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 141921F5219EA243001239EE /* animation.txt */; };
 		141921F9219EA274001239EE /* AnimationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 141921F8219EA274001239EE /* AnimationObject.m */; };
 		14239B6F2172F9FA0033FB7D /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14239B6E2172F9FA0033FB7D /* libGPUImage.a */; };
@@ -104,6 +105,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0434F04521A03D1300A1B65F /* UTVideoComposeSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTVideoComposeSuccessViewController.h; sourceTree = "<group>"; };
+		0434F04621A03D1300A1B65F /* UTVideoComposeSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTVideoComposeSuccessViewController.m; sourceTree = "<group>"; };
 		141921F4219E8AE6001239EE /* animation.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = animation.geojson; sourceTree = "<group>"; };
 		141921F5219EA243001239EE /* animation.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = animation.txt; sourceTree = "<group>"; };
 		141921F7219EA274001239EE /* AnimationObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationObject.h; sourceTree = "<group>"; };
@@ -478,6 +481,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0434F04421A038AB00A1B65F /* VideoComposeSuccessView */ = {
+			isa = PBXGroup;
+			children = (
+				0434F04521A03D1300A1B65F /* UTVideoComposeSuccessViewController.h */,
+				0434F04621A03D1300A1B65F /* UTVideoComposeSuccessViewController.m */,
+			);
+			path = VideoComposeSuccessView;
+			sourceTree = "<group>";
+		};
 		14239ABD2172F9FA0033FB7D /* GPUImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -948,6 +960,7 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0434F04421A038AB00A1B65F /* VideoComposeSuccessView */,
 				146B63C42192B32A00A3A679 /* VideoComposeView */,
 				146B63832190652300A3A679 /* EditView */,
 				146B6368218FDA8100A3A679 /* DownloadTemplateView */,
@@ -1526,6 +1539,7 @@
 				14580365216F2BCC006BB33D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				141921F9219EA274001239EE /* AnimationObject.m in Sources */,
 				14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */,
+				0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */,
 				146B63992191827300A3A679 /* EditInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
