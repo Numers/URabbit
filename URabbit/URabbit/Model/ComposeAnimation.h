@@ -11,10 +11,10 @@
 @interface ComposeAnimation : NSObject<CAAnimationDelegate>
 {
     Material *currentMaterial;
-    NSMutableArray *animationInfos;
+    NSMutableArray *currentAnimationInfos;
     NSMutableArray *currentAxiosInfos;
     NSString *currentMovieUrl;
 }
--(instancetype)initWithMaterial:(Material *)material AxiosInfos:(NSMutableArray *)axiosInfos movieUrl:(NSString *)movieUrl;
+-(instancetype)initWithMaterial:(Material *)material AxiosInfos:(NSMutableArray *)axiosInfos animationInfos:(NSMutableArray *)animationInfos movieUrl:(NSString *)movieUrl;
 -(void)addAnimationCompletionHandler:(void (^)(NSString* outPutURL, int code))handler;
 @end

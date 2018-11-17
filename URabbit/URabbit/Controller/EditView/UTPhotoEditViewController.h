@@ -12,5 +12,5 @@
 {
 
 }
--(instancetype)initWithMaterial:(Material *)m editInfo:(NSMutableArray *)list;
+-(instancetype)initWithMaterial:(Material *)m editInfo:(NSMutableArray *)list animationInfo:(NSMutableArray *)animations;
 @end

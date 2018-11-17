@@ -16,5 +16,5 @@
 @property(nonatomic, strong) NSMutableArray *animationObjects;
 @property(nonatomic) FilterType filterType;
 
--(instancetype)initWithDictinary:(NSDictionary *)dic;
+-(instancetype)initWithDictinary:(NSDictionary *)dic fps:(CGFloat)fps;
 @end

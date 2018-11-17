@@ -14,17 +14,18 @@
 #import "AxiosInfo.h"
 #import "AnimationInfo.h"
 #import "AnimationManager.h"
+#import "AnimationObject.h"
 
 //https://developer.apple.com/documentation/quartzcore/calayer/1410901-filters  layer添加滤镜
 @implementation ComposeAnimation
--(instancetype)initWithMaterial:(Material *)material AxiosInfos:(NSMutableArray *)axiosInfos movieUrl:(NSString *)movieUrl
+-(instancetype)initWithMaterial:(Material *)material AxiosInfos:(NSMutableArray *)axiosInfos animationInfos:(NSMutableArray *)animationInfos movieUrl:(NSString *)movieUrl
 {
     self = [super init];
     if (self) {
-        animationInfos = [NSMutableArray array];
         currentMaterial = material;
         currentMovieUrl = movieUrl;
         currentAxiosInfos = [NSMutableArray arrayWithArray:axiosInfos];
+        currentAnimationInfos = [NSMutableArray arrayWithArray:animationInfos];
         [self initlizedAnimationInfos];
     }
     return self;
@@ -81,90 +82,30 @@
     [parentLayer addSublayer:backLayer];
     
     for (AxiosInfo *axios in currentAxiosInfos) {
-        switch (axios.animationType) {
-            case AnimationTransformLeft:
-            {
-                CALayer *imageLayer = [CALayer layer];
-                imageLayer.contents = (id)axios.filterImage.CGImage;
-                [imageLayer setFrame:CGRectMake(-axios.imageWith, 0, axios.imageWith, axios.imageHeight)];
-                CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(-axios.imageWith / 2 , videoSize.height / 2) toCenter:CGPointMake(videoSize.width / 2, videoSize.height / 2) startTime:axios.range.location / currentMaterial.fps duration:axios.range.length / currentMaterial.fps removeOnComplete:YES delegate:self];
-                [imageLayer addAnimation:animation forKey:@"move-left-layer"];
-                [parentLayer addSublayer:imageLayer];
+        CALayer *imageLayer = [CALayer layer];
+        imageLayer.contents = (id)axios.filterImage.CGImage;
+        [imageLayer setFrame:CGRectMake(-axios.imageWith, 0, axios.imageWith, axios.imageHeight)];
+        for (AnimationObject *animationObj in axios.animationObjects) {
+            CABasicAnimation *animation = [animationObj generateAnimation];
+            if (animation) {
+                [imageLayer addAnimation:animation forKey:nil];
             }
-                break;
-            case AnimationTransformRight:
-            {
-                CALayer *imageLayer = [CALayer layer];
-                imageLayer.contents = (id)axios.filterImage.CGImage;
-                [imageLayer setFrame:CGRectMake(axios.imageWith + videoSize.width, 0, axios.imageWith, axios.imageHeight)];
-                CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(axios.imageWith / 2 + videoSize.width, videoSize.height / 2) toCenter:CGPointMake(videoSize.width / 2, videoSize.height / 2) startTime:axios.range.location / currentMaterial.fps duration:axios.range.length / currentMaterial.fps removeOnComplete:YES delegate:self];
-                [imageLayer addAnimation:animation forKey:@"move-right-layer"];
-                [parentLayer addSublayer:imageLayer];
-            }
-                break;
-            case AnimationRotation:
-            {
-                CALayer *imageLayer = [CALayer layer];
-                imageLayer.contents = (id)axios.filterImage.CGImage;
-                [imageLayer setFrame:CGRectMake(axios.imageWith + videoSize.width, 0, axios.imageWith, axios.imageHeight)];
-                CABasicAnimation *translateAnimation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(axios.imageWith / 2 + videoSize.width, videoSize.height / 2) toCenter:CGPointMake(videoSize.width / 2, videoSize.height / 2) startTime:axios.range.location / currentMaterial.fps duration:0.0 removeOnComplete:YES delegate:self];
-                CABasicAnimation *translateMoveoutAnimation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(videoSize.width/2, videoSize.height / 2) toCenter:CGPointMake(axios.imageWith /2 + videoSize.width, videoSize.height / 2) startTime:axios.range.location / currentMaterial.fps + 1.5 duration:0 removeOnComplete:YES delegate:self];
-                CABasicAnimation *rotationAnimation = [[AnimationManager shareManager] rotationAnimationWithStartAngle:0 endAngle:360 startTime:axios.range.location / currentMaterial.fps  duration:0 removeOnComplete:YES delegate:self];
-                CAAnimationGroup *groupAnimation = [[AnimationManager shareManager] groupAnimationWithAnimations:@[translateAnimation,rotationAnimation,translateMoveoutAnimation] Duration:axios.range.length / currentMaterial.fps repeatCount:1];
-                [imageLayer addAnimation:groupAnimation forKey:@"scale-layer"];
-                [parentLayer addSublayer:imageLayer];
-            }
-                break;
-            case AnimationScale:
-            {
-                CALayer *imageLayer = [CALayer layer];
-                imageLayer.contents = (id)axios.filterImage.CGImage;
-                [imageLayer setFrame:CGRectMake(axios.imageWith / 2 + videoSize.width, 0, axios.imageWith, axios.imageHeight)];
-                CABasicAnimation *translateMoveInAnimation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(0, -axios.imageHeight / 2) toCenter:CGPointMake(videoSize.width/2, videoSize.height/2) startTime:axios.range.location / currentMaterial.fps duration:0.0001 removeOnComplete:NO delegate:nil];
-                CABasicAnimation *translateMoveoutAnimation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(videoSize.width/2, videoSize.height/2) toCenter:CGPointMake(0, videoSize.height + axios.imageHeight) startTime:axios.range.location / currentMaterial.fps + 1.5 duration:0.0001 removeOnComplete:NO delegate:nil];
-//                CABasicAnimation *translateMoveInAnimation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromRect:CGRectMake(-axios.imageWith / 2, 0, axios.imageWith, axios.imageHeight) toRect:CGRectMake(0, 0, axios.imageWith, axios.imageHeight) startTime:axios.range.location / currentMaterial.fps duration:1 removeOnComplete:NO delegate:nil];
-//                CABasicAnimation *translateMoveoutAnimation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromRect:CGRectMake(0, 0, axios.imageWith, axios.imageHeight) toRect:CGRectMake(0, 0, axios.imageWith, axios.imageHeight) startTime:axios.range.location / currentMaterial.fps + 1.5 duration:2 removeOnComplete:NO delegate:self];
-                CABasicAnimation *scaleAnimation = [[AnimationManager shareManager] scaleAnimationWithStartScale:1.0 endScale:2.0 startTime:axios.range.location / currentMaterial.fps duration:2 removeOnComplete:NO delegate:nil];
-                
-                [imageLayer addAnimation:translateMoveInAnimation forKey:nil];
-                [imageLayer addAnimation:scaleAnimation forKey:nil];
-                [imageLayer addAnimation:translateMoveoutAnimation forKey:nil];
-                [parentLayer addSublayer:imageLayer];
-            }
-                break;
-            case AnimationTrasformControlPoint:
-            {
-                CALayer *imageLayer = [CALayer layer];
-                imageLayer.contents = (id)axios.filterImage.CGImage;
-                [imageLayer setFrame:CGRectMake(axios.imageWith + videoSize.width, 0, axios.imageWith, axios.imageHeight)];
-                CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimationWithControlPoints:0.895 point2:0.03 point3:0.685 point4:0.22 fromCenter:CGPointMake(-axios.imageWith/2, axios.imageHeight/2) toCenter:CGPointMake(videoSize.width/2, videoSize.height/2) startTime:axios.range.location / currentMaterial.fps duration:axios.range.length / currentMaterial.fps removeOnComplete:YES delegate:self];
-                [imageLayer addAnimation:animation forKey:@"move-controlpoint-layer"];
-                [parentLayer addSublayer:imageLayer];
-            }
-                break;
-            default:
-                break;
         }
+        [parentLayer addSublayer:imageLayer];
     }
     
-    for (AnimationInfo *info in animationInfos) {
+    for (AnimationInfo *info in currentAnimationInfos) {
         AxiosInfo *axiosInfo = [currentAxiosInfos objectAtIndex:info.axiosIndex];
         CALayer *imageLayer = [CALayer layer];
         imageLayer.contents = (id)axiosInfo.filterImage.CGImage;
-        [imageLayer setFrame:CGRectMake(0, 0, axiosInfo.imageWith, axiosInfo.imageHeight)];
-        switch (info.animationType) {
-            case AnimationTransformRight:
-            {
-                [imageLayer setFrame:CGRectMake(axiosInfo.imageWith + videoSize.width, 0, axiosInfo.imageWith, axiosInfo.imageHeight)];
-                CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(axiosInfo.imageWith / 2 + videoSize.width, videoSize.height / 2) toCenter:CGPointMake(videoSize.width / 2, videoSize.height / 2) startTime:info.range.location / currentMaterial.fps duration:info.range.length / currentMaterial.fps removeOnComplete:YES delegate:self];
-                [imageLayer addAnimation:animation forKey:@"move-right-layer"];
-                [parentLayer addSublayer:imageLayer];
+        [imageLayer setFrame:CGRectMake(axiosInfo.imageWith + videoSize.width, 0, axiosInfo.imageWith, axiosInfo.imageHeight)];
+        for (AnimationObject *animationObj in info.animationObjects) {
+            CABasicAnimation *animation = [animationObj generateAnimation];
+            if (animation) {
+                [imageLayer addAnimation:animation forKey:nil];
             }
-                break;
-                
-            default:
-                break;
         }
+        [parentLayer addSublayer:imageLayer];
     }
     
     AVMutableVideoComposition* videoComp = [AVMutableVideoComposition videoComposition];

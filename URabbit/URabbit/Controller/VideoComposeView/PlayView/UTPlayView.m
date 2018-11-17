@@ -13,13 +13,13 @@ static NSString *playCollectionViewCellIdentify = @"PlayCollectionViewCellIdenti
 @interface UTPlayView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @end
 @implementation UTPlayView
--(instancetype)initWithImages:(NSMutableArray *)images
+-(instancetype)init
 {
     self = [super init];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
         [self setUserInteractionEnabled:YES];
-        dataSource = [NSMutableArray arrayWithArray:images];
+        dataSource = [NSMutableArray array];
         playButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [playButton setImage:[UIImage imageNamed:@"play_button"] forState:UIControlStateNormal];
         [playButton addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
@@ -71,6 +71,15 @@ static NSString *playCollectionViewCellIdentify = @"PlayCollectionViewCellIdenti
     }];
 }
 
+-(void)setDatasource:(NSMutableArray *)images
+{
+    if (dataSource.count > 0) {
+        [dataSource removeAllObjects];
+    }
+    [dataSource addObjectsFromArray:images];
+    [collectionView reloadData];
+}
+
 -(void)play
 {
     BOOL status = !isPlaying;
@@ -119,8 +128,7 @@ static NSString *playCollectionViewCellIdentify = @"PlayCollectionViewCellIdenti
 {
     UTPlayCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:playCollectionViewCellIdentify forIndexPath:indexPath];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *imagePath = [dataSource objectAtIndex:indexPath.row];
-        UIImage *img = [UIImage imageWithContentsOfFile:imagePath];
+        UIImage *img = [dataSource objectAtIndex:indexPath.row];
         dispatch_async(dispatch_get_main_queue(), ^{
             [cell setupCellWithImage:img];
         });

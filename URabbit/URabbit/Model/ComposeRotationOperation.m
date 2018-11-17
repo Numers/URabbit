@@ -81,15 +81,11 @@
     
     CGImageRef maskRef = maskImage.CGImage;
     CGContextClipToMask(mainViewContentContext, CGRectMake(0, 0, maskImage.size.width, maskImage.size.height), maskRef);
-    if (info.animationType == AnimationRotation) {
-        CGContextSaveGState(mainViewContentContext);
-        CGContextTranslateCTM(mainViewContentContext, info.centerX, info.centerY);
-        CGContextRotateCTM(mainViewContentContext, -0.005*index);
-        CGContextDrawImage(mainViewContentContext, CGRectMake(-info.centerX, -info.centerY, info.imageWith, info.imageHeight), info.image.CGImage);
-        CGContextRestoreGState(mainViewContentContext);
-    }else{
-        CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, info.imageWith, info.imageHeight), info.image.CGImage);
-    }
+    CGContextSaveGState(mainViewContentContext);
+    CGContextTranslateCTM(mainViewContentContext, info.centerX, info.centerY);
+    CGContextRotateCTM(mainViewContentContext, -0.005*index);
+    CGContextDrawImage(mainViewContentContext, CGRectMake(-info.centerX, -info.centerY, info.imageWith, info.imageHeight), info.image.CGImage);
+    CGContextRestoreGState(mainViewContentContext);
     CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
     UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
     CGImageRelease(newImageRef);

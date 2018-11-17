@@ -10,14 +10,14 @@
 #import "AnimationManager.h"
 
 @implementation AnimationObject
--(instancetype)initWithDictionary:(NSDictionary *)dic
+-(instancetype)initWithDictionary:(NSDictionary *)dic baseTime:(CGFloat)baseTime
 {
     self = [super init];
     if (self) {
         _animationType = (AnimationType)[[dic objectForKey:@"animationType"] integerValue];
         _category = [[dic objectForKey:@"category"] integerValue];
         _duration = [[dic objectForKey:@"duration"] floatValue];
-        _beginTime = [[dic objectForKey:@"beginTime"] floatValue];
+        _beginTime = baseTime + [[dic objectForKey:@"beginTime"] floatValue];
         _fromValue = [dic objectForKey:@"fromValue"];
         _toValue = [dic objectForKey:@"toValue"];
         _isRemoved = [[dic objectForKey:@"isRemoved"] boolValue];

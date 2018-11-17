@@ -15,6 +15,8 @@
 #import "UTSelectView.h"
 #import "UTSegmentView.h"
 
+#import "UTVideoManager.h"
+
 
 @interface UTVideoComposeViewController ()<UTPlaySubViewProtocol,UTSelectViewProtocol>
 {
@@ -59,13 +61,14 @@
     
     segmentView = [[UTSegmentView alloc] init];
     [segmentView setEdgeInsets:UIEdgeInsetsMake(0, 9, 0, 0)];
+    __weak typeof(selectView) weakSelectView = selectView;
     [segmentView setSelectIndexBlock:^(NSInteger index) {
-        [selectView showViewWithIndex:index];
+        [weakSelectView showViewWithIndex:index];
     }];
     [self.view addSubview:segmentView];
     [segmentView addTitles:@[@"滤镜",@"音乐"]];
     
-    playView = [[UTPlayView alloc] initWithImages:imageList];
+    playView = [[UTPlayView alloc] init];
     playView.delegate = self;
     [self.view addSubview:playView];
     
@@ -76,7 +79,8 @@
     filter = [[GPUImageFilter alloc] init];
     [self filterProcessingBlock];
     pausedTime = CMTimeMake(0, material.fps);
-    [self startVideo];
+    
+    [self splitImages];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -175,6 +179,17 @@
     }else{
         [self stopVideo];
     }
+}
+
+-(void)splitImages
+{
+    [[UTVideoManager shareManager] splitVideo:[NSURL fileURLWithPath:movieURL] fps:material.fps splitCompleteBlock:^(BOOL success, NSMutableArray *splitimgs) {
+        if (success) {
+            [playView setDatasource:splitimgs];
+            [self startVideo];
+        }
+        
+    }];
 }
 
 -(void)setupVideo

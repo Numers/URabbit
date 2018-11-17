@@ -72,8 +72,8 @@
     AVAssetImageGenerator *imgGenerator = [[AVAssetImageGenerator alloc] initWithAsset:avasset]; //防止时间出现偏差
     imgGenerator.requestedTimeToleranceBefore = kCMTimeZero;
     imgGenerator.requestedTimeToleranceAfter = kCMTimeZero;
-    [imgGenerator setMaximumSize:CGSizeMake(544, 960)];
-    for (int i = 1; i <= totalFrames; i++) {
+    [imgGenerator setMaximumSize:CGSizeMake(34, 60)];
+    for (int i = 1; i <= totalFrames; i=i+(int)(fps/2)) {
         NSLog(@"generate image %d",i);
         CMTime timeFrame = CMTimeMake(i, fps); //第i帧 帧率
         CGImageRef imageRef = [imgGenerator copyCGImageAtTime:timeFrame actualTime:nil error:nil];

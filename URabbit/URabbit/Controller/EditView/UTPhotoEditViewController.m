@@ -34,6 +34,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     
     Material *material;
     NSMutableArray *editInfoList;
+    NSMutableArray *animationInfoList;
     
     
     ComposeStrategy *strategy;
@@ -46,12 +47,13 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 @end
 
 @implementation UTPhotoEditViewController
--(instancetype)initWithMaterial:(Material *)m editInfo:(NSMutableArray *)list;
+-(instancetype)initWithMaterial:(Material *)m editInfo:(NSMutableArray *)list animationInfo:(NSMutableArray *)animations
 {
     self = [super init];
     if (self) {
         material = m;
         editInfoList = [NSMutableArray arrayWithArray:list];
+        animationInfoList = [NSMutableArray arrayWithArray:animations];
         axiosInfos = [NSMutableArray array];
     }
     return self;
@@ -294,7 +296,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         [compose cleanMemory];
         NSLog(@"finishWriter");
         if (material.materialType == MaterialAnimation) {
-            ComposeAnimation *composeAnimation = [[ComposeAnimation alloc] initWithMaterial:material AxiosInfos:axiosInfos movieUrl:videoPath];
+            ComposeAnimation *composeAnimation = [[ComposeAnimation alloc] initWithMaterial:material AxiosInfos:axiosInfos animationInfos:animationInfoList movieUrl:videoPath];
             [composeAnimation addAnimationCompletionHandler:^(NSString *outPutURL, int code) {
                 UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithMaterial:material movieUrl:outPutURL images:imageList];
                 [self.navigationController pushViewController:videoComposeVC animated:YES];
@@ -323,14 +325,14 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 
 -(void)sendResultImage:(UIImage *)image frame:(NSInteger)frame
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-        NSString *imagePath = [NSString stringWithFormat:@"%@/image_%ld.png",videoDic,frame];
-        NSData *zipImage = [[UTImageHanderManager shareManager] zipScaleWithImage:image];
-        BOOL result = [zipImage writeToFile:imagePath atomically:YES];
-        if (result) {
-            [imageList addObject:imagePath];
-        }
-    });
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+//        NSString *imagePath = [NSString stringWithFormat:@"%@/image_%ld.png",videoDic,frame];
+//        NSData *zipImage = [[UTImageHanderManager shareManager] zipScaleWithImage:image];
+//        BOOL result = [zipImage writeToFile:imagePath atomically:YES];
+//        if (result) {
+//            [imageList addObject:imagePath];
+//        }
+//    });
 }
 @end

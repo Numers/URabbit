@@ -10,7 +10,7 @@
 #import "AnimationObject.h"
 
 @implementation EditInfo
--(instancetype)initWithDictinary:(NSDictionary *)dic
+-(instancetype)initWithDictinary:(NSDictionary *)dic fps:(CGFloat)fps
 {
     self = [super init];
     if (self) {
@@ -19,15 +19,16 @@
         NSInteger toFrame = [[rangeArray objectAtIndex:1] integerValue];
         _range = NSMakeRange(fromFrame, toFrame - fromFrame);
         NSString *editImageName = [dic objectForKey:@"editImage"];
-        _editImage = [AppUtils isNullStr:editImageName] ? nil : editImagePath;
+        _editImage = [AppUtils isNullStr:editImageName] ? nil : editImageName;
         _editImageCenterXPercent = [[dic objectForKey:@"centerX"] floatValue];
         _editImageCenterYPercent = [[dic objectForKey:@"centerY"] floatValue];
         _filterType = (FilterType)[[dic objectForKey:@"filterType"] integerValue];
         _animationObjects = [NSMutableArray array];
         NSArray *animations = [dic objectForKey:@"animationGroup"];
+        CGFloat baseTime = fromFrame / fps;
         if (animations && animations.count > 0) {
             for (NSDictionary *animationDic in animations) {
-                AnimationObject *animationObject = [[AnimationObject alloc] initWithDictionary:animationDic];
+                AnimationObject *animationObject = [[AnimationObject alloc] initWithDictionary:animationDic baseTime:baseTime];
                 [_animationObjects addObject:animationObject];
             }
         }

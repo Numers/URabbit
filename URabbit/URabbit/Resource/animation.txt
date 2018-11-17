@@ -1,71 +1,71 @@
 {
   "editInfo": [{
-    "range": [0, 50],
+    "range": [0, 375],
     "editImage":"",
     "centerX": 0.5,
     "centerY": 0.5,
     "filterType": 1,
     "animationGroup": [{
-        "animationType": 1,
+        "animationType": 3,
         "category": 1,
-        "duration": 2.0,
+        "duration": 3,
         "beginTime": 0,
-        "fromValue": 0,
-        "toValue": 360,
-        "isRemoved": 1
+        "fromValue": [-272,480],
+        "toValue": [272,480],
+        "isRemoved": 0
       },
       {
         "animationType": 2,
         "category": 1,
-        "duration": 2.0,
+        "duration": 10,
         "beginTime": 0,
         "fromValue": 1.0,
         "toValue": 1.2,
-        "isRemoved": 1
+        "isRemoved": 0
       },
 
       {
         "animationType": 3,
         "category": 1,
-        "duration": 2.0,
-        "beginTime": 0,
-        "fromValue": [1.0, 2.0, 3.0, 4.0],
-        "toValue": [1.0, 3.0],
-        "isRemoved": 1
+        "duration": 5,
+        "beginTime": 10,
+        "fromValue": [272,480],
+        "toValue": [1088,480],
+        "isRemoved": 0
       }
     ]
   }],
   "animationInfo": [{
-    "range": [0, 50],
+    "range": [100, 150],
     "filterType": 1,
-    "editIndex": 1,
+    "editIndex": 0,
     "animationGroup": [{
-        "animationType": 1,
+        "animationType": 3,
         "category": 1,
-        "duration": 2.0,
-        "beginTime": 0,
-        "fromValue": 0,
-        "toValue": 360,
-        "isRemoved": 1
+        "duration": 0.5,
+        "beginTime": 0.5,
+        "fromValue": [272,-480],
+        "toValue": [272,480],
+        "isRemoved": 0
       },
       {
-        "animationType": 2,
-        "category": 1,
-        "duration": 2.0,
-        "beginTime": 0,
-        "fromValue": 1.0,
-        "toValue": 1.2,
-        "isRemoved": 1
+        "animationType": 1,
+        "category": 3,
+        "duration": 1.5,
+        "beginTime": 0.5,
+        "fromValue": 0,
+        "toValue": 360,
+        "isRemoved": 0
       },
 
       {
         "animationType": 3,
         "category": 1,
-        "duration": 2.0,
-        "beginTime": 0,
-        "fromValue": [1.0, 2.0, 3.0, 4.0],
-        "toValue": [1.0, 3.0],
-        "isRemoved": 1
+        "duration": 0.5,
+        "beginTime": 1.5,
+        "fromValue": [272,480],
+        "toValue": [272,1920],
+        "isRemoved": 0
       }
     ]
   }]

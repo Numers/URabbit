@@ -16,6 +16,6 @@
 @property(nonatomic) id fromValue;
 @property(nonatomic) id toValue;
 @property(nonatomic) BOOL isRemoved;
--(instancetype)initWithDictionary:(NSDictionary *)dic;
+-(instancetype)initWithDictionary:(NSDictionary *)dic baseTime:(CGFloat)baseTime;
 -(CABasicAnimation *)generateAnimation;
 @end

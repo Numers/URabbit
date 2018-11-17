@@ -9,6 +9,7 @@
 #import "UTDownloadTemplateViewController.h"
 #import "HomeTemplate.h"
 #import "EditInfo.h"
+#import "AnimationInfo.h"
 
 #import "UTDownloadButtonView.h"
 #import "UTVideoInfoView.h"
@@ -22,6 +23,7 @@
     HomeTemplate *currentHomeTemplate;
     Material *materia;
     NSMutableArray *editInfoList;
+    NSMutableArray *animationInfoList;
     
     UTDownloadButtonView *makeButtonView;
     UIScrollView *scrollView;
@@ -45,6 +47,7 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
     editInfoList = [NSMutableArray array];
+    animationInfoList = [NSMutableArray array];
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [scrollView setContentInset:UIEdgeInsetsMake(0, 0, [UIDevice safeAreaBottomHeight], 0)];
@@ -105,6 +108,11 @@
     if (editInfoList.count > 0) {
         [editInfoList removeAllObjects];
     }
+    
+    if (animationInfoList.count > 0) {
+        [animationInfoList removeAllObjects];
+    }
+    
     [self generateMaterial];
 //    EditInfo *info = [[EditInfo alloc] init];
 //    info.editImage = [UIImage imageNamed:@"template1"];
@@ -119,71 +127,18 @@
     NSDictionary *animationDic = [AppUtils objectWithJsonString:jsonString];
     NSArray *editInfos = [animationDic objectForKey:@"editInfo"];
     for (NSDictionary *dic in editInfos) {
-        EditInfo *info = [[EditInfo alloc] initWithDictinary:dic];
+        EditInfo *info = [[EditInfo alloc] initWithDictinary:dic fps:materia.fps];
         info.originSize = materia.videoSize;
         [editInfoList addObject:info];
     }
-//    EditInfo *info = [[EditInfo alloc] init];
-//    info.editImage = nil;
-//    info.originSize = materia.videoSize;
-//    info.editImageCenterXPercent = 0.5;
-//    info.editImageCenterYPercent = 0.5;
-//    info.range = NSMakeRange(0, 375);
-//    info.animationType = AnimationScale;
-//    info.filterType = FilterNormal;
     
-//    EditInfo *info1 = [[EditInfo alloc] init];
-//    info1.editImage = nil;
-//    info1.originSize = materia.videoSize;
-//    info1.editImageCenterXPercent = 0.5;
-//    info1.editImageCenterYPercent = 0.5;
-//    info1.range = NSMakeRange(50, 50);
-//    info1.animationType = AnimationTransformLeft;
-//    info1.filterType = FilterToon;
-    
-//    EditInfo *info2 = [[EditInfo alloc] init];
-//    info2.editImage = nil;
-//    info2.originSize = materia.videoSize;
-//    info2.editImageCenterXPercent = 0.5;
-//    info2.editImageCenterYPercent = 0.5;
-//    info2.range = NSMakeRange(100, 50);
-//    info2.animationType = AnimationRotation;
-//    info2.filterType = FilterToon;
-//
-//    EditInfo *info3 = [[EditInfo alloc] init];
-//    info3.editImage = nil;
-//    info3.originSize = materia.videoSize;
-//    info3.editImageCenterXPercent = 0.5;
-//    info3.editImageCenterYPercent = 0.5;
-//    info3.range = NSMakeRange(150, 100);
-//    info3.animationType = AnimationTransformRight;
-//    info3.filterType = FilterSketch;
-//
-//    EditInfo *info4 = [[EditInfo alloc] init];
-//    info4.editImage = nil;
-//    info4.originSize = materia.videoSize;
-//    info4.editImageCenterXPercent = 0.5;
-//    info4.editImageCenterYPercent = 0.5;
-//    info4.range = NSMakeRange(250, 50);
-//    info4.animationType = AnimationTrasformControlPoint;
-//    info4.filterType = FilterGrayscale;
-//
-//    EditInfo *info5 = [[EditInfo alloc] init];
-//    info5.editImage = nil;
-//    info5.originSize = materia.videoSize;
-//    info5.editImageCenterXPercent = 0.5;
-//    info5.editImageCenterYPercent = 0.5;
-//    info5.range = NSMakeRange(300, 75);
-//    info5.animationType = AnimationScale;
-//    info5.filterType = FilterSketch;
-//
-//    [editInfoList addObject:info];
-//    [editInfoList addObject:info1];
-//    [editInfoList addObject:info2];
-//    [editInfoList addObject:info3];
-//    [editInfoList addObject:info4];
-//    [editInfoList addObject:info5];
-    UTPhotoEditViewController *photoEditVC = [[UTPhotoEditViewController alloc] initWithMaterial:materia editInfo:editInfoList];
+    NSArray *animationInfos = [animationDic objectForKey:@"animationInfo"];
+    for (NSDictionary *infoDic in animationInfos) {
+        AnimationInfo *info = [[AnimationInfo alloc] initWithDictionary:infoDic fps:materia.fps];
+        [animationInfoList addObject:info];
+    }
+
+    UTPhotoEditViewController *photoEditVC = [[UTPhotoEditViewController alloc] initWithMaterial:materia editInfo:editInfoList animationInfo:animationInfoList];
     [self.navigationController pushViewController:photoEditVC animated:YES];
 }
 @end

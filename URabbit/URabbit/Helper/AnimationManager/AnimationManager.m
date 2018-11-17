@@ -32,13 +32,13 @@
     return group;
 }
 
--(CABasicAnimation *)translateZLineAnimation:(NSString *)timingFunction fromCenter:(CGFloat)fromCenter toCenter:(CGFloat)toCenter startTime:(CGFloat)startTime duration:(CGFloat)duration removeOnComplete:(BOOL)isRemoved delegate:(id<CAAnimationDelegate>)animationObj;
+-(CABasicAnimation *)translateLineAnimation:(NSString *)timingFunction fromCenter:(CGPoint)fromCenter toCenter:(CGPoint)toCenter startTime:(CGFloat)startTime duration:(CGFloat)duration removeOnComplete:(BOOL)isRemoved delegate:(id<CAAnimationDelegate>)animationObj
 {
     CABasicAnimation *animation =
-    [CABasicAnimation animationWithKeyPath:@"zPosition"];
+    [CABasicAnimation animationWithKeyPath:@"position"];
     // 设定动画起始帧和结束帧
-    animation.fromValue = @(fromCenter); // 起始点
-    animation.toValue = @(toCenter); // 终了点
+    animation.fromValue = [NSValue valueWithCGPoint:fromCenter]; // 起始点
+    animation.toValue = [NSValue valueWithCGPoint:toCenter]; // 终了点
     animation.duration = duration;
     animation.beginTime = AVCoreAnimationBeginTimeAtZero + startTime;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:timingFunction];
@@ -50,13 +50,13 @@
     return animation;
 }
 
--(CABasicAnimation *)translateZLineAnimation:(NSString *)timingFunction fromRect:(CGRect)fromRect toRect:(CGRect)toRect startTime:(CGFloat)startTime duration:(CGFloat)duration removeOnComplete:(BOOL)isRemoved delegate:(id<CAAnimationDelegate>)animationObj
+-(CABasicAnimation *)translateZLineAnimation:(NSString *)timingFunction fromCenter:(CGFloat)fromCenter toCenter:(CGFloat)toCenter startTime:(CGFloat)startTime duration:(CGFloat)duration removeOnComplete:(BOOL)isRemoved delegate:(id<CAAnimationDelegate>)animationObj
 {
     CABasicAnimation *animation =
     [CABasicAnimation animationWithKeyPath:@"zposition"];
     // 设定动画起始帧和结束帧
-    animation.fromValue = [NSValue valueWithCGPoint:fromCenter]; // 起始点
-    animation.toValue = [NSValue valueWithCGPoint:toCenter]; // 终了点
+    animation.fromValue = @(fromCenter); // 起始点
+    animation.toValue = @(toCenter); // 终了点
     animation.duration = duration;
     animation.beginTime = AVCoreAnimationBeginTimeAtZero + startTime;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:timingFunction];

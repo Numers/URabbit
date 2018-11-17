@@ -13,4 +13,6 @@
 @property(nonatomic) NSMutableArray *animationObjects;
 @property(nonatomic) FilterType filterType;
 @property(nonatomic) NSInteger axiosIndex;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dic fps:(CGFloat)fps;
 @end

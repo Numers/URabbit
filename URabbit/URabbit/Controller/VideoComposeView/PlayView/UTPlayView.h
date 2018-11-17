@@ -23,7 +23,7 @@
     BOOL isDragging;
 }
 @property(nonatomic, weak) id<UTPlaySubViewProtocol> delegate;
--(instancetype)initWithImages:(NSMutableArray *)images;
+-(void)setDatasource:(NSMutableArray *)images;
 -(void)scrollToOffsetPercent:(CGFloat)percent;
 -(void)playFinished;
 @end
