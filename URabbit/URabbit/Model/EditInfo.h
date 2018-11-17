@@ -16,5 +16,7 @@
 @property(nonatomic, strong) NSMutableArray *animationObjects;
 @property(nonatomic) FilterType filterType;
 
+@property(nonatomic, strong) UIImage *editScreenShotImage; //额外用来存储编辑视图的截屏图片
+
 -(instancetype)initWithDictinary:(NSDictionary *)dic fps:(CGFloat)fps;
 @end

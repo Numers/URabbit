@@ -20,6 +20,7 @@
         _range = NSMakeRange(fromFrame, toFrame - fromFrame);
         NSString *editImageName = [dic objectForKey:@"editImage"];
         _editImage = [AppUtils isNullStr:editImageName] ? nil : editImageName;
+        _editScreenShotImage = [UIImage imageNamed:_editImage];
         _editImageCenterXPercent = [[dic objectForKey:@"centerX"] floatValue];
         _editImageCenterYPercent = [[dic objectForKey:@"centerY"] floatValue];
         _filterType = (FilterType)[[dic objectForKey:@"filterType"] integerValue];

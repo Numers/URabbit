@@ -114,30 +114,36 @@
     }
     
     [self generateMaterial];
-//    EditInfo *info = [[EditInfo alloc] init];
-//    info.editImage = [UIImage imageNamed:@"template1"];
-//    info.originSize = info.editImage.size;
-//    info.editImageCenterXPercent = 0.5;
-//    info.editImageCenterYPercent = (544.0f/2)/960.0f;
-//    info.range = NSMakeRange(0, 375);
-//    info.animationType = AnimationRotation;
-//    info.filterType = FilterAddBlend;
-    NSData *animationData = [NSData dataWithContentsOfFile:materia.animationFile];
-    NSString *jsonString = [[NSString alloc] initWithData:animationData encoding:NSUTF8StringEncoding];
-    NSDictionary *animationDic = [AppUtils objectWithJsonString:jsonString];
-    NSArray *editInfos = [animationDic objectForKey:@"editInfo"];
-    for (NSDictionary *dic in editInfos) {
-        EditInfo *info = [[EditInfo alloc] initWithDictinary:dic fps:materia.fps];
+    if (materia.materialType == MaterialMask) {
+        EditInfo *info = [[EditInfo alloc] init];
+        info.editImage = @"template1";
+        info.editScreenShotImage = [UIImage imageNamed:info.editImage];
         info.originSize = materia.videoSize;
+        info.editImageCenterXPercent = 0.5;
+        info.editImageCenterYPercent = (544.0f/2)/960.0f;
+        info.range = NSMakeRange(0, 375);
+        info.filterType = FilterAddBlend;
         [editInfoList addObject:info];
     }
     
-    NSArray *animationInfos = [animationDic objectForKey:@"animationInfo"];
-    for (NSDictionary *infoDic in animationInfos) {
-        AnimationInfo *info = [[AnimationInfo alloc] initWithDictionary:infoDic fps:materia.fps];
-        [animationInfoList addObject:info];
+    if (materia.materialType == MaterialAnimation) {
+        NSData *animationData = [NSData dataWithContentsOfFile:materia.animationFile];
+        NSString *jsonString = [[NSString alloc] initWithData:animationData encoding:NSUTF8StringEncoding];
+        NSDictionary *animationDic = [AppUtils objectWithJsonString:jsonString];
+        NSArray *editInfos = [animationDic objectForKey:@"editInfo"];
+        for (NSDictionary *dic in editInfos) {
+            EditInfo *info = [[EditInfo alloc] initWithDictinary:dic fps:materia.fps];
+            info.originSize = materia.videoSize;
+            [editInfoList addObject:info];
+        }
+        
+        NSArray *animationInfos = [animationDic objectForKey:@"animationInfo"];
+        for (NSDictionary *infoDic in animationInfos) {
+            AnimationInfo *info = [[AnimationInfo alloc] initWithDictionary:infoDic fps:materia.fps];
+            [animationInfoList addObject:info];
+        }
     }
-
+    
     UTPhotoEditViewController *photoEditVC = [[UTPhotoEditViewController alloc] initWithMaterial:materia editInfo:editInfoList animationInfo:animationInfoList];
     [self.navigationController pushViewController:photoEditVC animated:YES];
 }

@@ -33,7 +33,7 @@
         editView = nil;
     }
     editInfo = info;
-    editView = [[UTPhotoEditView alloc] initWithTemplateImage:info.editImage];
+    editView = [[UTPhotoEditView alloc] initWithTemplateImage:[UIImage imageNamed:info.editImage]];
     editView.delegate = self;
     CGFloat height = self.frame.size.height;
     CGFloat width = height * (info.originSize.width / info.originSize.height);
@@ -50,7 +50,7 @@
 -(UIImage *)tranferViewToImage
 {
     UIImage *image = [AppUtils convertViewToImage:editView];
-    [editInfo setEditImage:image];
+    [editInfo setEditScreenShotImage:image];
     return image;
 }
 

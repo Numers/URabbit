@@ -23,12 +23,12 @@
 -(void)setupCellWithEditInfo:(EditInfo *)info
 {
     editInfo = info;
-    [imageView setImage:info.editImage];
+    [imageView setImage:info.editScreenShotImage];
 }
 
 -(void)updateImageView
 {
-    [imageView setImage:editInfo.editImage];
+    [imageView setImage:editInfo.editScreenShotImage];
 }
 
 -(void)setPictureImage:(UIImage *)image
