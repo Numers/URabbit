@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434F04621A03D1300A1B65F /* UTVideoComposeSuccessViewController.m */; };
+		04372B8E21A110F600F206E3 /* UTLoginWithPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B8D21A110F600F206E3 /* UTLoginWithPasswordViewController.m */; };
+		04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9121A1123400F206E3 /* UTRegisterFirstStepViewController.m */; };
+		04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */; };
+		04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */; };
 		141921F6219EA243001239EE /* animation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 141921F5219EA243001239EE /* animation.txt */; };
 		141921F9219EA274001239EE /* AnimationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 141921F8219EA274001239EE /* AnimationObject.m */; };
 		14239B6F2172F9FA0033FB7D /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14239B6E2172F9FA0033FB7D /* libGPUImage.a */; };
@@ -107,6 +111,14 @@
 /* Begin PBXFileReference section */
 		0434F04521A03D1300A1B65F /* UTVideoComposeSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTVideoComposeSuccessViewController.h; sourceTree = "<group>"; };
 		0434F04621A03D1300A1B65F /* UTVideoComposeSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTVideoComposeSuccessViewController.m; sourceTree = "<group>"; };
+		04372B8C21A110F600F206E3 /* UTLoginWithPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTLoginWithPasswordViewController.h; sourceTree = "<group>"; };
+		04372B8D21A110F600F206E3 /* UTLoginWithPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTLoginWithPasswordViewController.m; sourceTree = "<group>"; };
+		04372B9021A1123400F206E3 /* UTRegisterFirstStepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTRegisterFirstStepViewController.h; sourceTree = "<group>"; };
+		04372B9121A1123400F206E3 /* UTRegisterFirstStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterFirstStepViewController.m; sourceTree = "<group>"; };
+		04372B9321A1132900F206E3 /* UTRegisterSecondStepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTRegisterSecondStepViewController.h; sourceTree = "<group>"; };
+		04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterSecondStepViewController.m; sourceTree = "<group>"; };
+		04372B9621A1134100F206E3 /* UTRegisterThirdStepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTRegisterThirdStepViewController.h; sourceTree = "<group>"; };
+		04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterThirdStepViewController.m; sourceTree = "<group>"; };
 		141921F4219E8AE6001239EE /* animation.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = animation.geojson; sourceTree = "<group>"; };
 		141921F5219EA243001239EE /* animation.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = animation.txt; sourceTree = "<group>"; };
 		141921F7219EA274001239EE /* AnimationObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationObject.h; sourceTree = "<group>"; };
@@ -488,6 +500,19 @@
 				0434F04621A03D1300A1B65F /* UTVideoComposeSuccessViewController.m */,
 			);
 			path = VideoComposeSuccessView;
+			sourceTree = "<group>";
+		};
+		04372B8F21A1121500F206E3 /* RegisterView */ = {
+			isa = PBXGroup;
+			children = (
+				04372B9021A1123400F206E3 /* UTRegisterFirstStepViewController.h */,
+				04372B9121A1123400F206E3 /* UTRegisterFirstStepViewController.m */,
+				04372B9321A1132900F206E3 /* UTRegisterSecondStepViewController.h */,
+				04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */,
+				04372B9621A1134100F206E3 /* UTRegisterThirdStepViewController.h */,
+				04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */,
+			);
+			path = RegisterView;
 			sourceTree = "<group>";
 		};
 		14239ABD2172F9FA0033FB7D /* GPUImage */ = {
@@ -960,6 +985,7 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				04372B8F21A1121500F206E3 /* RegisterView */,
 				0434F04421A038AB00A1B65F /* VideoComposeSuccessView */,
 				146B63C42192B32A00A3A679 /* VideoComposeView */,
 				146B63832190652300A3A679 /* EditView */,
@@ -979,6 +1005,8 @@
 				1458039D216F3114006BB33D /* UTLoginViewController.m */,
 				145803A7216F32E9006BB33D /* UTLoginScrollViewController.h */,
 				145803A8216F32E9006BB33D /* UTLoginScrollViewController.m */,
+				04372B8C21A110F600F206E3 /* UTLoginWithPasswordViewController.h */,
+				04372B8D21A110F600F206E3 /* UTLoginWithPasswordViewController.m */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -1473,6 +1501,7 @@
 				145803C72170427E001B9535 /* BlendAlgorithmFrontView.m in Sources */,
 				1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */,
 				1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */,
+				04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */,
 				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
 				14678FF8218EDAFA00CD7F4B /* RecommendTemplate.m in Sources */,
@@ -1485,6 +1514,7 @@
 				146B638E2190723600A3A679 /* UTPictureImageView.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
 				146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */,
+				04372B8E21A110F600F206E3 /* UTLoginWithPasswordViewController.m in Sources */,
 				1458039E216F3114006BB33D /* UTLoginViewController.m in Sources */,
 				145803A9216F32E9006BB33D /* UTLoginScrollViewController.m in Sources */,
 				145B6142216F27B700DA950E /* main.m in Sources */,
@@ -1508,6 +1538,7 @@
 				14678FF2218ECDBB00CD7F4B /* UTHomeRecommendView.m in Sources */,
 				1458039A216F306E006BB33D /* Member.m in Sources */,
 				14580392216F2D6F006BB33D /* UITabBar+CustomerTabBar.m in Sources */,
+				04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */,
 				14580377216F2BCC006BB33D /* FeThreeDotGlow.m in Sources */,
 				146B63922190726D00A3A679 /* UTTplImageLayerView.m in Sources */,
 				14580366216F2BCC006BB33D /* TPKeyboardAvoidingTableView.m in Sources */,
@@ -1517,6 +1548,7 @@
 				14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */,
 				148D0F78219D11A000B4E59A /* ComposeAnimation.m in Sources */,
 				146B63D02192EAE700A3A679 /* UTSelectView.m in Sources */,
+				04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */,
 				14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */,
 				14580470216F50D3006BB33D /* ComposeStrategy.m in Sources */,
 				14580476216F590D006BB33D /* AxiosInfo.m in Sources */,
