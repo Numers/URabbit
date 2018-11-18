@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04110A9E21A14BCE00732B3D /* UTUserCenterHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04110A9D21A14BCE00732B3D /* UTUserCenterHeadView.m */; };
 		0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434F04621A03D1300A1B65F /* UTVideoComposeSuccessViewController.m */; };
 		04372B8E21A110F600F206E3 /* UTLoginWithPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B8D21A110F600F206E3 /* UTLoginWithPasswordViewController.m */; };
 		04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9121A1123400F206E3 /* UTRegisterFirstStepViewController.m */; };
@@ -109,6 +110,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04110A9C21A14BCE00732B3D /* UTUserCenterHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserCenterHeadView.h; sourceTree = "<group>"; };
+		04110A9D21A14BCE00732B3D /* UTUserCenterHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserCenterHeadView.m; sourceTree = "<group>"; };
 		0434F04521A03D1300A1B65F /* UTVideoComposeSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTVideoComposeSuccessViewController.h; sourceTree = "<group>"; };
 		0434F04621A03D1300A1B65F /* UTVideoComposeSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTVideoComposeSuccessViewController.m; sourceTree = "<group>"; };
 		04372B8C21A110F600F206E3 /* UTLoginWithPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTLoginWithPasswordViewController.h; sourceTree = "<group>"; };
@@ -493,6 +496,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04110A9B21A14BAA00732B3D /* UserCenterHeadView */ = {
+			isa = PBXGroup;
+			children = (
+				04110A9C21A14BCE00732B3D /* UTUserCenterHeadView.h */,
+				04110A9D21A14BCE00732B3D /* UTUserCenterHeadView.m */,
+			);
+			path = UserCenterHeadView;
+			sourceTree = "<group>";
+		};
 		0434F04421A038AB00A1B65F /* VideoComposeSuccessView */ = {
 			isa = PBXGroup;
 			children = (
@@ -727,6 +739,7 @@
 		14262A31218AF20A00768E6A /* UserCenterView */ = {
 			isa = PBXGroup;
 			children = (
+				04110A9B21A14BAA00732B3D /* UserCenterHeadView */,
 				14262A32218AF23200768E6A /* UTUserCenterViewController.h */,
 				14262A33218AF23200768E6A /* UTUserCenterViewController.m */,
 			);
@@ -1501,6 +1514,7 @@
 				145803C72170427E001B9535 /* BlendAlgorithmFrontView.m in Sources */,
 				1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */,
 				1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */,
+				04110A9E21A14BCE00732B3D /* UTUserCenterHeadView.m in Sources */,
 				04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */,
 				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
