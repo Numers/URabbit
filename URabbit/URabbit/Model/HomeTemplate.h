@@ -7,12 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-@class EditInfo;
+@class Author;
 @interface HomeTemplate : NSObject
-@property(nonatomic, copy) UIImage *image;
-@property(nonatomic, copy) NSString *name;
-@property(nonatomic, copy) NSString *desc;
-@property(nonatomic, copy) NSString *materialPath;
+@property(nonatomic) long templateId;
+@property(nonatomic, copy) NSString *title;
+@property(nonatomic, copy) NSString *coverUrl;
+@property(nonatomic) double duration;
 @property(nonatomic) CGSize videoSize;
-@property(nonatomic) CGFloat seconds;
+@property(nonatomic) double fps;
+@property(nonatomic) TemplateStyle style;
+@property(nonatomic,copy) NSString *summary;
+@property(nonatomic, copy) NSString *demoUrl;
+@property(nonatomic) double downloadSize;
+@property(nonatomic, copy) NSString *downloadUrl;
+@property(nonatomic) NSInteger favoriteCount;
+@property(nonatomic, strong) Author *author;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dic;
 @end

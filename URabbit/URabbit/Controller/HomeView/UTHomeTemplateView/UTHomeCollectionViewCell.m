@@ -8,6 +8,7 @@
 
 #import "UTHomeCollectionViewCell.h"
 #import "HomeTemplate.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UTHomeCollectionViewCell
 -(instancetype)initWithFrame:(CGRect)frame
@@ -30,7 +31,7 @@
 
 -(void)setupCellWithHomeTemplate:(HomeTemplate *)homeTemplate
 {
-    [templateImageView setImage:homeTemplate.image];
-    [nameLabel setText:homeTemplate.name];
+    [templateImageView sd_setImageWithURL:[NSURL URLWithString:homeTemplate.coverUrl] placeholderImage:nil];
+    [nameLabel setText:homeTemplate.title];
 }
 @end

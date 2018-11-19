@@ -7,7 +7,41 @@
 //
 
 #import "HomeTemplate.h"
+#import "Author.h"
 
 @implementation HomeTemplate
-
+-(instancetype)initWithDictionary:(NSDictionary *)dic
+{
+    self = [super init];
+    if (self) {
+        _templateId = [[dic objectForKey:@"id"] longValue];
+        _title = [dic objectForKey:@"title"];
+        _coverUrl = [dic objectForKey:@"coverUrl"];
+        _duration = [[dic objectForKey:@"duration"] doubleValue];
+        _fps = [[dic objectForKey:@"frameRate"] doubleValue];
+        _style = (TemplateStyle)[[dic objectForKey:@"style"] integerValue];
+        NSInteger width = [[dic objectForKey:@"width"] integerValue];
+        NSInteger height = [[dic objectForKey:@"height"] integerValue];
+        _videoSize = CGSizeMake(width, height);
+        
+        _summary = [dic objectForKey:@"summary"];
+        _demoUrl = [dic objectForKey:@"demoUrl"];
+        id downloadSize = [dic objectForKey:@"downloadSize"];
+        if (downloadSize) {
+            _downloadSize =  [downloadSize doubleValue];
+        }
+        
+        _downloadUrl = [dic objectForKey:@"downloadUrl"];
+        id favoriteCount = [dic objectForKey:@"favoriteCount"];
+        if (favoriteCount) {
+            _favoriteCount = [favoriteCount integerValue];
+        }
+        
+        NSDictionary *authorDic = [dic objectForKey:@"author"];
+        if (authorDic) {
+            _author = [[Author alloc] initWithDictionary:authorDic];
+        }
+    }
+    return self;
+}
 @end

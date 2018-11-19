@@ -16,5 +16,5 @@
     
     UIImageView *nextImageView;
 }
--(instancetype)initWithHomeTemplate:(HomeTemplate *)homeTemplate frame:(CGRect)frame;
+-(void)setHomeTemplate:(HomeTemplate *)homeTemplate;
 @end

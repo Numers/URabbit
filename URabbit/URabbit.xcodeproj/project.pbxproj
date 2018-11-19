@@ -106,6 +106,9 @@
 		148D0F7B219D1FF800B4E59A /* ComposeAnimationStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F7A219D1FF800B4E59A /* ComposeAnimationStrategy.m */; };
 		148D0F82219D22C300B4E59A /* ComposeAnimationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */; };
 		148D0F86219D9C7100B4E59A /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F85219D9C7100B4E59A /* AnimationManager.m */; };
+		14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16421A30B1800C1BD3E /* UTHomeNetworkAPIManager.m */; };
+		14EDA16821A310EE00C1BD3E /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16721A310EE00C1BD3E /* Author.m */; };
+		14EDA16B21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16A21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m */; };
 		BC0EEF5C062C06F4C3E98620 /* Pods_URabbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */; };
 /* End PBXBuildFile section */
 
@@ -473,6 +476,12 @@
 		148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeAnimationOperation.m; sourceTree = "<group>"; };
 		148D0F84219D9C7100B4E59A /* AnimationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		148D0F85219D9C7100B4E59A /* AnimationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
+		14EDA16321A30B1800C1BD3E /* UTHomeNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTHomeNetworkAPIManager.h; sourceTree = "<group>"; };
+		14EDA16421A30B1800C1BD3E /* UTHomeNetworkAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTHomeNetworkAPIManager.m; sourceTree = "<group>"; };
+		14EDA16621A310EE00C1BD3E /* Author.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
+		14EDA16721A310EE00C1BD3E /* Author.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
+		14EDA16921A3160E00C1BD3E /* UTDownloadNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTDownloadNetworkAPIManager.h; sourceTree = "<group>"; };
+		14EDA16A21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTDownloadNetworkAPIManager.m; sourceTree = "<group>"; };
 		36AFCC5E9317FFA812781492 /* Pods-URabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_URabbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D640A9F686B5E9FFB7F4DB77 /* Pods-URabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.release.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.release.xcconfig"; sourceTree = "<group>"; };
@@ -788,6 +797,10 @@
 		1458030B216F2BCB006BB33D /* NetWorkAPIManager */ = {
 			isa = PBXGroup;
 			children = (
+				14EDA16321A30B1800C1BD3E /* UTHomeNetworkAPIManager.h */,
+				14EDA16421A30B1800C1BD3E /* UTHomeNetworkAPIManager.m */,
+				14EDA16921A3160E00C1BD3E /* UTDownloadNetworkAPIManager.h */,
+				14EDA16A21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m */,
 			);
 			path = NetWorkAPIManager;
 			sourceTree = "<group>";
@@ -991,6 +1004,8 @@
 				148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */,
 				141921F7219EA274001239EE /* AnimationObject.h */,
 				141921F8219EA274001239EE /* AnimationObject.m */,
+				14EDA16621A310EE00C1BD3E /* Author.h */,
+				14EDA16721A310EE00C1BD3E /* Author.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1460,6 +1475,7 @@
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/WZLBadge/WZLBadge.framework",
 				"${BUILT_PRODUCTS_DIR}/iCards/iCards.framework",
 			);
@@ -1471,6 +1487,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZLBadge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCards.framework",
 			);
@@ -1525,6 +1542,7 @@
 				148D0F72219BF5F500B4E59A /* ComposeRotationStrategy.m in Sources */,
 				14580375216F2BCC006BB33D /* LaunchAnimateView.m in Sources */,
 				14262A30218AF02300768E6A /* LLTabBar.m in Sources */,
+				14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */,
 				146B638E2190723600A3A679 /* UTPictureImageView.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
 				146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */,
@@ -1557,6 +1575,7 @@
 				146B63922190726D00A3A679 /* UTTplImageLayerView.m in Sources */,
 				14580366216F2BCC006BB33D /* TPKeyboardAvoidingTableView.m in Sources */,
 				146B63D72193064300A3A679 /* UTPlayCollectionViewCell.m in Sources */,
+				14EDA16B21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m in Sources */,
 				1458037B216F2BCC006BB33D /* AppLaunchManager.m in Sources */,
 				146B636B218FDAC200A3A679 /* UTDownloadTemplateViewController.m in Sources */,
 				14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */,
@@ -1587,6 +1606,7 @@
 				14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */,
 				0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */,
 				146B63992191827300A3A679 /* EditInfo.m in Sources */,
+				14EDA16821A310EE00C1BD3E /* Author.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

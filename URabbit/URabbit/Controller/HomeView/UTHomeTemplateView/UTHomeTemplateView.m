@@ -154,7 +154,7 @@ NSString *homeTemplateCollectionViewCellIdentify = @"HomeTemplateCollectionViewC
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     HomeTemplate *template = [dataSource objectAtIndex:indexPath.row];
     CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
-    CGFloat height = width * (template.image.size.height / template.image.size.width) + HeadViewHeight;
+    CGFloat height = width * (template.videoSize.height / template.videoSize.width) + HeadViewHeight;
     return CGSizeMake(width,height);
 }
 

@@ -26,7 +26,7 @@ typedef enum{
 typedef void (^ApiSuccessCallback)(NSNumber *statusCode,id responseObject);
 typedef void (^ApiFailedCallback)(NSError *error);
 
-typedef void (^ApiDownloadFileProgress)(float progress);
+typedef void (^ApiDownloadFileProgress)(NSProgress *downloadProgress);
 
 typedef void (^APIRequstCallBack)(NSNumber *statusCode,NSNumber *code, id data, id errorMsg);
 

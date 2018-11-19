@@ -122,11 +122,7 @@
 {
     [[NetWorkManager defaultManager] post:uri parameters:parameters success:^(NSNumber *statusCode,id responseObject) {
         NSDictionary *resultDic;
-        if ([uri isEqualToString:UP_Login_API]) {
-            resultDic = [self analyzedSimplelyResponse:responseObject isNotify:isNotify];
-        }else{
-            resultDic = [self analyzedResponse:responseObject isNotify:isNotify];
-        }
+        resultDic = [self analyzedResponse:responseObject isNotify:isNotify];
         
         if (resultDic) {
             id data = [resultDic objectForKey:@"data"];

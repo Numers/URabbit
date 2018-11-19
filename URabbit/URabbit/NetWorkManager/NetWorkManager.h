@@ -23,7 +23,7 @@
 - (void)downloadFileWithOption:(NSDictionary *)paramDic
                  withInferface:(NSString*)requestURL
                      savedPath:(NSString*)savedPath
-               downloadSuccess:(ApiSuccessCallback)success
+               downloadSuccess:(void (^)(NSURL *filePath))success
                downloadFailure:(ApiFailedCallback)failure
                       progress:(ApiDownloadFileProgress)progress;
 

@@ -10,12 +10,15 @@
 #define NetWorkGlobalVar_h
 
 /*********************API接口****************************/
-/************************LoginAPI***********************/
-#define UP_Login_API @"/account/auth/login"
+/************************登录API***********************/
+#define UT_Login_API @""
+/************************首页API***********************/
+#define UT_NewTemplate_API @"/templet/list/new"
+#define UT_ChoiceRecommend_API @"/templet/list/recommend"
 /*******************************************************/
 
-/************************LoginoutAPI***********************/
-#define UP_loginout_API @"/account/auth/logout"
+/************************模板详情API***********************/
+#define UP_TemplateDetails_API @"/templet/{id}"
 /*******************************************************/
 
 /************************SystemInfoAPI***********************/

@@ -28,9 +28,9 @@ static URLManager *manager;
 -(void)setUrlWithState:(BOOL)state
 {
     if (state) {
-        BaseURL = @"https://d.glp168.com";
+        BaseURL = @"http://47.97.126.151:8080/urabbit-core";
     }else{
-        BaseURL = @"https://d.glpfin.com";
+        BaseURL = @"http://47.97.126.151:8080/urabbit-core";
     }
 }
 @end

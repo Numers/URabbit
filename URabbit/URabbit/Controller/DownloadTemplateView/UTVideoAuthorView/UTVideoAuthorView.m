@@ -7,9 +7,12 @@
 //
 
 #import "UTVideoAuthorView.h"
+#import "HomeTemplate.h"
+#import "Author.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UTVideoAuthorView
--(instancetype)initWithHomeTemplate:(HomeTemplate *)homeTemplate frame:(CGRect)frame
+-(instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -23,7 +26,6 @@
         authorNameLabel = [[UILabel alloc] init];
         [authorNameLabel setFont:[UIFont systemFontOfSize:14.0f]];
         [authorNameLabel setTextColor:[UIColor colorFromHexString:@"#999999"]];
-        [authorNameLabel setText:@"喵星人"];
         [self addSubview:authorNameLabel];
         
         nextImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"next_button"]];
@@ -53,6 +55,12 @@
         make.trailing.equalTo(self).offset(-15);
         make.centerY.equalTo(self.centerY);
     }];
+}
+
+-(void)setHomeTemplate:(HomeTemplate *)homeTemplate
+{
+    [authorNameLabel setText:homeTemplate.author.nickName];
+    [headImageView sd_setImageWithURL:[NSURL URLWithString:homeTemplate.author.portrait] placeholderImage:nil];
 }
 
 -(void)tapClick

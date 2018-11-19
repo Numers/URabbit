@@ -14,6 +14,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <math.h>
 #import <SDWebImage/UIImage+GIF.h>
+#import "SSZipArchive.h"
 #define MBTAG  1001 //显示文本的提示tag
 #define MBProgressTAG 1002 //加载带循转小图标的控件tag
 #define MBProgressAddViewTAG 1003 //加载带小图标的控件tag
@@ -448,7 +449,8 @@
              *
              *  如果修改动画图片就在这里修改
              */
-            UIImage *images=[UIImage sd_animatedGIFNamed:@"pika2"];
+            NSData *data = [NSData dataWithContentsOfFile:@"pkkd"];
+            UIImage *images=[UIImage sd_animatedGIFWithData:data];
             
             newhud.customView = [[UIImageView alloc] initWithImage:images];
             [appRootView addSubview:newhud];
@@ -864,5 +866,31 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+/**
+ 解压文件到指定的路径
+ 
+ @param filePath 将要解压文件的全路径
+ @param destinationPath 解压目标路径
+ @param fileName 解压文件名
+ @return 是否解压完成
+ */
++ (BOOL)unzipWithFilePath:(NSString *)filePath
+          destinationPath:(NSString *)destinationPath
+            unzipFileName:(NSString *)fileName {
+    BOOL unzipSucceed = NO;
+    NSString *unzipPath = [destinationPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", fileName]];
+                           
+   NSFileManager *fileManager = [NSFileManager defaultManager];
+   if (![fileManager fileExistsAtPath:destinationPath]) {
+       NSError *error = nil;
+       [fileManager createDirectoryAtPath:destinationPath withIntermediateDirectories:YES attributes:nil error:&error];
+       if (error) {
+           unzipSucceed = NO;
+           return unzipSucceed;
+       }
+   }
+   return [SSZipArchive unzipFileAtPath:filePath toDestination:unzipPath];
 }
 @end

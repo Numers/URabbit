@@ -21,5 +21,6 @@
     UITableViewCell *cell;
 }
 
--(instancetype)initWithHomeTemplate:(HomeTemplate *)homeTemplate frame:(CGRect)frame;
+-(instancetype)initWithVideoSize:(CGSize)size frame:(CGRect)frame;
+-(void)setHomeTemplate:(HomeTemplate *)homeTemplate;
 @end

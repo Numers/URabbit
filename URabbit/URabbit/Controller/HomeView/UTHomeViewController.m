@@ -13,6 +13,8 @@
 #import "UTHomeTemplateView.h"
 #import "HomeTemplate.h"
 #import "UTDownloadTemplateViewController.h"
+
+#import "UTHomeNetworkAPIManager.h"
 #define ChoosenTemplateViewIdentify @"jingxuan"
 #define LatestTemplateViewIdentify @"latest"
 @interface UTHomeViewController ()<HomeTemplateViewProtocol>
@@ -206,15 +208,16 @@
         [choosenTemplateList removeAllObjects];
     }
     
-    for (NSInteger i = 0; i < 10; i++) {
-        HomeTemplate *template = [[HomeTemplate alloc] init];
-        template.image = [UIImage imageNamed:@"template"];
-        template.name = @"瞄准镜快闪";
-        template.desc = @"大吉大利，今晚吃鸡！瞄准镜快闪相册，制作出高大上真自我！可替换2张图片。";
-        [choosenTemplateList addObject:template];
-    }
-    
-    [choosenTemplateView setDatasource:choosenTemplateList];
+    [[UTHomeNetworkAPIManager shareManager] getChoiceRecommendTemplateWithPage:1 size:20 callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        NSArray *templateArr = (NSArray *)data;
+        if (templateArr && templateArr.count > 0) {
+            for (NSDictionary *dic in templateArr) {
+                HomeTemplate *template = [[HomeTemplate alloc] initWithDictionary:dic];
+                [choosenTemplateList addObject:template];
+            }
+            [choosenTemplateView setDatasource:choosenTemplateList];
+        }
+    }];
 }
 
 -(void)requestLatestTemplateList
@@ -223,15 +226,16 @@
         [latestTemplateList removeAllObjects];
     }
     
-    for (NSInteger i = 0; i < 10; i++) {
-        HomeTemplate *template = [[HomeTemplate alloc] init];
-        template.image = [UIImage imageNamed:@"template"];
-        template.name = @"瞄准镜快闪";
-        template.desc = @"大吉大利，今晚吃鸡！瞄准镜快闪相册，制作出高大上真自我！可替换2张图片。";
-        [latestTemplateList addObject:template];
-    }
-    
-    [latestTemplateView setDatasource:latestTemplateList];
+    [[UTHomeNetworkAPIManager shareManager] getNewTemplateWithPage:1 size:20 callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        NSArray *templateArr = (NSArray *)data;
+        if (templateArr && templateArr.count > 0) {
+            for (NSDictionary *dic in templateArr) {
+                HomeTemplate *template = [[HomeTemplate alloc] initWithDictionary:dic];
+                [latestTemplateList addObject:template];
+            }
+            [latestTemplateView setDatasource:latestTemplateList];
+        }
+    }];
 }
 #pragma -mark HomeTemplateViewProtocol
 -(void)updateViewHeight:(CGFloat)height identify:(id)identify

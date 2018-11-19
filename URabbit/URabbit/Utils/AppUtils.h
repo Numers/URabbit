@@ -311,4 +311,16 @@
  @return 图片
  */
 +(UIImage *)convertViewToImage:(UIView *)view;
+
+/**
+ 解压文件到指定的路径
+ 
+ @param filePath 将要解压文件的全路径
+ @param destinationPath 解压目标路径
+ @param fileName 解压文件名
+ @return 是否解压完成
+ */
++ (BOOL)unzipWithFilePath:(NSString *)filePath
+          destinationPath:(NSString *)destinationPath
+            unzipFileName:(NSString *)fileName;
 @end

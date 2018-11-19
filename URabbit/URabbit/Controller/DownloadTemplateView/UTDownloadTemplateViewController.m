@@ -17,6 +17,8 @@
 #import "Material.h"
 
 #import "UTPhotoEditViewController.h"
+#import "UTDownloadNetworkAPIManager.h"
+#import "NetWorkManager.h"
 
 @interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol>
 {
@@ -29,6 +31,8 @@
     UIScrollView *scrollView;
     UTVideoInfoView *videoInfoView;
     UTVideoAuthorView *videoAuthorView;
+    
+    NSString *unzipBaseDirectory;
 }
 @end
 
@@ -53,15 +57,16 @@
     [scrollView setContentInset:UIEdgeInsetsMake(0, 0, [UIDevice safeAreaBottomHeight], 0)];
     [self.view addSubview:scrollView];
     
-    videoInfoView = [[UTVideoInfoView alloc] initWithHomeTemplate:currentHomeTemplate frame:CGRectMake(0,17, SCREEN_WIDTH, 0)];
+    videoInfoView = [[UTVideoInfoView alloc] initWithVideoSize:currentHomeTemplate.videoSize frame:CGRectMake(0,17, SCREEN_WIDTH, 0)];
     [scrollView addSubview:videoInfoView];
-    videoAuthorView = [[UTVideoAuthorView alloc] initWithHomeTemplate:currentHomeTemplate frame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
+    videoAuthorView = [[UTVideoAuthorView alloc] initWithFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
     [scrollView addSubview:videoAuthorView];
-    [scrollView setContentSize:CGSizeMake(SCREEN_WIDTH,[UIDevice safeAreaTopHeight] + 17 + videoInfoView.frame.size.height + videoAuthorView.frame.size.height)];
     
     makeButtonView = [[UTDownloadButtonView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - [UIDevice safeAreaBottomHeight] - 72.0f, SCREEN_WIDTH, 72.0f)];
     makeButtonView.delegate = self;
     [self.view addSubview:makeButtonView];
+    
+    [self requestTemplateInfo];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -78,7 +83,7 @@
 -(void)navigationBarSetting
 {
     [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationItem setTitle:currentHomeTemplate.name];
+    [self.navigationItem setTitle:currentHomeTemplate.title];
     
     UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"share_button"] style:UIBarButtonItemStylePlain target:self action:@selector(clickShareButton)];
     UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"collection_button"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
@@ -89,8 +94,51 @@
 
 -(void)generateMaterial
 {
-    materia = [[Material alloc] initWithFileUrl:currentHomeTemplate.materialPath];
+    materia = [[Material alloc] initWithFileUrl:@""];
 }
+
+-(void)requestTemplateInfo
+{
+    [[UTDownloadNetworkAPIManager shareManager] requestTemplateDetailsWithTemplateId:currentHomeTemplate.templateId callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        NSDictionary *resultDic = (NSDictionary *)data;
+        if (resultDic) {
+            HomeTemplate *template = [[HomeTemplate alloc] initWithDictionary:resultDic];
+            [videoInfoView setHomeTemplate:template];
+            [videoAuthorView setFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
+            [videoAuthorView setHomeTemplate:template];
+            [scrollView setContentSize:CGSizeMake(SCREEN_WIDTH,[UIDevice safeAreaTopHeight] + 17 + videoInfoView.frame.size.height + videoAuthorView.frame.size.height)];
+            currentHomeTemplate = template;
+        }
+    }];
+}
+
+-(void)unzipFile:(NSString *)zipFile
+{
+    NSString *documentDirectiory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *unzipFileName = [NSString stringWithFormat:@"unzip-%ld",currentHomeTemplate.templateId];
+    BOOL result = [AppUtils unzipWithFilePath:zipFile destinationPath:documentDirectiory unzipFileName:unzipFileName];
+    if (result) {
+        unzipBaseDirectory = [NSString stringWithFormat:@"%@/%@",documentDirectiory,unzipFileName];
+        
+        NSString *resourcePath = [NSString stringWithFormat:@"%@/resource.json",unzipBaseDirectory];
+        NSString *animationPath = [NSString stringWithFormat:@"%@/animation.json",unzipBaseDirectory];
+        NSString *snapshotPath = [NSString stringWithFormat:@"%@/snapshot.json",unzipBaseDirectory];
+        NSString *customPath = [NSString stringWithFormat:@"%@/custom.json",unzipBaseDirectory];
+        
+        NSData *resourceData = [NSData dataWithContentsOfFile:resourcePath];
+        NSDictionary *resourceDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:resourceData encoding:NSUTF8StringEncoding]];
+        
+        NSData *animationData = [NSData dataWithContentsOfFile:animationPath];
+        NSDictionary *animationDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:animationData encoding:NSUTF8StringEncoding]];
+        
+        NSData *snapshotData = [NSData dataWithContentsOfFile:snapshotPath];
+        NSDictionary *snapshotDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:snapshotData encoding:NSUTF8StringEncoding]];
+        
+        NSData *customData = [NSData dataWithContentsOfFile:customPath];
+        NSDictionary *customDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:customData encoding:NSUTF8StringEncoding]];
+    }
+}
+
 
 -(void)clickShareButton
 {
@@ -111,6 +159,20 @@
     
     if (animationInfoList.count > 0) {
         [animationInfoList removeAllObjects];
+    }
+    
+    NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *zipPath = [NSString stringWithFormat:@"%@/resource-%ld.zip",videoDic,currentHomeTemplate.templateId];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:zipPath]) {
+        [self unzipFile:zipPath];
+    }else{
+        [[NetWorkManager defaultManager] downloadFileWithOption:nil withInferface:currentHomeTemplate.downloadUrl savedPath:zipPath downloadSuccess:^(NSURL *filePath) {
+            [self unzipFile:zipPath];
+        } downloadFailure:^(NSError *error) {
+            
+        } progress:^(NSProgress *downloadProgress) {
+            NSLog(@"下载了%lf",[downloadProgress fractionCompleted]);
+        }];
     }
     
     [self generateMaterial];

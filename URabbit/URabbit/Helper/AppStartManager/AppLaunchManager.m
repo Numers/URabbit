@@ -23,7 +23,7 @@
 -(void)loginSync:(NSString *)loginName withPassword:(NSString *)password withSource:(NSString *)source callback:(void(^)(id data))callback
 {
     //第一步，创建URL
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",API_BASE,UP_Login_API]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",API_BASE,UT_Login_API]];
     //第二步，创建请求
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5];
     [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET

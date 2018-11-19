@@ -201,24 +201,26 @@ static NetWorkManager *scNetWorkManager;
 
 
 - (void)downloadFileWithOption:(NSDictionary *)paramDic
-                 withInferface:(NSString*)requestURI
+                 withInferface:(NSString*)requestURL
                      savedPath:(NSString*)savedPath
-               downloadSuccess:(ApiSuccessCallback)success
+               downloadSuccess:(void (^)(NSURL *filePath))success
                downloadFailure:(ApiFailedCallback)failure
                       progress:(ApiDownloadFileProgress)progress
 {
-    NSString *url = [NSString stringWithFormat:@"%@%@",API_BASE,requestURI];
-    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestURL]];
     
-    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-        return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:progress destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        return [NSURL fileURLWithPath:savedPath];
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
         NSLog(@"File downloaded to: %@", filePath);
+        if (error) {
+            failure(error);
+        }else{
+            success(filePath);
+        }
     }];
     [downloadTask resume];
 }

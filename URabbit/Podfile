@@ -4,7 +4,8 @@ use_frameworks!
 target "URabbit" do
 project 'URabbit.xcodeproj'
 pod 'Masonry'
-pod 'SDWebImage', '~>3.8'
+pod 'SSZipArchive'
+pod 'SDWebImage', '~>4.0.0'
 pod 'MBProgressHUD', '~> 1.0.0'
 #pod 'ReactiveCocoa', '~> 2.5'
 pod 'AFNetworking', '~> 3.0'
