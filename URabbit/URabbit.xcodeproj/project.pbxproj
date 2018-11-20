@@ -22,6 +22,15 @@
 		14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A33218AF23200768E6A /* UTUserCenterViewController.m */; };
 		14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A37218BF94700768E6A /* UTHomeCollectionViewCell.m */; };
 		14262A48218C45F000768E6A /* LJJWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A46218C45F000768E6A /* LJJWaterFlowLayout.m */; };
+		14482EF821A3BD9A00D640F1 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EF721A3BD9A00D640F1 /* Media.m */; };
+		14482EFB21A3BE3C00D640F1 /* SnapshotMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFA21A3BE3C00D640F1 /* SnapshotMedia.m */; };
+		14482EFE21A3BE5C00D640F1 /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFD21A3BE5C00D640F1 /* Text.m */; };
+		14482F0121A3BE6C00D640F1 /* SnapshotText.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F0021A3BE6C00D640F1 /* SnapshotText.m */; };
+		14482F0421A3BE8600D640F1 /* Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F0321A3BE8600D640F1 /* Snapshot.m */; };
+		14482F0721A3BEA900D640F1 /* AnimationForMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F0621A3BEA900D640F1 /* AnimationForMedia.m */; };
+		14482F0A21A3BEB800D640F1 /* AnimationSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F0921A3BEB800D640F1 /* AnimationSwitch.m */; };
+		14482F0D21A3D67400D640F1 /* Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F0C21A3D67400D640F1 /* Custom.m */; };
+		14482F1021A3F12200D640F1 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F0F21A3F12200D640F1 /* Resource.m */; };
 		1458035D216F2BCC006BB33D /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14580303216F2BCB006BB33D /* iconfont.ttf */; };
 		1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580306216F2BCB006BB33D /* GeneralManager.m */; };
 		14580362216F2BCC006BB33D /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580311216F2BCB006BB33D /* NetWorkManager.m */; };
@@ -315,6 +324,24 @@
 		14262A37218BF94700768E6A /* UTHomeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTHomeCollectionViewCell.m; sourceTree = "<group>"; };
 		14262A46218C45F000768E6A /* LJJWaterFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJJWaterFlowLayout.m; sourceTree = "<group>"; };
 		14262A47218C45F000768E6A /* LJJWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJJWaterFlowLayout.h; sourceTree = "<group>"; };
+		14482EF621A3BD9A00D640F1 /* Media.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
+		14482EF721A3BD9A00D640F1 /* Media.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
+		14482EF921A3BE3C00D640F1 /* SnapshotMedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotMedia.h; sourceTree = "<group>"; };
+		14482EFA21A3BE3C00D640F1 /* SnapshotMedia.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnapshotMedia.m; sourceTree = "<group>"; };
+		14482EFC21A3BE5C00D640F1 /* Text.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Text.h; sourceTree = "<group>"; };
+		14482EFD21A3BE5C00D640F1 /* Text.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Text.m; sourceTree = "<group>"; };
+		14482EFF21A3BE6C00D640F1 /* SnapshotText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotText.h; sourceTree = "<group>"; };
+		14482F0021A3BE6C00D640F1 /* SnapshotText.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnapshotText.m; sourceTree = "<group>"; };
+		14482F0221A3BE8600D640F1 /* Snapshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Snapshot.h; sourceTree = "<group>"; };
+		14482F0321A3BE8600D640F1 /* Snapshot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Snapshot.m; sourceTree = "<group>"; };
+		14482F0521A3BEA900D640F1 /* AnimationForMedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationForMedia.h; sourceTree = "<group>"; };
+		14482F0621A3BEA900D640F1 /* AnimationForMedia.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationForMedia.m; sourceTree = "<group>"; };
+		14482F0821A3BEB800D640F1 /* AnimationSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationSwitch.h; sourceTree = "<group>"; };
+		14482F0921A3BEB800D640F1 /* AnimationSwitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationSwitch.m; sourceTree = "<group>"; };
+		14482F0B21A3D67400D640F1 /* Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Custom.h; sourceTree = "<group>"; };
+		14482F0C21A3D67400D640F1 /* Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Custom.m; sourceTree = "<group>"; };
+		14482F0E21A3F12200D640F1 /* Resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
+		14482F0F21A3F12200D640F1 /* Resource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
 		14580303216F2BCB006BB33D /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		14580306216F2BCB006BB33D /* GeneralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralManager.m; sourceTree = "<group>"; };
 		14580307216F2BCB006BB33D /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
@@ -1006,6 +1033,24 @@
 				141921F8219EA274001239EE /* AnimationObject.m */,
 				14EDA16621A310EE00C1BD3E /* Author.h */,
 				14EDA16721A310EE00C1BD3E /* Author.m */,
+				14482EF621A3BD9A00D640F1 /* Media.h */,
+				14482EF721A3BD9A00D640F1 /* Media.m */,
+				14482EF921A3BE3C00D640F1 /* SnapshotMedia.h */,
+				14482EFA21A3BE3C00D640F1 /* SnapshotMedia.m */,
+				14482EFC21A3BE5C00D640F1 /* Text.h */,
+				14482EFD21A3BE5C00D640F1 /* Text.m */,
+				14482EFF21A3BE6C00D640F1 /* SnapshotText.h */,
+				14482F0021A3BE6C00D640F1 /* SnapshotText.m */,
+				14482F0221A3BE8600D640F1 /* Snapshot.h */,
+				14482F0321A3BE8600D640F1 /* Snapshot.m */,
+				14482F0521A3BEA900D640F1 /* AnimationForMedia.h */,
+				14482F0621A3BEA900D640F1 /* AnimationForMedia.m */,
+				14482F0821A3BEB800D640F1 /* AnimationSwitch.h */,
+				14482F0921A3BEB800D640F1 /* AnimationSwitch.m */,
+				14482F0B21A3D67400D640F1 /* Custom.h */,
+				14482F0C21A3D67400D640F1 /* Custom.m */,
+				14482F0E21A3F12200D640F1 /* Resource.h */,
+				14482F0F21A3F12200D640F1 /* Resource.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1525,27 +1570,33 @@
 				1486C4F1219473A500809626 /* FilterInfo.m in Sources */,
 				14580479216F7689006BB33D /* Frame.m in Sources */,
 				14580379216F2BCC006BB33D /* FXBlurView.m in Sources */,
+				14482F0D21A3D67400D640F1 /* Custom.m in Sources */,
 				14580393216F2D6F006BB33D /* UIDevice+FixedLength.m in Sources */,
 				146B638A219071EB00A3A679 /* UTPhotoEditView.m in Sources */,
 				146B63862190657F00A3A679 /* UTPhotoEditViewController.m in Sources */,
 				145803C72170427E001B9535 /* BlendAlgorithmFrontView.m in Sources */,
 				1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */,
 				1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */,
+				14482EF821A3BD9A00D640F1 /* Media.m in Sources */,
 				04110A9E21A14BCE00732B3D /* UTUserCenterHeadView.m in Sources */,
 				04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */,
 				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
+				14482F0421A3BE8600D640F1 /* Snapshot.m in Sources */,
 				14678FF8218EDAFA00CD7F4B /* RecommendTemplate.m in Sources */,
 				1458037E216F2BCC006BB33D /* AppUtils.m in Sources */,
 				14262A48218C45F000768E6A /* LJJWaterFlowLayout.m in Sources */,
 				145803DF21708433001B9535 /* VideoCompose.m in Sources */,
+				14482F0A21A3BEB800D640F1 /* AnimationSwitch.m in Sources */,
 				148D0F72219BF5F500B4E59A /* ComposeRotationStrategy.m in Sources */,
+				14482EFE21A3BE5C00D640F1 /* Text.m in Sources */,
 				14580375216F2BCC006BB33D /* LaunchAnimateView.m in Sources */,
 				14262A30218AF02300768E6A /* LLTabBar.m in Sources */,
 				14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */,
 				146B638E2190723600A3A679 /* UTPictureImageView.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
 				146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */,
+				14482F0121A3BE6C00D640F1 /* SnapshotText.m in Sources */,
 				04372B8E21A110F600F206E3 /* UTLoginWithPasswordViewController.m in Sources */,
 				1458039E216F3114006BB33D /* UTLoginViewController.m in Sources */,
 				145803A9216F32E9006BB33D /* UTLoginScrollViewController.m in Sources */,
@@ -1558,6 +1609,7 @@
 				1458037D216F2BCC006BB33D /* PushMessageManager.m in Sources */,
 				146B63D32192EAF800A3A679 /* UTPlayView.m in Sources */,
 				148D0F82219D22C300B4E59A /* ComposeAnimationOperation.m in Sources */,
+				14482F0721A3BEA900D640F1 /* AnimationForMedia.m in Sources */,
 				145803D82170705B001B9535 /* UTVideoManager.m in Sources */,
 				14580364216F2BCC006BB33D /* URLManager.m in Sources */,
 				146B63CD2192EAD400A3A679 /* UTSegmentView.m in Sources */,
@@ -1600,6 +1652,8 @@
 				14678FFE218EE11C00CD7F4B /* UTHomeTemplateView.m in Sources */,
 				1458037C216F2BCC006BB33D /* AppStartManager.m in Sources */,
 				1486C4F7219554C800809626 /* ComposeRotationOperation.m in Sources */,
+				14482EFB21A3BE3C00D640F1 /* SnapshotMedia.m in Sources */,
+				14482F1021A3F12200D640F1 /* Resource.m in Sources */,
 				14580473216F526A006BB33D /* UTVideoReader.m in Sources */,
 				14580365216F2BCC006BB33D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				141921F9219EA274001239EE /* AnimationObject.m in Sources */,

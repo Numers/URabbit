@@ -20,6 +20,13 @@
 #import "UTDownloadNetworkAPIManager.h"
 #import "NetWorkManager.h"
 
+#import "Custom.h"
+#import "Resource.h"
+#import "AnimationForMedia.h"
+#import "AnimationSwitch.h"
+#import "Snapshot.h"
+#import "SnapshotMedia.h"
+
 @interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol>
 {
     HomeTemplate *currentHomeTemplate;
@@ -33,6 +40,9 @@
     UTVideoAuthorView *videoAuthorView;
     
     NSString *unzipBaseDirectory;
+    Resource *resource;
+    Custom *custom;
+    NSMutableArray *snapshotList;
 }
 @end
 
@@ -50,6 +60,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
+    snapshotList = [NSMutableArray array];
     editInfoList = [NSMutableArray array];
     animationInfoList = [NSMutableArray array];
     
@@ -118,6 +129,9 @@
     NSString *unzipFileName = [NSString stringWithFormat:@"unzip-%ld",currentHomeTemplate.templateId];
     BOOL result = [AppUtils unzipWithFilePath:zipFile destinationPath:documentDirectiory unzipFileName:unzipFileName];
     if (result) {
+        if (snapshotList.count > 0) {
+            [snapshotList removeAllObjects];
+        }
         unzipBaseDirectory = [NSString stringWithFormat:@"%@/%@",documentDirectiory,unzipFileName];
         
         NSString *resourcePath = [NSString stringWithFormat:@"%@/resource.json",unzipBaseDirectory];
@@ -127,18 +141,68 @@
         
         NSData *resourceData = [NSData dataWithContentsOfFile:resourcePath];
         NSDictionary *resourceDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:resourceData encoding:NSUTF8StringEncoding]];
-        
-        NSData *animationData = [NSData dataWithContentsOfFile:animationPath];
-        NSDictionary *animationDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:animationData encoding:NSUTF8StringEncoding]];
-        
-        NSData *snapshotData = [NSData dataWithContentsOfFile:snapshotPath];
-        NSDictionary *snapshotDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:snapshotData encoding:NSUTF8StringEncoding]];
+        resource = [[Resource alloc] initWithDictionary:resourceDic basePath:unzipBaseDirectory];
         
         NSData *customData = [NSData dataWithContentsOfFile:customPath];
         NSDictionary *customDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:customData encoding:NSUTF8StringEncoding]];
+        custom = [[Custom alloc] initWithDictionary:customDic];
+        
+        NSData *snapshotData = [NSData dataWithContentsOfFile:snapshotPath];
+        NSDictionary *snapshotDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:snapshotData encoding:NSUTF8StringEncoding]];
+        NSArray *snapshotArray = [snapshotDic objectForKey:@"snapshot"];
+        if (snapshotArray && snapshotArray.count > 0) {
+            for (NSDictionary *snapshotDic in snapshotArray) {
+                Snapshot *snapshot = [[Snapshot alloc] initWithDictionary:snapshotDic basePath:unzipBaseDirectory custom:custom];
+                [snapshotList addObject:snapshot];
+            }
+        }
+        
+        NSData *animationsData = [NSData dataWithContentsOfFile:animationPath];
+        NSDictionary *animationsDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:animationsData encoding:NSUTF8StringEncoding]];
+        NSArray *animations = [animationsDic objectForKey:@"animation"];
+        if (animations && animations.count > 0) {
+            for (NSDictionary *animationDic in animations) {
+                AnimationType type = (AnimationType)[[animationDic objectForKey:@"type"] integerValue];
+                NSInteger startFrame = [[animationDic objectForKey:@"startFrame"] integerValue];
+                NSInteger endFrame = [[animationDic objectForKey:@"endFrame"] integerValue];
+                AnimationSwitch *animationSwitch = nil;
+                NSDictionary *switchAnimationDic = [animationDic objectForKey:@"switching"];
+                if (switchAnimationDic) {
+                    animationSwitch = [[AnimationSwitch alloc] initWithDictionary:switchAnimationDic];
+                }
+                
+                NSArray *medias = [animationDic objectForKey:@"media"];
+                if (medias && medias.count > 0) {
+                    for (NSDictionary *mediaDic in medias) {
+                        AnimationForMedia *animationForMedia = [[AnimationForMedia alloc] initWithDictionary:mediaDic startFrame:startFrame endFrame:endFrame animationType:type];
+                        SnapshotMedia *snapshotMedia = [self filterArray:snapshotList withMediaName:animationForMedia.name];
+                        if (snapshotMedia) {
+                            [snapshotMedia.animationForMediaList addObject:animationForMedia];
+                            if (animationSwitch) {
+                                [snapshotMedia.animationForSwitchList addObject:animationSwitch];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        
     }
 }
 
+-(SnapshotMedia *)filterArray:(NSArray *)array withMediaName:(NSString *)name
+{
+    SnapshotMedia *media = nil;
+    for (Snapshot *snapshot in array) {
+        NSArray *snapshotMedias = [AppUtils fiterArray:snapshot.mediaList fieldName:@"mediaName" value:name];
+        if (snapshotMedias && snapshotMedias.count > 0) {
+            media = [snapshotMedias objectAtIndex:0];
+            break;
+        }
+    }
+    return media;
+}
 
 -(void)clickShareButton
 {

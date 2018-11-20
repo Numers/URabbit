@@ -34,6 +34,26 @@ typedef enum
 
 typedef enum
 {
+    MediaTypeImage = 1,
+    MediaTypeVideo,
+    MediaTypeBoth
+} MediaType;
+
+typedef enum{
+    TextHorizontalAlignLeft = 1,
+    TextHorizontalAlignCenter,
+    TextHorizontalAlignRight
+} TextHorizontalAlignType;
+
+typedef enum{
+    TextVerticalAlignTop = 1,
+    TextVerticalAlignCenter,
+    TextVerticalAlignBottom
+} TextVerticalAlignType;
+
+typedef enum
+{
+    AnimationNone = 0,
     AnimationRotation = 1,
     AnimationScale,
     AnimationTransform,

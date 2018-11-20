@@ -20,6 +20,9 @@
 #import "UTImageHanderManager.h"
 #import "ComposeAnimation.h"
 
+#import "Resource.h"
+#import "Snapshot.h"
+
 #import "UTVideoComposeViewController.h"
 
 static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowImageCollectionViewCellIdentify";
@@ -36,6 +39,9 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     NSMutableArray *editInfoList;
     NSMutableArray *animationInfoList;
     
+    
+    Resource *currentResource;
+    NSMutableArray *currentSnapshots;
     
     ComposeStrategy *strategy;
     NSMutableArray *imageList;
@@ -55,6 +61,16 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         editInfoList = [NSMutableArray arrayWithArray:list];
         animationInfoList = [NSMutableArray arrayWithArray:animations];
         axiosInfos = [NSMutableArray array];
+    }
+    return self;
+}
+
+-(instancetype)initWithResource:(Resource *)resource snapshots:(NSMutableArray *)snapshots
+{
+    self = [super init];
+    if (self) {
+        currentResource = resource;
+        currentSnapshots = [NSMutableArray arrayWithArray:snapshots];
     }
     return self;
 }

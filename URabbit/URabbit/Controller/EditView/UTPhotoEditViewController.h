@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Material;
+@class Material,Resource;
 @interface UTPhotoEditViewController : UIViewController
 {
 
 }
 -(instancetype)initWithMaterial:(Material *)m editInfo:(NSMutableArray *)list animationInfo:(NSMutableArray *)animations;
+-(instancetype)initWithResource:(Resource *)resource snapshots:(NSMutableArray *)snapshots;
 @end
