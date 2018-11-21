@@ -7,14 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Media,Custom,AnimationSwitch,AnimationForMedia;
+@class Media,Custom,AnimationSwitch,AnimationForMedia,UTPictureImageLayerView;
 @interface SnapshotMedia : NSObject
 @property(nonatomic, strong) Media *media;
 @property(nonatomic, copy) NSString *mediaName;
 @property(nonatomic) CGFloat centerXPercent;
 @property(nonatomic) CGFloat centerYPercent;
-@property(nonatomic) CGFloat scaleWidth;
+@property(nonatomic) CGFloat imageWidthPercent;
 @property(nonatomic) UIImage *demoImage;
+@property(nonatomic, strong) UTPictureImageLayerView *demoImageView;
+
+@property(nonatomic, strong) UIImage *resultImage;
 
 @property(nonatomic, strong) NSMutableArray<AnimationForMedia *> *animationForMediaList;
 @property(nonatomic, strong) NSMutableArray<AnimationSwitch *> *animationForSwitchList;

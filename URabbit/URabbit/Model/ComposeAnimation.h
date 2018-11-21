@@ -7,14 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Material;
+@class Resource;
 @interface ComposeAnimation : NSObject<CAAnimationDelegate>
 {
-    Material *currentMaterial;
-    NSMutableArray *currentAnimationInfos;
-    NSMutableArray *currentAxiosInfos;
+    Resource *currentResource;
+    NSMutableArray *currentSnapshots;
     NSString *currentMovieUrl;
 }
--(instancetype)initWithMaterial:(Material *)material AxiosInfos:(NSMutableArray *)axiosInfos animationInfos:(NSMutableArray *)animationInfos movieUrl:(NSString *)movieUrl;
+-(instancetype)initWithResource:(Resource *)resource snapshots:(NSMutableArray *)snapshots movieUrl:(NSString *)movieUrl;
 -(void)addAnimationCompletionHandler:(void (^)(NSString* outPutURL, int code))handler;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "UTPhotoEditShowImageCollectionViewCell.h"
-#import "EditInfo.h"
+#import "Snapshot.h"
 
 @implementation UTPhotoEditShowImageCollectionViewCell
 -(instancetype)initWithFrame:(CGRect)frame
@@ -20,15 +20,16 @@
     return self;
 }
 
--(void)setupCellWithEditInfo:(EditInfo *)info
+-(void)setupCellWithSnapshot:(Snapshot *)info
 {
-    editInfo = info;
-    [imageView setImage:info.editScreenShotImage];
+    snapshot = info;
+    UIImage *image = [UIImage imageWithContentsOfFile:info.foregroundImage];
+    [imageView setImage:image];
 }
 
 -(void)updateImageView
 {
-    [imageView setImage:editInfo.editScreenShotImage];
+//    [imageView setImage:editInfo.editScreenShotImage];
 }
 
 -(void)setPictureImage:(UIImage *)image

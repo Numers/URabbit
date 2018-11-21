@@ -203,7 +203,7 @@
 
 -(void)writeSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(videoWriterQueue, ^{
 //        NSLog(@"did write %ld",frame);
         if (sampleBufferRef) {
             if([videoWriterInput isReadyForMoreMediaData]){
@@ -220,6 +220,7 @@
             [videoWriterInput markAsFinished];
             [self stopWrite];
         }
+//        [NSThread sleepForTimeInterval:0.1];
     });
 }
 
@@ -249,11 +250,13 @@
 //    [videoWriter startSessionAtSourceTime:CMTimeMake(frame, currentFps)];
     BOOL result = YES;
 //    CMTime sourceTime = CMSampleBufferGetPresentationTimeStamp(sampleBufferRef);
+//    NSLog(@"write time %ld",sourceTime.value);
 //    [videoWriter startSessionAtSourceTime:sourceTime];
     if(![videoWriterInput appendSampleBuffer:sampleBufferRef]) {
         result =  NO;
     }
     CFRelease(sampleBufferRef);
+//    [NSThread sleepForTimeInterval:0.01];
     return result;
 }
 

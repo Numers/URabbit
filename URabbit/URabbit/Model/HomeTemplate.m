@@ -19,6 +19,7 @@
         _coverUrl = [dic objectForKey:@"coverUrl"];
         _duration = [[dic objectForKey:@"duration"] doubleValue];
         _fps = [[dic objectForKey:@"frameRate"] doubleValue];
+        _totalFrame = floor(_duration * _fps);
         _style = (TemplateStyle)[[dic objectForKey:@"style"] integerValue];
         NSInteger width = [[dic objectForKey:@"width"] integerValue];
         NSInteger height = [[dic objectForKey:@"height"] integerValue];

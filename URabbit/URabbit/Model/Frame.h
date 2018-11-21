@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Frame : NSObject
-@property(nonatomic) NSInteger axiosIndex;
+@property(nonatomic) NSInteger snapshotIndex;
+@property(nonatomic) NSInteger snapshotMediaIndex;
+@property(nonatomic) NSInteger animationIndex;
 @end

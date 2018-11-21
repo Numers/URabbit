@@ -7,7 +7,7 @@
 //
 
 #import "UTVideoComposeViewController.h"
-#import "Material.h"
+#import "Resource.h"
 #import "FilterInfo.h"
 #import "GPUImage.h"
 
@@ -22,7 +22,7 @@
 
 @interface UTVideoComposeViewController ()<UTPlaySubViewProtocol,UTSelectViewProtocol>
 {
-    Material *material;
+    Resource *resource;
     NSString *movieURL;
     NSString *audioURL;
     NSMutableArray *imageList;
@@ -44,13 +44,13 @@
 @end
 
 @implementation UTVideoComposeViewController
--(instancetype)initWithMaterial:(Material *)m movieUrl:(NSString *)url images:(NSMutableArray *)images
+-(instancetype)initWithResource:(Resource *)m movieUrl:(NSString *)url images:(NSMutableArray *)images
 {
     self = [super init];
     if (self) {
-        material = m;
+        resource = m;
         movieURL = url;
-        audioURL = material.videoMusic;
+        audioURL = resource.music;
         imageList = [NSMutableArray arrayWithArray:images];
     }
     return self;
@@ -83,7 +83,7 @@
     
     [self setCurrentFilterType:FilterNormal];
     [self filterProcessingBlock];
-    pausedTime = CMTimeMake(0, material.fps);
+    pausedTime = CMTimeMake(0, resource.fps);
     
     [self splitImages];
 }
@@ -187,7 +187,7 @@
             [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
         }
         GPUImageFilter *movieFilter = [[UTImageHanderManager shareManager] filterWithFilterType:currentFilterType];
-        [[UTVideoManager shareManager] filterMovieWithInputUrl:tempVideoPath outputUrl:videoCompeletelyPath videoSize:material.videoSize filter:movieFilter completely:^(BOOL result) {
+        [[UTVideoManager shareManager] filterMovieWithInputUrl:tempVideoPath outputUrl:videoCompeletelyPath videoSize:resource.videoSize filter:movieFilter completely:^(BOOL result) {
             if (result) {
                 if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoCompeletelyPath)) {
                     //保存相册核心代码
@@ -218,7 +218,7 @@
 
 -(void)splitImages
 {
-    [[UTVideoManager shareManager] splitVideo:[NSURL fileURLWithPath:movieURL] fps:material.fps splitCompleteBlock:^(BOOL success, NSMutableArray *splitimgs) {
+    [[UTVideoManager shareManager] splitVideo:[NSURL fileURLWithPath:movieURL] fps:resource.fps splitCompleteBlock:^(BOOL success, NSMutableArray *splitimgs) {
         if (success) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [playView setDatasource:splitimgs];
@@ -259,7 +259,7 @@
     if (CMTimeCompare(player.currentTime, player.currentItem.asset.duration)) {
         pausedTime = player.currentTime;
     }else{
-        pausedTime = CMTimeMake(0, material.fps);
+        pausedTime = CMTimeMake(0, resource.fps);
     }
     
 //    [movieFile cancelProcessing];
@@ -269,7 +269,7 @@
 
 -(void)moviePlayFinished
 {
-    pausedTime = CMTimeMake(0, material.fps);
+    pausedTime = CMTimeMake(0, resource.fps);
     [playView playFinished];
     [audioPlayer stop];
 }

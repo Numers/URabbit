@@ -13,18 +13,24 @@
 #import "ComposeAnimationOperation.h"
 
 @implementation ComposeAnimationStrategy
+-(void)initlizeData
+{
+    [super initlizeData];
+    self.frames = [NSMutableArray array];
+    for (int i = 0; i < self.resource.totalFrame; i++) {
+        Frame *frame = [[Frame alloc] init];
+        [self.frames addObject:frame];
+    }
+}
+
 -(void)readVideoFrames:(int)index
 {
     NSLog(@"read frame %d",index);
      if (index < self.frames.count)
      {
-         Frame *frame = [self.frames objectAtIndex:index];
-         if (frame.axiosIndex != -1) {
-             AxiosInfo *axiosInfo = [self.axiosInfos objectAtIndex:frame.axiosIndex];
-             ComposeAnimationOperation *operation = [[ComposeAnimationOperation alloc] initWithFrame:index axiosInfo:axiosInfo pixelSize:self.material.videoSize];
-             operation.delegate = self;
-             [self.operationQueue addOperation:operation];
-         }
+         ComposeAnimationOperation *operation = [[ComposeAnimationOperation alloc] initWithFrame:index pixelSize:self.resource.videoSize];
+         operation.delegate = self;
+         [self.operationQueue addOperation:operation];
      }
 }
 @end

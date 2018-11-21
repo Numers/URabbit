@@ -16,5 +16,11 @@
 @property(nonatomic, copy) NSString *maskBaseImage;
 @property(nonatomic, copy) NSString *bgVideo;
 
+@property(nonatomic) double duration;
+@property(nonatomic) CGSize videoSize;
+@property(nonatomic) double fps;
+@property(nonatomic) NSInteger totalFrame;
+@property(nonatomic) TemplateStyle style;
+
 -(instancetype)initWithDictionary:(NSDictionary *)dic basePath:(NSString *)basePath;
 @end

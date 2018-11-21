@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import "Material.h"
+#import "Resource.h"
 #import "UTVideoReader.h"
-#import "AxiosInfo.h"
+#import "Snapshot.h"
+#import "SnapshotMedia.h"
 #import "Frame.h"
 
 #import "ComposeRotationOperation.h"
@@ -28,14 +29,16 @@
 @end
 @interface ComposeStrategy : NSObject<ComposeOperationProtocol>
 @property(nonatomic, weak) id<ComposeStrategyProtocl> delegate;
-@property(nonatomic, strong) Material *material;
+@property(nonatomic, strong) Resource *resource;
+@property(nonatomic, strong) NSMutableArray *snapshotList;
 @property(nonatomic, strong) NSMutableArray<Frame *> *frames;
-@property(nonatomic, strong) NSMutableArray<AxiosInfo *> *axiosInfos;
-@property(nonatomic, strong) UTVideoReader *templateVideoReader;
-@property(nonatomic, strong) NSMutableArray<UTVideoReader *> *maskVideoReaders;
+@property(nonatomic, strong) UTVideoReader *fgVideoReader;
+@property(nonatomic, strong) UTVideoReader *maskVideoReader;
+@property(nonatomic, strong) UTVideoReader *maskBaseImageReader;
+@property(nonatomic, strong) UTVideoReader *bgVideoReader;
 @property(nonatomic, strong) NSOperationQueue *operationQueue;
 @property(nonatomic) CGFloat currentFps;
--(instancetype)initWithMaterial:(Material *)m axiosInfos:(NSMutableArray *)axiosInfoList fps:(float)fps;
+-(instancetype)initWithResource:(Resource *)m snapshot:(NSMutableArray *)snapshots fps:(float)fps;
 -(void)initlizeData;
 -(void)createVideoReader;
 -(void)readVideoFrames:(int)index;

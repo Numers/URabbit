@@ -8,13 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "Protocol.h"
-@class AxiosInfo;
 @interface ComposeAnimationOperation : NSOperation
 {
     NSInteger currentFrame;
     CGSize currentPixelSize;
-    AxiosInfo *currentAxiosInfo;
 }
 @property(nonatomic,weak) id<ComposeOperationProtocol> delegate;
--(instancetype)initWithFrame:(NSInteger)frame axiosInfo:(AxiosInfo *)axiosInfo pixelSize:(CGSize)pixelSize;
+-(instancetype)initWithFrame:(NSInteger)frame pixelSize:(CGSize)pixelSize;
 @end

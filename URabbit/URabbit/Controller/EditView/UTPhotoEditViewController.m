@@ -9,10 +9,9 @@
 #import "UTPhotoEditViewController.h"
 #import "UTPhotoEditShowImageCollectionViewCell.h"
 #import "UTMiddleEditContainerView.h"
-#import "HomeTemplate.h"
 #import "UTPhotoEditView.h"
-#import "Material.h"
-#import "AxiosInfo.h"
+#import "UTPhotoEditCanMoveView.h"
+#import "UTPhotoEditNotMoveView.h"
 #import "ComposeRotationStrategy.h"
 #import "ComposeAnimationStrategy.h"
 #import "VideoCompose.h"
@@ -35,11 +34,6 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     
     NSInteger selectedRow;
     
-    Material *material;
-    NSMutableArray *editInfoList;
-    NSMutableArray *animationInfoList;
-    
-    
     Resource *currentResource;
     NSMutableArray *currentSnapshots;
     
@@ -47,24 +41,10 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     NSMutableArray *imageList;
     VideoCompose *compose;
     NSString *videoPath;
-    CGSize videoSize;
-    NSMutableArray *axiosInfos;
 }
 @end
 
 @implementation UTPhotoEditViewController
--(instancetype)initWithMaterial:(Material *)m editInfo:(NSMutableArray *)list animationInfo:(NSMutableArray *)animations
-{
-    self = [super init];
-    if (self) {
-        material = m;
-        editInfoList = [NSMutableArray arrayWithArray:list];
-        animationInfoList = [NSMutableArray arrayWithArray:animations];
-        axiosInfos = [NSMutableArray array];
-    }
-    return self;
-}
-
 -(instancetype)initWithResource:(Resource *)resource snapshots:(NSMutableArray *)snapshots
 {
     self = [super init];
@@ -81,8 +61,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
     selectedRow = 0;
     imageList = [NSMutableArray array];
-    videoSize = material.videoSize;
-    [[UTImageHanderManager shareManager] setCurrentImageSize:videoSize];
+    [[UTImageHanderManager shareManager] setCurrentImageSize:currentResource.videoSize];
     
     
     importPhotosButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -93,7 +72,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     importPhotosButton.imageEdgeInsets = UIEdgeInsetsMake(0, importPhotosButton.frame.size.width - importPhotosButton.imageView.frame.origin.x - importPhotosButton.imageView.frame.size.width-7, 0, 0);
     importPhotosButton.titleEdgeInsets = UIEdgeInsetsMake(0, -(importPhotosButton.frame.size.width - importPhotosButton.imageView.frame.size.width ), 0, 0);
     
-    containerView = [[UTMiddleEditContainerView alloc] initWithEditInfo:editInfoList];
+    containerView = [[UTMiddleEditContainerView alloc] initWithSnapshots:currentSnapshots style:currentResource.style];
     containerView.delegate = self;
     [self.view addSubview:containerView];
     
@@ -162,25 +141,25 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     if (imageList.count > 0) {
         [imageList removeAllObjects];
     }
-    if (axiosInfos.count > 0) {
-        [axiosInfos removeAllObjects];
-    }
-    [axiosInfos addObjectsFromArray:[containerView imagesAxiosToCompose]];
+    
+    [containerView generateImagesToCompose];
     NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     videoPath = [NSString stringWithFormat:@"%@/video-compose.mp4",videoDic];
     
-    float fps = material.fps;
-    if (material.materialType == MaterialMask) {
-        strategy = [[ComposeRotationStrategy alloc] initWithMaterial:material axiosInfos:axiosInfos fps:fps];
+    float fps = currentResource.fps;
+    if (currentResource.style == TemplateStyleGoodNight) {
+        strategy = [[ComposeRotationStrategy alloc] initWithResource:currentResource snapshot:currentSnapshots fps:currentResource.fps];
+        [strategy initlizeData];
         strategy.delegate = self;
         [strategy createVideoReader];
-    }else if (material.materialType == MaterialAnimation){
-        strategy = [[ComposeAnimationStrategy alloc] initWithMaterial:material axiosInfos:axiosInfos fps:fps];
+    }else if (currentResource.style == TemplateStyleAnimation){
+        strategy = [[ComposeAnimationStrategy alloc] initWithResource:currentResource snapshot:currentSnapshots fps:currentResource.fps];
+        [strategy initlizeData];
         strategy.delegate = self;
         [strategy createVideoReader];
     }
     
-    compose = [[VideoCompose alloc] initWithVideoUrl:videoPath videoSize:material.videoSize fps:fps totalFrames:material.totalFrames];
+    compose = [[VideoCompose alloc] initWithVideoUrl:videoPath videoSize:currentResource.videoSize fps:fps totalFrames:currentResource.totalFrame];
     compose.delegate = self;
     [compose readFrames];
 }
@@ -203,7 +182,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return editInfoList.count;
+    return currentSnapshots.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -215,9 +194,9 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         [cell setIsSelected:NO];
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        EditInfo *info = [editInfoList objectAtIndex:indexPath.row];
+        Snapshot *info = [currentSnapshots objectAtIndex:indexPath.row];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [cell setupCellWithEditInfo:info];
+            [cell setupCellWithSnapshot:info];
         });
     });
     return cell;
@@ -251,8 +230,11 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    if (currentEditView) {
-        [currentEditView setPictureImage:image];
+    if ([currentEditView isKindOfClass:[UTPhotoEditCanMoveView class]]) {
+        UTPhotoEditCanMoveView *view = (UTPhotoEditCanMoveView *)currentEditView;
+        [view setPictureImage:image];
+    }else{
+        
     }
     [picker dismissViewControllerAnimated:YES completion:^{
         
@@ -308,19 +290,19 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         [strategy cleanMemory];
         [compose cleanMemory];
         NSLog(@"finishWriter");
-        if (material.materialType == MaterialAnimation) {
-            ComposeAnimation *composeAnimation = [[ComposeAnimation alloc] initWithMaterial:material AxiosInfos:axiosInfos animationInfos:animationInfoList movieUrl:videoPath];
+        if (currentResource.style == TemplateStyleAnimation) {
+            ComposeAnimation *composeAnimation = [[ComposeAnimation alloc] initWithResource:currentResource snapshots:currentSnapshots movieUrl:videoPath];
             [composeAnimation addAnimationCompletionHandler:^(NSString *outPutURL, int code) {
                 if ([[NSFileManager defaultManager] fileExistsAtPath:videoPath]) {
                     [[NSFileManager defaultManager] removeItemAtPath:videoPath error:nil];
                 }
-                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithMaterial:material movieUrl:outPutURL images:imageList];
+                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:outPutURL images:imageList];
                 [self.navigationController pushViewController:videoComposeVC animated:YES];
                 [imageList removeAllObjects];
             }];
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
-                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithMaterial:material movieUrl:videoPath images:imageList];
+                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoPath images:imageList];
                 [self.navigationController pushViewController:videoComposeVC animated:YES];
                 [imageList removeAllObjects];
             });
@@ -350,5 +332,11 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 //            [imageList addObject:imagePath];
 //        }
 //    });
+    
+//    UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    Snapshot *snapshot = [currentSnapshots objectAtIndex:0];
+//    SnapshotMedia *media = [snapshot.mediaList objectAtIndex:0];
+//    [cell setPictureImage:media.resultImage];
+    return;
 }
 @end

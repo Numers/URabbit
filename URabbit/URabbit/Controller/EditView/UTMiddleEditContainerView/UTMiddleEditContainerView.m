@@ -8,9 +8,7 @@
 
 #import "UTMiddleEditContainerView.h"
 #import "UTPhotoEditCollectionViewCell.h"
-#import "HomeTemplate.h"
-#import "EditInfo.h"
-#import "AxiosInfo.h"
+#import "Snapshot.h"
 
 static NSString *photoEditCollectionViewCellIdentify = @"PhotoEditCollectionViewCellIdentify";
 @interface UTMiddleEditContainerView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate,UTPhotoEditCollectionViewCellProtocol>
@@ -19,12 +17,13 @@ static NSString *photoEditCollectionViewCellIdentify = @"PhotoEditCollectionView
 }
 @end
 @implementation UTMiddleEditContainerView
--(instancetype)initWithEditInfo:(NSMutableArray *)editInfoList;
+-(instancetype)initWithSnapshots:(NSMutableArray *)snapshots style:(TemplateStyle)style
 {
     self = [super init];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
-        dataSource = [NSMutableArray arrayWithArray:editInfoList];
+        dataSource = snapshots;
+        currentStyle = style;
         cells = [NSMutableArray array];
         scrollPage = 0;
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -62,17 +61,14 @@ static NSString *photoEditCollectionViewCellIdentify = @"PhotoEditCollectionView
     [cell tranferViewToImage];
 }
 
--(NSMutableArray *)imagesAxiosToCompose
+-(void)generateImagesToCompose
 {
-    NSMutableArray *axiosInfos = [NSMutableArray array];
     for (NSInteger i = 0; i< dataSource.count; i++) {
         if (i < cells.count) {
             UTPhotoEditCollectionViewCell *cell = (UTPhotoEditCollectionViewCell *)[cells objectAtIndex:i];
-            AxiosInfo *axiosInfo = [cell generateAxiosInfo];
-            [axiosInfos addObject:axiosInfo];
+            [cell dowithEditViewSnapshotMedia];
         }
     }
-    return axiosInfos;
 }
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -93,9 +89,9 @@ static NSString *photoEditCollectionViewCellIdentify = @"PhotoEditCollectionView
     }
     cell.delegate = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        EditInfo *info = [dataSource objectAtIndex:indexPath.row];
+        Snapshot *info = [dataSource objectAtIndex:indexPath.row];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [cell setupCellWithEditInfo:info];
+            [cell setupCellWithSnapshot:info style:currentStyle];
         });
     });
     return cell;

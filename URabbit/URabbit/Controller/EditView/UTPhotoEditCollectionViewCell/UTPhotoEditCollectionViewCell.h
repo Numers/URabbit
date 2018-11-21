@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-@class EditInfo,UTPhotoEditView,AxiosInfo;
+@class UTPhotoEditView,Snapshot;
 @protocol UTPhotoEditCollectionViewCellProtocol<NSObject>
 -(void)openImagePickerViewFromView:(UTPhotoEditView *)view;
 @end
 @interface UTPhotoEditCollectionViewCell : UICollectionViewCell
 {
-    EditInfo *editInfo;
+    Snapshot *currentSnapshot;
     UTPhotoEditView *editView;
 }
 @property(nonatomic, weak) id<UTPhotoEditCollectionViewCellProtocol> delegate;
--(void)setupCellWithEditInfo:(EditInfo *)info;
+-(void)setupCellWithSnapshot:(Snapshot *)snapshot style:(TemplateStyle)style;
 -(UIImage *)tranferViewToImage;
--(AxiosInfo *)generateAxiosInfo;
+-(void)dowithEditViewSnapshotMedia;
 @end

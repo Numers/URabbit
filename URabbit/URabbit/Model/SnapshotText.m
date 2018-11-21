@@ -21,6 +21,7 @@
         _opacity = [[dic objectForKey:@"pellucidity"] floatValue];
         NSString *textName = [dic objectForKey:@"name"];
         if (textName) {
+            _textName = textName;
             _text = [self filterTextWithName:textName inArray:custom.textList];
         }
     }

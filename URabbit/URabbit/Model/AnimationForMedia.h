@@ -18,10 +18,13 @@
 @property(nonatomic) CGFloat endAngle;
 @property(nonatomic) CGFloat startRatio;
 @property(nonatomic) CGFloat endRatio;
-@property(nonatomic) CGFloat startCoordinate;
-@property(nonatomic) CGFloat endCoordinate;
+@property(nonatomic) CGPoint startCoordinate;
+@property(nonatomic) CGPoint endCoordinate;
 @property(nonatomic) CGFloat startBlur;
 @property(nonatomic) CGFloat endBlur;
 
--(instancetype)initWithDictionary:(NSDictionary *)dic startFrame:(NSInteger)startFrame endFrame:(NSInteger)endFrame animationType:(AnimationType)animationType;
+@property(nonatomic) CGFloat fps;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dic startFrame:(NSInteger)startFrame endFrame:(NSInteger)endFrame animationType:(AnimationType)animationType fps:(CGFloat)fps;
+-(CABasicAnimation *)animationForMediaWithSize:(CGSize)size;
 @end

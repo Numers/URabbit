@@ -8,6 +8,7 @@
 
 #import "SnapshotMedia.h"
 #import "Custom.h"
+#import "UTPictureImageLayerView.h"
 
 @implementation SnapshotMedia
 -(instancetype)initWithDictionary:(NSDictionary *)dic basePath:(NSString *)basePath withCustom:(Custom *)custom
@@ -16,18 +17,25 @@
     if (self) {
         _centerXPercent = [[dic objectForKey:@"centreX"] floatValue];
         _centerYPercent = [[dic objectForKey:@"centreY"] floatValue];
-        _scaleWidth = [[dic objectForKey:@"width"] floatValue];
-        NSString *demoImage = [dic objectForKey:@"demoImage"];
-        if (demoImage) {
-            NSString *imagePath = [NSString stringWithFormat:@"%@/%@",basePath,demoImage];
-            _demoImage = [UIImage imageWithContentsOfFile:imagePath];
-        }else{
-            
-        }
+        _imageWidthPercent = [[dic objectForKey:@"width"] floatValue];
         NSString *mediaName = [dic objectForKey:@"name"];
         if (mediaName) {
             _mediaName = mediaName;
             _media = [self filterMediaWithName:mediaName inArray:custom.mediaList];
+        }
+        
+        NSString *demoImage = [dic objectForKey:@"demoImage"];
+        if (demoImage) {
+            NSString *imagePath = [NSString stringWithFormat:@"%@/%@",basePath,demoImage];
+            _demoImage = [UIImage imageWithContentsOfFile:imagePath];
+            _demoImageView = [[UTPictureImageLayerView alloc] init];
+            _demoImageView.mediaName = _mediaName;
+            [_demoImageView setImage:_demoImage];
+        }else{
+            _demoImage = [UIImage imageNamed:@"recommend"];
+            _demoImageView = [[UTPictureImageLayerView alloc] init];
+            _demoImageView.mediaName = _mediaName;
+            [_demoImageView setImage:_demoImage];
         }
         
         _animationForMediaList = [NSMutableArray array];

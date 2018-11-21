@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-@class EditInfo;
+@class Snapshot;
 @interface UTPhotoEditShowImageCollectionViewCell : UICollectionViewCell
 {
-    EditInfo *editInfo;
+    Snapshot *snapshot;
     UIImageView *imageView;
     BOOL isSelected;
 }
 
--(void)setupCellWithEditInfo:(EditInfo *)info;
+-(void)setupCellWithSnapshot:(Snapshot *)info;
 -(void)updateImageView;
 -(void)setPictureImage:(UIImage *)image;
 -(void)setIsSelected:(BOOL)selected;

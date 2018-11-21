@@ -142,6 +142,11 @@
         NSData *resourceData = [NSData dataWithContentsOfFile:resourcePath];
         NSDictionary *resourceDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:resourceData encoding:NSUTF8StringEncoding]];
         resource = [[Resource alloc] initWithDictionary:resourceDic basePath:unzipBaseDirectory];
+        resource.videoSize = currentHomeTemplate.videoSize;
+        resource.duration = currentHomeTemplate.duration;
+        resource.fps = currentHomeTemplate.fps;
+        resource.style = currentHomeTemplate.style;
+        resource.totalFrame = currentHomeTemplate.totalFrame;
         
         NSData *customData = [NSData dataWithContentsOfFile:customPath];
         NSDictionary *customDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:customData encoding:NSUTF8StringEncoding]];
@@ -153,6 +158,7 @@
         if (snapshotArray && snapshotArray.count > 0) {
             for (NSDictionary *snapshotDic in snapshotArray) {
                 Snapshot *snapshot = [[Snapshot alloc] initWithDictionary:snapshotDic basePath:unzipBaseDirectory custom:custom];
+                snapshot.videoSize = currentHomeTemplate.videoSize;
                 [snapshotList addObject:snapshot];
             }
         }
@@ -174,7 +180,7 @@
                 NSArray *medias = [animationDic objectForKey:@"media"];
                 if (medias && medias.count > 0) {
                     for (NSDictionary *mediaDic in medias) {
-                        AnimationForMedia *animationForMedia = [[AnimationForMedia alloc] initWithDictionary:mediaDic startFrame:startFrame endFrame:endFrame animationType:type];
+                        AnimationForMedia *animationForMedia = [[AnimationForMedia alloc] initWithDictionary:mediaDic startFrame:startFrame endFrame:endFrame animationType:type fps:resource.fps];
                         SnapshotMedia *snapshotMedia = [self filterArray:snapshotList withMediaName:animationForMedia.name];
                         if (snapshotMedia) {
                             [snapshotMedia.animationForMediaList addObject:animationForMedia];
@@ -187,7 +193,8 @@
             }
         }
         
-        
+        UTPhotoEditViewController *photoEditVC = [[UTPhotoEditViewController alloc] initWithResource:resource snapshots:snapshotList];
+        [self.navigationController pushViewController:photoEditVC animated:YES];
     }
 }
 
@@ -239,38 +246,35 @@
         }];
     }
     
-    [self generateMaterial];
-    if (materia.materialType == MaterialMask) {
-        EditInfo *info = [[EditInfo alloc] init];
-        info.editImage = @"template1";
-        info.editScreenShotImage = [UIImage imageNamed:info.editImage];
-        info.originSize = materia.videoSize;
-        info.editImageCenterXPercent = 0.5;
-        info.editImageCenterYPercent = (544.0f/2)/960.0f;
-        info.range = NSMakeRange(0, 375);
-        info.filterType = FilterAddBlend;
-        [editInfoList addObject:info];
-    }
-    
-    if (materia.materialType == MaterialAnimation) {
-        NSData *animationData = [NSData dataWithContentsOfFile:materia.animationFile];
-        NSString *jsonString = [[NSString alloc] initWithData:animationData encoding:NSUTF8StringEncoding];
-        NSDictionary *animationDic = [AppUtils objectWithJsonString:jsonString];
-        NSArray *editInfos = [animationDic objectForKey:@"editInfo"];
-        for (NSDictionary *dic in editInfos) {
-            EditInfo *info = [[EditInfo alloc] initWithDictinary:dic fps:materia.fps];
-            info.originSize = materia.videoSize;
-            [editInfoList addObject:info];
-        }
-        
-        NSArray *animationInfos = [animationDic objectForKey:@"animationInfo"];
-        for (NSDictionary *infoDic in animationInfos) {
-            AnimationInfo *info = [[AnimationInfo alloc] initWithDictionary:infoDic fps:materia.fps];
-            [animationInfoList addObject:info];
-        }
-    }
-    
-    UTPhotoEditViewController *photoEditVC = [[UTPhotoEditViewController alloc] initWithMaterial:materia editInfo:editInfoList animationInfo:animationInfoList];
-    [self.navigationController pushViewController:photoEditVC animated:YES];
+//    [self generateMaterial];
+//    if (materia.materialType == MaterialMask) {
+//        EditInfo *info = [[EditInfo alloc] init];
+//        info.editImage = @"template1";
+//        info.editScreenShotImage = [UIImage imageNamed:info.editImage];
+//        info.originSize = materia.videoSize;
+//        info.editImageCenterXPercent = 0.5;
+//        info.editImageCenterYPercent = (544.0f/2)/960.0f;
+//        info.range = NSMakeRange(0, 375);
+//        info.filterType = FilterAddBlend;
+//        [editInfoList addObject:info];
+//    }
+//
+//    if (materia.materialType == MaterialAnimation) {
+//        NSData *animationData = [NSData dataWithContentsOfFile:materia.animationFile];
+//        NSString *jsonString = [[NSString alloc] initWithData:animationData encoding:NSUTF8StringEncoding];
+//        NSDictionary *animationDic = [AppUtils objectWithJsonString:jsonString];
+//        NSArray *editInfos = [animationDic objectForKey:@"editInfo"];
+//        for (NSDictionary *dic in editInfos) {
+//            EditInfo *info = [[EditInfo alloc] initWithDictinary:dic fps:materia.fps];
+//            info.originSize = materia.videoSize;
+//            [editInfoList addObject:info];
+//        }
+//
+//        NSArray *animationInfos = [animationDic objectForKey:@"animationInfo"];
+//        for (NSDictionary *infoDic in animationInfos) {
+//            AnimationInfo *info = [[AnimationInfo alloc] initWithDictionary:infoDic fps:materia.fps];
+//            [animationInfoList addObject:info];
+//        }
+//    }
 }
 @end

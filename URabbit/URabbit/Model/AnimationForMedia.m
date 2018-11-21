@@ -7,15 +7,17 @@
 //
 
 #import "AnimationForMedia.h"
+#import "AnimationManager.h"
 
 @implementation AnimationForMedia
--(instancetype)initWithDictionary:(NSDictionary *)dic startFrame:(NSInteger)startFrame endFrame:(NSInteger)endFrame animationType:(AnimationType)animationType
+-(instancetype)initWithDictionary:(NSDictionary *)dic startFrame:(NSInteger)startFrame endFrame:(NSInteger)endFrame animationType:(AnimationType)animationType fps:(CGFloat)fps
 {
     self = [super init];
     if (self) {
         _type = animationType;
         _range = NSMakeRange(startFrame, endFrame - startFrame + 1);
         _name = [dic objectForKey:@"name"];
+        _fps = fps;
         id centerX = [dic objectForKey:@"centreX"];
         if (centerX) {
             _centerXPercent = [centerX floatValue];
@@ -46,14 +48,20 @@
             _endRatio = [endRatio floatValue];
         }
         
-        id startCoordinate = [dic objectForKey:@"startCoordinate"];
+        NSString *startCoordinate = [dic objectForKey:@"startCoordinate"];
         if (startCoordinate) {
-            _startCoordinate = [startCoordinate floatValue];
+            NSArray *startAxios = [startCoordinate componentsSeparatedByString:@"_"];
+            if (startAxios && startAxios.count > 1) {
+                _startCoordinate = CGPointMake([[startAxios objectAtIndex:0] floatValue], [[startAxios objectAtIndex:1] floatValue]);
+            }
         }
         
-        id endCoordinate = [dic objectForKey:@"endCoordinate"];
+        NSString *endCoordinate = [dic objectForKey:@"endCoordinate"];
         if (endCoordinate) {
-            _endCoordinate = [endCoordinate floatValue];
+            NSArray *endAxios = [endCoordinate componentsSeparatedByString:@"_"];
+            if (endAxios && endAxios.count > 1) {
+                _endCoordinate = CGPointMake([[endAxios objectAtIndex:0] floatValue], [[endAxios objectAtIndex:1] floatValue]);
+            }
         }
         
         id startBlur = [dic objectForKey:@"startBlur"];
@@ -67,5 +75,38 @@
         }
     }
     return self;
+}
+
+-(CABasicAnimation *)animationForMediaWithSize:(CGSize)size
+{
+    CABasicAnimation *animation = nil;
+    switch (_type) {
+        case AnimationNone:
+            
+            break;
+        case AnimationTransform:
+        {
+            animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width * _startCoordinate.x, size.height * _startCoordinate.y) toCenter:CGPointMake(size.width * _endCoordinate.x, size.height * _endCoordinate.y) startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
+        }
+            break;
+        case AnimationScale:
+        {
+            animation = [[AnimationManager shareManager] scaleAnimationWithStartScale:_startRatio endScale:_endRatio startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
+        }
+            break;
+        case AnimationOpacity:
+        {
+            animation = [[AnimationManager shareManager] opacityAnimationWithStartOpacity:_startBlur endOpacity:_endBlur startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
+        }
+            break;
+        case AnimationRotation:
+        {
+            animation = [[AnimationManager shareManager] rotationZAnimationWithStartAngle:_startAngle endAngle:_endAngle startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
+        }
+            break;
+        default:
+            break;
+    }
+    return animation;
 }
 @end

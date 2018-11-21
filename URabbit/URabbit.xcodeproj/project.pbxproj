@@ -22,6 +22,8 @@
 		14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A33218AF23200768E6A /* UTUserCenterViewController.m */; };
 		14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A37218BF94700768E6A /* UTHomeCollectionViewCell.m */; };
 		14262A48218C45F000768E6A /* LJJWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A46218C45F000768E6A /* LJJWaterFlowLayout.m */; };
+		14266C7F21A52A0D008A1926 /* ComposeNomalOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C7E21A52A0D008A1926 /* ComposeNomalOperation.m */; };
+		14266C8221A53EDE008A1926 /* SwitchAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8121A53EDE008A1926 /* SwitchAnimationManager.m */; };
 		14482EF821A3BD9A00D640F1 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EF721A3BD9A00D640F1 /* Media.m */; };
 		14482EFB21A3BE3C00D640F1 /* SnapshotMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFA21A3BE3C00D640F1 /* SnapshotMedia.m */; };
 		14482EFE21A3BE5C00D640F1 /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFD21A3BE5C00D640F1 /* Text.m */; };
@@ -31,6 +33,9 @@
 		14482F0A21A3BEB800D640F1 /* AnimationSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F0921A3BEB800D640F1 /* AnimationSwitch.m */; };
 		14482F0D21A3D67400D640F1 /* Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F0C21A3D67400D640F1 /* Custom.m */; };
 		14482F1021A3F12200D640F1 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F0F21A3F12200D640F1 /* Resource.m */; };
+		14482F1F21A46FCC00D640F1 /* UTPictureImageLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F1E21A46FCC00D640F1 /* UTPictureImageLayerView.m */; };
+		14482F2221A475FF00D640F1 /* UTPhotoEditCanMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F2121A475FF00D640F1 /* UTPhotoEditCanMoveView.m */; };
+		14482F2521A4761D00D640F1 /* UTPhotoEditNotMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F2421A4761D00D640F1 /* UTPhotoEditNotMoveView.m */; };
 		1458035D216F2BCC006BB33D /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14580303216F2BCB006BB33D /* iconfont.ttf */; };
 		1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580306216F2BCB006BB33D /* GeneralManager.m */; };
 		14580362216F2BCC006BB33D /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580311216F2BCB006BB33D /* NetWorkManager.m */; };
@@ -94,7 +99,6 @@
 		146B638221904DF900A3A679 /* UTVideoAuthorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B638121904DF900A3A679 /* UTVideoAuthorView.m */; };
 		146B63862190657F00A3A679 /* UTPhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63852190657F00A3A679 /* UTPhotoEditViewController.m */; };
 		146B638A219071EB00A3A679 /* UTPhotoEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B6389219071EB00A3A679 /* UTPhotoEditView.m */; };
-		146B638E2190723600A3A679 /* UTPictureImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B638D2190723600A3A679 /* UTPictureImageView.m */; };
 		146B63922190726D00A3A679 /* UTTplImageLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63912190726D00A3A679 /* UTTplImageLayerView.m */; };
 		146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B639521914AE800A3A679 /* UTPhotoEditCollectionViewCell.m */; };
 		146B63992191827300A3A679 /* EditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63982191827300A3A679 /* EditInfo.m */; };
@@ -324,6 +328,10 @@
 		14262A37218BF94700768E6A /* UTHomeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTHomeCollectionViewCell.m; sourceTree = "<group>"; };
 		14262A46218C45F000768E6A /* LJJWaterFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJJWaterFlowLayout.m; sourceTree = "<group>"; };
 		14262A47218C45F000768E6A /* LJJWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJJWaterFlowLayout.h; sourceTree = "<group>"; };
+		14266C7D21A52A0D008A1926 /* ComposeNomalOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeNomalOperation.h; sourceTree = "<group>"; };
+		14266C7E21A52A0D008A1926 /* ComposeNomalOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeNomalOperation.m; sourceTree = "<group>"; };
+		14266C8021A53EDE008A1926 /* SwitchAnimationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchAnimationManager.h; sourceTree = "<group>"; };
+		14266C8121A53EDE008A1926 /* SwitchAnimationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchAnimationManager.m; sourceTree = "<group>"; };
 		14482EF621A3BD9A00D640F1 /* Media.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
 		14482EF721A3BD9A00D640F1 /* Media.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
 		14482EF921A3BE3C00D640F1 /* SnapshotMedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotMedia.h; sourceTree = "<group>"; };
@@ -342,6 +350,12 @@
 		14482F0C21A3D67400D640F1 /* Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Custom.m; sourceTree = "<group>"; };
 		14482F0E21A3F12200D640F1 /* Resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
 		14482F0F21A3F12200D640F1 /* Resource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
+		14482F1D21A46FCC00D640F1 /* UTPictureImageLayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPictureImageLayerView.h; sourceTree = "<group>"; };
+		14482F1E21A46FCC00D640F1 /* UTPictureImageLayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPictureImageLayerView.m; sourceTree = "<group>"; };
+		14482F2021A475FF00D640F1 /* UTPhotoEditCanMoveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditCanMoveView.h; sourceTree = "<group>"; };
+		14482F2121A475FF00D640F1 /* UTPhotoEditCanMoveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditCanMoveView.m; sourceTree = "<group>"; };
+		14482F2321A4761D00D640F1 /* UTPhotoEditNotMoveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditNotMoveView.h; sourceTree = "<group>"; };
+		14482F2421A4761D00D640F1 /* UTPhotoEditNotMoveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditNotMoveView.m; sourceTree = "<group>"; };
 		14580303216F2BCB006BB33D /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		14580306216F2BCB006BB33D /* GeneralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralManager.m; sourceTree = "<group>"; };
 		14580307216F2BCB006BB33D /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
@@ -460,8 +474,6 @@
 		146B63852190657F00A3A679 /* UTPhotoEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditViewController.m; sourceTree = "<group>"; };
 		146B6388219071EB00A3A679 /* UTPhotoEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditView.h; sourceTree = "<group>"; };
 		146B6389219071EB00A3A679 /* UTPhotoEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditView.m; sourceTree = "<group>"; };
-		146B638C2190723600A3A679 /* UTPictureImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPictureImageView.h; sourceTree = "<group>"; };
-		146B638D2190723600A3A679 /* UTPictureImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPictureImageView.m; sourceTree = "<group>"; };
 		146B63902190726D00A3A679 /* UTTplImageLayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTTplImageLayerView.h; sourceTree = "<group>"; };
 		146B63912190726D00A3A679 /* UTTplImageLayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTTplImageLayerView.m; sourceTree = "<group>"; };
 		146B639421914AE800A3A679 /* UTPhotoEditCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditCollectionViewCell.h; sourceTree = "<group>"; };
@@ -795,6 +807,15 @@
 			path = UTHomeTemplateView;
 			sourceTree = "<group>";
 		};
+		14482F1C21A46FAA00D640F1 /* UTPictureImageLayerView */ = {
+			isa = PBXGroup;
+			children = (
+				14482F1D21A46FCC00D640F1 /* UTPictureImageLayerView.h */,
+				14482F1E21A46FCC00D640F1 /* UTPictureImageLayerView.m */,
+			);
+			path = UTPictureImageLayerView;
+			sourceTree = "<group>";
+		};
 		145802FC216F2BCB006BB33D /* Iconfont */ = {
 			isa = PBXGroup;
 			children = (
@@ -1051,6 +1072,8 @@
 				14482F0C21A3D67400D640F1 /* Custom.m */,
 				14482F0E21A3F12200D640F1 /* Resource.h */,
 				14482F0F21A3F12200D640F1 /* Resource.m */,
+				14266C7D21A52A0D008A1926 /* ComposeNomalOperation.h */,
+				14266C7E21A52A0D008A1926 /* ComposeNomalOperation.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1107,8 +1130,8 @@
 		145803C321703C80001B9535 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				14482F1C21A46FAA00D640F1 /* UTPictureImageLayerView */,
 				146B638F2190723B00A3A679 /* UTTplImageLayerView */,
-				146B638B2190720B00A3A679 /* UTPictureImageView */,
 				145803C421703C8C001B9535 /* BlendAlgorithmFrontView */,
 			);
 			path = View;
@@ -1283,17 +1306,12 @@
 			children = (
 				146B6388219071EB00A3A679 /* UTPhotoEditView.h */,
 				146B6389219071EB00A3A679 /* UTPhotoEditView.m */,
+				14482F2021A475FF00D640F1 /* UTPhotoEditCanMoveView.h */,
+				14482F2121A475FF00D640F1 /* UTPhotoEditCanMoveView.m */,
+				14482F2321A4761D00D640F1 /* UTPhotoEditNotMoveView.h */,
+				14482F2421A4761D00D640F1 /* UTPhotoEditNotMoveView.m */,
 			);
 			path = PhotoEditView;
-			sourceTree = "<group>";
-		};
-		146B638B2190720B00A3A679 /* UTPictureImageView */ = {
-			isa = PBXGroup;
-			children = (
-				146B638C2190723600A3A679 /* UTPictureImageView.h */,
-				146B638D2190723600A3A679 /* UTPictureImageView.m */,
-			);
-			path = UTPictureImageView;
 			sourceTree = "<group>";
 		};
 		146B638F2190723B00A3A679 /* UTTplImageLayerView */ = {
@@ -1406,6 +1424,8 @@
 			children = (
 				148D0F84219D9C7100B4E59A /* AnimationManager.h */,
 				148D0F85219D9C7100B4E59A /* AnimationManager.m */,
+				14266C8021A53EDE008A1926 /* SwitchAnimationManager.h */,
+				14266C8121A53EDE008A1926 /* SwitchAnimationManager.m */,
 			);
 			path = AnimationManager;
 			sourceTree = "<group>";
@@ -1582,6 +1602,7 @@
 				04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */,
 				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
+				14482F2221A475FF00D640F1 /* UTPhotoEditCanMoveView.m in Sources */,
 				14482F0421A3BE8600D640F1 /* Snapshot.m in Sources */,
 				14678FF8218EDAFA00CD7F4B /* RecommendTemplate.m in Sources */,
 				1458037E216F2BCC006BB33D /* AppUtils.m in Sources */,
@@ -1593,7 +1614,6 @@
 				14580375216F2BCC006BB33D /* LaunchAnimateView.m in Sources */,
 				14262A30218AF02300768E6A /* LLTabBar.m in Sources */,
 				14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */,
-				146B638E2190723600A3A679 /* UTPictureImageView.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
 				146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */,
 				14482F0121A3BE6C00D640F1 /* SnapshotText.m in Sources */,
@@ -1604,6 +1624,7 @@
 				14678FF5218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.m in Sources */,
 				146B637A2190274C00A3A679 /* UIImage+Gradient.m in Sources */,
 				14580394216F2D6F006BB33D /* UINavigationController+NavigationBar.m in Sources */,
+				14482F2521A4761D00D640F1 /* UTPhotoEditNotMoveView.m in Sources */,
 				146B637E219033B600A3A679 /* UTVideoInfoView.m in Sources */,
 				14580362216F2BCC006BB33D /* NetWorkManager.m in Sources */,
 				1458037D216F2BCC006BB33D /* PushMessageManager.m in Sources */,
@@ -1621,6 +1642,7 @@
 				146B638221904DF900A3A679 /* UTVideoAuthorView.m in Sources */,
 				14678FF2218ECDBB00CD7F4B /* UTHomeRecommendView.m in Sources */,
 				1458039A216F306E006BB33D /* Member.m in Sources */,
+				14266C8221A53EDE008A1926 /* SwitchAnimationManager.m in Sources */,
 				14580392216F2D6F006BB33D /* UITabBar+CustomerTabBar.m in Sources */,
 				04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */,
 				14580377216F2BCC006BB33D /* FeThreeDotGlow.m in Sources */,
@@ -1643,10 +1665,12 @@
 				148D0F86219D9C7100B4E59A /* AnimationManager.m in Sources */,
 				145803A6216F3143006BB33D /* UTGuidViewController.m in Sources */,
 				146B63792190274C00A3A679 /* UIButton+Gradient.m in Sources */,
+				14266C7F21A52A0D008A1926 /* ComposeNomalOperation.m in Sources */,
 				146B63A1219191C900A3A679 /* UTMiddleEditContainerView.m in Sources */,
 				14580367216F2BCC006BB33D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				146B63732190243C00A3A679 /* UTDownloadButtonView.m in Sources */,
 				1458046D216F46A8006BB33D /* Material.m in Sources */,
+				14482F1F21A46FCC00D640F1 /* UTPictureImageLayerView.m in Sources */,
 				145B6134216F27B600DA950E /* AppDelegate.m in Sources */,
 				14580368216F2BCC006BB33D /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				14678FFE218EE11C00CD7F4B /* UTHomeTemplateView.m in Sources */,

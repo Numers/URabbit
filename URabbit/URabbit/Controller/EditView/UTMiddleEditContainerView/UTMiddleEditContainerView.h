@@ -17,10 +17,11 @@
     NSMutableArray *dataSource;
     UICollectionView *collectionView;
     NSMutableArray *cells;
+    TemplateStyle currentStyle;
 }
 @property(nonatomic, weak) id<UTMiddleEditContainerViewProtocol> delegate;
--(instancetype)initWithEditInfo:(NSMutableArray *)editInfoList;
+-(instancetype)initWithSnapshots:(NSMutableArray *)snapshots style:(TemplateStyle)style;
 -(void)scrollToIndexPath:(NSIndexPath *)indexPath;
 -(void)deSelectIndexPath:(NSIndexPath *)indexPath;
--(NSMutableArray *)imagesAxiosToCompose;
+-(void)generateImagesToCompose;
 @end

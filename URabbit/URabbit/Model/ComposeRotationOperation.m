@@ -8,7 +8,8 @@
 
 #import "ComposeRotationOperation.h"
 #import "GPUImage.h"
-#import "AxiosInfo.h"
+#import "SnapshotMedia.h"
+#import "AnimationForMedia.h"
 #import "UTImageHanderManager.h"
 @interface ComposeRotationOperation()
 {
@@ -16,14 +17,15 @@
 }
 @end
 @implementation ComposeRotationOperation
--(instancetype)initWithTemplateSampleBufferRef:(CMSampleBufferRef)templateSampleBufferRef maskSampleBufferRef:(CMSampleBufferRef)maskSampleBufferRef frame:(NSInteger)frame axiosInfo:(AxiosInfo *)axiosInfo pixelSize:(CGSize)pixelSize fps:(CGFloat)fps
+-(instancetype)initWithTemplateSampleBufferRef:(CMSampleBufferRef)templateSampleBufferRef maskSampleBufferRef:(CMSampleBufferRef)maskSampleBufferRef frame:(NSInteger)frame snapshotMedia:(SnapshotMedia *)snapshotMedia animation:(AnimationForMedia *)animation pixelSize:(CGSize)pixelSize fps:(CGFloat)fps
 {
     self = [super init];
     if (self) {
         currentTemplateSampleBufferRef = templateSampleBufferRef;
         currentMaskSampleBufferRef = maskSampleBufferRef;
         currentFrame = frame;
-        currentAxiosInfo = axiosInfo;
+        currentSnapshotMedia = snapshotMedia;
+        currentAnimation = animation;
         currentPixelSize = pixelSize;
         halfVideoFps = (int)(fps / 2);
         filter = [[GPUImageAddBlendFilter alloc] init];
@@ -41,7 +43,7 @@
             [[UTImageHanderManager shareManager] convertImagePixelReverse:maskPixelBuffer size:currentPixelSize];
             
             UIImage *maskImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:maskPixelBuffer size:currentPixelSize];
-            UIImage *tempResultImage = [self imageWithMask:maskImage axiosInfo:currentAxiosInfo frameIndex:currentFrame - currentAxiosInfo.range.location];
+            UIImage *tempResultImage = [self imageWithMask:maskImage snapshotMedia:currentSnapshotMedia animation:currentAnimation frameIndex:currentFrame pixelSize:currentPixelSize];
             GPUImagePicture *tempPic1 = [[GPUImagePicture alloc] initWithImage:templateImage];
             [tempPic1 addTarget:filter];
             [tempPic1 processImage];
@@ -52,6 +54,7 @@
                     [self.delegate sendImage:resultImage frame:currentFrame];
                 }
             }
+            
             CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:currentPixelSize];
             void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
             memcpy(templatePixelBuffer, resultBaseAddress, 4*currentPixelSize.width*currentPixelSize.height);
@@ -63,9 +66,6 @@
                 [self.delegate sendSampleBufferRef:currentTemplateSampleBufferRef frame:currentFrame];
             }
             
-//            if ([self.delegate respondsToSelector:@selector(sendPixelBufferRef:frame:)]) {
-//                [self.delegate sendPixelBufferRef:resultPixelBuffer frame:currentFrame];
-//            }
         }else{
             if ([self.delegate respondsToSelector:@selector(sendSampleBufferRef:frame:)]) {
                 [self.delegate sendSampleBufferRef:currentTemplateSampleBufferRef frame:currentFrame];
@@ -74,18 +74,26 @@
     }
 }
 
--(UIImage *)imageWithMask:(UIImage *)maskImage axiosInfo:(AxiosInfo *)info frameIndex:(NSInteger)index
+-(UIImage *)imageWithMask:(UIImage *)maskImage snapshotMedia:(SnapshotMedia *)media animation:(AnimationForMedia *)animation frameIndex:(NSInteger)index pixelSize:(CGSize)pixelSize
 {
     CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
-    CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, maskImage.size.width, maskImage.size.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, pixelSize.width, pixelSize.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     
     CGImageRef maskRef = maskImage.CGImage;
     CGContextClipToMask(mainViewContentContext, CGRectMake(0, 0, maskImage.size.width, maskImage.size.height), maskRef);
-    CGContextSaveGState(mainViewContentContext);
-    CGContextTranslateCTM(mainViewContentContext, info.centerX, info.centerY);
-    CGContextRotateCTM(mainViewContentContext, -0.005*index);
-    CGContextDrawImage(mainViewContentContext, CGRectMake(-info.centerX, -info.centerY, info.imageWith, info.imageHeight), info.image.CGImage);
-    CGContextRestoreGState(mainViewContentContext);
+    if (animation.type == AnimationRotation) {
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGFloat rotateAngle = -((animation.endAngle - animation.startAngle) * M_PI / 180) / (animation.range.length);
+        CGContextRotateCTM(mainViewContentContext,rotateAngle*(index - animation.range.location));
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
+        CGContextRestoreGState(mainViewContentContext);
+    }else{
+        CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
+    }
+    
     CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
     UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
     CGImageRelease(newImageRef);

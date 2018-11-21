@@ -10,6 +10,7 @@
 @class Text,Custom;
 @interface SnapshotText : NSObject
 @property(nonatomic, strong) Text *text;
+@property(nonatomic, copy) NSString *textName;
 @property(nonatomic) CGFloat centerXPercent;
 @property(nonatomic) CGFloat centerYPercent;
 @property(nonatomic) CGFloat widthPercent;

@@ -13,7 +13,7 @@
 {
     self = [super init];
     if (self) {
-        _type = (AnimationType)[[dic objectForKey:@"type"] integerValue];
+        _type = (SwitchAnimationType)[[dic objectForKey:@"type"] integerValue];
         NSInteger startFrame = [[dic objectForKey:@"startFrame"] integerValue];
         NSInteger endFrame = [[dic objectForKey:@"endFrame"] integerValue];
         _range = NSMakeRange(startFrame, endFrame - startFrame + 1);

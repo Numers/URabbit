@@ -60,6 +60,19 @@ typedef enum
     AnimationOpacity
 }AnimationType;
 
+typedef enum{
+    SwitchAnimationNone = 0,
+    SwitchAnimationRightIn,
+    SwitchAnimationRightOut,
+    SwitchAnimationLeftIn,
+    SwitchAnimationLeftOut,
+    SwitchAnimationBottomIn,
+    SwitchAnimationBottomOut,
+    SwitchAnimationTopIn,
+    SwitchAnimationTopOut,
+    SwitchAnimationOpacity,
+    
+} SwitchAnimationType;
 typedef enum
 {
     //图片渲染

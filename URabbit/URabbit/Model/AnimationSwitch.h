@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface AnimationSwitch : NSObject
-@property(nonatomic) AnimationType type;
+@property(nonatomic) SwitchAnimationType type;
 @property(nonatomic) NSRange range;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dic;

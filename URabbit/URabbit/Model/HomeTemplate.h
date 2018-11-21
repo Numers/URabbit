@@ -15,6 +15,7 @@
 @property(nonatomic) double duration;
 @property(nonatomic) CGSize videoSize;
 @property(nonatomic) double fps;
+@property(nonatomic) NSInteger totalFrame;
 @property(nonatomic) TemplateStyle style;
 @property(nonatomic,copy) NSString *summary;
 @property(nonatomic, copy) NSString *demoUrl;

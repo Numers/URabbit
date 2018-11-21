@@ -15,16 +15,14 @@
 @end
 
 @implementation ComposeStrategy
--(instancetype)initWithMaterial:(Material *)m axiosInfos:(NSMutableArray *)axiosInfoList fps:(float)fps
+-(instancetype)initWithResource:(Resource *)m snapshot:(NSMutableArray *)snapshots fps:(float)fps
 {
     self = [super init];
     if (self) {
-        _material = m;
+        _resource = m;
+        _snapshotList = snapshots;
         halfVideoFps = (int)(fps / 2);
         _currentFps = fps;
-        
-        _axiosInfos = axiosInfoList;
-        [self initlizeData];
     }
     return self;
 }
@@ -33,43 +31,31 @@
 {
     _operationQueue = [[NSOperationQueue alloc] init];
     _operationQueue.maxConcurrentOperationCount = 1;
-    _frames = [NSMutableArray array];
-    for (int i = 0; i < _material.totalFrames; i++) {
-        Frame *frame = [[Frame alloc] init];
-        frame.axiosIndex = [self isInAxios:i];
-        [_frames addObject:frame];
-    }
-}
-
--(NSInteger)isInAxios:(NSInteger)index
-{
-    NSInteger location = -1;
-    for (NSInteger i = 0; i < _axiosInfos.count; i++) {
-        AxiosInfo *info = [_axiosInfos objectAtIndex:i];
-        NSRange range = info.range;
-        if (index >= range.location && index <= (range.location + range.length - 1)) {
-            location = i;
-            break;
-        }
-    }
-    return location;
 }
 
 -(void)createVideoReader
 {
-    if (_templateVideoReader == nil) {
-        if (_material.templateVideo) {
-            _templateVideoReader = [[UTVideoReader alloc] initWithUrl:_material.templateVideo pixelFormatType:kCVPixelFormatType_32BGRA];
+    if (_fgVideoReader == nil) {
+        if (_resource.fgVideo) {
+            _fgVideoReader = [[UTVideoReader alloc] initWithUrl:_resource.fgVideo pixelFormatType:kCVPixelFormatType_32BGRA];
         }
     }
     
-    if (_maskVideoReaders == nil) {
-        if (_material.maskVideos.count > 0) {
-            _maskVideoReaders = [NSMutableArray array];
-            for (NSString *maskVideoUrl in _material.maskVideos) {
-                UTVideoReader *maskReader = [[UTVideoReader alloc] initWithUrl:maskVideoUrl pixelFormatType:kCVPixelFormatType_32ARGB];
-                [_maskVideoReaders addObject:maskReader];
-            }
+    if (_maskVideoReader == nil) {
+        if (_resource.maskVideo) {
+            _maskVideoReader = [[UTVideoReader alloc] initWithUrl:_resource.maskVideo pixelFormatType:kCVPixelFormatType_32ARGB];
+        }
+    }
+    
+    if (_maskBaseImageReader == nil) {
+        if (_resource.maskBaseImage) {
+            _maskBaseImageReader = [[UTVideoReader alloc] initWithUrl:_resource.maskBaseImage pixelFormatType:kCVPixelFormatType_32ARGB];
+        }
+    }
+    
+    if (_bgVideoReader == nil) {
+        if (_resource.bgVideo) {
+            _bgVideoReader = [[UTVideoReader alloc] initWithUrl:_resource.bgVideo pixelFormatType:kCVPixelFormatType_32ARGB];
         }
     }
 }
@@ -156,16 +142,24 @@
         _frames = nil;
     }
     
-    if (_templateVideoReader) {
-        [_templateVideoReader removeVideoReader];
-        _templateVideoReader = nil;
+    if (_fgVideoReader) {
+        [_fgVideoReader removeVideoReader];
+        _fgVideoReader = nil;
     }
     
-    if (_maskVideoReaders.count > 0) {
-        for (UTVideoReader *reader in _maskVideoReaders) {
-            [reader removeVideoReader];
-        }
-        [_maskVideoReaders removeAllObjects];
+    if (_maskVideoReader) {
+        [_maskVideoReader removeVideoReader];
+        _maskVideoReader = nil;
+    }
+    
+    if (_maskBaseImageReader) {
+        [_maskBaseImageReader removeVideoReader];
+        _maskBaseImageReader = nil;
+    }
+    
+    if (_bgVideoReader) {
+        [_bgVideoReader removeVideoReader];
+        _bgVideoReader = nil;
     }
     
     _operationQueue = nil;

@@ -11,22 +11,24 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UTImageHanderManager.h"
 #import "GPUImage.h"
-#import "Material.h"
-#import "AxiosInfo.h"
-#import "AnimationInfo.h"
+#import "Resource.h"
+#import "Snapshot.h"
+#import "SnapshotMedia.h"
+#import "AnimationForMedia.h"
 #import "AnimationManager.h"
 #import "AnimationObject.h"
+#import "SwitchAnimationManager.h"
+#import "AnimationSwitch.h"
 
 //https://developer.apple.com/documentation/quartzcore/calayer/1410901-filters  layer添加滤镜
 @implementation ComposeAnimation
--(instancetype)initWithMaterial:(Material *)material AxiosInfos:(NSMutableArray *)axiosInfos animationInfos:(NSMutableArray *)animationInfos movieUrl:(NSString *)movieUrl
+-(instancetype)initWithResource:(Resource *)resource snapshots:(NSMutableArray *)snapshots movieUrl:(NSString *)movieUrl
 {
     self = [super init];
     if (self) {
-        currentMaterial = material;
+        currentResource = resource;
         currentMovieUrl = movieUrl;
-        currentAxiosInfos = [NSMutableArray arrayWithArray:axiosInfos];
-        currentAnimationInfos = [NSMutableArray arrayWithArray:animationInfos];
+        currentSnapshots = [NSMutableArray arrayWithArray:snapshots];
     }
     return self;
 }
@@ -69,40 +71,74 @@
     [parentLayer addSublayer:frontLayer];
     [parentLayer addSublayer:backLayer];
     
-    for (AxiosInfo *axios in currentAxiosInfos) {
-        CALayer *imageLayer = [CALayer layer];
-        imageLayer.contents = (id)axios.filterImage.CGImage;
-        [imageLayer setFrame:CGRectMake(-axios.imageWith, 0, axios.imageWith, axios.imageHeight)];
-        for (AnimationObject *animationObj in axios.animationObjects) {
-            CABasicAnimation *animation = [animationObj generateAnimation];
-            if (animation) {
-                [imageLayer addAnimation:animation forKey:nil];
+    for (Snapshot *snapshot in currentSnapshots) {
+        for (SnapshotMedia *media in snapshot.mediaList) {
+            if (media.animationForMediaList.count > 0) {
+                CALayer *imageLayer = [CALayer layer];
+                imageLayer.contents = (id)media.resultImage.CGImage;
+                CGFloat width = currentResource.videoSize.width * media.imageWidthPercent;
+                CGFloat height = width * (media.resultImage.size.height / media.resultImage.size.width);
+                [imageLayer setFrame:CGRectMake(- width/2, 0, width, height)];
+                
+                for (AnimationForMedia *animationForMedia in media.animationForMediaList) {
+                    
+                    CABasicAnimation *animation = [animationForMedia animationForMediaWithSize:currentResource.videoSize];
+                    [imageLayer addAnimation:animation forKey:nil];
+                }
+                [frontLayer addSublayer:imageLayer];
+            }
+            
+            if (media.animationForSwitchList.count > 0) {
+                CALayer *imageLayer = [CALayer layer];
+                imageLayer.contents = (id)media.resultImage.CGImage;
+                CGFloat width = currentResource.videoSize.width * media.imageWidthPercent;
+                CGFloat height = width * (media.resultImage.size.height / media.resultImage.size.width);
+                [imageLayer setFrame:CGRectMake(- width/2, 0, width, height)];
+                for (AnimationSwitch *animationSwitch in media.animationForSwitchList) {
+                    NSMutableArray *animations = [[SwitchAnimationManager shareManager] animationsWithSwitchAnimationType:animationSwitch.type startTime:animationSwitch.range.location/currentResource.fps duration:animationSwitch.range.length / currentResource.fps size:currentResource.videoSize];
+                    for (CABasicAnimation *basicAnimation in animations) {
+                        [imageLayer addAnimation:basicAnimation forKey:nil];
+                    }
+                }
+                [backLayer addSublayer:imageLayer];
             }
         }
-        [frontLayer addSublayer:imageLayer];
     }
     
-    for (AnimationInfo *info in currentAnimationInfos) {
-        AxiosInfo *axiosInfo = [currentAxiosInfos objectAtIndex:info.axiosIndex];
-        GPUImageFilter *filter = [[UTImageHanderManager shareManager] filterWithFilterType:info.filterType];
-        [filter useNextFrameForImageCapture];
-        UIImage *filterImage = [filter imageByFilteringImage:axiosInfo.image];
-        CALayer *imageLayer = [CALayer layer];
-        imageLayer.contents = (id)filterImage.CGImage;
-        [imageLayer setFrame:CGRectMake(axiosInfo.imageWith + videoSize.width, 0, axiosInfo.imageWith, axiosInfo.imageHeight)];
-        for (AnimationObject *animationObj in info.animationObjects) {
-            CABasicAnimation *animation = [animationObj generateAnimation];
-            if (animation) {
-                [imageLayer addAnimation:animation forKey:nil];
-            }
-        }
-        [backLayer addSublayer:imageLayer];
-    }
-    
+//    for (AxiosInfo *axios in currentAxiosInfos) {
+//        CALayer *imageLayer = [CALayer layer];
+//        imageLayer.contents = (id)axios.filterImage.CGImage;
+//        [imageLayer setFrame:CGRectMake(-axios.imageWith, 0, axios.imageWith, axios.imageHeight)];
+//        for (AnimationObject *animationObj in axios.animationObjects) {
+//            CABasicAnimation *animation = [animationObj generateAnimation];
+//            if (animation) {
+//                [imageLayer addAnimation:animation forKey:nil];
+//            }
+//        }
+//        [frontLayer addSublayer:imageLayer];
+//    }
+//
+//    for (AnimationInfo *info in currentAnimationInfos) {
+//        AxiosInfo *axiosInfo = [currentAxiosInfos objectAtIndex:info.axiosIndex];
+//        GPUImageFilter *filter = [[UTImageHanderManager shareManager] filterWithFilterType:info.filterType];
+//        [filter useNextFrameForImageCapture];
+//        UIImage *filterImage = [filter imageByFilteringImage:axiosInfo.image];
+//        CALayer *imageLayer = [CALayer layer];
+//        imageLayer.contents = (id)filterImage.CGImage;
+//        [imageLayer setFrame:CGRectMake(axiosInfo.imageWith + videoSize.width, 0, axiosInfo.imageWith, axiosInfo.imageHeight)];
+//        for (AnimationObject *animationObj in info.animationObjects) {
+//            CABasicAnimation *animation = [animationObj generateAnimation];
+//            if (animation) {
+//                [imageLayer addAnimation:animation forKey:nil];
+//            }
+//        }
+//        [backLayer addSublayer:imageLayer];
+//    }
+//
     AVMutableVideoComposition* videoComp = [AVMutableVideoComposition videoComposition];
     videoComp.renderSize = videoSize;
 //    parentLayer.geometryFlipped = true;
-    videoComp.frameDuration = CMTimeMake(1, currentMaterial.fps);
+    videoComp.frameDuration = CMTimeMake(1, currentResource.fps);
     videoComp.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
     AVMutableVideoCompositionInstruction* instruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
     

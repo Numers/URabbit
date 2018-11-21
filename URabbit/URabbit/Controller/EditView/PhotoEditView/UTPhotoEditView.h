@@ -7,33 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UTPictureImageView,UTTplImageLayerView;
+@class Snapshot,UTTplImageLayerView,UTPictureImageLayerView;
 @protocol UTPhotoEditViewProtocol <NSObject>
 -(void)openImagePickerView;
 @end
 @interface UTPhotoEditView : UIView
 {
-    UTPictureImageView *pictureImageView;
-    UTTplImageLayerView *templateImageView;
-    
-    UIPanGestureRecognizer *panGesture;
-    UIPinchGestureRecognizer *pinGesture;
-    UIRotationGestureRecognizer *rotateGesture;
     UITapGestureRecognizer *tapGesture;
-    
-    CGFloat lastRotateAngle;
-    CGFloat lastScale;
-    CGFloat lastCenterX;
-    CGFloat lastCenterY;
-    CGPoint currentCenterPoint;
 }
+@property(nonatomic, strong) UTTplImageLayerView *templateImageView;
 @property(nonatomic, weak) id<UTPhotoEditViewProtocol> delegate;
-@property(nonatomic, strong) UIImage *pictureImage;
-@property(nonatomic) CGPoint tplCenterPoint;
-@property(nonatomic) CGRect boundRect;
-@property(nonatomic) CGSize useImageSize;
-@property(nonatomic) CGFloat useRotateAngle;
--(instancetype)initWithTemplateImage:(UIImage *)templateImage;
--(void)setPictureImage:(UIImage *)image;
--(CGPoint)returnCurrentPictureCenter;
+-(instancetype)initWithSnapshot:(Snapshot *)snapshot frame:(CGRect)frame;
 @end
