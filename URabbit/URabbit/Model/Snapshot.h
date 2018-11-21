@@ -11,6 +11,7 @@
 @interface Snapshot : NSObject
 @property(nonatomic, copy) NSString *foregroundImage;
 @property(nonatomic) CGSize videoSize;
+@property(nonatomic, strong) UIImage *snapshotImage;
 @property(nonatomic, strong) NSMutableArray<SnapshotMedia *> *mediaList;
 @property(nonatomic, strong) NSMutableArray<SnapshotText *> *textList;
 

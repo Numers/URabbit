@@ -14,6 +14,7 @@
 #import "Text.h"
 #import "UTPictureImageLayerView.h"
 #import "UTTplImageLayerView.h"
+#import "UTImageHanderManager.h"
 
 #import "UTKeyboardTextFieldManager.h"
 @interface UTPhotoEditNotMoveView()<UTTextLabelProtocol,UTPictureImageLayerViewProtocol>
@@ -76,6 +77,66 @@
     }
 }
 
+-(void)generateImageWithSize:(CGSize)size style:(TemplateStyle)style
+{
+    if (style == TemplateStyleFriend) {
+        CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+        CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, size.width, size.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+        
+        for (SnapshotMedia *media in currentSnapshot.mediaList) {
+            CGFloat width = size.width * media.imageWidthPercent;
+            CGFloat height = width * media.demoImage.size.height / media.demoImage.size.width;
+            CGPoint currentCenterPoint = CGPointMake(size.width * media.centerXPercent, size.height * media.centerYPercent);
+            CGContextSaveGState(mainViewContentContext);
+            CGContextTranslateCTM(mainViewContentContext, currentCenterPoint.x, size.height - currentCenterPoint.y);
+            CGContextDrawImage(mainViewContentContext, CGRectMake( - width / 2,  - height / 2, width, height), media.demoImage.CGImage);
+            CGContextRestoreGState(mainViewContentContext);
+        }
+        
+        for(SnapshotText *snapshotText in currentSnapshot.textList){
+            CGFloat width = size.width * snapshotText.widthPercent;
+            CGFloat height = size.height * snapshotText.heightPercent;
+            CGPoint currentCenterPoint = CGPointMake(size.width * snapshotText.centerXPercent, size.height * snapshotText.centerYPercent);
+            CGContextSaveGState(mainViewContentContext);
+            CGContextTranslateCTM(mainViewContentContext, currentCenterPoint.x, size.height - currentCenterPoint.y);
+            CATextLayer *layerText = [CATextLayer layer];
+            layerText.backgroundColor = [UIColor redColor].CGColor;
+            layerText.contentsScale = [UIScreen mainScreen].scale;
+            layerText.bounds = CGRectMake(-width/2, -height/2, width, height);
+            [layerText setForegroundColor:[UIColor colorFromHexString:snapshotText.text.fontColor].CGColor];
+            // 字体名称、大小
+            UIFont *font = [UIFont systemFontOfSize:snapshotText.text.fontSize];
+            CFStringRef fontName = (__bridge CFStringRef)font.fontName;
+            CGFontRef fontRef =CGFontCreateWithFontName(fontName);
+            layerText.font = fontRef;
+            layerText.fontSize = font.pointSize;
+            CGFontRelease(fontRef);
+            // 字体对方方式
+            switch (snapshotText.text.horizontalAlignType) {
+                case TextHorizontalAlignLeft:
+                    layerText.alignmentMode = kCAAlignmentLeft;
+                    break;
+                case TextHorizontalAlignRight:
+                    layerText.alignmentMode = kCAAlignmentRight;
+                    break;
+                case TextHorizontalAlignCenter:
+                    layerText.alignmentMode = kCAAlignmentCenter;
+                    break;
+                default:
+                    break;
+            }
+            layerText.string = snapshotText.text.content;
+            [layerText drawInContext:mainViewContentContext];
+            CGContextRestoreGState(mainViewContentContext);
+        }
+        
+        CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
+        UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+        currentSnapshot.snapshotImage = newImage;
+        CGImageRelease(newImageRef);
+        CGContextRelease(mainViewContentContext);
+    }
+}
 #pragma -mark UTTextLabelProtocol
 -(void)didSelectTextLabelWithName:(NSString *)name content:(NSString *)content
 {

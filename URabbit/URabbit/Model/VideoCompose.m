@@ -17,7 +17,7 @@
         videoUrl = url;
         videoSize = size;
         currentFps = fps;
-        totalFrames = frames;
+        totalFrames = 250;
         writeFrames = 0;
         [self createVideoWriter];
     }
@@ -204,7 +204,7 @@
 -(void)writeSampleBufferRef:(CMSampleBufferRef)sampleBufferRef frame:(NSInteger)frame
 {
     dispatch_async(videoWriterQueue, ^{
-//        NSLog(@"did write %ld",frame);
+        NSLog(@"did write %ld",frame);
         if (sampleBufferRef) {
             if([videoWriterInput isReadyForMoreMediaData]){
                 BOOL success = [self writeToMovie:sampleBufferRef frame:frame];

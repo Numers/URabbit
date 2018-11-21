@@ -34,7 +34,6 @@
 @property(nonatomic, strong) NSMutableArray<Frame *> *frames;
 @property(nonatomic, strong) UTVideoReader *fgVideoReader;
 @property(nonatomic, strong) UTVideoReader *maskVideoReader;
-@property(nonatomic, strong) UTVideoReader *maskBaseImageReader;
 @property(nonatomic, strong) UTVideoReader *bgVideoReader;
 @property(nonatomic, strong) NSOperationQueue *operationQueue;
 @property(nonatomic) CGFloat currentFps;

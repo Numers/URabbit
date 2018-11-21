@@ -69,7 +69,6 @@
             AnimationForMedia *animation = [media.animationForMediaList objectAtIndex:frame.animationIndex];
             ComposeRotationOperation *operation = [[ComposeRotationOperation alloc] initWithTemplateSampleBufferRef:templateSampleBufferRef maskSampleBufferRef:maskSampleBufferRef frame:index snapshotMedia:media animation:animation pixelSize:pixelSize fps:self.resource.fps];
             operation.delegate = self;
-            operation.queuePriority = index;
             [self.operationQueue addOperation:operation];
         }else{
             ComposeNomalOperation *normalOperation = [[ComposeNomalOperation alloc] initWithTemplateSampleBufferRef:templateSampleBufferRef frame:index];

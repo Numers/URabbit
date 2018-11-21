@@ -26,5 +26,5 @@
 @property(nonatomic) CGSize useImageSize;
 @property(nonatomic) CGFloat useRotateAngle;
 -(void)setPictureImage:(UIImage *)image;
--(void)generateImageWithSize:(CGSize)size;
+-(void)generateImageWithSize:(CGSize)size style:(TemplateStyle)style;
 @end

@@ -47,15 +47,9 @@
         }
     }
     
-    if (_maskBaseImageReader == nil) {
-        if (_resource.maskBaseImage) {
-            _maskBaseImageReader = [[UTVideoReader alloc] initWithUrl:_resource.maskBaseImage pixelFormatType:kCVPixelFormatType_32ARGB];
-        }
-    }
-    
     if (_bgVideoReader == nil) {
         if (_resource.bgVideo) {
-            _bgVideoReader = [[UTVideoReader alloc] initWithUrl:_resource.bgVideo pixelFormatType:kCVPixelFormatType_32ARGB];
+            _bgVideoReader = [[UTVideoReader alloc] initWithUrl:_resource.bgVideo pixelFormatType:kCVPixelFormatType_32BGRA];
         }
     }
 }
@@ -151,11 +145,7 @@
         [_maskVideoReader removeVideoReader];
         _maskVideoReader = nil;
     }
-    
-    if (_maskBaseImageReader) {
-        [_maskBaseImageReader removeVideoReader];
-        _maskBaseImageReader = nil;
-    }
+
     
     if (_bgVideoReader) {
         [_bgVideoReader removeVideoReader];

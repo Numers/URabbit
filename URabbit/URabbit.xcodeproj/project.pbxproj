@@ -27,6 +27,8 @@
 		14266C8621A5692F008A1926 /* UTTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8521A5692F008A1926 /* UTTextLabel.m */; };
 		14266C8A21A5939F008A1926 /* UTKeyboardTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8921A5939F008A1926 /* UTKeyboardTextField.m */; };
 		14266C8E21A59794008A1926 /* UTKeyboardTextFieldManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8D21A59794008A1926 /* UTKeyboardTextFieldManager.m */; };
+		14266C9121A5CBFD008A1926 /* ComposeCoverStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */; };
+		14266C9421A5CC46008A1926 /* ComposeCoverOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */; };
 		14482EF821A3BD9A00D640F1 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EF721A3BD9A00D640F1 /* Media.m */; };
 		14482EFB21A3BE3C00D640F1 /* SnapshotMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFA21A3BE3C00D640F1 /* SnapshotMedia.m */; };
 		14482EFE21A3BE5C00D640F1 /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFD21A3BE5C00D640F1 /* Text.m */; };
@@ -341,6 +343,10 @@
 		14266C8921A5939F008A1926 /* UTKeyboardTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTKeyboardTextField.m; sourceTree = "<group>"; };
 		14266C8C21A59794008A1926 /* UTKeyboardTextFieldManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTKeyboardTextFieldManager.h; sourceTree = "<group>"; };
 		14266C8D21A59794008A1926 /* UTKeyboardTextFieldManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTKeyboardTextFieldManager.m; sourceTree = "<group>"; };
+		14266C8F21A5CBFD008A1926 /* ComposeCoverStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeCoverStrategy.h; sourceTree = "<group>"; };
+		14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeCoverStrategy.m; sourceTree = "<group>"; };
+		14266C9221A5CC46008A1926 /* ComposeCoverOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeCoverOperation.h; sourceTree = "<group>"; };
+		14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeCoverOperation.m; sourceTree = "<group>"; };
 		14482EF621A3BD9A00D640F1 /* Media.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
 		14482EF721A3BD9A00D640F1 /* Media.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
 		14482EF921A3BE3C00D640F1 /* SnapshotMedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotMedia.h; sourceTree = "<group>"; };
@@ -1111,6 +1117,10 @@
 				14482F0F21A3F12200D640F1 /* Resource.m */,
 				14266C7D21A52A0D008A1926 /* ComposeNomalOperation.h */,
 				14266C7E21A52A0D008A1926 /* ComposeNomalOperation.m */,
+				14266C8F21A5CBFD008A1926 /* ComposeCoverStrategy.h */,
+				14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */,
+				14266C9221A5CC46008A1926 /* ComposeCoverOperation.h */,
+				14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1665,6 +1675,7 @@
 				146B637A2190274C00A3A679 /* UIImage+Gradient.m in Sources */,
 				14580394216F2D6F006BB33D /* UINavigationController+NavigationBar.m in Sources */,
 				14482F2521A4761D00D640F1 /* UTPhotoEditNotMoveView.m in Sources */,
+				14266C9421A5CC46008A1926 /* ComposeCoverOperation.m in Sources */,
 				146B637E219033B600A3A679 /* UTVideoInfoView.m in Sources */,
 				14580362216F2BCC006BB33D /* NetWorkManager.m in Sources */,
 				1458037D216F2BCC006BB33D /* PushMessageManager.m in Sources */,
@@ -1673,6 +1684,7 @@
 				14482F0721A3BEA900D640F1 /* AnimationForMedia.m in Sources */,
 				145803D82170705B001B9535 /* UTVideoManager.m in Sources */,
 				14580364216F2BCC006BB33D /* URLManager.m in Sources */,
+				14266C9121A5CBFD008A1926 /* ComposeCoverStrategy.m in Sources */,
 				146B63CD2192EAD400A3A679 /* UTSegmentView.m in Sources */,
 				1486C4EA21946DB400809626 /* UTFilterView.m in Sources */,
 				146B63C72192B35400A3A679 /* UTVideoComposeViewController.m in Sources */,

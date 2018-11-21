@@ -10,4 +10,5 @@
 
 @interface UTPhotoEditNotMoveView : UTPhotoEditView
 -(void)setPictureImage:(UIImage *)image;
+-(void)generateImageWithSize:(CGSize)size style:(TemplateStyle)style;
 @end

@@ -15,6 +15,7 @@
 {
     Snapshot *currentSnapshot;
     UTPhotoEditView *editView;
+    TemplateStyle currentStyle;
 }
 @property(nonatomic, weak) id<UTPhotoEditCollectionViewCellProtocol> delegate;
 -(void)setupCellWithSnapshot:(Snapshot *)snapshot style:(TemplateStyle)style;

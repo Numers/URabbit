@@ -14,6 +14,7 @@
 #import "UTPhotoEditNotMoveView.h"
 #import "ComposeRotationStrategy.h"
 #import "ComposeAnimationStrategy.h"
+#import "ComposeCoverStrategy.h"
 #import "VideoCompose.h"
 #import "UTVideoManager.h"
 #import "UTImageHanderManager.h"
@@ -143,6 +144,11 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     }
     
     [containerView generateImagesToCompose];
+//    UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    Snapshot *snapshot = [currentSnapshots objectAtIndex:0];
+//
+//    [cell setPictureImage:snapshot.snapshotImage];
+//    return;
     NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     videoPath = [NSString stringWithFormat:@"%@/video-compose.mp4",videoDic];
     
@@ -154,6 +160,11 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         [strategy createVideoReader];
     }else if (currentResource.style == TemplateStyleAnimation){
         strategy = [[ComposeAnimationStrategy alloc] initWithResource:currentResource snapshot:currentSnapshots fps:currentResource.fps];
+        [strategy initlizeData];
+        strategy.delegate = self;
+        [strategy createVideoReader];
+    }else if(currentResource.style == TemplateStyleFriend){
+        strategy = [[ComposeCoverStrategy alloc] initWithResource:currentResource snapshot:currentSnapshots fps:currentResource.fps];
         [strategy initlizeData];
         strategy.delegate = self;
         [strategy createVideoReader];

@@ -63,13 +63,15 @@
     [snapshotMedia.demoImageView setImage:image];
 }
 
--(void)generateImageWithSize:(CGSize)size
+-(void)generateImageWithSize:(CGSize)size style:(TemplateStyle)style
 {
-    float scale = size.height / self.frame.size.height;
-    float imageCenterX = currentCenterPoint.x * scale;
-    float imageCenterY = currentCenterPoint.y * scale;
-    CGSize imageSize = CGSizeMake(_useImageSize.width * scale, _useImageSize.height * scale);
-    snapshotMedia.resultImage =  [self imageWithCenter:CGPointMake(imageCenterX, size.height - imageCenterY) image:[snapshotMedia.demoImage fixOrientation] imageSize:imageSize rotation:_useRotateAngle toSize:size];
+    if (style == TemplateStyleGoodNight) {
+        float scale = size.height / self.frame.size.height;
+        float imageCenterX = currentCenterPoint.x * scale;
+        float imageCenterY = currentCenterPoint.y * scale;
+        CGSize imageSize = CGSizeMake(_useImageSize.width * scale, _useImageSize.height * scale);
+        snapshotMedia.resultImage =  [self imageWithCenter:CGPointMake(imageCenterX, size.height - imageCenterY) image:[snapshotMedia.demoImage fixOrientation] imageSize:imageSize rotation:_useRotateAngle toSize:size];
+    }
 }
 
 -(UIImage *)imageWithCenter:(CGPoint)center image:(UIImage *)image imageSize:(CGSize)imageSize rotation:(CGFloat)rotation toSize:(CGSize)size

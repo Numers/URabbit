@@ -36,6 +36,7 @@
     currentSnapshot = snapshot;
     CGFloat height = self.frame.size.height;
     CGFloat width = height * (snapshot.videoSize.width / snapshot.videoSize.height);
+    currentStyle = style;
     if (style == TemplateStyleGoodNight) {
         editView = [[UTPhotoEditCanMoveView alloc] initWithSnapshot:snapshot frame:CGRectMake(0, 0, width, height)];
     }else if (style == TemplateStyleAnimation){
@@ -56,7 +57,12 @@
 {
     if ([editView isKindOfClass:[UTPhotoEditCanMoveView class]]) {
         UTPhotoEditCanMoveView *view = (UTPhotoEditCanMoveView *)editView;
-        [view generateImageWithSize:currentSnapshot.videoSize];
+        [view generateImageWithSize:currentSnapshot.videoSize style:currentStyle];
+    }
+    
+    if ([editView isKindOfClass:[UTPhotoEditNotMoveView class]]) {
+        UTPhotoEditNotMoveView *view = (UTPhotoEditNotMoveView *)editView;
+        [view generateImageWithSize:currentSnapshot.videoSize style:currentStyle];
     }
 }
 
