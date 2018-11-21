@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @protocol UTPictureImageLayerViewProtocol<NSObject>
--(void)selectPicture;
+-(void)selectPictureWithMediaName:(NSString *)mediaName;
 @end
 @interface UTPictureImageLayerView : UIImageView
 {

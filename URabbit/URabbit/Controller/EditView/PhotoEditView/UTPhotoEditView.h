@@ -13,7 +13,7 @@
 @end
 @interface UTPhotoEditView : UIView
 {
-    UITapGestureRecognizer *tapGesture;
+    
 }
 @property(nonatomic, strong) UTTplImageLayerView *templateImageView;
 @property(nonatomic, weak) id<UTPhotoEditViewProtocol> delegate;

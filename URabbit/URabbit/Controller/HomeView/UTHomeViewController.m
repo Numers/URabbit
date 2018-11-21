@@ -213,7 +213,9 @@
         if (templateArr && templateArr.count > 0) {
             for (NSDictionary *dic in templateArr) {
                 HomeTemplate *template = [[HomeTemplate alloc] initWithDictionary:dic];
-                [choosenTemplateList addObject:template];
+                if (template.duration > 0) {
+                    [choosenTemplateList addObject:template];
+                }
             }
             [choosenTemplateView setDatasource:choosenTemplateList];
         }
@@ -231,7 +233,9 @@
         if (templateArr && templateArr.count > 0) {
             for (NSDictionary *dic in templateArr) {
                 HomeTemplate *template = [[HomeTemplate alloc] initWithDictionary:dic];
-                [latestTemplateList addObject:template];
+                if (template.duration > 0) {
+                    [latestTemplateList addObject:template];
+                }
             }
             [latestTemplateView setDatasource:latestTemplateList];
         }

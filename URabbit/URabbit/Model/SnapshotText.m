@@ -8,6 +8,8 @@
 
 #import "SnapshotText.h"
 #import "Custom.h"
+#import "UTTextLabel.h"
+#import "Text.h"
 @implementation SnapshotText
 -(instancetype)initWithDictionary:(NSDictionary *)dic withCustom:(Custom *)custom
 {
@@ -20,12 +22,53 @@
         _angle = [[dic objectForKey:@"angle"] floatValue];
         _opacity = [[dic objectForKey:@"pellucidity"] floatValue];
         NSString *textName = [dic objectForKey:@"name"];
+        _textLabel = [[UTTextLabel alloc] init];
         if (textName) {
             _textName = textName;
+            _textLabel.textName = textName;
             _text = [self filterTextWithName:textName inArray:custom.textList];
+            if (_text) {
+//                [_textLabel setFont:[UIFont systemFontOfSize:_text.fontSize]];
+                [_textLabel setTextColor:[UIColor colorFromHexString:_text.fontColor]];
+                switch (_text.horizontalAlignType) {
+                    case TextHorizontalAlignLeft:
+                        [_textLabel setTextAlignment:NSTextAlignmentLeft];
+                        break;
+                    case TextHorizontalAlignRight:
+                        [_textLabel setTextAlignment:NSTextAlignmentRight];
+                        break;
+                    case TextHorizontalAlignCenter:
+                        [_textLabel setTextAlignment:NSTextAlignmentCenter];
+                        break;
+                    default:
+                        break;
+                }
+                
+                switch (_text.verticalAlignType) {
+                    case TextVerticalAlignTop:
+                        [_textLabel setVerticalAlignment:VerticalAlignmentTop];
+                        break;
+                    case TextVerticalAlignBottom:
+                        [_textLabel setVerticalAlignment:VerticalAlignmentBottom];
+                        break;
+                    case TextVerticalAlignCenter:
+                        [_textLabel setVerticalAlignment:VerticalAlignmentMiddle];
+                        break;
+                    default:
+                        break;
+                }
+                
+                [_textLabel setText:_text.content];
+            }
         }
     }
     return self;
+}
+
+-(void)changeText:(NSString *)text
+{
+    [_textLabel setText:text];
+    _text.content = text;
 }
 
 

@@ -24,6 +24,9 @@
 		14262A48218C45F000768E6A /* LJJWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A46218C45F000768E6A /* LJJWaterFlowLayout.m */; };
 		14266C7F21A52A0D008A1926 /* ComposeNomalOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C7E21A52A0D008A1926 /* ComposeNomalOperation.m */; };
 		14266C8221A53EDE008A1926 /* SwitchAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8121A53EDE008A1926 /* SwitchAnimationManager.m */; };
+		14266C8621A5692F008A1926 /* UTTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8521A5692F008A1926 /* UTTextLabel.m */; };
+		14266C8A21A5939F008A1926 /* UTKeyboardTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8921A5939F008A1926 /* UTKeyboardTextField.m */; };
+		14266C8E21A59794008A1926 /* UTKeyboardTextFieldManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8D21A59794008A1926 /* UTKeyboardTextFieldManager.m */; };
 		14482EF821A3BD9A00D640F1 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EF721A3BD9A00D640F1 /* Media.m */; };
 		14482EFB21A3BE3C00D640F1 /* SnapshotMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFA21A3BE3C00D640F1 /* SnapshotMedia.m */; };
 		14482EFE21A3BE5C00D640F1 /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFD21A3BE5C00D640F1 /* Text.m */; };
@@ -332,6 +335,12 @@
 		14266C7E21A52A0D008A1926 /* ComposeNomalOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeNomalOperation.m; sourceTree = "<group>"; };
 		14266C8021A53EDE008A1926 /* SwitchAnimationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchAnimationManager.h; sourceTree = "<group>"; };
 		14266C8121A53EDE008A1926 /* SwitchAnimationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchAnimationManager.m; sourceTree = "<group>"; };
+		14266C8421A5692F008A1926 /* UTTextLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTTextLabel.h; sourceTree = "<group>"; };
+		14266C8521A5692F008A1926 /* UTTextLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTTextLabel.m; sourceTree = "<group>"; };
+		14266C8821A5939F008A1926 /* UTKeyboardTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTKeyboardTextField.h; sourceTree = "<group>"; };
+		14266C8921A5939F008A1926 /* UTKeyboardTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTKeyboardTextField.m; sourceTree = "<group>"; };
+		14266C8C21A59794008A1926 /* UTKeyboardTextFieldManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTKeyboardTextFieldManager.h; sourceTree = "<group>"; };
+		14266C8D21A59794008A1926 /* UTKeyboardTextFieldManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTKeyboardTextFieldManager.m; sourceTree = "<group>"; };
 		14482EF621A3BD9A00D640F1 /* Media.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
 		14482EF721A3BD9A00D640F1 /* Media.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
 		14482EF921A3BE3C00D640F1 /* SnapshotMedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotMedia.h; sourceTree = "<group>"; };
@@ -807,6 +816,33 @@
 			path = UTHomeTemplateView;
 			sourceTree = "<group>";
 		};
+		14266C8321A5690E008A1926 /* UTTextLabel */ = {
+			isa = PBXGroup;
+			children = (
+				14266C8421A5692F008A1926 /* UTTextLabel.h */,
+				14266C8521A5692F008A1926 /* UTTextLabel.m */,
+			);
+			path = UTTextLabel;
+			sourceTree = "<group>";
+		};
+		14266C8721A59135008A1926 /* UTKeyboardTextField */ = {
+			isa = PBXGroup;
+			children = (
+				14266C8821A5939F008A1926 /* UTKeyboardTextField.h */,
+				14266C8921A5939F008A1926 /* UTKeyboardTextField.m */,
+			);
+			path = UTKeyboardTextField;
+			sourceTree = "<group>";
+		};
+		14266C8B21A5970D008A1926 /* UTkeyboardTextFieldManager */ = {
+			isa = PBXGroup;
+			children = (
+				14266C8C21A59794008A1926 /* UTKeyboardTextFieldManager.h */,
+				14266C8D21A59794008A1926 /* UTKeyboardTextFieldManager.m */,
+			);
+			path = UTkeyboardTextFieldManager;
+			sourceTree = "<group>";
+		};
 		14482F1C21A46FAA00D640F1 /* UTPictureImageLayerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,6 +951,7 @@
 		14580347216F2BCC006BB33D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				14266C8B21A5970D008A1926 /* UTkeyboardTextFieldManager */,
 				148D0F83219D9C4900B4E59A /* AnimationManager */,
 				145803D921707B5A001B9535 /* UTImageHanderManager */,
 				145803D52170703A001B9535 /* UTVideoManager */,
@@ -1130,6 +1167,8 @@
 		145803C321703C80001B9535 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				14266C8721A59135008A1926 /* UTKeyboardTextField */,
+				14266C8321A5690E008A1926 /* UTTextLabel */,
 				14482F1C21A46FAA00D640F1 /* UTPictureImageLayerView */,
 				146B638F2190723B00A3A679 /* UTTplImageLayerView */,
 				145803C421703C8C001B9535 /* BlendAlgorithmFrontView */,
@@ -1614,6 +1653,7 @@
 				14580375216F2BCC006BB33D /* LaunchAnimateView.m in Sources */,
 				14262A30218AF02300768E6A /* LLTabBar.m in Sources */,
 				14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */,
+				14266C8A21A5939F008A1926 /* UTKeyboardTextField.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
 				146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */,
 				14482F0121A3BE6C00D640F1 /* SnapshotText.m in Sources */,
@@ -1642,6 +1682,7 @@
 				146B638221904DF900A3A679 /* UTVideoAuthorView.m in Sources */,
 				14678FF2218ECDBB00CD7F4B /* UTHomeRecommendView.m in Sources */,
 				1458039A216F306E006BB33D /* Member.m in Sources */,
+				14266C8E21A59794008A1926 /* UTKeyboardTextFieldManager.m in Sources */,
 				14266C8221A53EDE008A1926 /* SwitchAnimationManager.m in Sources */,
 				14580392216F2D6F006BB33D /* UITabBar+CustomerTabBar.m in Sources */,
 				04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */,
@@ -1672,6 +1713,7 @@
 				1458046D216F46A8006BB33D /* Material.m in Sources */,
 				14482F1F21A46FCC00D640F1 /* UTPictureImageLayerView.m in Sources */,
 				145B6134216F27B600DA950E /* AppDelegate.m in Sources */,
+				14266C8621A5692F008A1926 /* UTTextLabel.m in Sources */,
 				14580368216F2BCC006BB33D /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				14678FFE218EE11C00CD7F4B /* UTHomeTemplateView.m in Sources */,
 				1458037C216F2BCC006BB33D /* AppStartManager.m in Sources */,

@@ -22,6 +22,10 @@
     self = [super initWithSnapshot:snapshot frame:frame];
     if (self) {
         [self setUserInteractionEnabled:YES];
+        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+        tapGesture.numberOfTapsRequired = 1;
+        [self addGestureRecognizer:tapGesture];
+        
         panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
         [panGesture setMaximumNumberOfTouches:1];
         [self addGestureRecognizer:panGesture];
@@ -86,6 +90,11 @@
     return newImage;
 }
 
+-(void)handleTapGesture:(UITapGestureRecognizer *)gesture
+{
+    [self selectPictureWithMediaName:nil];
+}
+
 -(void)handlePanGesture:(UIPanGestureRecognizer *)gesture
 {
     if([gesture state] == UIGestureRecognizerStateBegan) {
@@ -130,7 +139,7 @@
 }
 
 #pragma -mark UTPictureImageLayerViewProtocol
--(void)selectPicture
+-(void)selectPictureWithMediaName:(NSString *)mediaName
 {
     PHAuthorizationStatus authStatusAlbm  = [PHPhotoLibrary authorizationStatus];
     if (authStatusAlbm == PHAuthorizationStatusAuthorized || authStatusAlbm == PHAuthorizationStatusNotDetermined) {

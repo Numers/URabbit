@@ -23,10 +23,6 @@
             UIImage *templateImage = [UIImage imageWithContentsOfFile:snapshot.foregroundImage];
             [_templateImageView setImage:templateImage];
             [self addSubview:_templateImageView];
-            
-            tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-            tapGesture.numberOfTapsRequired = 1;
-            [self addGestureRecognizer:tapGesture];
         }
         [self makeConstraints];
     }
@@ -45,15 +41,6 @@
     }
 }
 
--(void)handleTapGesture:(UITapGestureRecognizer *)gesture
-{
-    PHAuthorizationStatus authStatusAlbm  = [PHPhotoLibrary authorizationStatus];
-    if (authStatusAlbm == PHAuthorizationStatusAuthorized || authStatusAlbm == PHAuthorizationStatusNotDetermined) {
-        if ([self.delegate respondsToSelector:@selector(openImagePickerView)]) {
-            [self.delegate openImagePickerView];
-        }
-    }
-}
 
 -(void)drawRect:(CGRect)rect
 {

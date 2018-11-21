@@ -233,8 +233,9 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     if ([currentEditView isKindOfClass:[UTPhotoEditCanMoveView class]]) {
         UTPhotoEditCanMoveView *view = (UTPhotoEditCanMoveView *)currentEditView;
         [view setPictureImage:image];
-    }else{
-        
+    }else if([currentEditView isKindOfClass:[UTPhotoEditNotMoveView class]]){
+        UTPhotoEditNotMoveView *view = (UTPhotoEditNotMoveView *)currentEditView;
+        [view setPictureImage:image];
     }
     [picker dismissViewControllerAnimated:YES completion:^{
         

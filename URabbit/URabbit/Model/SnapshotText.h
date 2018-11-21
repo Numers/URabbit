@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Text,Custom;
+@class Text,Custom,UTTextLabel;
 @interface SnapshotText : NSObject
 @property(nonatomic, strong) Text *text;
 @property(nonatomic, copy) NSString *textName;
@@ -18,5 +18,8 @@
 @property(nonatomic) CGFloat angle;
 @property(nonatomic) CGFloat opacity;
 
+@property(nonatomic, strong) UTTextLabel *textLabel;
+
+-(void)changeText:(NSString *)text;
 -(instancetype)initWithDictionary:(NSDictionary *)dic withCustom:(Custom *)custom;
 @end

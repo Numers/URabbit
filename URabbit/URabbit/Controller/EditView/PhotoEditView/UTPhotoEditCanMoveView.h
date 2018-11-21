@@ -11,6 +11,7 @@
 @interface UTPhotoEditCanMoveView : UTPhotoEditView
 {
     SnapshotMedia *snapshotMedia;
+    UITapGestureRecognizer *tapGesture;
     UTPictureImageLayerView *pictureImageView;
     UIPanGestureRecognizer *panGesture;
     UIPinchGestureRecognizer *pinGesture;

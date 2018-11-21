@@ -41,7 +41,7 @@
     }else if (style == TemplateStyleAnimation){
         editView = [[UTPhotoEditCanMoveView alloc] initWithSnapshot:snapshot frame:CGRectMake(0, 0, width, height)];
     }
-    else{
+    else if(style == TemplateStyleFriend){
         editView = [[UTPhotoEditNotMoveView alloc] initWithSnapshot:snapshot frame:CGRectMake(0, 0, width, height)];
     }
     

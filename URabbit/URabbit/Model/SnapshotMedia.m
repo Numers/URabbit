@@ -44,6 +44,12 @@
     return self;
 }
 
+-(void)changePicture:(UIImage *)picture
+{
+    _demoImage = picture;
+    [_demoImageView setImage:picture];
+}
+
 -(Media *)filterMediaWithName:(NSString *)name inArray:(NSArray *)array
 {
     Media *media = nil;

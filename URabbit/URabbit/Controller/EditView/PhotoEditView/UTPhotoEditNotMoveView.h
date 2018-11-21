@@ -9,4 +9,5 @@
 #import "UTPhotoEditView.h"
 
 @interface UTPhotoEditNotMoveView : UTPhotoEditView
+-(void)setPictureImage:(UIImage *)image;
 @end

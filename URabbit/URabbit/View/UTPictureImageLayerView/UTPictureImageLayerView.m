@@ -24,8 +24,8 @@
 -(void)handleTapGesture:(UITapGestureRecognizer *)gesture
 {
     
-    if ([self.delegate respondsToSelector:@selector(selectPicture)]) {
-        [self.delegate selectPicture];
+    if ([self.delegate respondsToSelector:@selector(selectPictureWithMediaName:)]) {
+        [self.delegate selectPictureWithMediaName:_mediaName];
     }
 }
 @end

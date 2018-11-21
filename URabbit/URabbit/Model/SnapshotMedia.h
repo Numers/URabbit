@@ -22,5 +22,6 @@
 @property(nonatomic, strong) NSMutableArray<AnimationForMedia *> *animationForMediaList;
 @property(nonatomic, strong) NSMutableArray<AnimationSwitch *> *animationForSwitchList;
 
+-(void)changePicture:(UIImage *)picture;
 -(instancetype)initWithDictionary:(NSDictionary *)dic basePath:(NSString *)basePath withCustom:(Custom *)custom;
 @end
