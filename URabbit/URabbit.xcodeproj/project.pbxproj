@@ -44,6 +44,7 @@
 		144357CC21A6ACDA00FEA9AE /* PSTGridLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357BE21A6ACDA00FEA9AE /* PSTGridLayoutItem.m */; };
 		144357CF21A6B53000FEA9AE /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357CE21A6B53000FEA9AE /* MusicInfo.m */; };
 		144357D321A6B87200FEA9AE /* UTMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357D221A6B87200FEA9AE /* UTMusicCollectionViewCell.m */; };
+		144357D521A6D4D300FEA9AE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144357D421A6D4D300FEA9AE /* ImageIO.framework */; };
 		14482EF821A3BD9A00D640F1 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EF721A3BD9A00D640F1 /* Media.m */; };
 		14482EFB21A3BE3C00D640F1 /* SnapshotMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFA21A3BE3C00D640F1 /* SnapshotMedia.m */; };
 		14482EFE21A3BE5C00D640F1 /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFD21A3BE5C00D640F1 /* Text.m */; };
@@ -389,6 +390,7 @@
 		144357CE21A6B53000FEA9AE /* MusicInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicInfo.m; sourceTree = "<group>"; };
 		144357D121A6B87200FEA9AE /* UTMusicCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMusicCollectionViewCell.h; sourceTree = "<group>"; };
 		144357D221A6B87200FEA9AE /* UTMusicCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMusicCollectionViewCell.m; sourceTree = "<group>"; };
+		144357D421A6D4D300FEA9AE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		14482EF621A3BD9A00D640F1 /* Media.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
 		14482EF721A3BD9A00D640F1 /* Media.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
 		14482EF921A3BE3C00D640F1 /* SnapshotMedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotMedia.h; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				144357D521A6D4D300FEA9AE /* ImageIO.framework in Frameworks */,
 				14580466216F3CB1006BB33D /* CoreMedia.framework in Frameworks */,
 				14580464216F3CAA006BB33D /* CoreVideo.framework in Frameworks */,
 				14580462216F3CA2006BB33D /* OpenGLES.framework in Frameworks */,
@@ -1552,6 +1555,7 @@
 		7B66372339C95543FFFDEC4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				144357D421A6D4D300FEA9AE /* ImageIO.framework */,
 				14580465216F3CB1006BB33D /* CoreMedia.framework */,
 				14580463216F3CAA006BB33D /* CoreVideo.framework */,
 				14580461216F3CA2006BB33D /* OpenGLES.framework */,
@@ -1661,6 +1665,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/WZLBadge/WZLBadge.framework",
+				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
 				"${BUILT_PRODUCTS_DIR}/iCards/iCards.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1673,6 +1678,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZLBadge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCards.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

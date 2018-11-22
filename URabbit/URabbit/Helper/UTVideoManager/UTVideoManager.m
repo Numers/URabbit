@@ -9,11 +9,13 @@
 #import "UTVideoManager.h"
 #import <AVFoundation/AVFoundation.h>
 #import "GPUImage.h"
+#import <YYImage/YYImage.h>
 @interface UTVideoManager()
 {
     GPUImageMovie *movieFile;
     GPUImageMovieWriter *movieWriter;
 }
+@property(nonatomic, strong) GPUImageUIElement *uiElement;
 @end
 @implementation UTVideoManager
 +(instancetype)shareManager
@@ -198,6 +200,74 @@
     //开辟子线程处理耗时操作
     [session exportAsynchronouslyWithCompletionHandler:^{
         callback();
+    }];
+}
+
+-(void)addWebpWithMovieUrl:(NSString *)moviePath withWebpPath:(NSString *)webpPath output:(NSString *)outputPath videoSize:(CGSize)size completely:(void (^)(BOOL isSucess))callback
+{
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    UIImageView *waterMarkImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    [contentView addSubview:waterMarkImageView];
+    NSData *data = [NSData dataWithContentsOfFile:webpPath];
+    YYImageDecoder *decoder = [YYImageDecoder decoderWithData:data scale:2.0];
+    __block NSInteger currentIndex = 0;
+    UIImage *image = [decoder frameAtIndex:currentIndex decodeForDisplay:YES].image;
+    [waterMarkImageView setImage:image];
+    
+    //创建水印图形
+    _uiElement = [[GPUImageUIElement alloc] initWithView:contentView];
+    NSURL *inputURL = [NSURL fileURLWithPath:moviePath];
+    movieFile = [[GPUImageMovie alloc] initWithURL:inputURL];
+    movieFile.runBenchmark = YES;
+    movieFile.playAtActualSpeed = NO;
+    //创建滤镜
+    GPUImageAlphaBlendFilter *filter = [[GPUImageAlphaBlendFilter alloc] init];
+    filter.mix = 1.0;
+    GPUImageFilter *videoFilter = [[GPUImageFilter alloc] init];
+    [movieFile addTarget:videoFilter];
+    [videoFilter addTarget:filter];
+    [_uiElement addTarget:filter];
+    
+    __weak typeof(self) weakSelf = self;
+    [videoFilter setFrameProcessingCompletionBlock:^(GPUImageOutput *output, CMTime time) {
+        currentIndex++;
+        UIImage *image = [decoder frameAtIndex:currentIndex decodeForDisplay:YES].image;
+        if (image) {
+            runOnMainQueueWithoutDeadlocking(^{
+                waterMarkImageView.image = image;
+                
+            });
+        }
+        [weakSelf.uiElement update];
+    }];
+    
+    unlink([outputPath UTF8String]);
+    if([[NSFileManager defaultManager] fileExistsAtPath:outputPath])
+    {
+        [[NSFileManager defaultManager] removeItemAtPath:outputPath error:nil];
+    }
+    NSURL *outputURL = [NSURL fileURLWithPath:outputPath];
+    movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:outputURL size:size];
+    [filter addTarget:movieWriter];
+    
+    movieWriter.shouldPassthroughAudio = NO;
+    movieFile.audioEncodingTarget = nil;
+    [movieFile enableSynchronizedEncodingUsingMovieWriter:movieWriter];
+    [movieWriter startRecording];
+    [movieFile startProcessing];
+    
+    __weak typeof(movieWriter) weakWriter = movieWriter;
+    [movieWriter setCompletionBlock:^{
+        [filter removeTarget:weakWriter];
+        [weakWriter finishRecording];
+        callback(YES);
+    }];
+    
+    [movieWriter setFailureBlock:^(NSError *error) {
+        NSLog(@"合成失败 error=%@",error.description);
+        [filter removeTarget:weakWriter];
+        [weakWriter finishRecording];
+        callback(NO);
     }];
 }
 @end

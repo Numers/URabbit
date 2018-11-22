@@ -90,6 +90,15 @@
         CGContextRotateCTM(mainViewContentContext,rotateAngle*(index - animation.range.location));
         CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
         CGContextRestoreGState(mainViewContentContext);
+    }else if(animation.type == AnimationScale){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGFloat scaleRatio = (animation.endRatio - animation.startRatio) / animation.range.length;
+        CGContextScaleCTM(mainViewContentContext,animation.startRatio+scaleRatio*(index - animation.range.location),animation.startRatio+scaleRatio*(index - animation.range.location));
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
+        CGContextRestoreGState(mainViewContentContext);
     }else{
         CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
     }

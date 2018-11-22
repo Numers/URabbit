@@ -61,4 +61,15 @@
  @param callback 回调
  */
 -(void)mergeMovie:(NSString *)moviePath withAudio:(NSString *)audioPath output:(NSString *)outputPath completely:(void (^)(void))callback;
+
+
+/**
+ 添加gif水印
+
+ @param moviePath 视频路径
+ @param webpPath gif路径
+ @param outputPath 输出路径
+ @param callback 回调
+ */
+-(void)addWebpWithMovieUrl:(NSString *)moviePath withWebpPath:(NSString *)webpPath output:(NSString *)outputPath videoSize:(CGSize)size completely:(void (^)(BOOL isSucess))callback;
 @end

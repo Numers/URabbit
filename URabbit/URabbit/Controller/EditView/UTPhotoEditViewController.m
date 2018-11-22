@@ -321,16 +321,54 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                 if ([[NSFileManager defaultManager] fileExistsAtPath:videoPath]) {
                     [[NSFileManager defaultManager] removeItemAtPath:videoPath error:nil];
                 }
-                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:outPutURL images:imageList];
-                [self.navigationController pushViewController:videoComposeVC animated:YES];
-                [imageList removeAllObjects];
+                
+                if (currentResource.fgWebp) {
+                    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+                    NSString *videoUrl = [NSString stringWithFormat:@"%@/animation.mp4",documentsDirectory];
+                    [[UTVideoManager shareManager] addWebpWithMovieUrl:outPutURL withWebpPath:currentResource.fgWebp output:videoUrl videoSize:currentResource.videoSize completely:^(BOOL isSucess) {
+                        if (success) {
+                            if ([[NSFileManager defaultManager] fileExistsAtPath:outPutURL]) {
+                                [[NSFileManager defaultManager] removeItemAtPath:outPutURL error:nil];
+                            }
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoUrl images:imageList];
+                                [self.navigationController pushViewController:videoComposeVC animated:YES];
+                                [imageList removeAllObjects];
+                            });
+                        }
+                    }];
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:outPutURL images:imageList];
+                        [self.navigationController pushViewController:videoComposeVC animated:YES];
+                        [imageList removeAllObjects];
+                    });
+                }
             }];
         }else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoPath images:imageList];
-                [self.navigationController pushViewController:videoComposeVC animated:YES];
-                [imageList removeAllObjects];
-            });
+            if (currentResource.fgWebp) {
+                NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+                NSString *videoUrl = [NSString stringWithFormat:@"%@/animation.mp4",documentsDirectory];
+                [[UTVideoManager shareManager] addWebpWithMovieUrl:videoPath withWebpPath:currentResource.fgWebp output:videoUrl videoSize:currentResource.videoSize completely:^(BOOL isSucess) {
+                    if (success) {
+                        if ([[NSFileManager defaultManager] fileExistsAtPath:videoPath]) {
+                            [[NSFileManager defaultManager] removeItemAtPath:videoPath error:nil];
+                        }
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoUrl images:imageList];
+                            [self.navigationController pushViewController:videoComposeVC animated:YES];
+                            [imageList removeAllObjects];
+                        });
+                    }
+                }];
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoPath images:imageList];
+                    [self.navigationController pushViewController:videoComposeVC animated:YES];
+                    [imageList removeAllObjects];
+                });
+            }
+            
         }
     }
 }

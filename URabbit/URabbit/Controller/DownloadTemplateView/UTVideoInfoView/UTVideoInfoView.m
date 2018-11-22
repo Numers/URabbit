@@ -52,6 +52,7 @@
     [playerController setContentURL:[NSURL URLWithString:homeTemplate.demoUrl]];
     [playerController prepareToPlay];
     [videoNameLabel setText:homeTemplate.title];
+    [videoDurationLabel setText:[AppUtils getMMSSFromSS:homeTemplate.duration]];
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:13.0]};
     CGSize size = [homeTemplate.summary boundingRectWithSize:CGSizeMake(self.frame.size.width - 30, 36) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading  attributes:attribute context:nil].size;
     [videoDescLabel setText:homeTemplate.summary];

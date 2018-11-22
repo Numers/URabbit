@@ -28,8 +28,13 @@
             _textLabel.textName = textName;
             _text = [self filterTextWithName:textName inArray:custom.textList];
             if (_text) {
-//                [_textLabel setFont:[UIFont systemFontOfSize:_text.fontSize]];
-                [_textLabel setTextColor:[UIColor colorFromHexString:_text.fontColor]];
+//                if (_text.fontSize > 0) {
+//                    [_textLabel setFont:[UIFont systemFontOfSize:_text.fontSize]];
+//                }
+
+                if (_text.fontColor) {
+                    [_textLabel setTextColor:[UIColor colorFromHexString:_text.fontColor]];
+                }
                 switch (_text.horizontalAlignType) {
                     case TextHorizontalAlignLeft:
                         [_textLabel setTextAlignment:NSTextAlignmentLeft];

@@ -401,6 +401,6 @@
 
 -(void)didSelectMusic:(MusicInfo *)info
 {
-    audioURL = info.musicUrl;
+    [self changeMusic:resource.music];
 }
 @end

@@ -33,7 +33,7 @@
             _demoImageView.mediaName = _mediaName;
             [_demoImageView setImage:_demoImage];
         }else{
-            _demoImage = [UIImage imageNamed:@"recommend"];
+            _demoImage = [UIImage imageNamed:@"EditDefaultImage"];
             _demoImageView = [[UTPictureImageLayerView alloc] init];
             _demoImageView.mediaName = _mediaName;
             [_demoImageView setImage:_demoImage];

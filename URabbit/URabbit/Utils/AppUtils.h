@@ -334,4 +334,24 @@
 + (BOOL)unzipWithFilePath:(NSString *)filePath
           destinationPath:(NSString *)destinationPath
             unzipFileName:(NSString *)fileName;
+
+
+/**
+ 根据秒转成分秒字符串
+
+ @param totalTime 秒
+ @return 00:00
+ */
++(NSString *)getMMSSFromSS:(double)totalTime;
+
+
+/**
+ 将gif解成图片数组
+
+ @param gifName gif路径
+ @return 图片数组
+ */
++ (NSArray *)cdi_imagesWithGif:(NSString *)gifName;
+
++ (NSArray *)cdi_imagesWithWebp:(NSString *)webpName;
 @end

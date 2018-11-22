@@ -16,6 +16,7 @@
 #import <SDWebImage/UIImage+GIF.h>
 #import "SSZipArchive.h"
 #import "UIImage+FixImage.h"
+#import <YYImage/YYImage.h>
 #define MBTAG  1001 //显示文本的提示tag
 #define MBProgressTAG 1002 //加载带循转小图标的控件tag
 #define MBProgressAddViewTAG 1003 //加载带小图标的控件tag
@@ -918,5 +919,50 @@
        }
    }
    return [SSZipArchive unzipFileAtPath:filePath toDestination:unzipPath];
+}
+
+//传入 秒  得到 xx:xx:xx
++(NSString *)getMMSSFromSS:(double)totalTime{
+    
+    NSInteger seconds = floor(totalTime);
+    
+    //format of hour
+    NSString *str_hour = [NSString stringWithFormat:@"%02ld",seconds/3600];
+    //format of minute
+    NSString *str_minute = [NSString stringWithFormat:@"%02ld",(seconds%3600)/60];
+    //format of second
+    NSString *str_second = [NSString stringWithFormat:@"%02ld",seconds%60];
+    //format of time
+    NSString *format_time = [NSString stringWithFormat:@"%@:%@",str_minute,str_second];
+    
+    return format_time;
+    
+}
+
++ (NSArray *)cdi_imagesWithGif:(NSString *)gifName {
+    NSURL *fileUrl = [NSURL fileURLWithPath:gifName];
+    CGImageSourceRef gifSource = CGImageSourceCreateWithURL((CFURLRef)fileUrl, NULL);
+    size_t gifCount = CGImageSourceGetCount(gifSource);
+    NSMutableArray *frames = [[NSMutableArray alloc]init];
+    for (size_t i = 0; i< gifCount; i++) {
+        CGImageRef imageRef = CGImageSourceCreateImageAtIndex(gifSource, i, NULL);
+        UIImage *image = [UIImage imageWithCGImage:imageRef];
+        [frames addObject:image];
+        CGImageRelease(imageRef);
+    }
+    return frames;
+}
+
++ (NSArray *)cdi_imagesWithWebp:(NSString *)webpName
+{
+    // 解码单帧图片:
+    NSData *data = [NSData dataWithContentsOfFile:webpName];
+    YYImageDecoder *decoder = [YYImageDecoder decoderWithData:data scale:2.0];
+    NSMutableArray *frames = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < decoder.frameCount; i++) {
+        UIImage *image = [decoder frameAtIndex:i decodeForDisplay:YES].image;
+        [frames addObject:image];
+    }
+    return frames;
 }
 @end
