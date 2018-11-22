@@ -8,8 +8,6 @@
 
 #import "UTDownloadTemplateViewController.h"
 #import "HomeTemplate.h"
-#import "EditInfo.h"
-#import "AnimationInfo.h"
 
 #import "UTDownloadButtonView.h"
 #import "UTVideoInfoView.h"

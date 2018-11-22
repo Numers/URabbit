@@ -16,7 +16,6 @@
 #import "SnapshotMedia.h"
 #import "AnimationForMedia.h"
 #import "AnimationManager.h"
-#import "AnimationObject.h"
 #import "SwitchAnimationManager.h"
 #import "AnimationSwitch.h"
 

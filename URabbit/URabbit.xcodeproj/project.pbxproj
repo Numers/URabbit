@@ -14,7 +14,6 @@
 		04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */; };
 		04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */; };
 		141921F6219EA243001239EE /* animation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 141921F5219EA243001239EE /* animation.txt */; };
-		141921F9219EA274001239EE /* AnimationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 141921F8219EA274001239EE /* AnimationObject.m */; };
 		14239B6F2172F9FA0033FB7D /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14239B6E2172F9FA0033FB7D /* libGPUImage.a */; };
 		14262A292189AC8E00768E6A /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14262A282189AC8E00768E6A /* music.mp3 */; };
 		14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2D218AF02300768E6A /* LLTabBarItem.m */; };
@@ -118,7 +117,6 @@
 		146B638A219071EB00A3A679 /* UTPhotoEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B6389219071EB00A3A679 /* UTPhotoEditView.m */; };
 		146B63922190726D00A3A679 /* UTTplImageLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63912190726D00A3A679 /* UTTplImageLayerView.m */; };
 		146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B639521914AE800A3A679 /* UTPhotoEditCollectionViewCell.m */; };
-		146B63992191827300A3A679 /* EditInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63982191827300A3A679 /* EditInfo.m */; };
 		146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B639C2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m */; };
 		146B63A1219191C900A3A679 /* UTMiddleEditContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63A0219191C900A3A679 /* UTMiddleEditContainerView.m */; };
 		146B63C72192B35400A3A679 /* UTVideoComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63C62192B35400A3A679 /* UTVideoComposeViewController.m */; };
@@ -131,7 +129,6 @@
 		1486C4F1219473A500809626 /* FilterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4F0219473A500809626 /* FilterInfo.m */; };
 		1486C4F7219554C800809626 /* ComposeRotationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4F6219554C800809626 /* ComposeRotationOperation.m */; };
 		148D0F72219BF5F500B4E59A /* ComposeRotationStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F71219BF5F500B4E59A /* ComposeRotationStrategy.m */; };
-		148D0F75219D0ADD00B4E59A /* AnimationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F74219D0ADD00B4E59A /* AnimationInfo.m */; };
 		148D0F78219D11A000B4E59A /* ComposeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F77219D11A000B4E59A /* ComposeAnimation.m */; };
 		148D0F7B219D1FF800B4E59A /* ComposeAnimationStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F7A219D1FF800B4E59A /* ComposeAnimationStrategy.m */; };
 		148D0F82219D22C300B4E59A /* ComposeAnimationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */; };
@@ -157,8 +154,6 @@
 		04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterThirdStepViewController.m; sourceTree = "<group>"; };
 		141921F4219E8AE6001239EE /* animation.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = animation.geojson; sourceTree = "<group>"; };
 		141921F5219EA243001239EE /* animation.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = animation.txt; sourceTree = "<group>"; };
-		141921F7219EA274001239EE /* AnimationObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationObject.h; sourceTree = "<group>"; };
-		141921F8219EA274001239EE /* AnimationObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationObject.m; sourceTree = "<group>"; };
 		14239ABF2172F9FA0033FB7D /* GPUImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBuffer.h; sourceTree = "<group>"; };
 		14239AC02172F9FA0033FB7D /* GPUImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageView.h; sourceTree = "<group>"; };
 		14239AC12172F9FA0033FB7D /* GPUImageShiTomasiFeatureDetectionFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageShiTomasiFeatureDetectionFilter.h; sourceTree = "<group>"; };
@@ -531,8 +526,6 @@
 		146B63912190726D00A3A679 /* UTTplImageLayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTTplImageLayerView.m; sourceTree = "<group>"; };
 		146B639421914AE800A3A679 /* UTPhotoEditCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditCollectionViewCell.h; sourceTree = "<group>"; };
 		146B639521914AE800A3A679 /* UTPhotoEditCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditCollectionViewCell.m; sourceTree = "<group>"; };
-		146B63972191827300A3A679 /* EditInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditInfo.h; sourceTree = "<group>"; };
-		146B63982191827300A3A679 /* EditInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditInfo.m; sourceTree = "<group>"; };
 		146B639B2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditShowImageCollectionViewCell.h; sourceTree = "<group>"; };
 		146B639C2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditShowImageCollectionViewCell.m; sourceTree = "<group>"; };
 		146B639F219191C900A3A679 /* UTMiddleEditContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMiddleEditContainerView.h; sourceTree = "<group>"; };
@@ -557,8 +550,6 @@
 		1486C4F6219554C800809626 /* ComposeRotationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeRotationOperation.m; sourceTree = "<group>"; };
 		148D0F70219BF5F500B4E59A /* ComposeRotationStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeRotationStrategy.h; sourceTree = "<group>"; };
 		148D0F71219BF5F500B4E59A /* ComposeRotationStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeRotationStrategy.m; sourceTree = "<group>"; };
-		148D0F73219D0ADD00B4E59A /* AnimationInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationInfo.h; sourceTree = "<group>"; };
-		148D0F74219D0ADD00B4E59A /* AnimationInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationInfo.m; sourceTree = "<group>"; };
 		148D0F76219D11A000B4E59A /* ComposeAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeAnimation.h; sourceTree = "<group>"; };
 		148D0F77219D11A000B4E59A /* ComposeAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeAnimation.m; sourceTree = "<group>"; };
 		148D0F79219D1FF800B4E59A /* ComposeAnimationStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeAnimationStrategy.h; sourceTree = "<group>"; };
@@ -1156,24 +1147,18 @@
 				14678FF7218EDAFA00CD7F4B /* RecommendTemplate.m */,
 				14678FF9218EE07500CD7F4B /* HomeTemplate.h */,
 				14678FFA218EE07500CD7F4B /* HomeTemplate.m */,
-				146B63972191827300A3A679 /* EditInfo.h */,
-				146B63982191827300A3A679 /* EditInfo.m */,
 				1486C4EF219473A500809626 /* FilterInfo.h */,
 				1486C4F0219473A500809626 /* FilterInfo.m */,
 				1486C4F5219554C800809626 /* ComposeRotationOperation.h */,
 				1486C4F6219554C800809626 /* ComposeRotationOperation.m */,
 				148D0F70219BF5F500B4E59A /* ComposeRotationStrategy.h */,
 				148D0F71219BF5F500B4E59A /* ComposeRotationStrategy.m */,
-				148D0F73219D0ADD00B4E59A /* AnimationInfo.h */,
-				148D0F74219D0ADD00B4E59A /* AnimationInfo.m */,
 				148D0F76219D11A000B4E59A /* ComposeAnimation.h */,
 				148D0F77219D11A000B4E59A /* ComposeAnimation.m */,
 				148D0F79219D1FF800B4E59A /* ComposeAnimationStrategy.h */,
 				148D0F7A219D1FF800B4E59A /* ComposeAnimationStrategy.m */,
 				148D0F80219D22C300B4E59A /* ComposeAnimationOperation.h */,
 				148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */,
-				141921F7219EA274001239EE /* AnimationObject.h */,
-				141921F8219EA274001239EE /* AnimationObject.m */,
 				14EDA16621A310EE00C1BD3E /* Author.h */,
 				14EDA16721A310EE00C1BD3E /* Author.m */,
 				14482EF621A3BD9A00D640F1 /* Media.h */,
@@ -1795,7 +1780,6 @@
 				04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */,
 				14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */,
 				14580470216F50D3006BB33D /* ComposeStrategy.m in Sources */,
-				148D0F75219D0ADD00B4E59A /* AnimationInfo.m in Sources */,
 				145803A2216F312C006BB33D /* UTHomeViewController.m in Sources */,
 				14580395216F2D6F006BB33D /* UIColor+HexString.m in Sources */,
 				148D0F86219D9C7100B4E59A /* AnimationManager.m in Sources */,
@@ -1817,10 +1801,8 @@
 				14482F1021A3F12200D640F1 /* Resource.m in Sources */,
 				14580473216F526A006BB33D /* UTVideoReader.m in Sources */,
 				14580365216F2BCC006BB33D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
-				141921F9219EA274001239EE /* AnimationObject.m in Sources */,
 				14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */,
 				0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */,
-				146B63992191827300A3A679 /* EditInfo.m in Sources */,
 				144357C421A6ACDA00FEA9AE /* PSTCollectionViewData.m in Sources */,
 				14EDA16821A310EE00C1BD3E /* Author.m in Sources */,
 			);
