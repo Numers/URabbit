@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSTCollectionViewCell.h"
 @class FilterInfo;
-@interface UTFilterCollectionViewCell : UICollectionViewCell
+@interface UTFilterCollectionViewCell : PSTCollectionViewCell
 {
     UIImageView *filterImageView;
     UILabel *nameLabel;
+    BOOL isSelected;
 }
 -(void)setupCellWithFilterInfo:(FilterInfo *)info;
--(void)setIsSelected:(BOOL)isSelected;
+-(void)setIsSelected:(BOOL)isSelect;
 @end

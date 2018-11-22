@@ -65,7 +65,7 @@
 
 -(void)generateImageWithSize:(CGSize)size style:(TemplateStyle)style
 {
-    if (style == TemplateStyleGoodNight) {
+    if (style == TemplateStyleGoodNight || style == TemplateStyleAnimation) {
         float scale = size.height / self.frame.size.height;
         float imageCenterX = currentCenterPoint.x * scale;
         float imageCenterY = currentCenterPoint.y * scale;

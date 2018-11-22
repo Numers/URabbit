@@ -14,22 +14,27 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self.layer setCornerRadius:1.0f];
+        [self.layer setMasksToBounds:YES];
         imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.5, 0.5, frame.size.width - 1, frame.size.height - 1)];
         [self addSubview:imageView];
+        indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width - 16, 0, 16, 11)];
+        [indexLabel setBackgroundColor:[UIColor colorFromHexString:@"#E22262"]];
+        [indexLabel setFont:[UIFont systemFontOfSize:10.0f]];
+        [indexLabel setTextColor:[UIColor whiteColor]];
+        [indexLabel setTextAlignment:NSTextAlignmentCenter];
+        [self addSubview:indexLabel];
     }
     return self;
 }
 
--(void)setupCellWithSnapshot:(Snapshot *)info
+-(void)setupCellWithSnapshot:(Snapshot *)info index:(NSInteger)index
 {
     snapshot = info;
-    UIImage *image = [UIImage imageWithContentsOfFile:info.foregroundImage];
-    [imageView setImage:image];
-}
-
--(void)updateImageView
-{
-//    [imageView setImage:editInfo.editScreenShotImage];
+//    UIImage *image = [UIImage imageWithContentsOfFile:info.foregroundImage];
+//    [imageView setImage:image];
+    NSString *indexString = [NSString stringWithFormat:@"%ld",index];
+    [indexLabel setText:indexString];
 }
 
 -(void)setPictureImage:(UIImage *)image
@@ -40,10 +45,13 @@
 -(void)setIsSelected:(BOOL)selected
 {
     isSelected = selected;
-    if (selected) {
-        [self setBackgroundColor:[UIColor redColor]];
+    if (isSelected) {
+        self.layer.borderWidth = 2;
+        self.layer.borderColor = [UIColor colorFromHexString:@"#E22262"].CGColor;
     }else{
-        [self setBackgroundColor:[UIColor blackColor]];
+        self.layer.borderWidth = 0;
+        self.layer.borderColor = [UIColor clearColor].CGColor;
     }
+    [self setNeedsDisplay];
 }
 @end

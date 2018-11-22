@@ -24,13 +24,14 @@
 #import "Snapshot.h"
 
 #import "UTVideoComposeViewController.h"
+#import "PSTCollectionView.h"
 
 static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowImageCollectionViewCellIdentify";
-@interface UTPhotoEditViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UTMiddleEditContainerViewProtocol,VideoComposeProtocol,ComposeStrategyProtocl>
+@interface UTPhotoEditViewController ()<PSTCollectionViewDelegateFlowLayout,PSTCollectionViewDelegate,PSTCollectionViewDataSource,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UTMiddleEditContainerViewProtocol,VideoComposeProtocol,ComposeStrategyProtocl>
 {
     UIButton *importPhotosButton;
     UTMiddleEditContainerView *containerView;
-    UICollectionView *collectionView;
+    PSTCollectionView *collectionView;
     UTPhotoEditView *currentEditView;
     
     NSInteger selectedRow;
@@ -77,13 +78,15 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     containerView.delegate = self;
     [self.view addSubview:containerView];
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    PSTCollectionViewFlowLayout *layout = [[PSTCollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(30, SCREEN_HEIGHT - [UIDevice safeAreaBottomHeight] - 80, SCREEN_WIDTH - 60, 80) collectionViewLayout:layout];
+    collectionView = [[PSTCollectionView alloc] initWithFrame:CGRectMake(30, SCREEN_HEIGHT - [UIDevice safeAreaBottomHeight] - 80, SCREEN_WIDTH - 60, 80) collectionViewLayout:layout];
     [collectionView registerClass:[UTPhotoEditShowImageCollectionViewCell class] forCellWithReuseIdentifier:photoEditShowImageCollectionViewCellIdentify];
     collectionView.delegate = self;
     collectionView.dataSource = self;
+    [collectionView setShowsHorizontalScrollIndicator:NO];
+    [collectionView setShowsVerticalScrollIndicator:NO];
     [collectionView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:collectionView];
     
@@ -96,6 +99,24 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     [self navigationBarSetting];
     if (imageList.count > 0) {
         [imageList removeAllObjects];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (!containerView.isGenerateData) {
+        [containerView generateEditViews];
+
+        for (NSInteger i=0; i<currentSnapshots.count; i++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            UIImage *image = [containerView deSelectIndexPath:indexPath];
+            UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+            [cell setPictureImage:image];
+            if (i == selectedRow) {
+                [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally];
+            }
+        }
     }
 }
 
@@ -112,13 +133,6 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         make.width.equalTo(@(111));
         make.height.equalTo(@(30));
     }];
-    
-//    [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaBottomHeight]);
-//        make.leading.equalTo(self.view).offset(30);
-//        make.trailing.equalTo(self.view).offset(-30);
-//        make.height.equalTo(@(80));
-//    }];
     
     [containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(importPhotosButton.bottom).offset(11);
@@ -186,17 +200,17 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 }
 
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(PSTCollectionView *)collectionView
 {
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionView:(PSTCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return currentSnapshots.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UTPhotoEditShowImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:photoEditShowImageCollectionViewCellIdentify forIndexPath:indexPath];
     if (indexPath.row == selectedRow) {
@@ -207,21 +221,21 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         Snapshot *info = [currentSnapshots objectAtIndex:indexPath.row];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [cell setupCellWithSnapshot:info];
+            [cell setupCellWithSnapshot:info index:indexPath.row+1];
         });
     });
     return cell;
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+- (UIEdgeInsets)collectionView:(PSTCollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0, 0, 0, 10);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(48.0f,80.0f);
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     selectedRow = indexPath.row;
     [containerView scrollToIndexPath:indexPath];
@@ -229,12 +243,12 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     [cell setIsSelected:YES];
 }
 
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+-(void)collectionView:(PSTCollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [containerView deSelectIndexPath:indexPath];
+    UIImage *image = [containerView deSelectIndexPath:indexPath];
     UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell setPictureImage:image];
     [cell setIsSelected:NO];
-    [cell updateImageView];
 }
 
 #pragma -mark UIImagePickerControllerDelegate
@@ -275,14 +289,13 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 -(void)scrollToIndexPath:(NSIndexPath *)indexPath fromIndex:(NSIndexPath *)fromIndexPath
 {
     selectedRow = indexPath.row;
-    [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+    [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally];
     
     UTPhotoEditShowImageCollectionViewCell *toCell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [toCell setIsSelected:YES];
     
     UTPhotoEditShowImageCollectionViewCell *fromCell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:fromIndexPath];
     [fromCell setIsSelected:NO];
-    [fromCell updateImageView];
 }
 
 #pragma -mark VideoComposeProtocol

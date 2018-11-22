@@ -14,7 +14,6 @@
 #import "UTDownloadButtonView.h"
 #import "UTVideoInfoView.h"
 #import "UTVideoAuthorView.h"
-#import "Material.h"
 
 #import "UTPhotoEditViewController.h"
 #import "UTDownloadNetworkAPIManager.h"
@@ -30,9 +29,6 @@
 @interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol>
 {
     HomeTemplate *currentHomeTemplate;
-    Material *materia;
-    NSMutableArray *editInfoList;
-    NSMutableArray *animationInfoList;
     
     UTDownloadButtonView *makeButtonView;
     UIScrollView *scrollView;
@@ -61,8 +57,6 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
     snapshotList = [NSMutableArray array];
-    editInfoList = [NSMutableArray array];
-    animationInfoList = [NSMutableArray array];
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [scrollView setContentInset:UIEdgeInsetsMake(0, 0, [UIDevice safeAreaBottomHeight], 0)];
@@ -101,11 +95,6 @@
     rightItem2.imageInsets = UIEdgeInsetsMake(0, 15, 0, -10);
     [self.navigationItem setRightBarButtonItems:@[rightItem1,rightItem2]];
     
-}
-
--(void)generateMaterial
-{
-    materia = [[Material alloc] initWithFileUrl:@""];
 }
 
 -(void)requestTemplateInfo
@@ -224,14 +213,6 @@
 #pragma -mark UTDownloadButtonViewProtocol
 -(void)beginDownload
 {
-    if (editInfoList.count > 0) {
-        [editInfoList removeAllObjects];
-    }
-    
-    if (animationInfoList.count > 0) {
-        [animationInfoList removeAllObjects];
-    }
-    
     NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     NSString *zipPath = [NSString stringWithFormat:@"%@/resource-%ld.zip",videoDic,currentHomeTemplate.templateId];
     if ([[NSFileManager defaultManager] fileExistsAtPath:zipPath]) {

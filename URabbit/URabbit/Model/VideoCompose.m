@@ -17,7 +17,7 @@
         videoUrl = url;
         videoSize = size;
         currentFps = fps;
-        totalFrames = 250;
+        totalFrames = frames;
         writeFrames = 0;
         [self createVideoWriter];
     }
@@ -191,8 +191,10 @@
                     [self stopWrite];
                 }
             }else{
-                [videoWriterInput markAsFinished];
-                [self stopWrite];
+                if (frame == totalFrames - 1) {
+                    [videoWriterInput markAsFinished];
+                    [self stopWrite];
+                }
             }
             
 //            [NSThread sleepForTimeInterval:0.02];
@@ -217,8 +219,11 @@
                 }
             }
         }else{
-            [videoWriterInput markAsFinished];
-            [self stopWrite];
+            writeFrames = frame;
+            if (frame == totalFrames - 1) {
+                [videoWriterInput markAsFinished];
+                [self stopWrite];
+            }
         }
 //        [NSThread sleepForTimeInterval:0.1];
     });

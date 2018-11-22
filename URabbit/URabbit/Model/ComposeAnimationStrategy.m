@@ -7,9 +7,7 @@
 //
 
 #import "ComposeAnimationStrategy.h"
-#import "AxiosInfo.h"
 #import "Frame.h"
-#import "Material.h"
 #import "ComposeAnimationOperation.h"
 
 @implementation ComposeAnimationStrategy

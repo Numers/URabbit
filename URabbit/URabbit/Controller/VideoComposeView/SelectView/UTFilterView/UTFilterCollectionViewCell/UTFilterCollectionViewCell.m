@@ -52,15 +52,22 @@
     [nameLabel setText:info.filterName];
 }
 
--(void)setIsSelected:(BOOL)isSelected
+-(void)setIsSelected:(BOOL)isSelect
 {
+    isSelected = isSelect;
+    [self setNeedsDisplay];
+}
+
+-(void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
     if (isSelected) {
         [nameLabel setTextColor:[UIColor colorFromHexString:@"#E22262"]];
         self.layer.borderWidth = 2;
         self.layer.borderColor = [UIColor colorFromHexString:@"#E22262"].CGColor;
     }else{
         [nameLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
-        self.layer.borderWidth = 0;
+        self.layer.borderWidth = 0.01;
         self.layer.borderColor = [UIColor clearColor].CGColor;
     }
 }

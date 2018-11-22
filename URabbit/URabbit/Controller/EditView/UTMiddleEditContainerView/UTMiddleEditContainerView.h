@@ -15,13 +15,15 @@
 @interface UTMiddleEditContainerView : UIView
 {
     NSMutableArray *dataSource;
-    UICollectionView *collectionView;
+    UIScrollView *scrollView;
     NSMutableArray *cells;
     TemplateStyle currentStyle;
 }
 @property(nonatomic, weak) id<UTMiddleEditContainerViewProtocol> delegate;
+@property(nonatomic) BOOL isGenerateData;
 -(instancetype)initWithSnapshots:(NSMutableArray *)snapshots style:(TemplateStyle)style;
+-(void)generateEditViews;
 -(void)scrollToIndexPath:(NSIndexPath *)indexPath;
--(void)deSelectIndexPath:(NSIndexPath *)indexPath;
+-(UIImage *)deSelectIndexPath:(NSIndexPath *)indexPath;
 -(void)generateImagesToCompose;
 @end

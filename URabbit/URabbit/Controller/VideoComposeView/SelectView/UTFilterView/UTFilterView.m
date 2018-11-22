@@ -9,11 +9,12 @@
 #import "UTFilterView.h"
 #import "UTFilterCollectionViewCell.h"
 #import "FilterInfo.h"
+#import "PSTCollectionView.h"
 static NSString *filterCollectionViewCellIdentify = @"FilterCollectionViewCellIdentify";
-@interface UTFilterView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface UTFilterView()<PSTCollectionViewDelegate,PSTCollectionViewDataSource,PSTCollectionViewDelegateFlowLayout>
 {
     NSMutableArray *dataSource;
-    UICollectionView *collectionView;
+    PSTCollectionView *collectionView;
     NSInteger selectIndex;
 }
 @end
@@ -25,18 +26,19 @@ static NSString *filterCollectionViewCellIdentify = @"FilterCollectionViewCellId
         [self setBackgroundColor:[UIColor clearColor]];
         [self setUserInteractionEnabled:YES];
         
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        PSTCollectionViewFlowLayout *layout = [[PSTCollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) collectionViewLayout:layout];
+        collectionView = [[PSTCollectionView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 76) collectionViewLayout:layout];
         [collectionView registerClass:[UTFilterCollectionViewCell class] forCellWithReuseIdentifier:filterCollectionViewCellIdentify];
-        [collectionView setContentInset:UIEdgeInsetsMake(0, 15, 0, 0)];
+        [collectionView setContentInset:UIEdgeInsetsMake(0, 15, 0, 15)];
         [collectionView setBounces:NO];
         [collectionView setShowsVerticalScrollIndicator:NO];
         [collectionView setShowsHorizontalScrollIndicator:NO];
         collectionView.delegate = self;
         collectionView.dataSource = self;
         [collectionView setBackgroundColor:[UIColor clearColor]];
+        [collectionView setCenter:CGPointMake(frame.size.width / 2, frame.size.height / 2)];
         [self addSubview:collectionView];
         
         dataSource = [NSMutableArray array];
@@ -52,20 +54,21 @@ static NSString *filterCollectionViewCellIdentify = @"FilterCollectionViewCellId
     selectIndex = 0;
     [dataSource addObjectsFromArray:list];
     [collectionView reloadData];
+    [collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0] animated:NO scrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally];
 }
 
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(PSTCollectionView *)collectionView
 {
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionView:(PSTCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return dataSource.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UTFilterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:filterCollectionViewCellIdentify forIndexPath:indexPath];
     if (selectIndex == indexPath.row) {
@@ -82,31 +85,29 @@ static NSString *filterCollectionViewCellIdentify = @"FilterCollectionViewCellId
     return cell;
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+- (CGFloat)collectionView:(PSTCollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     return 8.0f;
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+- (CGFloat)collectionView:(PSTCollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     return 0.0f;
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+- (UIEdgeInsets)collectionView:(PSTCollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(50.0f,76.0f);
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+-(void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (selectIndex == indexPath.row) {
         return;
     }
-    UTFilterCollectionViewCell *deselectCell = (UTFilterCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0]];
-    [deselectCell setIsSelected:NO];
     
     UTFilterCollectionViewCell *cell = (UTFilterCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [cell setIsSelected:YES];
@@ -117,9 +118,9 @@ static NSString *filterCollectionViewCellIdentify = @"FilterCollectionViewCellId
     }
 }
 
-//-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UTFilterCollectionViewCell *cell = (UTFilterCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//    [cell setIsSelected:NO];
-//}
+-(void)collectionView:(PSTCollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UTFilterCollectionViewCell *cell = (UTFilterCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell setIsSelected:NO];
+}
 @end

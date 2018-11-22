@@ -8,7 +8,6 @@
 
 #import "UTPhotoEditCollectionViewCell.h"
 #import "Snapshot.h"
-#import "AxiosInfo.h"
 #import "UTPhotoEditCanMoveView.h"
 #import "UTPhotoEditNotMoveView.h"
 #import "UIImage+FixImage.h"

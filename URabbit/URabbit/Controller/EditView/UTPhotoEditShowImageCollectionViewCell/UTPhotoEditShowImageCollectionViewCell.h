@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSTCollectionViewCell.h"
 @class Snapshot;
-@interface UTPhotoEditShowImageCollectionViewCell : UICollectionViewCell
+@interface UTPhotoEditShowImageCollectionViewCell : PSTCollectionViewCell
 {
     Snapshot *snapshot;
     UIImageView *imageView;
+    UILabel *indexLabel;
     BOOL isSelected;
 }
 
--(void)setupCellWithSnapshot:(Snapshot *)info;
--(void)updateImageView;
+-(void)setupCellWithSnapshot:(Snapshot *)info index:(NSInteger)index;
 -(void)setPictureImage:(UIImage *)image;
 -(void)setIsSelected:(BOOL)selected;
 @end

@@ -208,7 +208,6 @@
         UTVideoComposeSuccessViewController *videoComposeSuccessVC = [[UTVideoComposeSuccessViewController alloc] init];
         [self.navigationController pushViewController:videoComposeSuccessVC animated:YES];
     }
-    
 }
 
 -(void)saveInDraft

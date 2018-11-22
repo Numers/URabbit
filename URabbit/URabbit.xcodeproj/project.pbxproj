@@ -29,6 +29,21 @@
 		14266C8E21A59794008A1926 /* UTKeyboardTextFieldManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8D21A59794008A1926 /* UTKeyboardTextFieldManager.m */; };
 		14266C9121A5CBFD008A1926 /* ComposeCoverStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */; };
 		14266C9421A5CC46008A1926 /* ComposeCoverOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */; };
+		144357A221A6A39700FEA9AE /* UTMusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357A121A6A39700FEA9AE /* UTMusicView.m */; };
+		144357C021A6ACDA00FEA9AE /* PSTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357A921A6ACDA00FEA9AE /* PSTCollectionViewController.m */; };
+		144357C121A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357AB21A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.m */; };
+		144357C221A6ACDA00FEA9AE /* PSTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357AE21A6ACDA00FEA9AE /* PSTCollectionViewCell.m */; };
+		144357C321A6ACDA00FEA9AE /* PSTGridLayoutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357B121A6ACDA00FEA9AE /* PSTGridLayoutInfo.m */; };
+		144357C421A6ACDA00FEA9AE /* PSTCollectionViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357B221A6ACDA00FEA9AE /* PSTCollectionViewData.m */; };
+		144357C521A6ACDA00FEA9AE /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357B321A6ACDA00FEA9AE /* NSIndexPath+PSTCollectionViewAdditions.m */; };
+		144357C621A6ACDA00FEA9AE /* PSTCollectionViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357B421A6ACDA00FEA9AE /* PSTCollectionViewUpdateItem.m */; };
+		144357C721A6ACDA00FEA9AE /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357B521A6ACDA00FEA9AE /* PSTGridLayoutSection.m */; };
+		144357C821A6ACDA00FEA9AE /* PSTCollectionViewItemKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357B621A6ACDA00FEA9AE /* PSTCollectionViewItemKey.m */; };
+		144357C921A6ACDA00FEA9AE /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357B721A6ACDA00FEA9AE /* PSTCollectionView.m */; };
+		144357CA21A6ACDA00FEA9AE /* PSTGridLayoutRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357B921A6ACDA00FEA9AE /* PSTGridLayoutRow.m */; };
+		144357CB21A6ACDA00FEA9AE /* PSTCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357BD21A6ACDA00FEA9AE /* PSTCollectionViewLayout.m */; };
+		144357CC21A6ACDA00FEA9AE /* PSTGridLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357BE21A6ACDA00FEA9AE /* PSTGridLayoutItem.m */; };
+		144357CF21A6B53000FEA9AE /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357CE21A6B53000FEA9AE /* MusicInfo.m */; };
 		14482EF821A3BD9A00D640F1 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EF721A3BD9A00D640F1 /* Media.m */; };
 		14482EFB21A3BE3C00D640F1 /* SnapshotMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFA21A3BE3C00D640F1 /* SnapshotMedia.m */; };
 		14482EFE21A3BE5C00D640F1 /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFD21A3BE5C00D640F1 /* Text.m */; };
@@ -70,7 +85,6 @@
 		145803A2216F312C006BB33D /* UTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145803A1216F312C006BB33D /* UTHomeViewController.m */; };
 		145803A6216F3143006BB33D /* UTGuidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145803A5216F3143006BB33D /* UTGuidViewController.m */; };
 		145803A9216F32E9006BB33D /* UTLoginScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145803A8216F32E9006BB33D /* UTLoginScrollViewController.m */; };
-		145803C72170427E001B9535 /* BlendAlgorithmFrontView.m in Sources */ = {isa = PBXBuildFile; fileRef = 145803C62170427E001B9535 /* BlendAlgorithmFrontView.m */; };
 		145803D32170529E001B9535 /* video-2281.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 145803D12170529D001B9535 /* video-2281.mp4 */; };
 		145803D42170529E001B9535 /* video-2280.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 145803D22170529D001B9535 /* video-2280.mp4 */; };
 		145803D82170705B001B9535 /* UTVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 145803D72170705B001B9535 /* UTVideoManager.m */; };
@@ -81,10 +95,8 @@
 		14580462216F3CA2006BB33D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14580461216F3CA2006BB33D /* OpenGLES.framework */; };
 		14580464216F3CAA006BB33D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14580463216F3CAA006BB33D /* CoreVideo.framework */; };
 		14580466216F3CB1006BB33D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14580465216F3CB1006BB33D /* CoreMedia.framework */; };
-		1458046D216F46A8006BB33D /* Material.m in Sources */ = {isa = PBXBuildFile; fileRef = 1458046C216F46A8006BB33D /* Material.m */; };
 		14580470216F50D3006BB33D /* ComposeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1458046F216F50D3006BB33D /* ComposeStrategy.m */; };
 		14580473216F526A006BB33D /* UTVideoReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580472216F526A006BB33D /* UTVideoReader.m */; };
-		14580476216F590D006BB33D /* AxiosInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580475216F590D006BB33D /* AxiosInfo.m */; };
 		14580479216F7689006BB33D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580478216F7689006BB33D /* Frame.m */; };
 		145B6134216F27B600DA950E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B6133216F27B600DA950E /* AppDelegate.m */; };
 		145B613A216F27B600DA950E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 145B6138216F27B600DA950E /* Main.storyboard */; };
@@ -347,6 +359,38 @@
 		14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeCoverStrategy.m; sourceTree = "<group>"; };
 		14266C9221A5CC46008A1926 /* ComposeCoverOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeCoverOperation.h; sourceTree = "<group>"; };
 		14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeCoverOperation.m; sourceTree = "<group>"; };
+		144357A021A6A39700FEA9AE /* UTMusicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMusicView.h; sourceTree = "<group>"; };
+		144357A121A6A39700FEA9AE /* UTMusicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMusicView.m; sourceTree = "<group>"; };
+		144357A421A6ACD900FEA9AE /* PSTCollectionViewLayout+Internals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PSTCollectionViewLayout+Internals.h"; sourceTree = "<group>"; };
+		144357A521A6ACD900FEA9AE /* PSTCollectionViewItemKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewItemKey.h; sourceTree = "<group>"; };
+		144357A621A6ACD900FEA9AE /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
+		144357A721A6ACD900FEA9AE /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
+		144357A821A6ACD900FEA9AE /* PSTCollectionViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewUpdateItem.h; sourceTree = "<group>"; };
+		144357A921A6ACDA00FEA9AE /* PSTCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewController.m; sourceTree = "<group>"; };
+		144357AA21A6ACDA00FEA9AE /* PSTGridLayoutRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutRow.h; sourceTree = "<group>"; };
+		144357AB21A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		144357AC21A6ACDA00FEA9AE /* PSTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionView.h; sourceTree = "<group>"; };
+		144357AD21A6ACDA00FEA9AE /* PSTCollectionViewCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewCommon.h; sourceTree = "<group>"; };
+		144357AE21A6ACDA00FEA9AE /* PSTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewCell.m; sourceTree = "<group>"; };
+		144357AF21A6ACDA00FEA9AE /* PSTCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewLayout.h; sourceTree = "<group>"; };
+		144357B021A6ACDA00FEA9AE /* PSTGridLayoutItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutItem.h; sourceTree = "<group>"; };
+		144357B121A6ACDA00FEA9AE /* PSTGridLayoutInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutInfo.m; sourceTree = "<group>"; };
+		144357B221A6ACDA00FEA9AE /* PSTCollectionViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewData.m; sourceTree = "<group>"; };
+		144357B321A6ACDA00FEA9AE /* NSIndexPath+PSTCollectionViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+PSTCollectionViewAdditions.m"; sourceTree = "<group>"; };
+		144357B421A6ACDA00FEA9AE /* PSTCollectionViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewUpdateItem.m; sourceTree = "<group>"; };
+		144357B521A6ACDA00FEA9AE /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
+		144357B621A6ACDA00FEA9AE /* PSTCollectionViewItemKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewItemKey.m; sourceTree = "<group>"; };
+		144357B721A6ACDA00FEA9AE /* PSTCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionView.m; sourceTree = "<group>"; };
+		144357B821A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		144357B921A6ACDA00FEA9AE /* PSTGridLayoutRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutRow.m; sourceTree = "<group>"; };
+		144357BA21A6ACDA00FEA9AE /* PSTCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewController.h; sourceTree = "<group>"; };
+		144357BB21A6ACDA00FEA9AE /* PSTCollectionViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewData.h; sourceTree = "<group>"; };
+		144357BC21A6ACDA00FEA9AE /* PSTGridLayoutInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutInfo.h; sourceTree = "<group>"; };
+		144357BD21A6ACDA00FEA9AE /* PSTCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewLayout.m; sourceTree = "<group>"; };
+		144357BE21A6ACDA00FEA9AE /* PSTGridLayoutItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutItem.m; sourceTree = "<group>"; };
+		144357BF21A6ACDA00FEA9AE /* PSTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewCell.h; sourceTree = "<group>"; };
+		144357CD21A6B53000FEA9AE /* MusicInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicInfo.h; sourceTree = "<group>"; };
+		144357CE21A6B53000FEA9AE /* MusicInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicInfo.m; sourceTree = "<group>"; };
 		14482EF621A3BD9A00D640F1 /* Media.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
 		14482EF721A3BD9A00D640F1 /* Media.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
 		14482EF921A3BE3C00D640F1 /* SnapshotMedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotMedia.h; sourceTree = "<group>"; };
@@ -430,8 +474,6 @@
 		145803A5216F3143006BB33D /* UTGuidViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTGuidViewController.m; sourceTree = "<group>"; };
 		145803A7216F32E9006BB33D /* UTLoginScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTLoginScrollViewController.h; sourceTree = "<group>"; };
 		145803A8216F32E9006BB33D /* UTLoginScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTLoginScrollViewController.m; sourceTree = "<group>"; };
-		145803C52170427E001B9535 /* BlendAlgorithmFrontView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlendAlgorithmFrontView.h; sourceTree = "<group>"; };
-		145803C62170427E001B9535 /* BlendAlgorithmFrontView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlendAlgorithmFrontView.m; sourceTree = "<group>"; };
 		145803D12170529D001B9535 /* video-2281.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "video-2281.mp4"; sourceTree = "<group>"; };
 		145803D22170529D001B9535 /* video-2280.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "video-2280.mp4"; sourceTree = "<group>"; };
 		145803D62170705B001B9535 /* UTVideoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTVideoManager.h; sourceTree = "<group>"; };
@@ -445,14 +487,10 @@
 		14580461216F3CA2006BB33D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		14580463216F3CAA006BB33D /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		14580465216F3CB1006BB33D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		1458046B216F46A8006BB33D /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
-		1458046C216F46A8006BB33D /* Material.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Material.m; sourceTree = "<group>"; };
 		1458046E216F50D3006BB33D /* ComposeStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeStrategy.h; sourceTree = "<group>"; };
 		1458046F216F50D3006BB33D /* ComposeStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeStrategy.m; sourceTree = "<group>"; };
 		14580471216F526A006BB33D /* UTVideoReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTVideoReader.h; sourceTree = "<group>"; };
 		14580472216F526A006BB33D /* UTVideoReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTVideoReader.m; sourceTree = "<group>"; };
-		14580474216F590D006BB33D /* AxiosInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AxiosInfo.h; sourceTree = "<group>"; };
-		14580475216F590D006BB33D /* AxiosInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AxiosInfo.m; sourceTree = "<group>"; };
 		14580477216F7689006BB33D /* Frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
 		14580478216F7689006BB33D /* Frame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
 		145B612F216F27B600DA950E /* URabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = URabbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -849,6 +887,50 @@
 			path = UTkeyboardTextFieldManager;
 			sourceTree = "<group>";
 		};
+		1443579F21A6A36F00FEA9AE /* UTMusicView */ = {
+			isa = PBXGroup;
+			children = (
+				144357A021A6A39700FEA9AE /* UTMusicView.h */,
+				144357A121A6A39700FEA9AE /* UTMusicView.m */,
+			);
+			path = UTMusicView;
+			sourceTree = "<group>";
+		};
+		144357A321A6ACD900FEA9AE /* PSTCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				144357A421A6ACD900FEA9AE /* PSTCollectionViewLayout+Internals.h */,
+				144357A521A6ACD900FEA9AE /* PSTCollectionViewItemKey.h */,
+				144357A621A6ACD900FEA9AE /* PSTGridLayoutSection.h */,
+				144357A721A6ACD900FEA9AE /* NSIndexPath+PSTCollectionViewAdditions.h */,
+				144357A821A6ACD900FEA9AE /* PSTCollectionViewUpdateItem.h */,
+				144357A921A6ACDA00FEA9AE /* PSTCollectionViewController.m */,
+				144357AA21A6ACDA00FEA9AE /* PSTGridLayoutRow.h */,
+				144357AB21A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.m */,
+				144357AC21A6ACDA00FEA9AE /* PSTCollectionView.h */,
+				144357AD21A6ACDA00FEA9AE /* PSTCollectionViewCommon.h */,
+				144357AE21A6ACDA00FEA9AE /* PSTCollectionViewCell.m */,
+				144357AF21A6ACDA00FEA9AE /* PSTCollectionViewLayout.h */,
+				144357B021A6ACDA00FEA9AE /* PSTGridLayoutItem.h */,
+				144357B121A6ACDA00FEA9AE /* PSTGridLayoutInfo.m */,
+				144357B221A6ACDA00FEA9AE /* PSTCollectionViewData.m */,
+				144357B321A6ACDA00FEA9AE /* NSIndexPath+PSTCollectionViewAdditions.m */,
+				144357B421A6ACDA00FEA9AE /* PSTCollectionViewUpdateItem.m */,
+				144357B521A6ACDA00FEA9AE /* PSTGridLayoutSection.m */,
+				144357B621A6ACDA00FEA9AE /* PSTCollectionViewItemKey.m */,
+				144357B721A6ACDA00FEA9AE /* PSTCollectionView.m */,
+				144357B821A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.h */,
+				144357B921A6ACDA00FEA9AE /* PSTGridLayoutRow.m */,
+				144357BA21A6ACDA00FEA9AE /* PSTCollectionViewController.h */,
+				144357BB21A6ACDA00FEA9AE /* PSTCollectionViewData.h */,
+				144357BC21A6ACDA00FEA9AE /* PSTGridLayoutInfo.h */,
+				144357BD21A6ACDA00FEA9AE /* PSTCollectionViewLayout.m */,
+				144357BE21A6ACDA00FEA9AE /* PSTGridLayoutItem.m */,
+				144357BF21A6ACDA00FEA9AE /* PSTCollectionViewCell.h */,
+			);
+			path = PSTCollectionView;
+			sourceTree = "<group>";
+		};
 		14482F1C21A46FAA00D640F1 /* UTPictureImageLayerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -898,6 +980,7 @@
 		14580315216F2BCB006BB33D /* ThirdPartPlugins */ = {
 			isa = PBXGroup;
 			children = (
+				144357A321A6ACD900FEA9AE /* PSTCollectionView */,
 				14262A2A218AF02300768E6A /* LLTabBar */,
 				14239ABD2172F9FA0033FB7D /* GPUImage */,
 				14580316216F2BCB006BB33D /* TPKeyboardAvoiding */,
@@ -1061,14 +1144,10 @@
 			children = (
 				14580399216F306E006BB33D /* Member.h */,
 				14580398216F306E006BB33D /* Member.m */,
-				1458046B216F46A8006BB33D /* Material.h */,
-				1458046C216F46A8006BB33D /* Material.m */,
 				1458046E216F50D3006BB33D /* ComposeStrategy.h */,
 				1458046F216F50D3006BB33D /* ComposeStrategy.m */,
 				14580471216F526A006BB33D /* UTVideoReader.h */,
 				14580472216F526A006BB33D /* UTVideoReader.m */,
-				14580474216F590D006BB33D /* AxiosInfo.h */,
-				14580475216F590D006BB33D /* AxiosInfo.m */,
 				14580477216F7689006BB33D /* Frame.h */,
 				14580478216F7689006BB33D /* Frame.m */,
 				145803DD21708433001B9535 /* VideoCompose.h */,
@@ -1121,6 +1200,8 @@
 				14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */,
 				14266C9221A5CC46008A1926 /* ComposeCoverOperation.h */,
 				14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */,
+				144357CD21A6B53000FEA9AE /* MusicInfo.h */,
+				144357CE21A6B53000FEA9AE /* MusicInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1181,18 +1262,8 @@
 				14266C8321A5690E008A1926 /* UTTextLabel */,
 				14482F1C21A46FAA00D640F1 /* UTPictureImageLayerView */,
 				146B638F2190723B00A3A679 /* UTTplImageLayerView */,
-				145803C421703C8C001B9535 /* BlendAlgorithmFrontView */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		145803C421703C8C001B9535 /* BlendAlgorithmFrontView */ = {
-			isa = PBXGroup;
-			children = (
-				145803C52170427E001B9535 /* BlendAlgorithmFrontView.h */,
-				145803C62170427E001B9535 /* BlendAlgorithmFrontView.m */,
-			);
-			path = BlendAlgorithmFrontView;
 			sourceTree = "<group>";
 		};
 		145803D02170526E001B9535 /* Resource */ = {
@@ -1424,6 +1495,7 @@
 		146B63C92192EA5800A3A679 /* SelectView */ = {
 			isa = PBXGroup;
 			children = (
+				1443579F21A6A36F00FEA9AE /* UTMusicView */,
 				1486C4E721946C5E00809626 /* UTFilterView */,
 				146B63CE2192EAE700A3A679 /* UTSelectView.h */,
 				146B63CF2192EAE700A3A679 /* UTSelectView.m */,
@@ -1635,6 +1707,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				144357C721A6ACDA00FEA9AE /* PSTGridLayoutSection.m in Sources */,
 				14580363216F2BCC006BB33D /* NetWorkRequestManager.m in Sources */,
 				1486C4F1219473A500809626 /* FilterInfo.m in Sources */,
 				14580479216F7689006BB33D /* Frame.m in Sources */,
@@ -1643,17 +1716,18 @@
 				14580393216F2D6F006BB33D /* UIDevice+FixedLength.m in Sources */,
 				146B638A219071EB00A3A679 /* UTPhotoEditView.m in Sources */,
 				146B63862190657F00A3A679 /* UTPhotoEditViewController.m in Sources */,
-				145803C72170427E001B9535 /* BlendAlgorithmFrontView.m in Sources */,
 				1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */,
 				1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */,
 				14482EF821A3BD9A00D640F1 /* Media.m in Sources */,
 				04110A9E21A14BCE00732B3D /* UTUserCenterHeadView.m in Sources */,
+				144357A221A6A39700FEA9AE /* UTMusicView.m in Sources */,
 				04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */,
 				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
 				14482F2221A475FF00D640F1 /* UTPhotoEditCanMoveView.m in Sources */,
 				14482F0421A3BE8600D640F1 /* Snapshot.m in Sources */,
 				14678FF8218EDAFA00CD7F4B /* RecommendTemplate.m in Sources */,
+				144357C021A6ACDA00FEA9AE /* PSTCollectionViewController.m in Sources */,
 				1458037E216F2BCC006BB33D /* AppUtils.m in Sources */,
 				14262A48218C45F000768E6A /* LJJWaterFlowLayout.m in Sources */,
 				145803DF21708433001B9535 /* VideoCompose.m in Sources */,
@@ -1665,13 +1739,17 @@
 				14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */,
 				14266C8A21A5939F008A1926 /* UTKeyboardTextField.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
+				144357C321A6ACDA00FEA9AE /* PSTGridLayoutInfo.m in Sources */,
 				146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */,
 				14482F0121A3BE6C00D640F1 /* SnapshotText.m in Sources */,
 				04372B8E21A110F600F206E3 /* UTLoginWithPasswordViewController.m in Sources */,
 				1458039E216F3114006BB33D /* UTLoginViewController.m in Sources */,
 				145803A9216F32E9006BB33D /* UTLoginScrollViewController.m in Sources */,
+				144357CF21A6B53000FEA9AE /* MusicInfo.m in Sources */,
 				145B6142216F27B700DA950E /* main.m in Sources */,
 				14678FF5218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.m in Sources */,
+				144357C621A6ACDA00FEA9AE /* PSTCollectionViewUpdateItem.m in Sources */,
+				144357CC21A6ACDA00FEA9AE /* PSTGridLayoutItem.m in Sources */,
 				146B637A2190274C00A3A679 /* UIImage+Gradient.m in Sources */,
 				14580394216F2D6F006BB33D /* UINavigationController+NavigationBar.m in Sources */,
 				14482F2521A4761D00D640F1 /* UTPhotoEditNotMoveView.m in Sources */,
@@ -1680,6 +1758,7 @@
 				14580362216F2BCC006BB33D /* NetWorkManager.m in Sources */,
 				1458037D216F2BCC006BB33D /* PushMessageManager.m in Sources */,
 				146B63D32192EAF800A3A679 /* UTPlayView.m in Sources */,
+				144357CB21A6ACDA00FEA9AE /* PSTCollectionViewLayout.m in Sources */,
 				148D0F82219D22C300B4E59A /* ComposeAnimationOperation.m in Sources */,
 				14482F0721A3BEA900D640F1 /* AnimationForMedia.m in Sources */,
 				145803D82170705B001B9535 /* UTVideoManager.m in Sources */,
@@ -1691,6 +1770,7 @@
 				14580391216F2D6F006BB33D /* UIImage+FixImage.m in Sources */,
 				148D0F7B219D1FF800B4E59A /* ComposeAnimationStrategy.m in Sources */,
 				14678FFB218EE07500CD7F4B /* HomeTemplate.m in Sources */,
+				144357C121A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.m in Sources */,
 				146B638221904DF900A3A679 /* UTVideoAuthorView.m in Sources */,
 				14678FF2218ECDBB00CD7F4B /* UTHomeRecommendView.m in Sources */,
 				1458039A216F306E006BB33D /* Member.m in Sources */,
@@ -1699,11 +1779,15 @@
 				14580392216F2D6F006BB33D /* UITabBar+CustomerTabBar.m in Sources */,
 				04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */,
 				14580377216F2BCC006BB33D /* FeThreeDotGlow.m in Sources */,
+				144357C521A6ACDA00FEA9AE /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				146B63922190726D00A3A679 /* UTTplImageLayerView.m in Sources */,
+				144357CA21A6ACDA00FEA9AE /* PSTGridLayoutRow.m in Sources */,
 				14580366216F2BCC006BB33D /* TPKeyboardAvoidingTableView.m in Sources */,
 				146B63D72193064300A3A679 /* UTPlayCollectionViewCell.m in Sources */,
 				14EDA16B21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m in Sources */,
+				144357C821A6ACDA00FEA9AE /* PSTCollectionViewItemKey.m in Sources */,
 				1458037B216F2BCC006BB33D /* AppLaunchManager.m in Sources */,
+				144357C221A6ACDA00FEA9AE /* PSTCollectionViewCell.m in Sources */,
 				146B636B218FDAC200A3A679 /* UTDownloadTemplateViewController.m in Sources */,
 				14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */,
 				148D0F78219D11A000B4E59A /* ComposeAnimation.m in Sources */,
@@ -1711,7 +1795,6 @@
 				04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */,
 				14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */,
 				14580470216F50D3006BB33D /* ComposeStrategy.m in Sources */,
-				14580476216F590D006BB33D /* AxiosInfo.m in Sources */,
 				148D0F75219D0ADD00B4E59A /* AnimationInfo.m in Sources */,
 				145803A2216F312C006BB33D /* UTHomeViewController.m in Sources */,
 				14580395216F2D6F006BB33D /* UIColor+HexString.m in Sources */,
@@ -1722,11 +1805,11 @@
 				146B63A1219191C900A3A679 /* UTMiddleEditContainerView.m in Sources */,
 				14580367216F2BCC006BB33D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				146B63732190243C00A3A679 /* UTDownloadButtonView.m in Sources */,
-				1458046D216F46A8006BB33D /* Material.m in Sources */,
 				14482F1F21A46FCC00D640F1 /* UTPictureImageLayerView.m in Sources */,
 				145B6134216F27B600DA950E /* AppDelegate.m in Sources */,
 				14266C8621A5692F008A1926 /* UTTextLabel.m in Sources */,
 				14580368216F2BCC006BB33D /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				144357C921A6ACDA00FEA9AE /* PSTCollectionView.m in Sources */,
 				14678FFE218EE11C00CD7F4B /* UTHomeTemplateView.m in Sources */,
 				1458037C216F2BCC006BB33D /* AppStartManager.m in Sources */,
 				1486C4F7219554C800809626 /* ComposeRotationOperation.m in Sources */,
@@ -1738,6 +1821,7 @@
 				14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */,
 				0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */,
 				146B63992191827300A3A679 /* EditInfo.m in Sources */,
+				144357C421A6ACDA00FEA9AE /* PSTCollectionViewData.m in Sources */,
 				14EDA16821A310EE00C1BD3E /* Author.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
