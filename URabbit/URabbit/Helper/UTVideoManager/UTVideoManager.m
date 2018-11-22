@@ -216,8 +216,10 @@
     
     //创建水印图形
     _uiElement = [[GPUImageUIElement alloc] initWithView:contentView];
+    
     NSURL *inputURL = [NSURL fileURLWithPath:moviePath];
-    movieFile = [[GPUImageMovie alloc] initWithURL:inputURL];
+    AVAsset *asset = [AVAsset assetWithURL:inputURL];
+    movieFile = [[GPUImageMovie alloc] initWithAsset:asset];
     movieFile.runBenchmark = YES;
     movieFile.playAtActualSpeed = NO;
     //创建滤镜
@@ -250,8 +252,14 @@
     movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:outputURL size:size];
     [filter addTarget:movieWriter];
     
-    movieWriter.shouldPassthroughAudio = NO;
-    movieFile.audioEncodingTarget = nil;
+    if ([[asset tracksWithMediaType:AVMediaTypeAudio] count] > 0){
+        movieWriter.shouldPassthroughAudio = YES;
+        movieFile.audioEncodingTarget = movieWriter;
+    }else{
+        movieWriter.shouldPassthroughAudio = NO;
+        movieFile.audioEncodingTarget = nil;
+    }
+    
     [movieFile enableSynchronizedEncodingUsingMovieWriter:movieWriter];
     [movieWriter startRecording];
     [movieFile startProcessing];
