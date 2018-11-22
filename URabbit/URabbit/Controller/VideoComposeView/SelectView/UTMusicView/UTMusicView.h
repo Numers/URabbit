@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MusicInfo;
+@protocol UTMusicViewProtocol <NSObject>
+-(void)selectMusic:(MusicInfo *)info;
+@end
 @interface UTMusicView : UIView
-
+@property(nonatomic, weak) id<UTMusicViewProtocol> delegate;
+-(void)setMusicList:(NSMutableArray *)list;
 @end

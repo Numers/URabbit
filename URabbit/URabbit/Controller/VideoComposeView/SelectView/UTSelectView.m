@@ -39,7 +39,15 @@
             break;
         case 1:
         {
-            
+            if (musicView == nil) {
+                musicView = [[UTMusicView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+                musicView.delegate = self;
+                if ([self.delegate respondsToSelector:@selector(requestMusicViewDataSource)]) {
+                    NSMutableArray *datasource = [self.delegate requestMusicViewDataSource];
+                    [musicView setMusicList:datasource];
+                }
+            }
+            [self addSubview:musicView];
         }
             break;
             
@@ -53,6 +61,14 @@
 {
     if ([self.delegate respondsToSelector:@selector(didSelectFilter:)]) {
         [self.delegate didSelectFilter:info];
+    }
+}
+
+#pragma -mark UTMusicViewProtocol
+-(void)selectMusic:(MusicInfo *)info
+{
+    if ([self.delegate respondsToSelector:@selector(didSelectMusic:)]) {
+        [self.delegate didSelectMusic:info];
     }
 }
 @end

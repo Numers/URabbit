@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "UTFilterView.h"
+#import "UTMusicView.h"
 @protocol UTSelectViewProtocol <NSObject>
 -(NSMutableArray *)requestFilterViewDataSource;
+-(NSMutableArray *)requestMusicViewDataSource;
 -(void)didSelectFilter:(FilterInfo *)info;
+-(void)didSelectMusic:(MusicInfo *)info;
 @end
-@interface UTSelectView : UIView<UTFilterViewProtocol>
+@interface UTSelectView : UIView<UTFilterViewProtocol,UTMusicViewProtocol>
 {
     UTFilterView *filterView;
+    UTMusicView *musicView;
 }
 @property(nonatomic, weak) id<UTSelectViewProtocol> delegate;
 -(void)showViewWithIndex:(NSInteger)index;

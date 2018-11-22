@@ -9,6 +9,7 @@
 #import "UTVideoComposeViewController.h"
 #import "Resource.h"
 #import "FilterInfo.h"
+#import "MusicInfo.h"
 #import "GPUImage.h"
 
 #import "UTPlayView.h"
@@ -337,6 +338,14 @@
     });
 }
 
+-(void)changeMusic:(NSString *)url
+{
+    [self stopVideo];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        audioURL = url;
+        [self startVideo];
+    });
+}
 #pragma -mark UTPlayViewProtocol
 -(void)dragScrollPercentage:(CGFloat)percent
 {
@@ -370,8 +379,28 @@
     return filterList;
 }
 
+-(NSMutableArray *)requestMusicViewDataSource
+{
+    NSMutableArray *filterList = [NSMutableArray array];
+    NSArray *filterNames = @[@"默认",@"卡通",@"凸起",@"素描"];
+    for (NSInteger i = 0;i < filterNames.count;i++) {
+        NSString *name = [filterNames objectAtIndex:i];
+        MusicInfo *info = [[MusicInfo alloc] init];
+        info.musicName = name;
+        info.musicImage = @"recommend";
+        info.musicUrl = resource.music;
+        [filterList addObject:info];
+    }
+    return filterList;
+}
+
 -(void)didSelectFilter:(FilterInfo *)info
 {
     [self changeFilter:info.type];
+}
+
+-(void)didSelectMusic:(MusicInfo *)info
+{
+    audioURL = info.musicUrl;
 }
 @end

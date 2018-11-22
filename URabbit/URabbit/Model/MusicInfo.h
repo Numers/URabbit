@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface MusicInfo : NSObject
-
+@property(nonatomic, copy) NSString *musicName;
+@property(nonatomic, copy) NSString *musicImage;
+@property(nonatomic, copy) NSString *musicUrl;
 @end

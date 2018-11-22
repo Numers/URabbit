@@ -43,6 +43,7 @@
 		144357CB21A6ACDA00FEA9AE /* PSTCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357BD21A6ACDA00FEA9AE /* PSTCollectionViewLayout.m */; };
 		144357CC21A6ACDA00FEA9AE /* PSTGridLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357BE21A6ACDA00FEA9AE /* PSTGridLayoutItem.m */; };
 		144357CF21A6B53000FEA9AE /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357CE21A6B53000FEA9AE /* MusicInfo.m */; };
+		144357D321A6B87200FEA9AE /* UTMusicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357D221A6B87200FEA9AE /* UTMusicCollectionViewCell.m */; };
 		14482EF821A3BD9A00D640F1 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EF721A3BD9A00D640F1 /* Media.m */; };
 		14482EFB21A3BE3C00D640F1 /* SnapshotMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFA21A3BE3C00D640F1 /* SnapshotMedia.m */; };
 		14482EFE21A3BE5C00D640F1 /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482EFD21A3BE5C00D640F1 /* Text.m */; };
@@ -386,6 +387,8 @@
 		144357BF21A6ACDA00FEA9AE /* PSTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewCell.h; sourceTree = "<group>"; };
 		144357CD21A6B53000FEA9AE /* MusicInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicInfo.h; sourceTree = "<group>"; };
 		144357CE21A6B53000FEA9AE /* MusicInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicInfo.m; sourceTree = "<group>"; };
+		144357D121A6B87200FEA9AE /* UTMusicCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMusicCollectionViewCell.h; sourceTree = "<group>"; };
+		144357D221A6B87200FEA9AE /* UTMusicCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMusicCollectionViewCell.m; sourceTree = "<group>"; };
 		14482EF621A3BD9A00D640F1 /* Media.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
 		14482EF721A3BD9A00D640F1 /* Media.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
 		14482EF921A3BE3C00D640F1 /* SnapshotMedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotMedia.h; sourceTree = "<group>"; };
@@ -881,6 +884,7 @@
 		1443579F21A6A36F00FEA9AE /* UTMusicView */ = {
 			isa = PBXGroup;
 			children = (
+				144357D021A6B7EF00FEA9AE /* UTMusicCollectionViewCell */,
 				144357A021A6A39700FEA9AE /* UTMusicView.h */,
 				144357A121A6A39700FEA9AE /* UTMusicView.m */,
 			);
@@ -920,6 +924,15 @@
 				144357BF21A6ACDA00FEA9AE /* PSTCollectionViewCell.h */,
 			);
 			path = PSTCollectionView;
+			sourceTree = "<group>";
+		};
+		144357D021A6B7EF00FEA9AE /* UTMusicCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				144357D121A6B87200FEA9AE /* UTMusicCollectionViewCell.h */,
+				144357D221A6B87200FEA9AE /* UTMusicCollectionViewCell.m */,
+			);
+			path = UTMusicCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		14482F1C21A46FAA00D640F1 /* UTPictureImageLayerView */ = {
@@ -1795,6 +1808,7 @@
 				14580368216F2BCC006BB33D /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				144357C921A6ACDA00FEA9AE /* PSTCollectionView.m in Sources */,
 				14678FFE218EE11C00CD7F4B /* UTHomeTemplateView.m in Sources */,
+				144357D321A6B87200FEA9AE /* UTMusicCollectionViewCell.m in Sources */,
 				1458037C216F2BCC006BB33D /* AppStartManager.m in Sources */,
 				1486C4F7219554C800809626 /* ComposeRotationOperation.m in Sources */,
 				14482EFB21A3BE3C00D640F1 /* SnapshotMedia.m in Sources */,
