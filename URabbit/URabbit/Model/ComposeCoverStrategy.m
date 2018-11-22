@@ -18,6 +18,7 @@
         Frame *frame = [[Frame alloc] init];
         [self.frames addObject:frame];
     }
+    maskImage = [UIImage imageWithContentsOfFile:self.resource.maskBaseImage];
 }
 
 -(void)readVideoFrames:(int)index
@@ -27,7 +28,7 @@
     Snapshot *snapshot = [self.snapshotList objectAtIndex:0];
     if (index < self.frames.count)
     {
-        ComposeCoverOperation *operation = [[ComposeCoverOperation alloc] initWithTemplateSampleBufferRef:templateSampleBufferRef Frame:index snapshot:snapshot pixelSize:self.resource.videoSize];
+        ComposeCoverOperation *operation = [[ComposeCoverOperation alloc] initWithTemplateSampleBufferRef:templateSampleBufferRef maskImage:maskImage Frame:index snapshot:snapshot pixelSize:self.resource.videoSize];
         operation.delegate = self;
         [self.operationQueue addOperation:operation];
     }

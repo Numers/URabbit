@@ -15,6 +15,7 @@
 #import <math.h>
 #import <SDWebImage/UIImage+GIF.h>
 #import "SSZipArchive.h"
+#import "UIImage+FixImage.h"
 #define MBTAG  1001 //显示文本的提示tag
 #define MBProgressTAG 1002 //加载带循转小图标的控件tag
 #define MBProgressAddViewTAG 1003 //加载带小图标的控件tag
@@ -722,6 +723,31 @@
     return encodedString;
 }
 
++(UIImage *)cropImage:(UIImage *)image ratio:(CGFloat)ratio{
+    
+    CGImageRef sourceImageRef = [[image fixOrientation] CGImage];//将UIImage转换成CGImageRef
+    
+    CGFloat _imageWidth = image.size.width * image.scale;
+    CGFloat _imageHeight = image.size.height * image.scale;
+    CGRect rect = CGRectMake(0, 0, _imageWidth, _imageHeight);
+    if (_imageWidth > _imageHeight) {
+        CGFloat width = _imageHeight * ratio;
+        CGFloat height = _imageHeight;
+        CGFloat offsetX = (_imageWidth - width) / 2.0f;
+        CGFloat offsetY = 0;
+        rect = CGRectMake(offsetX, offsetY, width, height);
+    }else{
+        CGFloat width = _imageWidth;
+        CGFloat height = width / ratio;
+        CGFloat offsetX = 0;
+        CGFloat offsetY = (_imageHeight - height) / 2.0f;
+        rect = CGRectMake(offsetX, offsetY, width, height);
+    }
+    CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);//按照给定的矩形区域进行剪裁
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    CGImageRelease(newImageRef);
+    return newImage;
+}
 /**
  UIImage:去色功能的实现（图片灰色显示）
  @param sourceImage 图片

@@ -18,6 +18,7 @@
         _centerXPercent = [[dic objectForKey:@"centreX"] floatValue];
         _centerYPercent = [[dic objectForKey:@"centreY"] floatValue];
         _imageWidthPercent = [[dic objectForKey:@"width"] floatValue];
+        _imageHeightPercent = [[dic objectForKey:@"height"] floatValue];
         NSString *mediaName = [dic objectForKey:@"name"];
         if (mediaName) {
             _mediaName = mediaName;

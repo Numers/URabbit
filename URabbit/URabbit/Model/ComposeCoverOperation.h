@@ -15,7 +15,8 @@
     NSInteger currentFrame;
     CGSize currentPixelSize;
     Snapshot *currentSnapshot;
+    UIImage *currentMaskImage;
 }
 @property(nonatomic,weak) id<ComposeOperationProtocol> delegate;
--(instancetype)initWithTemplateSampleBufferRef:(CMSampleBufferRef)templateSampleBufferRef Frame:(NSInteger)frame snapshot:(Snapshot *)snapshot pixelSize:(CGSize)pixelSize;
+-(instancetype)initWithTemplateSampleBufferRef:(CMSampleBufferRef)templateSampleBufferRef maskImage:(UIImage *)maskImage Frame:(NSInteger)frame snapshot:(Snapshot *)snapshot pixelSize:(CGSize)pixelSize;
 @end

@@ -12,11 +12,11 @@
 #import "UTImageHanderManager.h"
 @interface ComposeCoverOperation()
 {
-    GPUImageTwoInputFilter *filter;
+
 }
 @end
 @implementation ComposeCoverOperation
--(instancetype)initWithTemplateSampleBufferRef:(CMSampleBufferRef)templateSampleBufferRef Frame:(NSInteger)frame snapshot:(Snapshot *)snapshot pixelSize:(CGSize)pixelSize
+-(instancetype)initWithTemplateSampleBufferRef:(CMSampleBufferRef)templateSampleBufferRef maskImage:(UIImage *)maskImage Frame:(NSInteger)frame snapshot:(Snapshot *)snapshot pixelSize:(CGSize)pixelSize
 {
     self = [super init];
     if (self) {
@@ -24,7 +24,7 @@
         currentTemplateSampleBufferRef = templateSampleBufferRef;
         currentFrame = frame;
         currentPixelSize = pixelSize;
-        filter = [[GPUImageTwoInputFilter alloc] init];
+        currentMaskImage = maskImage;
     }
     return self;
 }
@@ -35,17 +35,12 @@
         if (currentTemplateSampleBufferRef) {
             void *templatePixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:currentTemplateSampleBufferRef];
             UIImage *templateImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:templatePixelBuffer size:currentPixelSize];
-            GPUImagePicture *tempPic1 = [[GPUImagePicture alloc] initWithImage:templateImage];
-            [tempPic1 addTarget:filter];
-            [tempPic1 processImage];
             
-            UIImage *resultImage = [filter imageByFilteringImage:currentSnapshot.snapshotImage];
+            UIImage *resultImage = [self coverImageWithBackgroundImage:templateImage maskImage:currentMaskImage snapImage:currentSnapshot.snapshotImage size:currentPixelSize];
             
             CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:currentPixelSize];
             void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
             memcpy(templatePixelBuffer, resultBaseAddress, 4*currentPixelSize.width*currentPixelSize.height);
-            [tempPic1 removeTarget:filter];
-            [filter removeOutputFramebuffer];
             
             if ([self.delegate respondsToSelector:@selector(sendSampleBufferRef:frame:)]) {
                 [self.delegate sendSampleBufferRef:currentTemplateSampleBufferRef frame:currentFrame];
@@ -57,5 +52,21 @@
             }
         }
     }
+}
+
+-(UIImage *)coverImageWithBackgroundImage:(UIImage *)bgImage maskImage:(UIImage *)maskImage snapImage:(UIImage *)snapImage size:(CGSize)size
+{
+    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, size.width, size.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    
+    CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, size.width, size.height), bgImage.CGImage);
+    CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, size.width, size.height), snapImage.CGImage);
+    CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, size.width, size.height), maskImage.CGImage);
+    
+    CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    CGImageRelease(newImageRef);
+    CGContextRelease(mainViewContentContext);
+    return newImage;
 }
 @end

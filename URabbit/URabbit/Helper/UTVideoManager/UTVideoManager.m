@@ -184,7 +184,7 @@
     [audioTrack insertTimeRange:audioTimeRange ofTrack:audioAssetTrack atTime:nextClistartTime error:nil];
 
     AVAssetExportSession
-    *session=[AVAssetExportSession exportSessionWithAsset:comosition presetName:AVAssetExportPresetMediumQuality];//mediumquality:中等质量
+    *session=[AVAssetExportSession exportSessionWithAsset:comosition presetName:AVAssetExportPresetHighestQuality];//mediumquality:中等质量
     unlink([outputPath UTF8String]);
     if([[NSFileManager defaultManager] fileExistsAtPath:outputPath])
     {

@@ -31,8 +31,8 @@
         [self setUserInteractionEnabled:YES];
         currentSnapshot = snapshot;
         for (SnapshotMedia *media in snapshot.mediaList) {
-            CGFloat width = self.frame.size.width * media.imageWidthPercent;
-            CGFloat height = width * media.demoImage.size.height / media.demoImage.size.width;
+            CGFloat width = frame.size.width * media.imageWidthPercent;
+            CGFloat height = frame.size.height * media.imageHeightPercent;
             [media.demoImageView setFrame:CGRectMake(0, 0, width, height)];
             media.demoImageView.delegate = self;
             CGPoint currentCenterPoint = CGPointMake(frame.size.width * media.centerXPercent, frame.size.height * media.centerYPercent);
@@ -71,8 +71,11 @@
 -(void)setPictureImage:(UIImage *)image
 {
     for (SnapshotMedia *media in currentSnapshot.mediaList){
+        CGFloat width = self.frame.size.width * media.imageWidthPercent;
+        CGFloat height = self.frame.size.height * media.imageHeightPercent;
+        UIImage *cropImage = [AppUtils cropImage:image ratio:width/height];
         if ([media.mediaName isEqualToString:selectMediaName]) {
-            [media changePicture:image];
+            [media changePicture:cropImage];
         }
     }
 }
@@ -85,7 +88,7 @@
         
         for (SnapshotMedia *media in currentSnapshot.mediaList) {
             CGFloat width = size.width * media.imageWidthPercent;
-            CGFloat height = width * media.demoImage.size.height / media.demoImage.size.width;
+            CGFloat height = size.height * media.imageHeightPercent;
             CGPoint currentCenterPoint = CGPointMake(size.width * media.centerXPercent, size.height * media.centerYPercent);
             CGContextSaveGState(mainViewContentContext);
             CGContextTranslateCTM(mainViewContentContext, currentCenterPoint.x, size.height - currentCenterPoint.y);
@@ -100,9 +103,9 @@
             CGContextSaveGState(mainViewContentContext);
             CGContextTranslateCTM(mainViewContentContext, currentCenterPoint.x, size.height - currentCenterPoint.y);
             CATextLayer *layerText = [CATextLayer layer];
-            layerText.backgroundColor = [UIColor redColor].CGColor;
+            layerText.backgroundColor = [UIColor clearColor].CGColor;
             layerText.contentsScale = [UIScreen mainScreen].scale;
-            layerText.bounds = CGRectMake(-width/2, -height/2, width, height);
+            layerText.bounds = CGRectMake(0, 0, width, height);
             [layerText setForegroundColor:[UIColor colorFromHexString:snapshotText.text.fontColor].CGColor];
             // 字体名称、大小
             UIFont *font = [UIFont systemFontOfSize:snapshotText.text.fontSize];
@@ -126,7 +129,8 @@
                     break;
             }
             layerText.string = snapshotText.text.content;
-            [layerText drawInContext:mainViewContentContext];
+            UIImage *textLayerImage = [self imageWithTextLayer:layerText size:CGSizeMake(width, height)];
+            CGContextDrawImage(mainViewContentContext, CGRectMake( - width / 2,  - height / 2, width, height), textLayerImage.CGImage);
             CGContextRestoreGState(mainViewContentContext);
         }
         
@@ -136,6 +140,22 @@
         CGImageRelease(newImageRef);
         CGContextRelease(mainViewContentContext);
     }
+}
+
+-(UIImage *)imageWithTextLayer:(CATextLayer *)textLayer size:(CGSize)size
+{
+    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, size.width, size.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    CGContextTranslateCTM(mainViewContentContext, 0, size.height);
+    CGContextScaleCTM(mainViewContentContext, 1, -1);
+    
+    [textLayer renderInContext:mainViewContentContext];
+    CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    currentSnapshot.snapshotImage = newImage;
+    CGImageRelease(newImageRef);
+    CGContextRelease(mainViewContentContext);
+    return newImage;
 }
 #pragma -mark UTTextLabelProtocol
 -(void)didSelectTextLabelWithName:(NSString *)name content:(NSString *)content

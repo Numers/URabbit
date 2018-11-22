@@ -14,6 +14,7 @@
 @property(nonatomic) CGFloat centerXPercent;
 @property(nonatomic) CGFloat centerYPercent;
 @property(nonatomic) CGFloat imageWidthPercent;
+@property(nonatomic) CGFloat imageHeightPercent;
 @property(nonatomic) UIImage *demoImage;
 @property(nonatomic, strong) UTPictureImageLayerView *demoImageView;
 

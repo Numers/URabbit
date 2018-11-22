@@ -9,5 +9,7 @@
 #import "ComposeStrategy.h"
 
 @interface ComposeCoverStrategy : ComposeStrategy
-
+{
+    UIImage *maskImage;
+}
 @end

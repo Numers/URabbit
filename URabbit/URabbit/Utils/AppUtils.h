@@ -289,6 +289,17 @@
 
 +(UIImage*)grayscaleImageForImage:(UIImage*)image;
 
+
+
+/**
+ 裁剪图片
+
+ @param image 图片
+ @param ratio 宽/高
+ @return 裁剪后的图片
+ */
++(UIImage *)cropImage:(UIImage *)image ratio:(CGFloat)ratio;
+
 +(NSString *)transferStringNumberToString:(id)number;
 
 
