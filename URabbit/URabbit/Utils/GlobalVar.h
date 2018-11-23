@@ -62,15 +62,16 @@ typedef enum
 
 typedef enum{
     SwitchAnimationNone = 0,
-    SwitchAnimationRightIn,
-    SwitchAnimationRightOut,
-    SwitchAnimationLeftIn,
-    SwitchAnimationLeftOut,
-    SwitchAnimationBottomIn,
-    SwitchAnimationBottomOut,
-    SwitchAnimationTopIn,
-    SwitchAnimationTopOut,
-    SwitchAnimationOpacity,
+    SwitchAnimationRightIn = 1001,
+    SwitchAnimationRightOut = 2,
+    SwitchAnimationLeftIn = 1002,
+    SwitchAnimationLeftOut = 1,
+    SwitchAnimationBottomIn = 1003,
+    SwitchAnimationBottomOut = 4,
+    SwitchAnimationTopIn = 1004,
+    SwitchAnimationTopOut = 3,
+    SwitchAnimationOpacityIn = 1009,
+    SwitchAnimationOpacityOut = 9
     
 } SwitchAnimationType;
 typedef enum

@@ -24,8 +24,10 @@
 {
     NSMutableArray *animations = [NSMutableArray array];
     switch (type) {
-        case SwitchAnimationNone:
-            
+        case SwitchAnimationNone:{
+            CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(-size.width / 2, size.height / 2) toCenter:CGPointMake(size.width /2, size.height/2) startTime:startTime duration:0.001 removeOnComplete:NO delegate:nil];
+            [animations addObject:animation];
+        }
             break;
         case SwitchAnimationLeftIn:{
             CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(-size.width / 2, size.height / 2) toCenter:CGPointMake(size.width /2, size.height/2) startTime:startTime duration:duration removeOnComplete:NO delegate:nil];
@@ -67,13 +69,16 @@
             [animations addObject:animation];
         }
             break;
-        case SwitchAnimationOpacity:{
+        case SwitchAnimationOpacityIn:{
             CABasicAnimation *moveInAnimation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width / 2, size.height / 2) toCenter:CGPointMake(-size.width /2, size.height/2) startTime:startTime duration:0.001 removeOnComplete:NO delegate:nil];
             CABasicAnimation *opacityAnimationIn = [[AnimationManager shareManager] opacityAnimationWithStartOpacity:0.0f endOpacity:1.0f startTime:startTime duration:duration/2 removeOnComplete:NO delegate:nil];
-            CABasicAnimation *opacityAnimationOut = [[AnimationManager shareManager] opacityAnimationWithStartOpacity:1.0f endOpacity:0.0f startTime:startTime + duration / 2 duration:duration / 2 - 0.001 removeOnComplete:NO delegate:nil];
-            CABasicAnimation *moveOutAnimation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width/2, size.height / 2) toCenter:CGPointMake(2 * size.width, size.height/2) startTime:startTime duration:duration removeOnComplete:NO delegate:nil];
             [animations addObject:moveInAnimation];
             [animations addObject:opacityAnimationIn];
+        }
+            break;
+        case SwitchAnimationOpacityOut:{
+            CABasicAnimation *opacityAnimationOut = [[AnimationManager shareManager] opacityAnimationWithStartOpacity:1.0f endOpacity:0.0f startTime:startTime + duration / 2 duration:duration / 2 - 0.001 removeOnComplete:NO delegate:nil];
+            CABasicAnimation *moveOutAnimation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width/2, size.height / 2) toCenter:CGPointMake(2 * size.width, size.height/2) startTime:startTime duration:0.001 removeOnComplete:NO delegate:nil];
             [animations addObject:opacityAnimationOut];
             [animations addObject:moveOutAnimation];
         }

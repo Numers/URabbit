@@ -158,10 +158,31 @@
                 AnimationType type = (AnimationType)[[animationDic objectForKey:@"type"] integerValue];
                 NSInteger startFrame = [[animationDic objectForKey:@"startFrame"] integerValue];
                 NSInteger endFrame = [[animationDic objectForKey:@"endFrame"] integerValue];
-                AnimationSwitch *animationSwitch = nil;
-                NSDictionary *switchAnimationDic = [animationDic objectForKey:@"switching"];
-                if (switchAnimationDic) {
-                    animationSwitch = [[AnimationSwitch alloc] initWithDictionary:switchAnimationDic];
+                
+                AnimationSwitch *moveInAnimationSwitch = nil;
+                id enterTypeObj = [animationDic objectForKey:@"enterType"];
+                if (enterTypeObj) {
+                    NSInteger moveInAnimationStartFrame = [[animationDic objectForKey:@"enterStartFrame"] integerValue];
+                    NSInteger moveInAnimationEndFrame = [[animationDic objectForKey:@"enterEndFrame"] integerValue];
+                    NSInteger enterType = [enterTypeObj integerValue];
+                    NSDictionary *moveInAnimationSwitchDic = [NSDictionary dictionaryWithObjectsAndKeys:@(moveInAnimationEndFrame),@"endFrame",@(moveInAnimationStartFrame),@"startFrame",@(enterType),@"type", nil];
+                    moveInAnimationSwitch = [[AnimationSwitch alloc] initWithDictionary:moveInAnimationSwitchDic];
+                }else{
+                    NSDictionary *moveInAnimationSwitchDic = [NSDictionary dictionaryWithObjectsAndKeys:@(startFrame + 1),@"endFrame",@(startFrame),@"startFrame",@(0),@"type", nil];
+                    moveInAnimationSwitch = [[AnimationSwitch alloc] initWithDictionary:moveInAnimationSwitchDic];
+                }
+                
+                id exitTypeObj = [animationDic objectForKey:@"exitType"];
+                AnimationSwitch *moveOutAnimationSwitch = nil;
+                if (exitTypeObj) {
+                    NSInteger moveOutAnimationStartFrame = [[animationDic objectForKey:@"exitStartFrame"] integerValue];
+                    NSInteger moveOutAnimationEndFrame = [[animationDic objectForKey:@"exitEndFrame"] integerValue];
+                    NSInteger exitType = [[animationDic objectForKey:@"exitType"] integerValue];
+                    NSDictionary *moveOutAnimationSwitchDic = [NSDictionary dictionaryWithObjectsAndKeys:@(moveOutAnimationEndFrame),@"endFrame",@(moveOutAnimationStartFrame),@"startFrame",@(exitType),@"type", nil];
+                    moveOutAnimationSwitch = [[AnimationSwitch alloc] initWithDictionary:moveOutAnimationSwitchDic];
+                }else{
+                    NSDictionary *moveOutAnimationSwitchDic = [NSDictionary dictionaryWithObjectsAndKeys:@(startFrame + 1),@"endFrame",@(startFrame),@"startFrame",@(0),@"type", nil];
+                    moveOutAnimationSwitch = [[AnimationSwitch alloc] initWithDictionary:moveOutAnimationSwitchDic];
                 }
                 
                 NSArray *medias = [animationDic objectForKey:@"media"];
@@ -171,17 +192,18 @@
                         SnapshotMedia *snapshotMedia = [self filterArray:snapshotList withMediaName:animationForMedia.name];
                         if (snapshotMedia) {
                             [snapshotMedia.animationForMediaList addObject:animationForMedia];
-                            if (animationSwitch) {
-                                [snapshotMedia.animationForSwitchList addObject:animationSwitch];
-                            }
+                            [snapshotMedia.animationForSwitchList addObject:moveInAnimationSwitch];
+                            [snapshotMedia.animationForSwitchList addObject:moveOutAnimationSwitch];
                         }
                     }
                 }
             }
         }
         
-        UTPhotoEditViewController *photoEditVC = [[UTPhotoEditViewController alloc] initWithResource:resource snapshots:snapshotList];
-        [self.navigationController pushViewController:photoEditVC animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UTPhotoEditViewController *photoEditVC = [[UTPhotoEditViewController alloc] initWithResource:resource snapshots:snapshotList];
+            [self.navigationController pushViewController:photoEditVC animated:YES];
+        });
     }
 }
 
