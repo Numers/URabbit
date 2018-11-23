@@ -7,23 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef enum{
-    CustomerRole = 1,
-    StaffRole
-}Role;
 @interface Member : NSObject
 @property(nonatomic, copy) NSString *memberId;
-@property(nonatomic, copy) NSString *name;
-@property(nonatomic, copy) NSString *loginName;
+@property(nonatomic, copy) NSString *nickName;
+@property(nonatomic, copy) NSString *mobile;
 @property(nonatomic, copy) NSString *password;
 @property(nonatomic, copy) NSString *headIcon;
 @property(nonatomic, copy) NSString *token;
-@property(nonatomic, copy) NSString *source;
-@property(nonatomic, copy) NSString *ip;
-@property(nonatomic) NSTimeInterval time;
-@property(nonatomic) Role role;
-
-@property(nonatomic, strong) id userInfo;
 
 
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class Member;
 @interface UTUserCenterHeadView : UIView
 {
     UIImageView *headImageView;
@@ -28,5 +28,8 @@
     UIView *line1View;
     UIView *line2View;
 }
+
+-(void)setCurrentMember:(Member *)member;
+-(void)setSaveNumber:(NSInteger)saveNumber downloadNumber:(NSInteger)downloadNumber draftNumber:(NSInteger)draftNumber;
 @end
 

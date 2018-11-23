@@ -15,6 +15,10 @@
 		04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */; };
 		141921F6219EA243001239EE /* animation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 141921F5219EA243001239EE /* animation.txt */; };
 		14239B6F2172F9FA0033FB7D /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14239B6E2172F9FA0033FB7D /* libGPUImage.a */; };
+		1425A8B921A828A1007A0C2E /* UTUserCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8B821A828A1007A0C2E /* UTUserCenterTableViewCell.m */; };
+		1425A8BD21A8503F007A0C2E /* UTMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BC21A8503F007A0C2E /* UTMemberViewController.m */; };
+		1425A8C021A85976007A0C2E /* UTMemberScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BF21A85976007A0C2E /* UTMemberScrollViewController.m */; };
+		1425A8C421A8707A007A0C2E /* UTMemberCoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8C321A8707A007A0C2E /* UTMemberCoinViewController.m */; };
 		14262A292189AC8E00768E6A /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14262A282189AC8E00768E6A /* music.mp3 */; };
 		14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2D218AF02300768E6A /* LLTabBarItem.m */; };
 		14262A30218AF02300768E6A /* LLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2E218AF02300768E6A /* LLTabBar.m */; };
@@ -331,6 +335,14 @@
 		14239B6B2172F9FA0033FB7D /* GPUImageStretchDistortionFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageStretchDistortionFilter.h; sourceTree = "<group>"; };
 		14239B6C2172F9FA0033FB7D /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
 		14239B6E2172F9FA0033FB7D /* libGPUImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGPUImage.a; sourceTree = "<group>"; };
+		1425A8B721A828A1007A0C2E /* UTUserCenterTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserCenterTableViewCell.h; sourceTree = "<group>"; };
+		1425A8B821A828A1007A0C2E /* UTUserCenterTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserCenterTableViewCell.m; sourceTree = "<group>"; };
+		1425A8BB21A8503F007A0C2E /* UTMemberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberViewController.h; sourceTree = "<group>"; };
+		1425A8BC21A8503F007A0C2E /* UTMemberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMemberViewController.m; sourceTree = "<group>"; };
+		1425A8BE21A85976007A0C2E /* UTMemberScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberScrollViewController.h; sourceTree = "<group>"; };
+		1425A8BF21A85976007A0C2E /* UTMemberScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMemberScrollViewController.m; sourceTree = "<group>"; };
+		1425A8C221A8707A007A0C2E /* UTMemberCoinViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberCoinViewController.h; sourceTree = "<group>"; };
+		1425A8C321A8707A007A0C2E /* UTMemberCoinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMemberCoinViewController.m; sourceTree = "<group>"; };
 		14262A282189AC8E00768E6A /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		14262A2B218AF02300768E6A /* LLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBar.h; sourceTree = "<group>"; };
 		14262A2C218AF02300768E6A /* LLTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBarItem.h; sourceTree = "<group>"; };
@@ -823,6 +835,35 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		1425A8B621A82873007A0C2E /* UserCenterTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8B721A828A1007A0C2E /* UTUserCenterTableViewCell.h */,
+				1425A8B821A828A1007A0C2E /* UTUserCenterTableViewCell.m */,
+			);
+			path = UserCenterTableViewCell;
+			sourceTree = "<group>";
+		};
+		1425A8BA21A84FB4007A0C2E /* MemberView */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8BB21A8503F007A0C2E /* UTMemberViewController.h */,
+				1425A8BC21A8503F007A0C2E /* UTMemberViewController.m */,
+				1425A8BE21A85976007A0C2E /* UTMemberScrollViewController.h */,
+				1425A8BF21A85976007A0C2E /* UTMemberScrollViewController.m */,
+			);
+			path = MemberView;
+			sourceTree = "<group>";
+		};
+		1425A8C121A8683F007A0C2E /* MemberCoinView */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8C221A8707A007A0C2E /* UTMemberCoinViewController.h */,
+				1425A8C321A8707A007A0C2E /* UTMemberCoinViewController.m */,
+			);
+			path = MemberCoinView;
+			sourceTree = "<group>";
+		};
 		14262A2A218AF02300768E6A /* LLTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -837,6 +878,7 @@
 		14262A31218AF20A00768E6A /* UserCenterView */ = {
 			isa = PBXGroup;
 			children = (
+				1425A8B621A82873007A0C2E /* UserCenterTableViewCell */,
 				04110A9B21A14BAA00732B3D /* UserCenterHeadView */,
 				14262A32218AF23200768E6A /* UTUserCenterViewController.h */,
 				14262A33218AF23200768E6A /* UTUserCenterViewController.m */,
@@ -1210,6 +1252,8 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1425A8C121A8683F007A0C2E /* MemberCoinView */,
+				1425A8BA21A84FB4007A0C2E /* MemberView */,
 				04372B8F21A1121500F206E3 /* RegisterView */,
 				0434F04421A038AB00A1B65F /* VideoComposeSuccessView */,
 				146B63C42192B32A00A3A679 /* VideoComposeView */,
@@ -1727,9 +1771,11 @@
 				144357A221A6A39700FEA9AE /* UTMusicView.m in Sources */,
 				04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */,
 				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
+				1425A8B921A828A1007A0C2E /* UTUserCenterTableViewCell.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
 				14482F2221A475FF00D640F1 /* UTPhotoEditCanMoveView.m in Sources */,
 				14482F0421A3BE8600D640F1 /* Snapshot.m in Sources */,
+				1425A8C021A85976007A0C2E /* UTMemberScrollViewController.m in Sources */,
 				14678FF8218EDAFA00CD7F4B /* RecommendTemplate.m in Sources */,
 				144357C021A6ACDA00FEA9AE /* PSTCollectionViewController.m in Sources */,
 				1458037E216F2BCC006BB33D /* AppUtils.m in Sources */,
@@ -1749,6 +1795,7 @@
 				04372B8E21A110F600F206E3 /* UTLoginWithPasswordViewController.m in Sources */,
 				1458039E216F3114006BB33D /* UTLoginViewController.m in Sources */,
 				145803A9216F32E9006BB33D /* UTLoginScrollViewController.m in Sources */,
+				1425A8BD21A8503F007A0C2E /* UTMemberViewController.m in Sources */,
 				144357CF21A6B53000FEA9AE /* MusicInfo.m in Sources */,
 				145B6142216F27B700DA950E /* main.m in Sources */,
 				14678FF5218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.m in Sources */,
@@ -1824,6 +1871,7 @@
 				14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */,
 				0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */,
 				144357C421A6ACDA00FEA9AE /* PSTCollectionViewData.m in Sources */,
+				1425A8C421A8707A007A0C2E /* UTMemberCoinViewController.m in Sources */,
 				14EDA16821A310EE00C1BD3E /* Author.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

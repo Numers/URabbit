@@ -7,7 +7,7 @@
 //
 
 #import "UINavigationController+NavigationBar.h"
-#define TitleColor [UIColor colorFromHexString:@"#666666"]
+#define TitleColor [UIColor colorFromHexString:@"#333333"]
 @implementation UINavigationController (NavigationBar)
 -(void)setNavigationViewColor:(UIColor *)color;
 {
@@ -48,7 +48,7 @@
 -(void)adaptTitle:(UIColor *)color
 {
     UIFont *font;
-    font = [UIFont fontWithName:@"HelveticaNeue" size:17.0];
+    font = [UIFont boldSystemFontOfSize:17];
     [self setTitleTextColor:color WithFont:font];
 }
 

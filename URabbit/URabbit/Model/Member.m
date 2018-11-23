@@ -20,17 +20,12 @@
     self = [super init];
     if (self) {
         if (dic) {
-            self.memberId = [dic objectForKey:@"memberId"];
-            self.name = [dic objectForKey:@"name"];
-            self.loginName = [dic objectForKey:@"loginName"];
+            self.memberId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"memberId"]];
+            self.mobile = [dic objectForKey:@"mobile"];
+            self.nickName = [dic objectForKey:@"nickName"];
             self.password = [dic objectForKey:@"password"];
-            self.ip = [dic objectForKey:@"ip"];
             self.token = [dic objectForKey:@"token"];
             self.headIcon = [dic objectForKey:@"headIcon"];
-            self.source = [dic objectForKey:@"source"];
-            self.time = [[dic objectForKey:@"time"] doubleValue];
-            self.role = (Role)[[dic objectForKey:@"role"] integerValue];
-            self.userInfo = dic;
         }
     }
     return self;
@@ -49,12 +44,8 @@
         [dic setObject:_memberId forKey:@"memberId"];
     }
     
-    if (_name) {
-        [dic setObject:_name forKey:@"name"];
-    }
-    
-    if (_loginName) {
-        [dic setObject:_loginName forKey:@"loginName"];
+    if (_nickName) {
+        [dic setObject:_nickName forKey:@"nickName"];
     }
     
     if (_password) {
@@ -69,19 +60,8 @@
         [dic setObject:_token forKey:@"token"];
     }
     
-    if (_ip) {
-        [dic setObject:_ip forKey:@"ip"];
-    }
-    
-    if (_source) {
-        [dic setObject:_source forKey:@"source"];
-    }
-    
-    [dic setObject:@(_time) forKey:@"time"];
-    [dic setObject:@(_role) forKey:@"role"];
-    
-    if (_userInfo) {
-        [dic setObject:_userInfo forKey:@"userInfo"];
+    if (_mobile) {
+        [dic setObject:_mobile forKey:@"mobile"];
     }
     return dic;
 }

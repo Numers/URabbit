@@ -210,6 +210,8 @@
     UTUserCenterViewController *userCenterVC = [[UTUserCenterViewController alloc] init];
     UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:userCenterVC];
     [self setNavigationColor:nav2];
+    [nav2.navigationBar setBackIndicatorImage:[[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#333333"])] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [nav2.navigationBar setBackIndicatorTransitionMaskImage:[[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#333333"])] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     [_tabBarController setViewControllers:@[nav1,nav2]];
     LLTabBar *tabBar = [[LLTabBar alloc] initWithFrame:_tabBarController.tabBar.bounds];
