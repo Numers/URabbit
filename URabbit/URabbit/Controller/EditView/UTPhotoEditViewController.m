@@ -26,6 +26,8 @@
 #import "UTVideoComposeViewController.h"
 #import "PSTCollectionView.h"
 
+#import "Composition.h"
+
 static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowImageCollectionViewCellIdentify";
 @interface UTPhotoEditViewController ()<PSTCollectionViewDelegateFlowLayout,PSTCollectionViewDelegate,PSTCollectionViewDataSource,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UTMiddleEditContainerViewProtocol,VideoComposeProtocol,ComposeStrategyProtocl>
 {
@@ -47,12 +49,13 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 @end
 
 @implementation UTPhotoEditViewController
--(instancetype)initWithResource:(Resource *)resource snapshots:(NSMutableArray *)snapshots
+-(instancetype)initWithResource:(Resource *)resource snapshots:(NSMutableArray *)snapshots compositon:(Composition *)composition
 {
     self = [super init];
     if (self) {
         currentResource = resource;
         currentSnapshots = [NSMutableArray arrayWithArray:snapshots];
+        currentComposition = composition;
     }
     return self;
 }
@@ -163,8 +166,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 //
 //    [cell setPictureImage:snapshot.snapshotImage];
 //    return;
-    NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    videoPath = [NSString stringWithFormat:@"%@/video-compose.mp4",videoDic];
+    videoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
     
     float fps = currentResource.fps;
     if (currentResource.style == TemplateStyleGoodNight) {
@@ -323,13 +325,14 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                 }
                 
                 if (currentResource.fgWebp) {
-                    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-                    NSString *videoUrl = [NSString stringWithFormat:@"%@/animation.mp4",documentsDirectory];
+                    NSString *videoUrl = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
                     [[UTVideoManager shareManager] addWebpWithMovieUrl:outPutURL withWebpPath:currentResource.fgWebp output:videoUrl videoSize:currentResource.videoSize completely:^(BOOL isSucess) {
                         if (success) {
                             if ([[NSFileManager defaultManager] fileExistsAtPath:outPutURL]) {
                                 [[NSFileManager defaultManager] removeItemAtPath:outPutURL error:nil];
                             }
+                            currentComposition.moviePath = videoUrl;
+                            [currentComposition bg_save];
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoUrl images:imageList];
                                 [self.navigationController pushViewController:videoComposeVC animated:YES];
@@ -347,14 +350,16 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
             }];
         }else{
             if (currentResource.fgWebp) {
-                NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-                NSString *videoUrl = [NSString stringWithFormat:@"%@/animation.mp4",documentsDirectory];
+                
+                NSString *videoUrl = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
                 [[UTVideoManager shareManager] addWebpWithMovieUrl:videoPath withWebpPath:currentResource.fgWebp output:videoUrl videoSize:currentResource.videoSize completely:^(BOOL isSucess) {
                     if (success) {
                         if ([[NSFileManager defaultManager] fileExistsAtPath:videoPath]) {
                             [[NSFileManager defaultManager] removeItemAtPath:videoPath error:nil];
                         }
                         dispatch_async(dispatch_get_main_queue(), ^{
+                            currentComposition.moviePath = videoUrl;
+                            [currentComposition bg_save];
                             UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoUrl images:imageList];
                             [self.navigationController pushViewController:videoComposeVC animated:YES];
                             [imageList removeAllObjects];
@@ -362,6 +367,8 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                     }
                 }];
             }else{
+                currentComposition.moviePath = videoPath;
+                [currentComposition bg_save];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoPath images:imageList];
                     [self.navigationController pushViewController:videoComposeVC animated:YES];

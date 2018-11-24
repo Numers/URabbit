@@ -354,4 +354,9 @@
 + (NSArray *)cdi_imagesWithGif:(NSString *)gifName;
 
 + (NSArray *)cdi_imagesWithWebp:(NSString *)webpName;
+
++(NSString *)createDirectory:(NSString *)directory;
++(NSString *)createDirectoryWithUniqueIndex:(long)index;
++(NSString *)videoPathWithDirectory:(NSString *)directory;
++(NSString *)videoPathWithUniqueIndex:(long)index;
 @end

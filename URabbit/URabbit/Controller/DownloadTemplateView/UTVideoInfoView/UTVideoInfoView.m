@@ -17,12 +17,10 @@
         CGFloat playerWidth = SCREEN_WIDTH - 74 * 2;
         CGFloat playerHeight = playerWidth * (size.height / size.width);
         
-        playerController = [[MPMoviePlayerController alloc] init];
-        playerController.controlStyle = MPMovieControlStyleDefault;
-        playerController.shouldAutoplay = YES;
-        playerController.scalingMode = MPMovieScalingModeAspectFit;
-        [playerController.view setFrame:CGRectMake(74, 0, playerWidth, playerHeight)];
-        [self addSubview:playerController.view];
+        playView = [[CLPlayerView alloc] initWithFrame:CGRectMake(74, 0, playerWidth, playerHeight)];
+        playView.isLandscape = YES;
+        playView.fullStatusBarHiddenType = FullStatusBarHiddenFollowToolBar;
+        [self addSubview:playView];
         
         videoNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, playerHeight + 26, frame.size.width - 70, 22)];
         [videoNameLabel setTextAlignment:NSTextAlignmentLeft];
@@ -49,8 +47,7 @@
 
 -(void)setHomeTemplate:(HomeTemplate *)homeTemplate
 {
-    [playerController setContentURL:[NSURL URLWithString:homeTemplate.demoUrl]];
-    [playerController prepareToPlay];
+    [playView setUrl:[NSURL URLWithString:homeTemplate.demoUrl]];
     [videoNameLabel setText:homeTemplate.title];
     [videoDurationLabel setText:[AppUtils getMMSSFromSS:homeTemplate.duration]];
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:13.0]};

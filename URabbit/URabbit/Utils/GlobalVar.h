@@ -97,6 +97,8 @@ typedef enum
 
 #define IconfontGoBackDefaultSize 18
 
+#define CompositionTableName @"Compositon"
+
 #define UnitDivisor 1000
 
 #define Version_Code 0

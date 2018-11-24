@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Resource;
+@class Resource,Composition;
 @interface UTPhotoEditViewController : UIViewController
 {
-
+    Composition *currentComposition;
 }
--(instancetype)initWithResource:(Resource *)resource snapshots:(NSMutableArray *)snapshots;
+-(instancetype)initWithResource:(Resource *)resource snapshots:(NSMutableArray *)snapshots compositon:(Composition *)composition;
 @end

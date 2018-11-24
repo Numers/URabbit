@@ -17,7 +17,7 @@
     if (self) {
         templateImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - 50)];
         [templateImageView.layer setCornerRadius:5];
-        [templateImageView.layer masksToBounds];
+        [templateImageView.layer setMasksToBounds:YES];
         [self addSubview:templateImageView];
         
         nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height - 40, frame.size.width, 20)];
@@ -31,7 +31,7 @@
 
 -(void)setupCellWithHomeTemplate:(HomeTemplate *)homeTemplate
 {
-    [templateImageView sd_setImageWithURL:[NSURL URLWithString:homeTemplate.coverUrl] placeholderImage:nil];
+    [templateImageView sd_setImageWithURL:[NSURL URLWithString:homeTemplate.coverUrl] placeholderImage:[UIImage imageNamed:@"CoverPlaceholdImage"]];
     [nameLabel setText:homeTemplate.title];
 }
 @end

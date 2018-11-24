@@ -965,4 +965,64 @@
     }
     return frames;
 }
+
++(NSString *)createDirectory:(NSString *)directory
+{
+    NSString * cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *directoryPath = [cacheDir stringByAppendingPathComponent:directory];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    BOOL isDir = NO;
+    
+    // fileExistsAtPath 判断一个文件或目录是否有效，isDirectory判断是否一个目录
+    BOOL existed = [fileManager fileExistsAtPath:directoryPath isDirectory:&isDir];
+    
+    if (!(isDir && existed)) {
+        // 在Document目录下创建一个archiver目录
+        BOOL result =  [fileManager createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:nil];
+        if (result) {
+            return directoryPath;
+        }else{
+            return nil;
+        }
+    }
+    return directoryPath;
+}
+
++(NSString *)createDirectoryWithUniqueIndex:(long)index
+{
+    NSString *directory = [NSString stringWithFormat:@"video-%ld",index];
+    return [AppUtils createDirectory:directory];
+}
+
++(NSString *)videoPathWithDirectory:(NSString *)directory
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    BOOL isDir = NO;
+    
+    // fileExistsAtPath 判断一个文件或目录是否有效，isDirectory判断是否一个目录
+    BOOL existed = [fileManager fileExistsAtPath:directory isDirectory:&isDir];
+    
+    if (!(isDir && existed)) {
+        // 在Document目录下创建一个archiver目录
+        [fileManager createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *outPutFileName = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    NSString *filePath =  [directory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",outPutFileName]];
+    return filePath;
+}
+
++(NSString *)videoPathWithUniqueIndex:(long)index
+{
+    NSString *directory = [AppUtils createDirectoryWithUniqueIndex:index];
+    if (directory) {
+        return [AppUtils videoPathWithDirectory:directory];
+    }
+    return nil;
+}
 @end

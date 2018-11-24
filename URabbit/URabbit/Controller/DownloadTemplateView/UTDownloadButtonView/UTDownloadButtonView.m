@@ -38,4 +38,16 @@
         [self.delegate beginDownload];
     }
 }
+
+-(void)setProgress:(CGFloat)progress
+{
+    NSString *percent = [NSString stringWithFormat:@"%.0f%%",progress * 100];
+    NSString *buttonTitle = [NSString stringWithFormat:@"%@ 正在下载",percent];
+    [downloadButton setTitle:buttonTitle forState:UIControlStateNormal];
+}
+
+-(void)setButtonTitle:(NSString *)title
+{
+    [downloadButton setTitle:title forState:UIControlStateNormal];
+}
 @end

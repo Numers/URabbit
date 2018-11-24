@@ -13,6 +13,9 @@
 #import "AppStartManager.h"
 #import "UTMemberScrollViewController.h"
 #import "UTMemberCoinViewController.h"
+#import "UTMemberCompositonViewController.h"
+#import "UTUserSettingViewController.h"
+#import "UTShareViewController.h"
 static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIdentify";
 @interface UTUserCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -103,13 +106,29 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
         }
             break;
         case 2:
-            
+        {
+            UTMemberCompositonViewController *memberCompositionVC = [[UTMemberCompositonViewController alloc] init];
+            [memberCompositionVC setHidesBottomBarWhenPushed:YES];
+            [self.navigationController pushViewController:memberCompositionVC animated:YES];
+        }
             break;
         case 3:
-            
+        {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UTShareViewController *shareVC = [storyboard instantiateViewControllerWithIdentifier:@"UTShareViewIdentify"];
+            shareVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//            self.definesPresentationContext = YES;
+            [self presentViewController:shareVC animated:YES completion:^{
+                
+            }];
+        }
             break;
         case 4:
-            
+        {
+            UTUserSettingViewController *userSettingVC = [[UTUserSettingViewController alloc] init];
+            [userSettingVC setHidesBottomBarWhenPushed:YES];
+            [self.navigationController pushViewController:userSettingVC animated:YES];
+        }
             break;
         default:
             break;

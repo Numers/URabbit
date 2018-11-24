@@ -15,4 +15,6 @@
     UIButton *downloadButton;
 }
 @property(nonatomic, weak) id<UTDownloadButtonViewProtocol> delegate;
+-(void)setProgress:(CGFloat)progress;
+-(void)setButtonTitle:(NSString *)title;
 @end

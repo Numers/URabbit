@@ -19,6 +19,26 @@
 		1425A8BD21A8503F007A0C2E /* UTMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BC21A8503F007A0C2E /* UTMemberViewController.m */; };
 		1425A8C021A85976007A0C2E /* UTMemberScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BF21A85976007A0C2E /* UTMemberScrollViewController.m */; };
 		1425A8C421A8707A007A0C2E /* UTMemberCoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8C321A8707A007A0C2E /* UTMemberCoinViewController.m */; };
+		1425A8C721A95569007A0C2E /* Composition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8C621A95569007A0C2E /* Composition.m */; };
+		1425A8CB21A961F8007A0C2E /* UTMemberCompositonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8CA21A961F8007A0C2E /* UTMemberCompositonViewController.m */; };
+		1425A8CF21A9662A007A0C2E /* UTMemberCompositonCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8CE21A9662A007A0C2E /* UTMemberCompositonCollectionViewCell.m */; };
+		1425A8D321A98B3B007A0C2E /* UTMemberCompositionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8D221A98B3B007A0C2E /* UTMemberCompositionDetailsViewController.m */; };
+		1425A8D721A98F1E007A0C2E /* UTMemberCompositionInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8D621A98F1E007A0C2E /* UTMemberCompositionInfoView.m */; };
+		1425A8DB21A99BB6007A0C2E /* UTUserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8DA21A99BB6007A0C2E /* UTUserSettingViewController.m */; };
+		1425A8DF21A99CAC007A0C2E /* UTUserSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8DE21A99CAC007A0C2E /* UTUserSettingTableViewCell.m */; };
+		1425A8E321A9AB94007A0C2E /* UTEditUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8E221A9AB94007A0C2E /* UTEditUserInfoViewController.m */; };
+		1425A8FC21A9BD9F007A0C2E /* CLSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8E621A9BD9F007A0C2E /* CLSlider.m */; };
+		1425A8FD21A9BD9F007A0C2E /* UITabBarController+CLPlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8EB21A9BD9F007A0C2E /* UITabBarController+CLPlayerRotation.m */; };
+		1425A8FE21A9BD9F007A0C2E /* UINavigationController+CLPlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8ED21A9BD9F007A0C2E /* UINavigationController+CLPlayerRotation.m */; };
+		1425A8FF21A9BD9F007A0C2E /* UIViewController+CLPlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8EE21A9BD9F007A0C2E /* UIViewController+CLPlayerRotation.m */; };
+		1425A90021A9BD9F007A0C2E /* UIView+CLSetRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8F021A9BD9F007A0C2E /* UIView+CLSetRect.m */; };
+		1425A90121A9BD9F007A0C2E /* AILoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8F221A9BD9F007A0C2E /* AILoadingView.m */; };
+		1425A90221A9BD9F007A0C2E /* PlayTopToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8F321A9BD9F007A0C2E /* PlayTopToolBar.m */; };
+		1425A90321A9BD9F007A0C2E /* CLPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8F421A9BD9F007A0C2E /* CLPlayerMaskView.m */; };
+		1425A90421A9BD9F007A0C2E /* CLPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8F621A9BD9F007A0C2E /* CLPlayerView.m */; };
+		1425A90521A9BD9F007A0C2E /* CLGCDTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8F721A9BD9F007A0C2E /* CLGCDTimerManager.m */; };
+		1425A90621A9BD9F007A0C2E /* PlayBottomToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8FA21A9BD9F007A0C2E /* PlayBottomToolBar.m */; };
+		1425A90A21A9C0BD007A0C2E /* UTShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A90921A9C0BD007A0C2E /* UTShareViewController.m */; };
 		14262A292189AC8E00768E6A /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14262A282189AC8E00768E6A /* music.mp3 */; };
 		14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2D218AF02300768E6A /* LLTabBarItem.m */; };
 		14262A30218AF02300768E6A /* LLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2E218AF02300768E6A /* LLTabBar.m */; };
@@ -343,6 +363,46 @@
 		1425A8BF21A85976007A0C2E /* UTMemberScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMemberScrollViewController.m; sourceTree = "<group>"; };
 		1425A8C221A8707A007A0C2E /* UTMemberCoinViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberCoinViewController.h; sourceTree = "<group>"; };
 		1425A8C321A8707A007A0C2E /* UTMemberCoinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMemberCoinViewController.m; sourceTree = "<group>"; };
+		1425A8C521A95569007A0C2E /* Composition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Composition.h; sourceTree = "<group>"; };
+		1425A8C621A95569007A0C2E /* Composition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Composition.m; sourceTree = "<group>"; };
+		1425A8C921A961F8007A0C2E /* UTMemberCompositonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberCompositonViewController.h; sourceTree = "<group>"; };
+		1425A8CA21A961F8007A0C2E /* UTMemberCompositonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMemberCompositonViewController.m; sourceTree = "<group>"; };
+		1425A8CD21A9662A007A0C2E /* UTMemberCompositonCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberCompositonCollectionViewCell.h; sourceTree = "<group>"; };
+		1425A8CE21A9662A007A0C2E /* UTMemberCompositonCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMemberCompositonCollectionViewCell.m; sourceTree = "<group>"; };
+		1425A8D121A98B3B007A0C2E /* UTMemberCompositionDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberCompositionDetailsViewController.h; sourceTree = "<group>"; };
+		1425A8D221A98B3B007A0C2E /* UTMemberCompositionDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMemberCompositionDetailsViewController.m; sourceTree = "<group>"; };
+		1425A8D521A98F1E007A0C2E /* UTMemberCompositionInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberCompositionInfoView.h; sourceTree = "<group>"; };
+		1425A8D621A98F1E007A0C2E /* UTMemberCompositionInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMemberCompositionInfoView.m; sourceTree = "<group>"; };
+		1425A8D921A99BB6007A0C2E /* UTUserSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserSettingViewController.h; sourceTree = "<group>"; };
+		1425A8DA21A99BB6007A0C2E /* UTUserSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserSettingViewController.m; sourceTree = "<group>"; };
+		1425A8DD21A99CAC007A0C2E /* UTUserSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserSettingTableViewCell.h; sourceTree = "<group>"; };
+		1425A8DE21A99CAC007A0C2E /* UTUserSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserSettingTableViewCell.m; sourceTree = "<group>"; };
+		1425A8E121A9AB94007A0C2E /* UTEditUserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTEditUserInfoViewController.h; sourceTree = "<group>"; };
+		1425A8E221A9AB94007A0C2E /* UTEditUserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTEditUserInfoViewController.m; sourceTree = "<group>"; };
+		1425A8E521A9BD9F007A0C2E /* CLGCDTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLGCDTimerManager.h; sourceTree = "<group>"; };
+		1425A8E621A9BD9F007A0C2E /* CLSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSlider.m; sourceTree = "<group>"; };
+		1425A8E721A9BD9F007A0C2E /* CLPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLPlayerView.h; sourceTree = "<group>"; };
+		1425A8E921A9BD9F007A0C2E /* UINavigationController+CLPlayerRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+CLPlayerRotation.h"; sourceTree = "<group>"; };
+		1425A8EA21A9BD9F007A0C2E /* UIViewController+CLPlayerRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CLPlayerRotation.h"; sourceTree = "<group>"; };
+		1425A8EB21A9BD9F007A0C2E /* UITabBarController+CLPlayerRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+CLPlayerRotation.m"; sourceTree = "<group>"; };
+		1425A8EC21A9BD9F007A0C2E /* UIView+CLSetRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CLSetRect.h"; sourceTree = "<group>"; };
+		1425A8ED21A9BD9F007A0C2E /* UINavigationController+CLPlayerRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+CLPlayerRotation.m"; sourceTree = "<group>"; };
+		1425A8EE21A9BD9F007A0C2E /* UIViewController+CLPlayerRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CLPlayerRotation.m"; sourceTree = "<group>"; };
+		1425A8EF21A9BD9F007A0C2E /* UITabBarController+CLPlayerRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+CLPlayerRotation.h"; sourceTree = "<group>"; };
+		1425A8F021A9BD9F007A0C2E /* UIView+CLSetRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CLSetRect.m"; sourceTree = "<group>"; };
+		1425A8F121A9BD9F007A0C2E /* PlayBottomToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayBottomToolBar.h; sourceTree = "<group>"; };
+		1425A8F221A9BD9F007A0C2E /* AILoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AILoadingView.m; sourceTree = "<group>"; };
+		1425A8F321A9BD9F007A0C2E /* PlayTopToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayTopToolBar.m; sourceTree = "<group>"; };
+		1425A8F421A9BD9F007A0C2E /* CLPlayerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLPlayerMaskView.m; sourceTree = "<group>"; };
+		1425A8F521A9BD9F007A0C2E /* CLSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSlider.h; sourceTree = "<group>"; };
+		1425A8F621A9BD9F007A0C2E /* CLPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLPlayerView.m; sourceTree = "<group>"; };
+		1425A8F721A9BD9F007A0C2E /* CLGCDTimerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLGCDTimerManager.m; sourceTree = "<group>"; };
+		1425A8F821A9BD9F007A0C2E /* AILoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AILoadingView.h; sourceTree = "<group>"; };
+		1425A8F921A9BD9F007A0C2E /* PlayTopToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayTopToolBar.h; sourceTree = "<group>"; };
+		1425A8FA21A9BD9F007A0C2E /* PlayBottomToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayBottomToolBar.m; sourceTree = "<group>"; };
+		1425A8FB21A9BD9F007A0C2E /* CLPlayerMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLPlayerMaskView.h; sourceTree = "<group>"; };
+		1425A90821A9C0BD007A0C2E /* UTShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTShareViewController.h; sourceTree = "<group>"; };
+		1425A90921A9C0BD007A0C2E /* UTShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTShareViewController.m; sourceTree = "<group>"; };
 		14262A282189AC8E00768E6A /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		14262A2B218AF02300768E6A /* LLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBar.h; sourceTree = "<group>"; };
 		14262A2C218AF02300768E6A /* LLTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBarItem.h; sourceTree = "<group>"; };
@@ -864,6 +924,118 @@
 			path = MemberCoinView;
 			sourceTree = "<group>";
 		};
+		1425A8C821A961D1007A0C2E /* MemberCompositonView */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8CC21A965F5007A0C2E /* UTMemberCompositonCollectionViewCell */,
+				1425A8C921A961F8007A0C2E /* UTMemberCompositonViewController.h */,
+				1425A8CA21A961F8007A0C2E /* UTMemberCompositonViewController.m */,
+			);
+			path = MemberCompositonView;
+			sourceTree = "<group>";
+		};
+		1425A8CC21A965F5007A0C2E /* UTMemberCompositonCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8CD21A9662A007A0C2E /* UTMemberCompositonCollectionViewCell.h */,
+				1425A8CE21A9662A007A0C2E /* UTMemberCompositonCollectionViewCell.m */,
+			);
+			path = UTMemberCompositonCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		1425A8D021A98B0F007A0C2E /* MemberCompositionDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8D421A98EF9007A0C2E /* UTMemberCompositionInfoView */,
+				1425A8D121A98B3B007A0C2E /* UTMemberCompositionDetailsViewController.h */,
+				1425A8D221A98B3B007A0C2E /* UTMemberCompositionDetailsViewController.m */,
+			);
+			path = MemberCompositionDetailsView;
+			sourceTree = "<group>";
+		};
+		1425A8D421A98EF9007A0C2E /* UTMemberCompositionInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8D521A98F1E007A0C2E /* UTMemberCompositionInfoView.h */,
+				1425A8D621A98F1E007A0C2E /* UTMemberCompositionInfoView.m */,
+			);
+			path = UTMemberCompositionInfoView;
+			sourceTree = "<group>";
+		};
+		1425A8D821A99B94007A0C2E /* UserSettingView */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8DC21A99C80007A0C2E /* UserSettingTableViewCell */,
+				1425A8D921A99BB6007A0C2E /* UTUserSettingViewController.h */,
+				1425A8DA21A99BB6007A0C2E /* UTUserSettingViewController.m */,
+			);
+			path = UserSettingView;
+			sourceTree = "<group>";
+		};
+		1425A8DC21A99C80007A0C2E /* UserSettingTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8DD21A99CAC007A0C2E /* UTUserSettingTableViewCell.h */,
+				1425A8DE21A99CAC007A0C2E /* UTUserSettingTableViewCell.m */,
+			);
+			path = UserSettingTableViewCell;
+			sourceTree = "<group>";
+		};
+		1425A8E021A9AB28007A0C2E /* EditUserInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8E121A9AB94007A0C2E /* UTEditUserInfoViewController.h */,
+				1425A8E221A9AB94007A0C2E /* UTEditUserInfoViewController.m */,
+			);
+			path = EditUserInfoView;
+			sourceTree = "<group>";
+		};
+		1425A8E421A9BD9F007A0C2E /* CLPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8E521A9BD9F007A0C2E /* CLGCDTimerManager.h */,
+				1425A8E621A9BD9F007A0C2E /* CLSlider.m */,
+				1425A8E721A9BD9F007A0C2E /* CLPlayerView.h */,
+				1425A8E821A9BD9F007A0C2E /* Category */,
+				1425A8F121A9BD9F007A0C2E /* PlayBottomToolBar.h */,
+				1425A8F221A9BD9F007A0C2E /* AILoadingView.m */,
+				1425A8F321A9BD9F007A0C2E /* PlayTopToolBar.m */,
+				1425A8F421A9BD9F007A0C2E /* CLPlayerMaskView.m */,
+				1425A8F521A9BD9F007A0C2E /* CLSlider.h */,
+				1425A8F621A9BD9F007A0C2E /* CLPlayerView.m */,
+				1425A8F721A9BD9F007A0C2E /* CLGCDTimerManager.m */,
+				1425A8F821A9BD9F007A0C2E /* AILoadingView.h */,
+				1425A8F921A9BD9F007A0C2E /* PlayTopToolBar.h */,
+				1425A8FA21A9BD9F007A0C2E /* PlayBottomToolBar.m */,
+				1425A8FB21A9BD9F007A0C2E /* CLPlayerMaskView.h */,
+			);
+			path = CLPlayer;
+			sourceTree = "<group>";
+		};
+		1425A8E821A9BD9F007A0C2E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				1425A8E921A9BD9F007A0C2E /* UINavigationController+CLPlayerRotation.h */,
+				1425A8EA21A9BD9F007A0C2E /* UIViewController+CLPlayerRotation.h */,
+				1425A8EB21A9BD9F007A0C2E /* UITabBarController+CLPlayerRotation.m */,
+				1425A8EC21A9BD9F007A0C2E /* UIView+CLSetRect.h */,
+				1425A8ED21A9BD9F007A0C2E /* UINavigationController+CLPlayerRotation.m */,
+				1425A8EE21A9BD9F007A0C2E /* UIViewController+CLPlayerRotation.m */,
+				1425A8EF21A9BD9F007A0C2E /* UITabBarController+CLPlayerRotation.h */,
+				1425A8F021A9BD9F007A0C2E /* UIView+CLSetRect.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		1425A90721A9BFB4007A0C2E /* UTShareView */ = {
+			isa = PBXGroup;
+			children = (
+				1425A90821A9C0BD007A0C2E /* UTShareViewController.h */,
+				1425A90921A9C0BD007A0C2E /* UTShareViewController.m */,
+			);
+			path = UTShareView;
+			sourceTree = "<group>";
+		};
 		14262A2A218AF02300768E6A /* LLTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1029,6 +1201,7 @@
 		14580315216F2BCB006BB33D /* ThirdPartPlugins */ = {
 			isa = PBXGroup;
 			children = (
+				1425A8E421A9BD9F007A0C2E /* CLPlayer */,
 				144357A321A6ACD900FEA9AE /* PSTCollectionView */,
 				14262A2A218AF02300768E6A /* LLTabBar */,
 				14239ABD2172F9FA0033FB7D /* GPUImage */,
@@ -1245,6 +1418,8 @@
 				14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */,
 				144357CD21A6B53000FEA9AE /* MusicInfo.h */,
 				144357CE21A6B53000FEA9AE /* MusicInfo.m */,
+				1425A8C521A95569007A0C2E /* Composition.h */,
+				1425A8C621A95569007A0C2E /* Composition.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1252,6 +1427,11 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1425A90721A9BFB4007A0C2E /* UTShareView */,
+				1425A8E021A9AB28007A0C2E /* EditUserInfoView */,
+				1425A8D821A99B94007A0C2E /* UserSettingView */,
+				1425A8D021A98B0F007A0C2E /* MemberCompositionDetailsView */,
+				1425A8C821A961D1007A0C2E /* MemberCompositonView */,
 				1425A8C121A8683F007A0C2E /* MemberCoinView */,
 				1425A8BA21A84FB4007A0C2E /* MemberView */,
 				04372B8F21A1121500F206E3 /* RegisterView */,
@@ -1702,6 +1882,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-URabbit/Pods-URabbit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BGFMDB/BGFMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/IconFont/IconFont.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -1715,6 +1896,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BGFMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IconFont.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -1762,12 +1944,14 @@
 				14580379216F2BCC006BB33D /* FXBlurView.m in Sources */,
 				14482F0D21A3D67400D640F1 /* Custom.m in Sources */,
 				14580393216F2D6F006BB33D /* UIDevice+FixedLength.m in Sources */,
+				1425A90521A9BD9F007A0C2E /* CLGCDTimerManager.m in Sources */,
 				146B638A219071EB00A3A679 /* UTPhotoEditView.m in Sources */,
 				146B63862190657F00A3A679 /* UTPhotoEditViewController.m in Sources */,
 				1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */,
 				1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */,
 				14482EF821A3BD9A00D640F1 /* Media.m in Sources */,
 				04110A9E21A14BCE00732B3D /* UTUserCenterHeadView.m in Sources */,
+				1425A8DF21A99CAC007A0C2E /* UTUserSettingTableViewCell.m in Sources */,
 				144357A221A6A39700FEA9AE /* UTMusicView.m in Sources */,
 				04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */,
 				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
@@ -1783,19 +1967,26 @@
 				145803DF21708433001B9535 /* VideoCompose.m in Sources */,
 				14482F0A21A3BEB800D640F1 /* AnimationSwitch.m in Sources */,
 				148D0F72219BF5F500B4E59A /* ComposeRotationStrategy.m in Sources */,
+				1425A90021A9BD9F007A0C2E /* UIView+CLSetRect.m in Sources */,
 				14482EFE21A3BE5C00D640F1 /* Text.m in Sources */,
 				14580375216F2BCC006BB33D /* LaunchAnimateView.m in Sources */,
 				14262A30218AF02300768E6A /* LLTabBar.m in Sources */,
+				1425A8FE21A9BD9F007A0C2E /* UINavigationController+CLPlayerRotation.m in Sources */,
+				1425A90A21A9C0BD007A0C2E /* UTShareViewController.m in Sources */,
 				14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */,
+				1425A8CB21A961F8007A0C2E /* UTMemberCompositonViewController.m in Sources */,
 				14266C8A21A5939F008A1926 /* UTKeyboardTextField.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
+				1425A90321A9BD9F007A0C2E /* CLPlayerMaskView.m in Sources */,
 				144357C321A6ACDA00FEA9AE /* PSTGridLayoutInfo.m in Sources */,
 				146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */,
 				14482F0121A3BE6C00D640F1 /* SnapshotText.m in Sources */,
+				1425A90221A9BD9F007A0C2E /* PlayTopToolBar.m in Sources */,
 				04372B8E21A110F600F206E3 /* UTLoginWithPasswordViewController.m in Sources */,
 				1458039E216F3114006BB33D /* UTLoginViewController.m in Sources */,
 				145803A9216F32E9006BB33D /* UTLoginScrollViewController.m in Sources */,
 				1425A8BD21A8503F007A0C2E /* UTMemberViewController.m in Sources */,
+				1425A8FF21A9BD9F007A0C2E /* UIViewController+CLPlayerRotation.m in Sources */,
 				144357CF21A6B53000FEA9AE /* MusicInfo.m in Sources */,
 				145B6142216F27B700DA950E /* main.m in Sources */,
 				14678FF5218ED0E100CD7F4B /* UTHomeRecommendCollectionViewCell.m in Sources */,
@@ -1813,6 +2004,7 @@
 				148D0F82219D22C300B4E59A /* ComposeAnimationOperation.m in Sources */,
 				14482F0721A3BEA900D640F1 /* AnimationForMedia.m in Sources */,
 				145803D82170705B001B9535 /* UTVideoManager.m in Sources */,
+				1425A8CF21A9662A007A0C2E /* UTMemberCompositonCollectionViewCell.m in Sources */,
 				14580364216F2BCC006BB33D /* URLManager.m in Sources */,
 				14266C9121A5CBFD008A1926 /* ComposeCoverStrategy.m in Sources */,
 				146B63CD2192EAD400A3A679 /* UTSegmentView.m in Sources */,
@@ -1820,15 +2012,19 @@
 				146B63C72192B35400A3A679 /* UTVideoComposeViewController.m in Sources */,
 				14580391216F2D6F006BB33D /* UIImage+FixImage.m in Sources */,
 				148D0F7B219D1FF800B4E59A /* ComposeAnimationStrategy.m in Sources */,
+				1425A8E321A9AB94007A0C2E /* UTEditUserInfoViewController.m in Sources */,
+				1425A8FD21A9BD9F007A0C2E /* UITabBarController+CLPlayerRotation.m in Sources */,
 				14678FFB218EE07500CD7F4B /* HomeTemplate.m in Sources */,
 				144357C121A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.m in Sources */,
 				146B638221904DF900A3A679 /* UTVideoAuthorView.m in Sources */,
 				14678FF2218ECDBB00CD7F4B /* UTHomeRecommendView.m in Sources */,
 				1458039A216F306E006BB33D /* Member.m in Sources */,
 				14266C8E21A59794008A1926 /* UTKeyboardTextFieldManager.m in Sources */,
+				1425A8D721A98F1E007A0C2E /* UTMemberCompositionInfoView.m in Sources */,
 				14266C8221A53EDE008A1926 /* SwitchAnimationManager.m in Sources */,
 				14580392216F2D6F006BB33D /* UITabBar+CustomerTabBar.m in Sources */,
 				04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */,
+				1425A8DB21A99BB6007A0C2E /* UTUserSettingViewController.m in Sources */,
 				14580377216F2BCC006BB33D /* FeThreeDotGlow.m in Sources */,
 				144357C521A6ACDA00FEA9AE /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				146B63922190726D00A3A679 /* UTTplImageLayerView.m in Sources */,
@@ -1846,7 +2042,9 @@
 				04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */,
 				14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */,
 				14580470216F50D3006BB33D /* ComposeStrategy.m in Sources */,
+				1425A90421A9BD9F007A0C2E /* CLPlayerView.m in Sources */,
 				145803A2216F312C006BB33D /* UTHomeViewController.m in Sources */,
+				1425A8FC21A9BD9F007A0C2E /* CLSlider.m in Sources */,
 				14580395216F2D6F006BB33D /* UIColor+HexString.m in Sources */,
 				148D0F86219D9C7100B4E59A /* AnimationManager.m in Sources */,
 				145803A6216F3143006BB33D /* UTGuidViewController.m in Sources */,
@@ -1854,9 +2052,12 @@
 				14266C7F21A52A0D008A1926 /* ComposeNomalOperation.m in Sources */,
 				146B63A1219191C900A3A679 /* UTMiddleEditContainerView.m in Sources */,
 				14580367216F2BCC006BB33D /* TPKeyboardAvoidingScrollView.m in Sources */,
+				1425A8C721A95569007A0C2E /* Composition.m in Sources */,
 				146B63732190243C00A3A679 /* UTDownloadButtonView.m in Sources */,
 				14482F1F21A46FCC00D640F1 /* UTPictureImageLayerView.m in Sources */,
+				1425A90121A9BD9F007A0C2E /* AILoadingView.m in Sources */,
 				145B6134216F27B600DA950E /* AppDelegate.m in Sources */,
+				1425A90621A9BD9F007A0C2E /* PlayBottomToolBar.m in Sources */,
 				14266C8621A5692F008A1926 /* UTTextLabel.m in Sources */,
 				14580368216F2BCC006BB33D /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				144357C921A6ACDA00FEA9AE /* PSTCollectionView.m in Sources */,
@@ -1869,6 +2070,7 @@
 				14580473216F526A006BB33D /* UTVideoReader.m in Sources */,
 				14580365216F2BCC006BB33D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */,
+				1425A8D321A98B3B007A0C2E /* UTMemberCompositionDetailsViewController.m in Sources */,
 				0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */,
 				144357C421A6ACDA00FEA9AE /* PSTCollectionViewData.m in Sources */,
 				1425A8C421A8707A007A0C2E /* UTMemberCoinViewController.m in Sources */,

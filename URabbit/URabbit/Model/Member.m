@@ -25,6 +25,13 @@
             self.nickName = [dic objectForKey:@"nickName"];
             self.password = [dic objectForKey:@"password"];
             self.token = [dic objectForKey:@"token"];
+            id sex = [dic objectForKey:@"sex"];
+            if (sex) {
+                self.sexType = (SexType)[sex integerValue];
+            }else{
+                self.sexType = UnknownSex;
+            }
+            
             self.headIcon = [dic objectForKey:@"headIcon"];
         }
     }
@@ -63,6 +70,8 @@
     if (_mobile) {
         [dic setObject:_mobile forKey:@"mobile"];
     }
+    
+    [dic setObject:@(_sexType) forKey:@"sex"];
     return dic;
 }
 @end

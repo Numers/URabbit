@@ -49,7 +49,8 @@
     recommendList = [NSMutableArray array];
     choosenTemplateList = [NSMutableArray array];
     latestTemplateList = [NSMutableArray array];
-    recommendViewHeight = 167.0f;
+//    recommendViewHeight = 167.0f;
+    recommendViewHeight = -8.0f;
     choosenTemplateViewHeight = 0.0f;
     latestTemplateViewHeight = 0.0f;
     
@@ -95,7 +96,7 @@
     
     homeRecommendView = [[UTHomeRecommendView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, recommendViewHeight)];
     [homeRecommendView setHeadImage:[UIImage imageNamed:@"jingxuan"] headTitle:@"推荐合集"];
-    [_scrollView addSubview:homeRecommendView];
+//    [_scrollView addSubview:homeRecommendView];
     
     choosenTemplateView = [[UTHomeTemplateView alloc] initWithFrame:CGRectMake(0, recommendViewHeight + 8, SCREEN_WIDTH, choosenTemplateViewHeight)];
     choosenTemplateView.delegate = self;
@@ -183,7 +184,8 @@
 
 -(void)requestData
 {
-    [self requestWithRecommendList];
+    [AppUtils showLoadingInView:self.view];
+//    [self requestWithRecommendList];
     [self requestChoosenTemplateList];
     [self requestLatestTemplateList];
 }
@@ -229,6 +231,7 @@
     }
     
     [[UTHomeNetworkAPIManager shareManager] getNewTemplateWithPage:1 size:20 callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        [AppUtils hiddenLoadingInView:self.view];
         NSArray *templateArr = (NSArray *)data;
         if (templateArr && templateArr.count > 0) {
             for (NSDictionary *dic in templateArr) {

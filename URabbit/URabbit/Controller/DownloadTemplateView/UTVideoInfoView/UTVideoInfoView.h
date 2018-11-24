@@ -7,18 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MediaPlayer/MediaPlayer.h>
+#import "CLPlayerView.h"
 @class HomeTemplate;
 @interface UTVideoInfoView : UIView
 {
 //    AVPlayer *player;
 //    AVPlayerItem *playerItem;
-    MPMoviePlayerController *playerController;
+    CLPlayerView *playView;
     UILabel *videoNameLabel;
     UILabel *videoDurationLabel;
     UILabel *videoDescLabel;
-    
-    UITableViewCell *cell;
+
 }
 
 -(instancetype)initWithVideoSize:(CGSize)size frame:(CGRect)frame;
