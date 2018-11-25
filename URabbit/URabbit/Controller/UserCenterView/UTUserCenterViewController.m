@@ -16,8 +16,11 @@
 #import "UTMemberCompositonViewController.h"
 #import "UTUserSettingViewController.h"
 #import "UTShareViewController.h"
+#import "UTUserDownloadedViewController.h"
+#import "UTSaveViewController.h"
+#import "UTLoginScrollViewController.h"
 static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIdentify";
-@interface UTUserCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface UTUserCenterViewController ()<UITableViewDelegate,UITableViewDataSource,UTUserCenterHeadViewProtocol>
 {
     UTUserCenterHeadView *headView;
     Member *currentMember;
@@ -31,9 +34,9 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    currentMember = [[AppStartManager shareManager] currentMember];
+    
     headView = [[UTUserCenterHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 184)];
-    [headView setCurrentMember:currentMember];
+    headView.delegate = self;
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     [_tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     _tableView.delegate = self;
@@ -73,6 +76,9 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationItem setTitle:@"个人中心"];
+    
+    currentMember = [[AppStartManager shareManager] currentMember];
+    [headView setCurrentMember:currentMember];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -114,9 +120,10 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
             break;
         case 3:
         {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UTShareViewController *shareVC = [storyboard instantiateViewControllerWithIdentifier:@"UTShareViewIdentify"];
-            shareVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            UTShareViewController *shareVC = [storyboard instantiateViewControllerWithIdentifier:@"UTShareViewIdentify"];
+//            shareVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            UTShareViewController *shareVC = [[UTShareViewController alloc] init];
 //            self.definesPresentationContext = YES;
             [self presentViewController:shareVC animated:YES completion:^{
                 
@@ -189,5 +196,32 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
             break;
     }
     return cell;
+}
+
+#pragma -mark UTUserCenterHeadViewProtocol
+-(void)gotoLoadedView
+{
+    UTUserDownloadedViewController *userDownloadedVC = [[UTUserDownloadedViewController alloc] init];
+    [userDownloadedVC setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:userDownloadedVC animated:YES];
+}
+
+-(void)gotoSaveView
+{
+    UTSaveViewController *saveVC = [[UTSaveViewController alloc] init];
+    [saveVC setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:saveVC animated:YES];
+}
+
+-(void)gotoDraftView
+{
+    
+}
+
+-(void)gotoLoginView
+{
+    UTLoginScrollViewController *loginScrollVC = [[UTLoginScrollViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginScrollVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 @end

@@ -8,6 +8,7 @@
 
 #import "UTUserCenterHeadView.h"
 #import "Member.h"
+#import "LoadedTemplate.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UTUserCenterHeadView
@@ -34,6 +35,7 @@
         [self addSubview:memberIdLabel];
         
         noLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [noLoginButton addTarget:self action:@selector(noLoginButtonClick) forControlEvents:UIControlEventTouchUpInside];
         NSAttributedString *title = [AppUtils generateAttriuteStringWithStr:@"点击登录/注册" WithColor:[UIColor colorFromHexString:@"#999999"] WithFont:[UIFont systemFontOfSize:16.0f]];
         [noLoginButton setAttributedTitle:title forState:UIControlStateNormal];
         [noLoginButton setHidden:YES];
@@ -85,6 +87,21 @@
         line2View = [[UIView alloc] init];
         [line2View setBackgroundColor:[UIColor colorFromHexString:@"#F1F1F1"]];
         [self addSubview:line2View];
+        
+        downloadButton = [[UIButton alloc] init];
+        [downloadButton addTarget:self action:@selector(downloadButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [downloadButton setBackgroundColor:[UIColor clearColor]];
+        [self addSubview:downloadButton];
+        
+        saveButton = [[UIButton alloc] init];
+        [saveButton addTarget:self action:@selector(saveButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [saveButton setBackgroundColor:[UIColor clearColor]];
+        [self addSubview:saveButton];
+        
+        draftButton = [[UIButton alloc] init];
+        [draftButton addTarget:self action:@selector(draftButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [draftButton setBackgroundColor:[UIColor clearColor]];
+        [self addSubview:draftButton];
         
         [self makeConstraints];
     }
@@ -174,6 +191,27 @@
         make.leading.equalTo(draftNumberLabel.leading);
         make.trailing.equalTo(draftNumberLabel.trailing);
     }];
+    
+    [downloadButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self);
+        make.trailing.equalTo(line1View.leading);
+        make.top.equalTo(line1View.top);
+        make.bottom.equalTo(line1View.bottom);
+    }];
+    
+    [draftButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(line2View.trailing);
+        make.trailing.equalTo(self);
+        make.top.equalTo(line2View.top);
+        make.bottom.equalTo(line2View.bottom);
+    }];
+    
+    [saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(line1View.trailing);
+        make.trailing.equalTo(line2View.leading);
+        make.top.equalTo(line1View.top);
+        make.bottom.equalTo(line1View.bottom);
+    }];
 }
 
 -(void)setCurrentMember:(Member *)member
@@ -186,6 +224,10 @@
         [noLoginButton setHidden:YES];
         
         [headImageView sd_setImageWithURL:[NSURL URLWithString:member.headIcon] placeholderImage:[UIImage imageNamed:@"headIconImage"]];
+        
+        NSString *sql = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),bg_sqlValue(member.memberId)];
+        NSInteger count = [LoadedTemplate bg_count:LoadedTableName where:sql];
+        [downloadNumberLabel setText:[NSString stringWithFormat:@"%ld",count]];
     }else{
         [nickNameLabel setHidden:YES];
         [memberIdLabel setHidden:YES];
@@ -193,7 +235,9 @@
         
         [headImageView setImage:[UIImage imageNamed:@"headIconImage"]];
         [saveNumberLabel setText:@"0"];
-        [downloadNumberLabel setText:@"0"];
+        NSString *sql = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),bg_sqlValue(NOUSERMemberID)];
+        NSInteger count = [LoadedTemplate bg_count:LoadedTableName where:sql];
+        [downloadNumberLabel setText:[NSString stringWithFormat:@"%ld",count]];
         [draftNumberLabel setText:@"0"];
     }
 }
@@ -203,5 +247,33 @@
     [saveNumberLabel setText:[NSString stringWithFormat:@"%ld",saveNumber]];
     [downloadNumberLabel setText:[NSString stringWithFormat:@"%ld",downloadNumber]];
     [draftNumberLabel setText:[NSString stringWithFormat:@"%ld",draftNumber]];
+}
+
+-(void)downloadButtonClick
+{
+    if ([self.delegate respondsToSelector:@selector(gotoLoadedView)]) {
+        [self.delegate gotoLoadedView];
+    }
+}
+
+-(void)saveButtonClick
+{
+    if ([self.delegate respondsToSelector:@selector(gotoSaveView)]) {
+        [self.delegate gotoSaveView];
+    }
+}
+
+-(void)draftButtonClick
+{
+    if ([self.delegate respondsToSelector:@selector(gotoDraftView)]) {
+        [self.delegate gotoDraftView];
+    }
+}
+
+-(void)noLoginButtonClick
+{
+    if ([self.delegate respondsToSelector:@selector(gotoLoginView)]) {
+        [self.delegate gotoLoginView];
+    }
 }
 @end

@@ -41,13 +41,19 @@
 
 -(void)setProgress:(CGFloat)progress
 {
-    NSString *percent = [NSString stringWithFormat:@"%.0f%%",progress * 100];
-    NSString *buttonTitle = [NSString stringWithFormat:@"%@ 正在下载",percent];
-    [downloadButton setTitle:buttonTitle forState:UIControlStateNormal];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [downloadButton setEnabled:NO];
+        NSString *percent = [NSString stringWithFormat:@"%.0f%%",progress * 100];
+        NSString *buttonTitle = [NSString stringWithFormat:@"正在下载：%@ ",percent];
+        [downloadButton setTitle:buttonTitle forState:UIControlStateNormal];
+    });
 }
 
 -(void)setButtonTitle:(NSString *)title
 {
-    [downloadButton setTitle:title forState:UIControlStateNormal];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [downloadButton setEnabled:YES];
+        [downloadButton setTitle:title forState:UIControlStateNormal];
+    });
 }
 @end

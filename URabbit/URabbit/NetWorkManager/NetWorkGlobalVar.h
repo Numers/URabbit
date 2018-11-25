@@ -11,14 +11,22 @@
 
 /*********************API接口****************************/
 /************************登录API***********************/
-#define UT_Login_API @""
+#define UT_Login_API @"/user/login/mobile"
+#define UT_ValidateCode_API @"/checkcode/send"
+#define UT_ValidateCheck_API @"checkcode/check"
 /************************首页API***********************/
 #define UT_NewTemplate_API @"/templet/list/new"
 #define UT_ChoiceRecommend_API @"/templet/list/recommend"
 /*******************************************************/
 
 /************************模板详情API***********************/
-#define UP_TemplateDetails_API @"/templet/{id}"
+#define UT_TemplateDetails_API @"/templet/{id}"
+/*******************************************************/
+
+/************************个人中心API***********************/
+#define UT_UserSavedTemplate_API @"/user/templet/list"
+#define UT_SaveTemplate_API @"/templet/{id}/collect/add"
+#define UT_CancelSaveTemplate_API @"/templet/{id}/collect/delete"
 /*******************************************************/
 
 /************************SystemInfoAPI***********************/

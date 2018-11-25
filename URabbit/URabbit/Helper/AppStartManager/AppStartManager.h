@@ -34,6 +34,8 @@
  */
 -(void)setMember:(Member *)member;
 
+-(void)removeLocalHostMemberData;
+
 
 /**
  push到home界面

@@ -7,9 +7,15 @@
 //
 
 #import "UTLoginScrollViewController.h"
+#import "UTLoginViewController.h"
+#import "UINavigationController+NavigationBar.h"
+#import "TPKeyboardAvoidingScrollView.h"
 
-@interface UTLoginScrollViewController ()
-
+@interface UTLoginScrollViewController ()<UTLoginViewProtocol>
+{
+    UTLoginViewController *loginVC;
+    TPKeyboardAvoidingScrollView *scrollView;
+}
 @end
 
 @implementation UTLoginScrollViewController
@@ -17,6 +23,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:ViewBackgroundColor];
+    scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:self.view.bounds];
+    [scrollView setShowsVerticalScrollIndicator:NO];
+    [scrollView setShowsHorizontalScrollIndicator:NO];
+    [self.view addSubview:scrollView];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    loginVC = [storyboard instantiateViewControllerWithIdentifier:@"UTLoginViewIdentify"];
+    loginVC.delegate = self;
+    [loginVC addTextFieldNotification];
+    [scrollView addSubview:loginVC.view];
+    [scrollView setContentSize:CGSizeMake(loginVC.view.frame.size.width, loginVC.view.frame.size.height)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +41,34 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self navigationBarSetting];
 }
-*/
 
+-(void)navigationBarSetting
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationItem setTitle:@"手机验证码登录"];
+    [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"closeImage"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCloseItem)];
+    [self.navigationItem setRightBarButtonItem:rightItem];
+    
+}
+
+-(void)clickCloseItem
+{
+    [loginVC removeTextFieldNotification];
+    [loginVC stopTimer];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+#pragma -mark UTLoginViewProtocol
+-(void)loginsuccess
+{
+    [self clickCloseItem];
+}
 @end

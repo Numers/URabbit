@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol UTLoginViewProtocol <NSObject>
+-(void)loginsuccess;
+@end
 @interface UTLoginViewController : UIViewController
-
+@property(nonatomic, weak) id<UTLoginViewProtocol> delegate;
+-(void)addTextFieldNotification;
+-(void)removeTextFieldNotification;
+-(void)stopTimer;
 @end

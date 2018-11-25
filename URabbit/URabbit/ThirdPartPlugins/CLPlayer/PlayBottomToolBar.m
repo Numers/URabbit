@@ -88,8 +88,8 @@
 - (UIButton *) playButton{
     if (_playButton == nil){
         _playButton = [[UIButton alloc] init];
-        [_playButton setImage:[UIImage imageNamed:@"CLPlayBtn"] forState:UIControlStateNormal];
-        [_playButton setImage:[UIImage imageNamed:@"CLPauseBtn"] forState:UIControlStateSelected];
+        [_playButton setImage:[UIImage imageNamed:@"play_button"] forState:UIControlStateNormal];
+        [_playButton setImage:[UIImage imageNamed:@"pause_button"] forState:UIControlStateSelected];
     }
     return _playButton;
 }

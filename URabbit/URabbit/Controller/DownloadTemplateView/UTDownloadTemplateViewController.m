@@ -25,12 +25,15 @@
 #import "SnapshotMedia.h"
 
 #import "Composition.h"
+#import "LoadedTemplate.h"
 #import "AppStartManager.h"
+#import "UINavigationController+NavigationBar.h"
 
 @interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol>
 {
     HomeTemplate *currentHomeTemplate;
     Composition *composition;
+    LoadedTemplate *loadedTemplate;
     UTDownloadButtonView *makeButtonView;
     UIScrollView *scrollView;
     UTVideoInfoView *videoInfoView;
@@ -57,21 +60,6 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
     snapshotList = [NSMutableArray array];
-    Member *host = [[AppStartManager shareManager] currentMember];
-    composition = [[Composition alloc] init];
-    if (host) {
-        composition.memberId = host.memberId;
-    }else{
-        composition.memberId = @"";
-    }
-    composition.templateId = currentHomeTemplate.templateId;
-    composition.title = currentHomeTemplate.title;
-    composition.coverUrl = currentHomeTemplate.coverUrl;
-    composition.duration = currentHomeTemplate.duration;
-    composition.summary = currentHomeTemplate.summary;
-    composition.videoWidth = currentHomeTemplate.videoSize.width;
-    composition.videoHeight = currentHomeTemplate.videoSize.height;
-    composition.bg_tableName = CompositionTableName;
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [scrollView setContentInset:UIEdgeInsetsMake(0, 0, [UIDevice safeAreaBottomHeight], 0)];
@@ -95,6 +83,14 @@
     [self navigationBarSetting];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (videoInfoView) {
+        [videoInfoView pausePlayView];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -104,7 +100,7 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationItem setTitle:currentHomeTemplate.title];
-    
+    [self.navigationController setTranslucentView];
     UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"share_button"] style:UIBarButtonItemStylePlain target:self action:@selector(clickShareButton)];
     UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"collection_button"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
     rightItem2.imageInsets = UIEdgeInsetsMake(0, 15, 0, -10);
@@ -123,8 +119,41 @@
             [videoAuthorView setHomeTemplate:template];
             [scrollView setContentSize:CGSizeMake(SCREEN_WIDTH,[UIDevice safeAreaTopHeight] + 17 + videoInfoView.frame.size.height + videoAuthorView.frame.size.height)];
             currentHomeTemplate = template;
+            [self initlizedDatabase];
         }
     }];
+}
+
+-(void)initlizedDatabase
+{
+    Member *host = [[AppStartManager shareManager] currentMember];
+    composition = [[Composition alloc] init];
+    loadedTemplate = [[LoadedTemplate alloc] init];
+    if (host) {
+        composition.memberId = host.memberId;
+        loadedTemplate.memberId = host.memberId;
+    }else{
+        composition.memberId = NOUSERMemberID;
+        loadedTemplate.memberId = NOUSERMemberID;
+    }
+    composition.templateId = currentHomeTemplate.templateId;
+    composition.title = currentHomeTemplate.title;
+    composition.coverUrl = currentHomeTemplate.coverUrl;
+    composition.duration = currentHomeTemplate.duration;
+    composition.summary = currentHomeTemplate.summary;
+    composition.videoWidth = currentHomeTemplate.videoSize.width;
+    composition.videoHeight = currentHomeTemplate.videoSize.height;
+    composition.bg_tableName = CompositionTableName;
+    
+    
+    loadedTemplate.templateId = currentHomeTemplate.templateId;
+    loadedTemplate.title = currentHomeTemplate.title;
+    loadedTemplate.coverUrl = currentHomeTemplate.coverUrl;
+    loadedTemplate.duration = currentHomeTemplate.duration;
+    loadedTemplate.summary = currentHomeTemplate.summary;
+    loadedTemplate.videoWidth = currentHomeTemplate.videoSize.width;
+    loadedTemplate.videoHeight = currentHomeTemplate.videoSize.height;
+    loadedTemplate.bg_tableName = LoadedTableName;
 }
 
 -(void)analyzeResource:(NSString *)resourceBaseDirectory
@@ -265,6 +294,11 @@
     }else{
         [[NetWorkManager defaultManager] downloadFileWithOption:nil withInferface:currentHomeTemplate.downloadUrl savedPath:zipPath downloadSuccess:^(NSURL *filePath) {
             [makeButtonView setButtonTitle:@"一键制作"];
+            [loadedTemplate bg_saveAsync:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    NSLog(@"success");
+                }
+            }];
             BOOL result = [self unzipFile:zipPath directory:videoDic];
             if (result) {
                 [self analyzeResource:unzipFileDirectory];

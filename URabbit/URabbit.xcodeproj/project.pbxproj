@@ -52,6 +52,14 @@
 		14266C8E21A59794008A1926 /* UTKeyboardTextFieldManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8D21A59794008A1926 /* UTKeyboardTextFieldManager.m */; };
 		14266C9121A5CBFD008A1926 /* ComposeCoverStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */; };
 		14266C9421A5CC46008A1926 /* ComposeCoverOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */; };
+		142CE2BB21AA422C00B17FBA /* UTSaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142CE2BA21AA422C00B17FBA /* UTSaveViewController.m */; };
+		142CE2BE21AA42BB00B17FBA /* SavedTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 142CE2BD21AA42BB00B17FBA /* SavedTemplate.m */; };
+		142CE2C121AA42D200B17FBA /* LoadedTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 142CE2C021AA42D200B17FBA /* LoadedTemplate.m */; };
+		142CE2C521AA482D00B17FBA /* UTSaveTemplateCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142CE2C421AA482D00B17FBA /* UTSaveTemplateCollectionViewCell.m */; };
+		142CE2C921AA4A6900B17FBA /* UTUserDownloadedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142CE2C821AA4A6900B17FBA /* UTUserDownloadedViewController.m */; };
+		142CE2CD21AA4AA100B17FBA /* UTUserDownloadedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142CE2CC21AA4AA100B17FBA /* UTUserDownloadedCollectionViewCell.m */; };
+		142CE2D021AA667F00B17FBA /* UTUserSaveNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 142CE2CF21AA667F00B17FBA /* UTUserSaveNetworkAPIManager.m */; };
+		142CE2D321AA80F300B17FBA /* UTLoginNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 142CE2D221AA80F300B17FBA /* UTLoginNetworkAPIManager.m */; };
 		144357A221A6A39700FEA9AE /* UTMusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357A121A6A39700FEA9AE /* UTMusicView.m */; };
 		144357C021A6ACDA00FEA9AE /* PSTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357A921A6ACDA00FEA9AE /* PSTCollectionViewController.m */; };
 		144357C121A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 144357AB21A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.m */; };
@@ -428,6 +436,22 @@
 		14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeCoverStrategy.m; sourceTree = "<group>"; };
 		14266C9221A5CC46008A1926 /* ComposeCoverOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeCoverOperation.h; sourceTree = "<group>"; };
 		14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeCoverOperation.m; sourceTree = "<group>"; };
+		142CE2B921AA422C00B17FBA /* UTSaveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTSaveViewController.h; sourceTree = "<group>"; };
+		142CE2BA21AA422C00B17FBA /* UTSaveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTSaveViewController.m; sourceTree = "<group>"; };
+		142CE2BC21AA42BB00B17FBA /* SavedTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavedTemplate.h; sourceTree = "<group>"; };
+		142CE2BD21AA42BB00B17FBA /* SavedTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedTemplate.m; sourceTree = "<group>"; };
+		142CE2BF21AA42D200B17FBA /* LoadedTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadedTemplate.h; sourceTree = "<group>"; };
+		142CE2C021AA42D200B17FBA /* LoadedTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadedTemplate.m; sourceTree = "<group>"; };
+		142CE2C321AA482D00B17FBA /* UTSaveTemplateCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTSaveTemplateCollectionViewCell.h; sourceTree = "<group>"; };
+		142CE2C421AA482D00B17FBA /* UTSaveTemplateCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTSaveTemplateCollectionViewCell.m; sourceTree = "<group>"; };
+		142CE2C721AA4A6900B17FBA /* UTUserDownloadedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserDownloadedViewController.h; sourceTree = "<group>"; };
+		142CE2C821AA4A6900B17FBA /* UTUserDownloadedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserDownloadedViewController.m; sourceTree = "<group>"; };
+		142CE2CB21AA4AA100B17FBA /* UTUserDownloadedCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserDownloadedCollectionViewCell.h; sourceTree = "<group>"; };
+		142CE2CC21AA4AA100B17FBA /* UTUserDownloadedCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserDownloadedCollectionViewCell.m; sourceTree = "<group>"; };
+		142CE2CE21AA667F00B17FBA /* UTUserSaveNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserSaveNetworkAPIManager.h; sourceTree = "<group>"; };
+		142CE2CF21AA667F00B17FBA /* UTUserSaveNetworkAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserSaveNetworkAPIManager.m; sourceTree = "<group>"; };
+		142CE2D121AA80F300B17FBA /* UTLoginNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTLoginNetworkAPIManager.h; sourceTree = "<group>"; };
+		142CE2D221AA80F300B17FBA /* UTLoginNetworkAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTLoginNetworkAPIManager.m; sourceTree = "<group>"; };
 		144357A021A6A39700FEA9AE /* UTMusicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMusicView.h; sourceTree = "<group>"; };
 		144357A121A6A39700FEA9AE /* UTMusicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMusicView.m; sourceTree = "<group>"; };
 		144357A421A6ACD900FEA9AE /* PSTCollectionViewLayout+Internals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PSTCollectionViewLayout+Internals.h"; sourceTree = "<group>"; };
@@ -1098,6 +1122,44 @@
 			path = UTkeyboardTextFieldManager;
 			sourceTree = "<group>";
 		};
+		142CE2B821AA41A200B17FBA /* SaveView */ = {
+			isa = PBXGroup;
+			children = (
+				142CE2C221AA47E200B17FBA /* UTSaveTemplateCollectionViewCell */,
+				142CE2B921AA422C00B17FBA /* UTSaveViewController.h */,
+				142CE2BA21AA422C00B17FBA /* UTSaveViewController.m */,
+			);
+			path = SaveView;
+			sourceTree = "<group>";
+		};
+		142CE2C221AA47E200B17FBA /* UTSaveTemplateCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				142CE2C321AA482D00B17FBA /* UTSaveTemplateCollectionViewCell.h */,
+				142CE2C421AA482D00B17FBA /* UTSaveTemplateCollectionViewCell.m */,
+			);
+			path = UTSaveTemplateCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		142CE2C621AA4A1F00B17FBA /* UserDownloadedView */ = {
+			isa = PBXGroup;
+			children = (
+				142CE2CA21AA4A7000B17FBA /* UTUserDownloadedCollectionViewCell */,
+				142CE2C721AA4A6900B17FBA /* UTUserDownloadedViewController.h */,
+				142CE2C821AA4A6900B17FBA /* UTUserDownloadedViewController.m */,
+			);
+			path = UserDownloadedView;
+			sourceTree = "<group>";
+		};
+		142CE2CA21AA4A7000B17FBA /* UTUserDownloadedCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				142CE2CB21AA4AA100B17FBA /* UTUserDownloadedCollectionViewCell.h */,
+				142CE2CC21AA4AA100B17FBA /* UTUserDownloadedCollectionViewCell.m */,
+			);
+			path = UTUserDownloadedCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		1443579F21A6A36F00FEA9AE /* UTMusicView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1194,6 +1256,10 @@
 				14EDA16421A30B1800C1BD3E /* UTHomeNetworkAPIManager.m */,
 				14EDA16921A3160E00C1BD3E /* UTDownloadNetworkAPIManager.h */,
 				14EDA16A21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m */,
+				142CE2CE21AA667F00B17FBA /* UTUserSaveNetworkAPIManager.h */,
+				142CE2CF21AA667F00B17FBA /* UTUserSaveNetworkAPIManager.m */,
+				142CE2D121AA80F300B17FBA /* UTLoginNetworkAPIManager.h */,
+				142CE2D221AA80F300B17FBA /* UTLoginNetworkAPIManager.m */,
 			);
 			path = NetWorkAPIManager;
 			sourceTree = "<group>";
@@ -1420,6 +1486,10 @@
 				144357CE21A6B53000FEA9AE /* MusicInfo.m */,
 				1425A8C521A95569007A0C2E /* Composition.h */,
 				1425A8C621A95569007A0C2E /* Composition.m */,
+				142CE2BC21AA42BB00B17FBA /* SavedTemplate.h */,
+				142CE2BD21AA42BB00B17FBA /* SavedTemplate.m */,
+				142CE2BF21AA42D200B17FBA /* LoadedTemplate.h */,
+				142CE2C021AA42D200B17FBA /* LoadedTemplate.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1427,6 +1497,8 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				142CE2C621AA4A1F00B17FBA /* UserDownloadedView */,
+				142CE2B821AA41A200B17FBA /* SaveView */,
 				1425A90721A9BFB4007A0C2E /* UTShareView */,
 				1425A8E021A9AB28007A0C2E /* EditUserInfoView */,
 				1425A8D821A99B94007A0C2E /* UserSettingView */,
@@ -1883,6 +1955,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-URabbit/Pods-URabbit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/BGFMDB/BGFMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/DMProgressHUD/DMProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/IconFont/IconFont.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -1897,6 +1970,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BGFMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DMProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IconFont.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -1957,16 +2031,20 @@
 				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
 				1425A8B921A828A1007A0C2E /* UTUserCenterTableViewCell.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
+				142CE2C521AA482D00B17FBA /* UTSaveTemplateCollectionViewCell.m in Sources */,
 				14482F2221A475FF00D640F1 /* UTPhotoEditCanMoveView.m in Sources */,
 				14482F0421A3BE8600D640F1 /* Snapshot.m in Sources */,
 				1425A8C021A85976007A0C2E /* UTMemberScrollViewController.m in Sources */,
 				14678FF8218EDAFA00CD7F4B /* RecommendTemplate.m in Sources */,
+				142CE2D021AA667F00B17FBA /* UTUserSaveNetworkAPIManager.m in Sources */,
+				142CE2D321AA80F300B17FBA /* UTLoginNetworkAPIManager.m in Sources */,
 				144357C021A6ACDA00FEA9AE /* PSTCollectionViewController.m in Sources */,
 				1458037E216F2BCC006BB33D /* AppUtils.m in Sources */,
 				14262A48218C45F000768E6A /* LJJWaterFlowLayout.m in Sources */,
 				145803DF21708433001B9535 /* VideoCompose.m in Sources */,
 				14482F0A21A3BEB800D640F1 /* AnimationSwitch.m in Sources */,
 				148D0F72219BF5F500B4E59A /* ComposeRotationStrategy.m in Sources */,
+				142CE2CD21AA4AA100B17FBA /* UTUserDownloadedCollectionViewCell.m in Sources */,
 				1425A90021A9BD9F007A0C2E /* UIView+CLSetRect.m in Sources */,
 				14482EFE21A3BE5C00D640F1 /* Text.m in Sources */,
 				14580375216F2BCC006BB33D /* LaunchAnimateView.m in Sources */,
@@ -1993,6 +2071,7 @@
 				144357C621A6ACDA00FEA9AE /* PSTCollectionViewUpdateItem.m in Sources */,
 				144357CC21A6ACDA00FEA9AE /* PSTGridLayoutItem.m in Sources */,
 				146B637A2190274C00A3A679 /* UIImage+Gradient.m in Sources */,
+				142CE2C121AA42D200B17FBA /* LoadedTemplate.m in Sources */,
 				14580394216F2D6F006BB33D /* UINavigationController+NavigationBar.m in Sources */,
 				14482F2521A4761D00D640F1 /* UTPhotoEditNotMoveView.m in Sources */,
 				14266C9421A5CC46008A1926 /* ComposeCoverOperation.m in Sources */,
@@ -2022,6 +2101,7 @@
 				14266C8E21A59794008A1926 /* UTKeyboardTextFieldManager.m in Sources */,
 				1425A8D721A98F1E007A0C2E /* UTMemberCompositionInfoView.m in Sources */,
 				14266C8221A53EDE008A1926 /* SwitchAnimationManager.m in Sources */,
+				142CE2BE21AA42BB00B17FBA /* SavedTemplate.m in Sources */,
 				14580392216F2D6F006BB33D /* UITabBar+CustomerTabBar.m in Sources */,
 				04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */,
 				1425A8DB21A99BB6007A0C2E /* UTUserSettingViewController.m in Sources */,
@@ -2037,6 +2117,7 @@
 				144357C221A6ACDA00FEA9AE /* PSTCollectionViewCell.m in Sources */,
 				146B636B218FDAC200A3A679 /* UTDownloadTemplateViewController.m in Sources */,
 				14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */,
+				142CE2BB21AA422C00B17FBA /* UTSaveViewController.m in Sources */,
 				148D0F78219D11A000B4E59A /* ComposeAnimation.m in Sources */,
 				146B63D02192EAE700A3A679 /* UTSelectView.m in Sources */,
 				04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */,
@@ -2063,6 +2144,7 @@
 				144357C921A6ACDA00FEA9AE /* PSTCollectionView.m in Sources */,
 				14678FFE218EE11C00CD7F4B /* UTHomeTemplateView.m in Sources */,
 				144357D321A6B87200FEA9AE /* UTMusicCollectionViewCell.m in Sources */,
+				142CE2C921AA4A6900B17FBA /* UTUserDownloadedViewController.m in Sources */,
 				1458037C216F2BCC006BB33D /* AppStartManager.m in Sources */,
 				1486C4F7219554C800809626 /* ComposeRotationOperation.m in Sources */,
 				14482EFB21A3BE3C00D640F1 /* SnapshotMedia.m in Sources */,

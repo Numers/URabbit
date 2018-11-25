@@ -98,6 +98,9 @@ typedef enum
 #define IconfontGoBackDefaultSize 18
 
 #define CompositionTableName @"Compositon"
+#define LoadedTableName @"LoadedTemplate"
+
+#define NOUSERMemberID @"NOUSER"
 
 #define UnitDivisor 1000
 

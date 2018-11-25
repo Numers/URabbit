@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "36C7DC5D54B90D9F9C11B06C1C7D156A"
+               BlueprintIdentifier = "B516513CECF132AB56EC227281DA3413"
                BlueprintName = "WZLBadge"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "WZLBadge.framework">

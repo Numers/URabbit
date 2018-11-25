@@ -73,6 +73,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     [importPhotosButton setImage:[UIImage imageNamed:@"draft"] forState:UIControlStateNormal];
     NSAttributedString *importTitle = [AppUtils generateAttriuteStringWithStr:@"批量导入图片" WithColor:[UIColor whiteColor] WithFont:[UIFont systemFontOfSize:14.0f]];
     [importPhotosButton setAttributedTitle:importTitle forState:UIControlStateNormal];
+    [importPhotosButton setHidden:YES];
     [self.view addSubview:importPhotosButton];
     importPhotosButton.imageEdgeInsets = UIEdgeInsetsMake(0, importPhotosButton.frame.size.width - importPhotosButton.imageView.frame.origin.x - importPhotosButton.imageView.frame.size.width-7, 0, 0);
     importPhotosButton.titleEdgeInsets = UIEdgeInsetsMake(0, -(importPhotosButton.frame.size.width - importPhotosButton.imageView.frame.size.width ), 0, 0);
@@ -149,9 +150,10 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 {
     UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStylePlain target:self action:@selector(nextStep)];
     [rightItem1 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-    UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithTitle:@"存草稿" style:UIBarButtonItemStylePlain target:self action:@selector(saveInDraft)];
-    [rightItem2 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#999999"]} forState:UIControlStateNormal];
-    [self.navigationItem setRightBarButtonItems:@[rightItem1,rightItem2]];
+//    UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithTitle:@"存草稿" style:UIBarButtonItemStylePlain target:self action:@selector(saveInDraft)];
+//    [rightItem2 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#999999"]} forState:UIControlStateNormal];
+//    [self.navigationItem setRightBarButtonItems:@[rightItem1,rightItem2]];
+    [self.navigationItem setRightBarButtonItem:rightItem1];
 }
 
 -(void)nextStep

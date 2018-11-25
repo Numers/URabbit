@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol LJJWaterFlowLayoutProtocol <NSObject>
+@optional
 -(void)calculateCollectionViewContentHeight:(CGFloat)height;
 @end
 @interface LJJWaterFlowLayout : UICollectionViewFlowLayout

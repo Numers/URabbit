@@ -359,4 +359,30 @@
 +(NSString *)createDirectoryWithUniqueIndex:(long)index;
 +(NSString *)videoPathWithDirectory:(NSString *)directory;
 +(NSString *)videoPathWithUniqueIndex:(long)index;
+
+
+/**
+ 获取单个文件大小(B)
+
+ @param filePath 文件路径
+ @return 文件大小
+ */
++ (long long)fileSizeAtPath:(NSString*)filePath;
+
+
+/**
+ 获取文件夹下文件大小(M)
+
+ @param folderPath 文件夹路径
+ @return 文件夹下所有文件大小
+ */
++ (float)folderSizeAtPath:(NSString *)folderPath;
+
+
+/**
+ 删除文件夹下的所有文件
+
+ @param folderPath 文件夹路径
+ */
++(void)deleteFolderFilesAtPath:(NSString *)folderPath;
 @end

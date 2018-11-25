@@ -9,6 +9,9 @@
 #import "UTUserSettingViewController.h"
 #import "UTUserSettingTableViewCell.h"
 #import "UTEditUserInfoViewController.h"
+#import "AppStartManager.h"
+#import "LoadedTemplate.h"
+#import "Composition.h"
 
 static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellIdentify";
 @interface UTUserSettingViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -52,6 +55,24 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
     // Dispose of any resources that can be recreated.
 }
 
+-(void)loginoutWithIndexPath:(NSIndexPath *)indexPath
+{
+    [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [[AppStartManager shareManager] setMember:nil];
+    [[AppStartManager shareManager] removeLocalHostMemberData];
+}
+
+-(void)deleteCache
+{
+    [AppUtils showLoadingInView:self.view];
+    NSString * cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    [AppUtils deleteFolderFilesAtPath:cacheDir];
+    [LoadedTemplate bg_clear:LoadedTableName];
+    [Composition bg_clear:CompositionTableName];
+    [AppUtils hiddenLoadingInView:self.view];
+    [_tableView reloadData];
+}
+
 #pragma -mark UITableViewDelegate|UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -76,7 +97,9 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
                     
                     break;
                 case 2:
-                    
+                {
+                    [self deleteCache];
+                }
                     break;
                 default:
                     break;
@@ -108,7 +131,7 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
             switch (indexPath.row) {
                 case 0:
                 {
-                    
+                    [self loginoutWithIndexPath:indexPath];
                 }
                     break;
                 default:
@@ -142,7 +165,14 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
             numbers = 4;
             break;
         case 2:
-            numbers = 1;
+        {
+            Member *host = [[AppStartManager shareManager] currentMember];
+            if (host) {
+                numbers = 1;
+            }else{
+                numbers = 0;
+            }
+        }
             break;
         default:
             break;
@@ -184,8 +214,11 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
                 case 1:
                     [cell setLeftTitle:@"账号绑定" rightTitle:@"" isShowBottomLine:YES];
                     break;
-                case 2:
-                    [cell setLeftTitle:@"清理缓存" rightTitle:@"39.7M" isShowBottomLine:NO];
+                case 2:{
+                    NSString * cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                    float size = [AppUtils folderSizeAtPath:cacheDir];
+                    [cell setLeftTitle:@"清理缓存" rightTitle:[NSString stringWithFormat:@"%.2fM",size] isShowBottomLine:NO];
+                }
                     break;
                 default:
                     break;

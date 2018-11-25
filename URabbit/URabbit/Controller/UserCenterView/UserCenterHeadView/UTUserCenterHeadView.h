@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 @class Member;
+@protocol UTUserCenterHeadViewProtocol <NSObject>
+-(void)gotoLoadedView;
+-(void)gotoSaveView;
+-(void)gotoDraftView;
+-(void)gotoLoginView;
+@end
 @interface UTUserCenterHeadView : UIView
 {
     UIImageView *headImageView;
@@ -27,8 +33,12 @@
     
     UIView *line1View;
     UIView *line2View;
+    
+    UIButton *downloadButton;
+    UIButton *saveButton;
+    UIButton *draftButton;
 }
-
+@property(nonatomic, strong) id<UTUserCenterHeadViewProtocol> delegate;
 -(void)setCurrentMember:(Member *)member;
 -(void)setSaveNumber:(NSInteger)saveNumber downloadNumber:(NSInteger)downloadNumber draftNumber:(NSInteger)draftNumber;
 @end

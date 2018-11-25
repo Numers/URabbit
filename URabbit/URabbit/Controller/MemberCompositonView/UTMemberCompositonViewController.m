@@ -32,6 +32,8 @@ static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositi
     NSString *sqlStirng = nil;
     if (host) {
         sqlStirng = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),bg_sqlValue(host.memberId)];
+    }else{
+        sqlStirng = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),@""];
     }
     NSArray *dataArray = [Composition bg_find:CompositionTableName where:sqlStirng];
     if (dataArray && dataArray.count > 0) {

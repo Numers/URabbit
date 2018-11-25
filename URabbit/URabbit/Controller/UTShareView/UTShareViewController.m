@@ -13,6 +13,15 @@
 @end
 
 @implementation UTShareViewController
+-(instancetype)init
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"UTShareViewIdentify"];
+    if (self) {
+        self.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

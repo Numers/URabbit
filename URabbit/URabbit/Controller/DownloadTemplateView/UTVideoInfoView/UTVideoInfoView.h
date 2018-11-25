@@ -22,4 +22,5 @@
 
 -(instancetype)initWithVideoSize:(CGSize)size frame:(CGRect)frame;
 -(void)setHomeTemplate:(HomeTemplate *)homeTemplate;
+-(void)pausePlayView;
 @end

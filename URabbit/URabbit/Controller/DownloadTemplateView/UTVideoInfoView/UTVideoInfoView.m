@@ -19,6 +19,7 @@
         
         playView = [[CLPlayerView alloc] initWithFrame:CGRectMake(74, 0, playerWidth, playerHeight)];
         playView.isLandscape = YES;
+        playView.repeatPlay = NO;
         playView.fullStatusBarHiddenType = FullStatusBarHiddenFollowToolBar;
         [self addSubview:playView];
         
@@ -48,6 +49,7 @@
 -(void)setHomeTemplate:(HomeTemplate *)homeTemplate
 {
     [playView setUrl:[NSURL URLWithString:homeTemplate.demoUrl]];
+    [playView playVideo];
     [videoNameLabel setText:homeTemplate.title];
     [videoDurationLabel setText:[AppUtils getMMSSFromSS:homeTemplate.duration]];
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:13.0]};
@@ -59,5 +61,10 @@
     [self addSubview:lineView];
     
     [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, lineView.frame.origin.y + lineView.frame.size.height)];
+}
+
+-(void)pausePlayView
+{
+    [playView pausePlay];
 }
 @end
