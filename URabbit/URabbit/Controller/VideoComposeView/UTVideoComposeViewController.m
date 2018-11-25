@@ -20,12 +20,15 @@
 #import "UTImageHanderManager.h"
 #import "UTVideoComposeSuccessViewController.h"
 
+#import "Composition.h"
+
 
 @interface UTVideoComposeViewController ()<UTPlaySubViewProtocol,UTSelectViewProtocol>
 {
     Resource *resource;
     NSString *movieURL;
     NSString *audioURL;
+    Composition *currentComposition;
     NSMutableArray *imageList;
     
     GPUImageView *imageView;
@@ -45,13 +48,14 @@
 @end
 
 @implementation UTVideoComposeViewController
--(instancetype)initWithResource:(Resource *)m movieUrl:(NSString *)url images:(NSMutableArray *)images
+-(instancetype)initWithResource:(Resource *)m movieUrl:(NSString *)url images:(NSMutableArray *)images composition:(Composition *)composition
 {
     self = [super init];
     if (self) {
         resource = m;
         movieURL = url;
         audioURL = resource.music;
+        currentComposition = composition;
         imageList = [NSMutableArray arrayWithArray:images];
     }
     return self;
@@ -109,11 +113,6 @@
     } else if ([viewControllers indexOfObject:self] == NSNotFound) {
         
         //当前视图控制器不在栈中，故为pop操作
-        for (NSString *path in imageList) {
-            if([[NSFileManager defaultManager] isExecutableFileAtPath:path]){
-                [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-            }
-        }
         NSLog(@"pop");
         [imageList removeAllObjects];
         imageList = nil;
@@ -179,17 +178,17 @@
     if (movieFile) {
         [movieFile endProcessing];
     }
-    NSString *videoDic = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *tempVideoPath = [NSString stringWithFormat:@"%@/video-temp-compose.mp4",videoDic];
-    NSString *videoCompeletelyPath = [NSString stringWithFormat:@"%@/video-complete-compose.mp4",videoDic];
+    NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
     
     [[UTVideoManager shareManager] mergeMovie:movieURL withAudio:audioURL output:tempVideoPath completely:^{
         if ([[NSFileManager defaultManager] fileExistsAtPath:movieURL]) {
             [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
         }
         GPUImageFilter *movieFilter = [[UTImageHanderManager shareManager] filterWithFilterType:currentFilterType];
+        NSString *videoCompeletelyPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
         [[UTVideoManager shareManager] filterMovieWithInputUrl:tempVideoPath outputUrl:videoCompeletelyPath videoSize:resource.videoSize filter:movieFilter completely:^(BOOL result) {
             if (result) {
+                currentComposition.moviePath = videoCompeletelyPath;
                 if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoCompeletelyPath)) {
                     //保存相册核心代码
                     UISaveVideoAtPathToSavedPhotosAlbum(videoCompeletelyPath, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
@@ -206,6 +205,7 @@
     }
     else {
         NSLog(@"保存视频成功");
+        [currentComposition bg_save];
         UTVideoComposeSuccessViewController *videoComposeSuccessVC = [[UTVideoComposeSuccessViewController alloc] init];
         [self.navigationController pushViewController:videoComposeSuccessVC animated:YES];
     }

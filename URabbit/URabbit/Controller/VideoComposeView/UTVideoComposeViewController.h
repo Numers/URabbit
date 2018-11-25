@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Resource;
+@class Resource,Composition;
 @interface UTVideoComposeViewController : UIViewController
--(instancetype)initWithResource:(Resource *)m movieUrl:(NSString *)url images:(NSMutableArray *)images;
+-(instancetype)initWithResource:(Resource *)m movieUrl:(NSString *)url images:(NSMutableArray *)images composition:(Composition *)composition;
 @end

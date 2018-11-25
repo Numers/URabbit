@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 @protocol VideoComposeProtocol <NSObject>
 -(void)readNextPixelBuffer:(int)frame;
--(void)didWriteToMovie:(int)frame;
+-(void)didWriteToMovie:(NSInteger)frame;
 -(void)videoWriteDidFinished:(BOOL)success;
 @end
 @interface VideoCompose : NSObject

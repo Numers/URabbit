@@ -184,6 +184,9 @@
                 if (success) {
                     writeFrames = frame;
                     CVPixelBufferRelease(pixelBuffer);
+                    if ([self.delegate respondsToSelector:@selector(didWriteToMovie:)]) {
+                        [self.delegate didWriteToMovie:frame];
+                    }
                 }
                 
                 if (frame == totalFrames - 1) {
@@ -212,6 +215,9 @@
                 BOOL success = [self writeToMovie:sampleBufferRef frame:frame];
                 if (success) {
                     writeFrames = frame;
+                    if ([self.delegate respondsToSelector:@selector(didWriteToMovie:)]) {
+                        [self.delegate didWriteToMovie:frame];
+                    }
                 }
                 if (frame == totalFrames - 1) {
                     [videoWriterInput markAsFinished];
