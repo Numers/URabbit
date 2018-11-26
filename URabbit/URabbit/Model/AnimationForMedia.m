@@ -94,7 +94,7 @@
             animation = [[AnimationManager shareManager] scaleAnimationWithStartScale:_startRatio endScale:_endRatio startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
         }
             break;
-        case AnimationOpacity:
+        case AnimationBlur:
         {
             animation = [[AnimationManager shareManager] opacityAnimationWithStartOpacity:_startBlur endOpacity:_endBlur startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
         }

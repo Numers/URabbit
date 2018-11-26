@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CLPlayerView.h"
+#import "SelVideoPlayer.h"
+#import "SelPlayerConfiguration.h"
 @class HomeTemplate;
 @interface UTVideoInfoView : UIView
 {
 //    AVPlayer *player;
 //    AVPlayerItem *playerItem;
-    CLPlayerView *playView;
+    SelVideoPlayer *playView;
     UILabel *videoNameLabel;
     UILabel *videoDurationLabel;
     UILabel *videoDescLabel;

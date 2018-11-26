@@ -16,11 +16,14 @@
     if (self) {
         CGFloat playerWidth = SCREEN_WIDTH - 74 * 2;
         CGFloat playerHeight = playerWidth * (size.height / size.width);
-        
-        playView = [[CLPlayerView alloc] initWithFrame:CGRectMake(74, 0, playerWidth, playerHeight)];
-        playView.isLandscape = YES;
-        playView.repeatPlay = NO;
-        playView.fullStatusBarHiddenType = FullStatusBarHiddenFollowToolBar;
+        SelPlayerConfiguration *configuration = [[SelPlayerConfiguration alloc]init];
+        configuration.shouldAutoPlay = YES;
+        configuration.supportedDoubleTap = YES;
+        configuration.shouldAutorotate = YES;
+        configuration.repeatPlay = NO;
+        configuration.statusBarHideState = SelStatusBarHideStateFollowControls;
+        configuration.videoGravity = SelVideoGravityResizeAspect;
+        playView = [[SelVideoPlayer alloc] initWithFrame:CGRectMake(74, 0, playerWidth, playerHeight) configuration:configuration];
         [self addSubview:playView];
         
         videoNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, playerHeight + 26, frame.size.width - 70, 22)];
@@ -48,8 +51,8 @@
 
 -(void)setHomeTemplate:(HomeTemplate *)homeTemplate
 {
-    [playView setUrl:[NSURL URLWithString:homeTemplate.demoUrl]];
-    [playView playVideo];
+    [playView setMovieUrl:[NSURL URLWithString:homeTemplate.demoUrl]];
+    
     [videoNameLabel setText:homeTemplate.title];
     [videoDurationLabel setText:[AppUtils getMMSSFromSS:homeTemplate.duration]];
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:13.0]};
@@ -65,6 +68,6 @@
 
 -(void)pausePlayView
 {
-    [playView pausePlay];
+    [playView _pauseVideo];
 }
 @end

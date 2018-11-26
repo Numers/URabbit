@@ -108,6 +108,11 @@
         CGContextTranslateCTM(mainViewContentContext, centerX,centerY);
         CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
         CGContextRestoreGState(mainViewContentContext);
+    }else if (animation.type == AnimationBlur){
+        CGFloat blurPiece = (animation.endBlur - animation.startBlur) / animation.range.length;
+        CGFloat blurNum = animation.startBlur + (index - animation.range.location) * blurPiece;
+        UIImage *renderImage = [self GPUImageStyleWithImage:media.resultImage blur:blurNum];
+        CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, renderImage.size.width, renderImage.size.height), renderImage.CGImage);
     }else{
         CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
     }
@@ -117,5 +122,12 @@
     CGImageRelease(newImageRef);
     CGContextRelease(mainViewContentContext);
     return newImage;
+}
+
+- (UIImage *)GPUImageStyleWithImage:(UIImage *)image blur:(CGFloat)blur{
+    GPUImageGaussianBlurFilter *filter = [[GPUImageGaussianBlurFilter alloc] init];
+    filter.blurRadiusInPixels = blur;//值越大，模糊度越大
+    UIImage *blurImage = [filter imageByFilteringImage:image];
+    return blurImage;
 }
 @end
