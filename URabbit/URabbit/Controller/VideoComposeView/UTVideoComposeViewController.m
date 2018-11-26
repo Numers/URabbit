@@ -114,6 +114,9 @@
         
         //当前视图控制器不在栈中，故为pop操作
         NSLog(@"pop");
+        if ([[NSFileManager defaultManager] fileExistsAtPath:movieURL]) {
+            [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
+        }
         [imageList removeAllObjects];
         imageList = nil;
         
@@ -178,6 +181,7 @@
     if (movieFile) {
         [movieFile endProcessing];
     }
+    [AppUtils showLoadingInView:self.view];
     NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
     
     [[UTVideoManager shareManager] mergeMovie:movieURL withAudio:audioURL output:tempVideoPath completely:^{
@@ -188,6 +192,7 @@
         NSString *videoCompeletelyPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
         [[UTVideoManager shareManager] filterMovieWithInputUrl:tempVideoPath outputUrl:videoCompeletelyPath videoSize:resource.videoSize filter:movieFilter completely:^(BOOL result) {
             if (result) {
+                [AppUtils hiddenLoadingInView:self.view];
                 currentComposition.moviePath = videoCompeletelyPath;
                 if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoCompeletelyPath)) {
                     //保存相册核心代码

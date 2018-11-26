@@ -58,6 +58,8 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     NSString *videoPath;
     
     NSInteger totalRatio;
+    
+    CGFloat currentProgress;
 }
 @end
 
@@ -185,19 +187,22 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
             case ComposeStepWebp:
             {
                 CGFloat actualProgress = (progress * WebpRatio) / totalRatio;
-                hud.progress = actualProgress;
+                currentProgress += actualProgress;
+                hud.progress = currentProgress;
             }
                 break;
             case ComposeStepVideo:
             {
                 CGFloat actualProgress = (progress * VideoRatio) / totalRatio;
-                hud.progress = actualProgress;
+                currentProgress = actualProgress;
+                hud.progress = currentProgress;
             }
                 break;
             case ComposeStepAnimation:
             {
                 CGFloat actualProgress = (progress * AnimationRatio) / totalRatio;
-                hud.progress = actualProgress;
+                currentProgress += actualProgress;
+                hud.progress = currentProgress;
             }
                 break;
             default:
@@ -237,6 +242,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     hud.progressType = DMProgressHUDProgressTypeCircle;
     hud.style = DMProgressHUDStyleDark;
     hud.text = @"合成中...";
+    currentProgress = 0.0f;
     videoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
     
     float fps = currentResource.fps;

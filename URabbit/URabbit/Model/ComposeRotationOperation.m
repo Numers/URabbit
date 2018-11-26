@@ -87,7 +87,7 @@
         CGFloat centerY = pixelSize.height * (1-animation.centerYPercent);
         CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
         CGFloat rotateAngle = -((animation.endAngle - animation.startAngle) * M_PI / 180) / (animation.range.length);
-        CGContextRotateCTM(mainViewContentContext,rotateAngle*(index - animation.range.location));
+        CGContextRotateCTM(mainViewContentContext,-animation.startAngle * M_PI / 180 + rotateAngle*(index - animation.range.location));
         CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
         CGContextRestoreGState(mainViewContentContext);
     }else if(animation.type == AnimationScale){
@@ -98,6 +98,15 @@
         CGFloat scaleRatio = (animation.endRatio - animation.startRatio) / animation.range.length;
         CGContextScaleCTM(mainViewContentContext,animation.startRatio+scaleRatio*(index - animation.range.location),animation.startRatio+scaleRatio*(index - animation.range.location));
         CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
+        CGContextRestoreGState(mainViewContentContext);
+    }else if (animation.type == AnimationTransform){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat pieceX = (animation.endCoordinate.x - animation.startCoordinate.x) / animation.range.length;
+        CGFloat pieceY = -(animation.endCoordinate.y - animation.startCoordinate.y) / animation.range.length;
+        CGFloat centerX = pixelSize.width * ((index - animation.range.location) * pieceX);
+        CGFloat centerY = pixelSize.height * ((index - animation.range.location) * pieceY);
+        CGContextTranslateCTM(mainViewContentContext, centerX,centerY);
+        CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
         CGContextRestoreGState(mainViewContentContext);
     }else{
         CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);

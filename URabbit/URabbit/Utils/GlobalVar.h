@@ -55,9 +55,9 @@ typedef enum
 {
     AnimationNone = 0,
     AnimationRotation = 1,
-    AnimationScale,
-    AnimationTransform,
-    AnimationOpacity
+    AnimationScale = 2,
+    AnimationTransform = 4,
+    AnimationOpacity = 8
 }AnimationType;
 
 typedef enum{
