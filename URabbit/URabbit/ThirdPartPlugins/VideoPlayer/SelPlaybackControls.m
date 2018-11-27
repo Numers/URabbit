@@ -208,7 +208,7 @@ static const CGFloat PlaybackControlsAutoHideTimeInterval = 0.3f;
 /** 创建UI */
 - (void)setupUI
 {
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.05];
     [self addSubview:self.playButton];
     [self addSubview:self.bottomControlsBar];
     [self addSubview:self.activityIndicatorView];
