@@ -7,20 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef enum{
-    Male = 1,
-    Female,
-    UnknownSex
-} SexType;
+#import "Account.h"
 @interface Member : NSObject
 @property(nonatomic, copy) NSString *memberId;
 @property(nonatomic, copy) NSString *nickName;
-@property(nonatomic, copy) NSString *mobile;
-@property(nonatomic, copy) NSString *password;
 @property(nonatomic, copy) NSString *headIcon;
-@property(nonatomic) SexType sexType;
 @property(nonatomic, copy) NSString *token;
-
+@property(nonatomic, strong) NSMutableArray<Account *> *accountList;
 
 
 /**

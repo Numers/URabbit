@@ -13,11 +13,19 @@
 		04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9121A1123400F206E3 /* UTRegisterFirstStepViewController.m */; };
 		04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */; };
 		04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */; };
-		141921F6219EA243001239EE /* animation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 141921F5219EA243001239EE /* animation.txt */; };
 		14239B6F2172F9FA0033FB7D /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14239B6E2172F9FA0033FB7D /* libGPUImage.a */; };
 		1423E29E21ACE128005A9F6E /* DraftTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E29D21ACE128005A9F6E /* DraftTemplate.m */; };
 		1423E2A221ACE6D0005A9F6E /* UTDraftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E2A121ACE6D0005A9F6E /* UTDraftViewController.m */; };
 		1423E2A621ACE6F8005A9F6E /* UTDraftCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E2A521ACE6F8005A9F6E /* UTDraftCollectionViewCell.m */; };
+		1423E2B721AD60A1005A9F6E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423E2B621AD60A1005A9F6E /* libsqlite3.tbd */; };
+		1423E2B921AD60A9005A9F6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423E2B821AD60A8005A9F6E /* CoreGraphics.framework */; };
+		1423E2BB21AD60B9005A9F6E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423E2BA21AD60B9005A9F6E /* SystemConfiguration.framework */; };
+		1423E2BD21AD60C2005A9F6E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423E2BC21AD60C2005A9F6E /* CoreTelephony.framework */; };
+		1423E2BF21AD60CD005A9F6E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423E2BE21AD60CD005A9F6E /* libc++.tbd */; };
+		1423E2C121AD60D6005A9F6E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423E2C021AD60D6005A9F6E /* libz.tbd */; };
+		1423E2C321AD60EB005A9F6E /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423E2C221AD60EB005A9F6E /* Photos.framework */; };
+		1423E2C721AD6BC4005A9F6E /* UTUMShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E2C621AD6BC4005A9F6E /* UTUMShareManager.m */; };
+		1423E2CA21AD77E6005A9F6E /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E2C921AD77E6005A9F6E /* Account.m */; };
 		1425A8B921A828A1007A0C2E /* UTUserCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8B821A828A1007A0C2E /* UTUserCenterTableViewCell.m */; };
 		1425A8BD21A8503F007A0C2E /* UTMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BC21A8503F007A0C2E /* UTMemberViewController.m */; };
 		1425A8C021A85976007A0C2E /* UTMemberScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BF21A85976007A0C2E /* UTMemberScrollViewController.m */; };
@@ -31,7 +39,6 @@
 		1425A8DF21A99CAC007A0C2E /* UTUserSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8DE21A99CAC007A0C2E /* UTUserSettingTableViewCell.m */; };
 		1425A8E321A9AB94007A0C2E /* UTEditUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8E221A9AB94007A0C2E /* UTEditUserInfoViewController.m */; };
 		1425A90A21A9C0BD007A0C2E /* UTShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A90921A9C0BD007A0C2E /* UTShareViewController.m */; };
-		14262A292189AC8E00768E6A /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14262A282189AC8E00768E6A /* music.mp3 */; };
 		14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2D218AF02300768E6A /* LLTabBarItem.m */; };
 		14262A30218AF02300768E6A /* LLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A2E218AF02300768E6A /* LLTabBar.m */; };
 		14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14262A33218AF23200768E6A /* UTUserCenterViewController.m */; };
@@ -115,8 +122,6 @@
 		145803A2216F312C006BB33D /* UTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145803A1216F312C006BB33D /* UTHomeViewController.m */; };
 		145803A6216F3143006BB33D /* UTGuidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145803A5216F3143006BB33D /* UTGuidViewController.m */; };
 		145803A9216F32E9006BB33D /* UTLoginScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145803A8216F32E9006BB33D /* UTLoginScrollViewController.m */; };
-		145803D32170529E001B9535 /* video-2281.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 145803D12170529D001B9535 /* video-2281.mp4 */; };
-		145803D42170529E001B9535 /* video-2280.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 145803D22170529D001B9535 /* video-2280.mp4 */; };
 		145803D82170705B001B9535 /* UTVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 145803D72170705B001B9535 /* UTVideoManager.m */; };
 		145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 145803DB21707B75001B9535 /* UTImageHanderManager.m */; };
 		145803DF21708433001B9535 /* VideoCompose.m in Sources */ = {isa = PBXBuildFile; fileRef = 145803DE21708433001B9535 /* VideoCompose.m */; };
@@ -183,8 +188,6 @@
 		04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterSecondStepViewController.m; sourceTree = "<group>"; };
 		04372B9621A1134100F206E3 /* UTRegisterThirdStepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTRegisterThirdStepViewController.h; sourceTree = "<group>"; };
 		04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterThirdStepViewController.m; sourceTree = "<group>"; };
-		141921F4219E8AE6001239EE /* animation.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = animation.geojson; sourceTree = "<group>"; };
-		141921F5219EA243001239EE /* animation.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = animation.txt; sourceTree = "<group>"; };
 		14239ABF2172F9FA0033FB7D /* GPUImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBuffer.h; sourceTree = "<group>"; };
 		14239AC02172F9FA0033FB7D /* GPUImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageView.h; sourceTree = "<group>"; };
 		14239AC12172F9FA0033FB7D /* GPUImageShiTomasiFeatureDetectionFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageShiTomasiFeatureDetectionFilter.h; sourceTree = "<group>"; };
@@ -366,6 +369,17 @@
 		1423E2A121ACE6D0005A9F6E /* UTDraftViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTDraftViewController.m; sourceTree = "<group>"; };
 		1423E2A421ACE6F8005A9F6E /* UTDraftCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTDraftCollectionViewCell.h; sourceTree = "<group>"; };
 		1423E2A521ACE6F8005A9F6E /* UTDraftCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTDraftCollectionViewCell.m; sourceTree = "<group>"; };
+		1423E2B621AD60A1005A9F6E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		1423E2B821AD60A8005A9F6E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1423E2BA21AD60B9005A9F6E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1423E2BC21AD60C2005A9F6E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		1423E2BE21AD60CD005A9F6E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		1423E2C021AD60D6005A9F6E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		1423E2C221AD60EB005A9F6E /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		1423E2C521AD6BC4005A9F6E /* UTUMShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUMShareManager.h; sourceTree = "<group>"; };
+		1423E2C621AD6BC4005A9F6E /* UTUMShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUMShareManager.m; sourceTree = "<group>"; };
+		1423E2C821AD77E6005A9F6E /* Account.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		1423E2C921AD77E6005A9F6E /* Account.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		1425A8B721A828A1007A0C2E /* UTUserCenterTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserCenterTableViewCell.h; sourceTree = "<group>"; };
 		1425A8B821A828A1007A0C2E /* UTUserCenterTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserCenterTableViewCell.m; sourceTree = "<group>"; };
 		1425A8BB21A8503F007A0C2E /* UTMemberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberViewController.h; sourceTree = "<group>"; };
@@ -392,7 +406,6 @@
 		1425A8E221A9AB94007A0C2E /* UTEditUserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTEditUserInfoViewController.m; sourceTree = "<group>"; };
 		1425A90821A9C0BD007A0C2E /* UTShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTShareViewController.h; sourceTree = "<group>"; };
 		1425A90921A9C0BD007A0C2E /* UTShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTShareViewController.m; sourceTree = "<group>"; };
-		14262A282189AC8E00768E6A /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		14262A2B218AF02300768E6A /* LLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBar.h; sourceTree = "<group>"; };
 		14262A2C218AF02300768E6A /* LLTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBarItem.h; sourceTree = "<group>"; };
 		14262A2D218AF02300768E6A /* LLTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTabBarItem.m; sourceTree = "<group>"; };
@@ -561,8 +574,6 @@
 		145803A5216F3143006BB33D /* UTGuidViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTGuidViewController.m; sourceTree = "<group>"; };
 		145803A7216F32E9006BB33D /* UTLoginScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTLoginScrollViewController.h; sourceTree = "<group>"; };
 		145803A8216F32E9006BB33D /* UTLoginScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTLoginScrollViewController.m; sourceTree = "<group>"; };
-		145803D12170529D001B9535 /* video-2281.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "video-2281.mp4"; sourceTree = "<group>"; };
-		145803D22170529D001B9535 /* video-2280.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "video-2280.mp4"; sourceTree = "<group>"; };
 		145803D62170705B001B9535 /* UTVideoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTVideoManager.h; sourceTree = "<group>"; };
 		145803D72170705B001B9535 /* UTVideoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTVideoManager.m; sourceTree = "<group>"; };
 		145803DA21707B75001B9535 /* UTImageHanderManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTImageHanderManager.h; sourceTree = "<group>"; };
@@ -667,6 +678,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1423E2C321AD60EB005A9F6E /* Photos.framework in Frameworks */,
+				1423E2C121AD60D6005A9F6E /* libz.tbd in Frameworks */,
+				1423E2BF21AD60CD005A9F6E /* libc++.tbd in Frameworks */,
+				1423E2BD21AD60C2005A9F6E /* CoreTelephony.framework in Frameworks */,
+				1423E2BB21AD60B9005A9F6E /* SystemConfiguration.framework in Frameworks */,
+				1423E2B921AD60A9005A9F6E /* CoreGraphics.framework in Frameworks */,
+				1423E2B721AD60A1005A9F6E /* libsqlite3.tbd in Frameworks */,
 				144357D521A6D4D300FEA9AE /* ImageIO.framework in Frameworks */,
 				14580466216F3CB1006BB33D /* CoreMedia.framework in Frameworks */,
 				14580464216F3CAA006BB33D /* CoreVideo.framework in Frameworks */,
@@ -927,6 +945,15 @@
 				1423E2A521ACE6F8005A9F6E /* UTDraftCollectionViewCell.m */,
 			);
 			path = UTDraftCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		1423E2C421AD6BA8005A9F6E /* UTUMShareManager */ = {
+			isa = PBXGroup;
+			children = (
+				1423E2C521AD6BC4005A9F6E /* UTUMShareManager.h */,
+				1423E2C621AD6BC4005A9F6E /* UTUMShareManager.m */,
+			);
+			path = UTUMShareManager;
 			sourceTree = "<group>";
 		};
 		1425A8B621A82873007A0C2E /* UserCenterTableViewCell */ = {
@@ -1326,6 +1353,7 @@
 		14580347216F2BCC006BB33D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				1423E2C421AD6BA8005A9F6E /* UTUMShareManager */,
 				14266C8B21A5970D008A1926 /* UTkeyboardTextFieldManager */,
 				148D0F83219D9C4900B4E59A /* AnimationManager */,
 				145803D921707B5A001B9535 /* UTImageHanderManager */,
@@ -1490,6 +1518,8 @@
 				142CE2C021AA42D200B17FBA /* LoadedTemplate.m */,
 				1423E29C21ACE128005A9F6E /* DraftTemplate.h */,
 				1423E29D21ACE128005A9F6E /* DraftTemplate.m */,
+				1423E2C821AD77E6005A9F6E /* Account.h */,
+				1423E2C921AD77E6005A9F6E /* Account.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1564,18 +1594,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		145803D02170526E001B9535 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				141921F5219EA243001239EE /* animation.txt */,
-				14262A282189AC8E00768E6A /* music.mp3 */,
-				145803D22170529D001B9535 /* video-2280.mp4 */,
-				145803D12170529D001B9535 /* video-2281.mp4 */,
-				141921F4219E8AE6001239EE /* animation.geojson */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
 		145803D52170703A001B9535 /* UTVideoManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1615,7 +1633,6 @@
 		145B6131216F27B600DA950E /* URabbit */ = {
 			isa = PBXGroup;
 			children = (
-				145803D02170526E001B9535 /* Resource */,
 				145803C321703C80001B9535 /* View */,
 				14580397216F2FF2006BB33D /* Controller */,
 				14580396216F2FEA006BB33D /* Model */,
@@ -1852,6 +1869,13 @@
 		7B66372339C95543FFFDEC4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1423E2C221AD60EB005A9F6E /* Photos.framework */,
+				1423E2C021AD60D6005A9F6E /* libz.tbd */,
+				1423E2BE21AD60CD005A9F6E /* libc++.tbd */,
+				1423E2BC21AD60C2005A9F6E /* CoreTelephony.framework */,
+				1423E2BA21AD60B9005A9F6E /* SystemConfiguration.framework */,
+				1423E2B821AD60A8005A9F6E /* CoreGraphics.framework */,
+				1423E2B621AD60A1005A9F6E /* libsqlite3.tbd */,
 				144357D421A6D4D300FEA9AE /* ImageIO.framework */,
 				14580465216F3CB1006BB33D /* CoreMedia.framework */,
 				14580463216F3CAA006BB33D /* CoreVideo.framework */,
@@ -1932,13 +1956,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				14580376216F2BCC006BB33D /* background.html in Resources */,
-				145803D32170529E001B9535 /* video-2281.mp4 in Resources */,
-				14262A292189AC8E00768E6A /* music.mp3 in Resources */,
 				145B613F216F27B700DA950E /* LaunchScreen.storyboard in Resources */,
 				14580374216F2BCC006BB33D /* muber.gif in Resources */,
-				141921F6219EA243001239EE /* animation.txt in Resources */,
 				1458035D216F2BCC006BB33D /* iconfont.ttf in Resources */,
-				145803D42170529E001B9535 /* video-2280.mp4 in Resources */,
 				145B613C216F27B700DA950E /* Assets.xcassets in Resources */,
 				145B613A216F27B600DA950E /* Main.storyboard in Resources */,
 			);
@@ -2114,6 +2134,7 @@
 				144357C821A6ACDA00FEA9AE /* PSTCollectionViewItemKey.m in Sources */,
 				1458037B216F2BCC006BB33D /* AppLaunchManager.m in Sources */,
 				144357C221A6ACDA00FEA9AE /* PSTCollectionViewCell.m in Sources */,
+				1423E2C721AD6BC4005A9F6E /* UTUMShareManager.m in Sources */,
 				146B636B218FDAC200A3A679 /* UTDownloadTemplateViewController.m in Sources */,
 				14262A2F218AF02300768E6A /* LLTabBarItem.m in Sources */,
 				142CE2BB21AA422C00B17FBA /* UTSaveViewController.m in Sources */,
@@ -2149,6 +2170,7 @@
 				14580473216F526A006BB33D /* UTVideoReader.m in Sources */,
 				14580365216F2BCC006BB33D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */,
+				1423E2CA21AD77E6005A9F6E /* Account.m in Sources */,
 				1425A8D321A98B3B007A0C2E /* UTMemberCompositionDetailsViewController.m in Sources */,
 				0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */,
 				144357C421A6ACDA00FEA9AE /* PSTCollectionViewData.m in Sources */,
@@ -2315,7 +2337,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/URabbit/ThirdPartPlugins/GPUImage/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.blc.URabbit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ut.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2346,7 +2368,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/URabbit/ThirdPartPlugins/GPUImage/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.blc.URabbit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ut.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

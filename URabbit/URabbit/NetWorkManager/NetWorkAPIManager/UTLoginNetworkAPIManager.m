@@ -25,6 +25,12 @@
     [[NetWorkRequestManager shareManager] post:UT_Login_API parameters:parameters callback:callback isNotify:YES];
 }
 
+-(void)loginPlatformWithOid:(NSString *)oid type:(LoginPlatform)platfrom nickName:(NSString *)nickName portrait:(NSString *)portrait gender:(SexType)sex callback:(APIRequstCallBack)callback
+{
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:oid,@"oid",@(platfrom),@"type",nickName,@"nickname",portrait,@"portrait",@(sex),@"gender", nil];
+    [[NetWorkRequestManager shareManager] post:UT_PlatformLogin_API parameters:parameters callback:callback isNotify:YES];
+}
+
 -(void)sendValidateCodeWithMobile:(NSString *)mobile callback:(APIRequstCallBack)callback
 {
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:mobile,@"mobile", nil];

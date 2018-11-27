@@ -10,7 +10,7 @@
 #import "UTLoginNetworkAPIManager.h"
 #import "Member.h"
 #import "AppStartManager.h"
-
+#import "UTUMShareManager.h"
 @interface UTLoginViewController ()
 {
     NSTimer *timer;
@@ -20,6 +20,7 @@
 @property(nonatomic, strong) IBOutlet UITextField *validateCodeTextField;
 @property(nonatomic, strong) IBOutlet UIButton *validateCodeButton;
 @property(nonatomic, strong) IBOutlet UIButton *loginButton;
+@property(nonatomic, weak) IBOutlet NSLayoutConstraint *layoutConstrait;
 @end
 
 @implementation UTLoginViewController
@@ -30,6 +31,8 @@
     [_loginButton.layer setCornerRadius:22];
     [_loginButton.layer setMasksToBounds:YES];
     [_loginButton setEnabled:NO];
+    
+    _layoutConstrait.constant = 99 + [UIDevice safeAreaTopHeight];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,6 +132,51 @@
         }else{
             [AppUtils hiddenLoadingInView:self.view];
         }
+    }];
+}
+
+-(IBAction)clickLoginWithWeixin:(id)sender
+{
+    [[UTUMShareManager shareManager] getUserInfoForPlatform:UMSocialPlatformType_WechatSession complete:^(UMSocialUserInfoResponse *result) {
+        
+    }];
+}
+
+-(IBAction)clickLoginWithQQ:(id)sender
+{
+    [[UTUMShareManager shareManager] getUserInfoForPlatform:UMSocialPlatformType_QQ complete:^(UMSocialUserInfoResponse *result) {
+        
+    }];
+}
+
+-(IBAction)clickLoginWithWeibo:(id)sender
+{
+    [[UTUMShareManager shareManager] getUserInfoForPlatform:UMSocialPlatformType_Sina complete:^(UMSocialUserInfoResponse *result) {
+        NSString *oid = result.uid;
+        NSString *nickName = result.name;
+        LoginPlatform type = LoginPlatformWeibo;
+        NSString *portrait = result.iconurl;
+        SexType sexType = UnknownSex;
+        if ([@"男" isEqualToString:result.gender]) {
+            sexType = Male;
+        }
+        
+        if ([@"女" isEqualToString:result.gender]) {
+            sexType = Female;
+        }
+        [AppUtils showLoadingInView:self.view];
+        [[UTLoginNetworkAPIManager shareManager] loginPlatformWithOid:oid type:type nickName:nickName portrait:portrait gender:sexType callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+            [AppUtils hiddenLoadingInView:self.view];
+            if (data) {
+                NSDictionary *memberInfo = (NSDictionary *)data;
+                Member *member = [[Member alloc] initWithDictionary:memberInfo];
+                [[AppStartManager shareManager] setMember:member];
+                [AppUtils localUserDefaultsValue:@"1" forKey:KMY_AutoLogin];
+                if ([self.delegate respondsToSelector:@selector(loginsuccess)]) {
+                    [self.delegate loginsuccess];
+                }
+            }
+        }];
     }];
 }
 @end

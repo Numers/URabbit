@@ -121,10 +121,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oqb-nd-mdx">
                                 <rect key="frame" x="68" y="539" width="55" height="55"/>
                                 <state key="normal" image="wechatImage"/>
+                                <connections>
+                                    <action selector="clickLoginWithWeixin:" destination="PXl-d3-UeU" eventType="touchUpInside" id="jYX-SY-K75"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hre-gA-s1V">
                                 <rect key="frame" x="252" y="539" width="55" height="55"/>
                                 <state key="normal" image="weiboImage"/>
+                                <connections>
+                                    <action selector="clickLoginWithWeibo:" destination="PXl-d3-UeU" eventType="touchUpInside" id="kPp-tn-YkH"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- 第三方登录 -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMC-TL-Arw">
                                 <rect key="frame" x="141.5" y="502" width="92" height="17"/>
@@ -135,6 +141,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blG-hH-IkZ">
                                 <rect key="frame" x="160" y="539" width="55" height="55"/>
                                 <state key="normal" image="qqImage"/>
+                                <connections>
+                                    <action selector="clickLoginWithQQ:" destination="PXl-d3-UeU" eventType="touchUpInside" id="YMv-Xb-t3N"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -178,6 +187,7 @@
                         <viewLayoutGuide key="safeArea" id="tM1-pl-9hN"/>
                     </view>
                     <connections>
+                        <outlet property="layoutConstrait" destination="Gzz-RF-0Ih" id="y7S-x0-jLh"/>
                         <outlet property="loginButton" destination="WBd-J2-1K0" id="urE-Tw-XY0"/>
                         <outlet property="mobieTextField" destination="QAc-b1-Yty" id="yiu-z1-3ed"/>
                         <outlet property="validateCodeButton" destination="nlh-rm-KnR" id="Hel-12-G8a"/>

@@ -91,6 +91,17 @@ typedef enum
     FilterAddBlend, //图片混合
 } FilterType;
 
+typedef enum{
+    UnknownSex = 0,
+    Male = 1,
+    Female,
+} SexType;
+
+typedef enum{
+    LoginPlatformWechat = 2,
+    LoginPlatformQQ = 3,
+    LoginPlatformWeibo = 4
+} LoginPlatform;
 #define ViewBackgroundColor [UIColor whiteColor]
 
 #define ThemeHexColor @"#FFFFFF"

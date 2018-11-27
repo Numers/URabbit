@@ -14,6 +14,7 @@
 #define UT_Login_API @"/user/login/mobile"
 #define UT_ValidateCode_API @"/checkcode/send"
 #define UT_ValidateCheck_API @"checkcode/check"
+#define UT_PlatformLogin_API @"/user/login/platform"
 /************************首页API***********************/
 #define UT_NewTemplate_API @"/templet/list/new"
 #define UT_ChoiceRecommend_API @"/templet/list/recommend"

@@ -25,6 +25,11 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:ViewBackgroundColor];
     scrollView = [[TPKeyboardAvoidingScrollView alloc] initWithFrame:self.view.bounds];
+    if (@available(iOS 11.0, *)) {
+        scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        // Fallback on earlier versions
+    }
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setShowsHorizontalScrollIndicator:NO];
     [self.view addSubview:scrollView];
@@ -51,6 +56,7 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationItem setTitle:@"手机验证码登录"];
+    [self.navigationController setAutomaticallyAdjustsScrollViewInsets:NO];
     [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"closeImage"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCloseItem)];
     [self.navigationItem setRightBarButtonItem:rightItem];

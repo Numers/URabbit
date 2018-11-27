@@ -21,18 +21,18 @@
     if (self) {
         if (dic) {
             self.memberId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"memberId"]];
-            self.mobile = [dic objectForKey:@"mobile"];
             self.nickName = [dic objectForKey:@"nickName"];
-            self.password = [dic objectForKey:@"password"];
             self.token = [dic objectForKey:@"token"];
-            id sex = [dic objectForKey:@"sex"];
-            if (sex) {
-                self.sexType = (SexType)[sex integerValue];
-            }else{
-                self.sexType = UnknownSex;
-            }
-            
             self.headIcon = [dic objectForKey:@"headIcon"];
+            
+            _accountList = [NSMutableArray array];
+            NSArray *accounts = [dic objectForKey:@"account"];
+            if (accounts && accounts.count > 0) {
+                for (NSDictionary *accountDic in accounts) {
+                    Account *account = [[Account alloc] initWithDictionary:accountDic];
+                    [_accountList addObject:account];
+                }
+            }
         }
     }
     return self;
@@ -55,10 +55,6 @@
         [dic setObject:_nickName forKey:@"nickName"];
     }
     
-    if (_password) {
-        [dic setObject:_password forKey:@"password"];
-    }
-    
     if (_headIcon) {
         [dic setObject:_headIcon forKey:@"headIcon"];
     }
@@ -67,11 +63,14 @@
         [dic setObject:_token forKey:@"token"];
     }
     
-    if (_mobile) {
-        [dic setObject:_mobile forKey:@"mobile"];
+    if (_accountList && _accountList.count > 0) {
+        NSMutableArray *accounts = [NSMutableArray array];
+        for (Account *account in _accountList) {
+            NSDictionary *accountDic = [account dictionaryInfo];
+            [accounts addObject:accountDic];
+        }
+        [dic setObject:accounts forKey:@"account"];
     }
-    
-    [dic setObject:@(_sexType) forKey:@"sex"];
     return dic;
 }
 @end
