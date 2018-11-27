@@ -12,6 +12,7 @@
 #import "AppStartManager.h"
 #import "LoadedTemplate.h"
 #import "Composition.h"
+#import "DraftTemplate.h"
 
 static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellIdentify";
 @interface UTUserSettingViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -69,6 +70,7 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
     [AppUtils deleteFolderFilesAtPath:cacheDir];
     [LoadedTemplate bg_clear:LoadedTableName];
     [Composition bg_clear:CompositionTableName];
+    [DraftTemplate bg_clear:DraftTemplateTableName];
     [AppUtils hiddenLoadingInView:self.view];
     [_tableView reloadData];
 }

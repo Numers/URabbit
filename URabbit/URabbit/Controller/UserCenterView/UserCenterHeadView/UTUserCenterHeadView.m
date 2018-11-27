@@ -9,6 +9,7 @@
 #import "UTUserCenterHeadView.h"
 #import "Member.h"
 #import "LoadedTemplate.h"
+#import "DraftTemplate.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UTUserCenterHeadView
@@ -226,8 +227,11 @@
         [headImageView sd_setImageWithURL:[NSURL URLWithString:member.headIcon] placeholderImage:[UIImage imageNamed:@"headIconImage"]];
         
         NSString *sql = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),bg_sqlValue(member.memberId)];
-        NSInteger count = [LoadedTemplate bg_count:LoadedTableName where:sql];
-        [downloadNumberLabel setText:[NSString stringWithFormat:@"%ld",count]];
+        NSInteger downLoadCount = [LoadedTemplate bg_count:LoadedTableName where:sql];
+        [downloadNumberLabel setText:[NSString stringWithFormat:@"%ld",downLoadCount]];
+        
+        NSInteger draftCount = [DraftTemplate bg_count:DraftTemplateTableName where:sql];
+        [draftNumberLabel setText:[NSString stringWithFormat:@"%ld",draftCount]];
     }else{
         [nickNameLabel setHidden:YES];
         [memberIdLabel setHidden:YES];
@@ -238,15 +242,16 @@
         NSString *sql = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),bg_sqlValue(NOUSERMemberID)];
         NSInteger count = [LoadedTemplate bg_count:LoadedTableName where:sql];
         [downloadNumberLabel setText:[NSString stringWithFormat:@"%ld",count]];
-        [draftNumberLabel setText:@"0"];
+        NSInteger draftCount = [DraftTemplate bg_count:DraftTemplateTableName where:sql];
+        [draftNumberLabel setText:[NSString stringWithFormat:@"%ld",draftCount]];
     }
 }
 
 -(void)setSaveNumber:(NSInteger)saveNumber downloadNumber:(NSInteger)downloadNumber draftNumber:(NSInteger)draftNumber
 {
     [saveNumberLabel setText:[NSString stringWithFormat:@"%ld",saveNumber]];
-    [downloadNumberLabel setText:[NSString stringWithFormat:@"%ld",downloadNumber]];
-    [draftNumberLabel setText:[NSString stringWithFormat:@"%ld",draftNumber]];
+//    [downloadNumberLabel setText:[NSString stringWithFormat:@"%ld",downloadNumber]];
+//    [draftNumberLabel setText:[NSString stringWithFormat:@"%ld",draftNumber]];
 }
 
 -(void)downloadButtonClick

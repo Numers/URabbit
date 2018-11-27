@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MediaPlayer/MediaPlayer.h>
+#import "SelVideoPlayer.h"
+#import "SelPlayerConfiguration.h"
 #import "Composition.h"
 @interface UTMemberCompositionInfoView : UIView
 {
-    MPMoviePlayerController *playerController;
+    SelVideoPlayer *playView;
     UILabel *videoNameLabel;
     UILabel *videoDurationLabel;
     UILabel *videoDescLabel;

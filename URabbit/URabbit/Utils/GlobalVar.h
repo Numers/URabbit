@@ -99,6 +99,8 @@ typedef enum
 
 #define CompositionTableName @"Compositon"
 #define LoadedTableName @"LoadedTemplate"
+#define SavedTemplateTableName @"SavedTemplate"
+#define DraftTemplateTableName @"DraftTemplate"
 
 #define NOUSERMemberID @"NOUSER"
 

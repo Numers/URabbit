@@ -27,6 +27,7 @@
 #import "PSTCollectionView.h"
 
 #import "Composition.h"
+#import "DraftTemplate.h"
 
 #import <DMProgressHUD/DMProgressHUD.h>
 
@@ -53,7 +54,6 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     NSMutableArray *currentSnapshots;
     
     ComposeStrategy *strategy;
-    NSMutableArray *imageList;
     VideoCompose *compose;
     NSString *videoPath;
     
@@ -79,8 +79,20 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
+    draftTemplate = [[DraftTemplate alloc] init];
+    draftTemplate.memberId = currentComposition.memberId;
+    draftTemplate.templateId = currentComposition.templateId;
+    draftTemplate.title = currentComposition.title;
+    draftTemplate.coverUrl = currentComposition.coverUrl;
+    draftTemplate.videoWidth = currentComposition.videoWidth;
+    draftTemplate.videoHeight = currentComposition.videoHeight;
+    draftTemplate.duration = currentComposition.duration;
+    draftTemplate.summary = currentComposition.summary;
+    draftTemplate.resourceMusic = currentResource.music;
+    draftTemplate.resourceFps = currentResource.fps;
+    draftTemplate.bg_tableName = DraftTemplateTableName;
     selectedRow = 0;
-    imageList = [NSMutableArray array];
+
     [[UTImageHanderManager shareManager] setCurrentImageSize:currentResource.videoSize];
     totalRatio = VideoRatio;
     if (currentResource.style == TemplateStyleAnimation) {
@@ -124,9 +136,6 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 {
     [super viewWillAppear:animated];
     [self navigationBarSetting];
-    if (imageList.count > 0) {
-        [imageList removeAllObjects];
-    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -227,10 +236,6 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 
 -(void)nextStep
 {
-    if (imageList.count > 0) {
-        [imageList removeAllObjects];
-    }
-    
     [containerView generateImagesToCompose];
 //    UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 //    Snapshot *snapshot = [currentSnapshots objectAtIndex:0];
@@ -415,9 +420,8 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                             
                             [self setHudProgress:1.0f step:ComposeStepWebp isCompletely:YES callback:^{
                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                    UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoUrl images:imageList composition:currentComposition];
+                                    UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoUrl composition:currentComposition draftTemplate:draftTemplate];
                                     [self.navigationController pushViewController:videoComposeVC animated:YES];
-                                    [imageList removeAllObjects];
                                 });
                             }];
                             
@@ -426,9 +430,8 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                 }else{
                     [self setHudProgress:1.0f step:ComposeStepAnimation isCompletely:YES callback:^{
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:outPutURL images:imageList composition:currentComposition];
+                            UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:outPutURL composition:currentComposition draftTemplate:draftTemplate];
                             [self.navigationController pushViewController:videoComposeVC animated:YES];
-                            [imageList removeAllObjects];
                         });
                     }];
                 }
@@ -443,9 +446,8 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                         }
                         [self setHudProgress:1.0f step:ComposeStepWebp isCompletely:YES callback:^{
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoUrl images:imageList composition:currentComposition];
+                                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoUrl  composition:currentComposition draftTemplate:draftTemplate];
                                 [self.navigationController pushViewController:videoComposeVC animated:YES];
-                                [imageList removeAllObjects];
                             });
                         }];
                     }
@@ -453,9 +455,8 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
             }else{
                 [self setHudProgress:1.0f step:ComposeStepVideo isCompletely:YES callback:^{
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoPath images:imageList composition:currentComposition];
+                        UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoPath composition:currentComposition draftTemplate:draftTemplate];
                         [self.navigationController pushViewController:videoComposeVC animated:YES];
-                        [imageList removeAllObjects];
                     });
                 }];
             }

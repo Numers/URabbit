@@ -49,7 +49,6 @@ static NSString *userDownloadedCollectionViewCellIdentify = @"UserDownloadedColl
     [collectionView registerClass:[UTUserDownloadedCollectionViewCell class] forCellWithReuseIdentifier:userDownloadedCollectionViewCellIdentify];
     collectionView.delegate = self;
     collectionView.dataSource = self;
-    [collectionView setScrollEnabled:NO];
     [collectionView setBackgroundColor:[UIColor whiteColor]];
     [collectionView setContentInset:UIEdgeInsetsMake(18, 0, 0, 0)];
     [collectionView setShowsHorizontalScrollIndicator:NO];
@@ -77,7 +76,6 @@ static NSString *userDownloadedCollectionViewCellIdentify = @"UserDownloadedColl
     [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
     [self.navigationItem setTitle:@"我的下载"];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

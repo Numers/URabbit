@@ -1,47 +1,54 @@
 //
-//  UTSaveViewController.m
+//  UTDraftViewController.m
 //  URabbit
 //
-//  Created by 鲍利成 on 2018/11/25.
+//  Created by 鲍利成 on 2018/11/27.
 //  Copyright © 2018年 鲍利成. All rights reserved.
 //
 
-#import "UTSaveViewController.h"
-#import "SavedTemplate.h"
-#import "HomeTemplate.h"
-#import "UTDownloadTemplateViewController.h"
+#import "UTDraftViewController.h"
+#import "UTDraftCollectionViewCell.h"
+#import "DraftTemplate.h"
 #import "LJJWaterFlowLayout.h"
-#import "UTSaveTemplateCollectionViewCell.h"
-#import "UTUserSaveNetworkAPIManager.h"
+#import "AppStartManager.h"
 #import "UINavigationController+NavigationBar.h"
+#import "UTVideoComposeViewController.h"
+#import "Composition.h"
+#import "Resource.h"
 
-static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollectionViewCellIdentify";
-@interface UTSaveViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LJJWaterFlowLayoutProtocol>
+static NSString *draftCollectionViewCellIdentify = @"DraftCollectionViewCellIdentify";
+@interface UTDraftViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LJJWaterFlowLayoutProtocol>
 {
     UICollectionView *collectionView;
     NSMutableArray *dataSource;
-    NSInteger currentPage;
-    NSInteger currentSize;
-    BOOL hasMore;
 }
 
 @end
 
-@implementation UTSaveViewController
+@implementation UTDraftViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#F8F8F8"]];
-    currentPage = 0;
-    currentSize = 20;
-    hasMore = YES;
-    dataSource = [NSMutableArray array];
+    Member *host = [[AppStartManager shareManager] currentMember];
+    NSString *sqlStirng = nil;
+    if (host) {
+        sqlStirng = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),bg_sqlValue(host.memberId)];
+    }else{
+        sqlStirng = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),bg_sqlValue(NOUSERMemberID)];
+    }
+    NSArray *dataArray = [DraftTemplate bg_find:DraftTemplateTableName where:sqlStirng];
+    if (dataArray && dataArray.count > 0) {
+        dataSource = [NSMutableArray arrayWithArray:dataArray];
+    }else{
+        dataSource = [NSMutableArray array];
+    }
     LJJWaterFlowLayout *layout = [[LJJWaterFlowLayout alloc] init];
     layout.delegate = self;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:layout];
-    [collectionView registerClass:[UTSaveTemplateCollectionViewCell class] forCellWithReuseIdentifier:savedTemplateCollectionViewCellIdentify];
+    [collectionView registerClass:[UTDraftCollectionViewCell class] forCellWithReuseIdentifier:draftCollectionViewCellIdentify];
     collectionView.delegate = self;
     collectionView.dataSource = self;
     [collectionView setBackgroundColor:[UIColor whiteColor]];
@@ -52,8 +59,6 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     [self.view addSubview:collectionView];
     
     [self makeConstraints];
-    
-    [self requestUserSavedTemplate];
 }
 
 -(void)makeConstraints
@@ -71,39 +76,12 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
-    [self.navigationItem setTitle:@"我的收藏"];
+    [self.navigationItem setTitle:@"我的草稿箱"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)requestUserSavedTemplate
-{
-    if (currentPage == 0) {
-        if (dataSource.count > 0) {
-            [dataSource removeAllObjects];
-        }
-    }
-    [[UTUserSaveNetworkAPIManager shareManager] requestUserSavedTemplateWithPage:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
-        if (data) {
-            NSArray *savedTemplateArray = (NSArray *)data;
-            if (savedTemplateArray && savedTemplateArray.count > 0) {
-                for (NSDictionary *dic in savedTemplateArray) {
-                    SavedTemplate *savedTemplate = [[SavedTemplate alloc] init];
-                    savedTemplate.templateId = [[dic objectForKey:@"id"] longValue];
-                    savedTemplate.title = [dic objectForKey:@"title"];
-                    savedTemplate.coverUrl = [dic objectForKey:@"coverUrl"];
-                    savedTemplate.videoWidth = 544;
-                    savedTemplate.videoHeight = 960;
-                    [dataSource addObject:savedTemplate];
-                }
-                currentPage ++;
-                [collectionView reloadData];
-            }
-        }
-    }];
 }
 
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
@@ -119,11 +97,11 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTSaveTemplateCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:savedTemplateCollectionViewCellIdentify forIndexPath:indexPath];
+    UTDraftCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:draftCollectionViewCellIdentify forIndexPath:indexPath];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        SavedTemplate *savedTemplate = [dataSource objectAtIndex:indexPath.row];
+        DraftTemplate *draftTemplate = [dataSource objectAtIndex:indexPath.row];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [cell setupCellWithSavedTemplate:savedTemplate];
+            [cell setupCellWithDraftTemplate:draftTemplate];
         });
     });
     return cell;
@@ -142,21 +120,31 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    SavedTemplate *savedTemplate = [dataSource objectAtIndex:indexPath.row];
+    DraftTemplate *draftTemplate = [dataSource objectAtIndex:indexPath.row];
     CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
-    CGFloat height = width * (savedTemplate.videoHeight / savedTemplate.videoWidth) + 50;
+    CGFloat height = width * (draftTemplate.videoHeight / draftTemplate.videoWidth) + 50;
     return CGSizeMake(width,height);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SavedTemplate *savedTemplate = [dataSource objectAtIndex:indexPath.row];
+    DraftTemplate *draftTemplate = [dataSource objectAtIndex:indexPath.row];
+    Composition *composition = [[Composition alloc] init];
+    composition.memberId = draftTemplate.memberId;
+    composition.templateId = draftTemplate.templateId;
+    composition.title = draftTemplate.title;
+    composition.coverUrl = draftTemplate.coverUrl;
+    composition.videoWidth = draftTemplate.videoWidth;
+    composition.videoHeight = draftTemplate.videoHeight;
+    composition.duration = draftTemplate.duration;
+    composition.summary = draftTemplate.summary;
     
-    HomeTemplate *homeTemplate = [[HomeTemplate alloc] init];
-    homeTemplate.templateId = savedTemplate.templateId;
-    homeTemplate.title = savedTemplate.title;
-    homeTemplate.videoSize = CGSizeMake(savedTemplate.videoWidth, savedTemplate.videoHeight);
-    UTDownloadTemplateViewController *downloadTemplateVC = [[UTDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
-    [self.navigationController pushViewController:downloadTemplateVC animated:YES];
+    Resource *resource = [[Resource alloc] init];
+    resource.music = draftTemplate.resourceMusic;
+    resource.fps = draftTemplate.resourceFps;
+    
+    UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:resource movieUrl:draftTemplate.movieUrl composition:composition draftTemplate:draftTemplate];
+    [self.navigationController pushViewController:videoComposeVC animated:YES];
 }
+
 @end

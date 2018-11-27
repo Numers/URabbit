@@ -294,11 +294,7 @@
     }else{
         [[NetWorkManager defaultManager] downloadFileWithOption:nil withInferface:currentHomeTemplate.downloadUrl savedPath:zipPath downloadSuccess:^(NSURL *filePath) {
             [makeButtonView setButtonTitle:@"一键制作"];
-            [loadedTemplate bg_saveAsync:^(BOOL isSuccess) {
-                if (isSuccess) {
-                    NSLog(@"success");
-                }
-            }];
+            [loadedTemplate bg_saveOrUpdate];
             BOOL result = [self unzipFile:zipPath directory:videoDic];
             if (result) {
                 [self analyzeResource:unzipFileDirectory];

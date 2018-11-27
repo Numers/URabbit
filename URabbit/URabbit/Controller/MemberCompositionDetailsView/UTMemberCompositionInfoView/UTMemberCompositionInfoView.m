@@ -17,12 +17,15 @@
         CGFloat playerWidth = frame.size.width - 57 * 2;
         CGFloat playerHeight = playerWidth * (size.height / size.width);
         
-        playerController = [[MPMoviePlayerController alloc] init];
-        playerController.controlStyle = MPMovieControlStyleDefault;
-        playerController.shouldAutoplay = YES;
-        playerController.scalingMode = MPMovieScalingModeAspectFit;
-        [playerController.view setFrame:CGRectMake(57, 0, playerWidth, playerHeight)];
-        [self addSubview:playerController.view];
+        SelPlayerConfiguration *configuration = [[SelPlayerConfiguration alloc]init];
+        configuration.shouldAutoPlay = YES;
+        configuration.supportedDoubleTap = YES;
+        configuration.shouldAutorotate = YES;
+        configuration.repeatPlay = NO;
+        configuration.statusBarHideState = SelStatusBarHideStateFollowControls;
+        configuration.videoGravity = SelVideoGravityResizeAspect;
+        playView = [[SelVideoPlayer alloc] initWithFrame:CGRectMake(57, 0, playerWidth, playerHeight) configuration:configuration];
+        [self addSubview:playView];
         
         videoNameLabel = [[UILabel alloc] init];
         [videoNameLabel setTextAlignment:NSTextAlignmentCenter];
@@ -52,7 +55,7 @@
 -(void)makeConstraints
 {
     [videoNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(playerController.view.bottom).offset(31);
+        make.top.equalTo(playView.bottom).offset(31);
         make.centerX.equalTo(self.centerX);
         make.height.equalTo(@(22));
     }];
@@ -72,8 +75,7 @@
 
 -(void)setupViewWithComposition:(Composition *)composition
 {
-    [playerController setContentURL:[NSURL fileURLWithPath:composition.moviePath]];
-    [playerController prepareToPlay];
+    [playView setMovieUrl:[NSURL fileURLWithPath:composition.moviePath]];
     [videoNameLabel setText:[NSString stringWithFormat:@"【%@】",composition.title]];
     [videoDurationLabel setText:[AppUtils getMMSSFromSS:composition.duration]];
     [videoDescLabel setText:composition.summary];
@@ -81,6 +83,6 @@
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:13.0]};
     CGSize size = [composition.summary boundingRectWithSize:CGSizeMake(self.frame.size.width - 140, 36) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading  attributes:attribute context:nil].size;
     
-    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, playerController.view.frame.size.height + 93 + size.height + 5)];
+    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, playView.frame.size.height + 93 + size.height + 5)];
 }
 @end

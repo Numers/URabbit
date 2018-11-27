@@ -9,5 +9,7 @@
 #import "SavedTemplate.h"
 
 @implementation SavedTemplate
-
++(NSArray *)bg_uniqueKeys{
+    return @[@"templateId"];
+}
 @end

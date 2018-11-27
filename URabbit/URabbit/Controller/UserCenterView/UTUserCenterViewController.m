@@ -18,6 +18,7 @@
 #import "UTShareViewController.h"
 #import "UTUserDownloadedViewController.h"
 #import "UTSaveViewController.h"
+#import "UTDraftViewController.h"
 #import "UTLoginScrollViewController.h"
 static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIdentify";
 @interface UTUserCenterViewController ()<UITableViewDelegate,UITableViewDataSource,UTUserCenterHeadViewProtocol>
@@ -215,7 +216,9 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
 
 -(void)gotoDraftView
 {
-    
+    UTDraftViewController *draftVC = [[UTDraftViewController alloc] init];
+    [draftVC setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:draftVC animated:YES];
 }
 
 -(void)gotoLoginView

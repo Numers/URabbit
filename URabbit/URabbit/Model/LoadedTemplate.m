@@ -9,5 +9,7 @@
 #import "LoadedTemplate.h"
 
 @implementation LoadedTemplate
-
++(NSArray *)bg_uniqueKeys{
+    return @[@"templateId"];
+}
 @end

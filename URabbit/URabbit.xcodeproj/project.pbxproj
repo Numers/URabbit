@@ -15,6 +15,9 @@
 		04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */; };
 		141921F6219EA243001239EE /* animation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 141921F5219EA243001239EE /* animation.txt */; };
 		14239B6F2172F9FA0033FB7D /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14239B6E2172F9FA0033FB7D /* libGPUImage.a */; };
+		1423E29E21ACE128005A9F6E /* DraftTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E29D21ACE128005A9F6E /* DraftTemplate.m */; };
+		1423E2A221ACE6D0005A9F6E /* UTDraftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E2A121ACE6D0005A9F6E /* UTDraftViewController.m */; };
+		1423E2A621ACE6F8005A9F6E /* UTDraftCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E2A521ACE6F8005A9F6E /* UTDraftCollectionViewCell.m */; };
 		1425A8B921A828A1007A0C2E /* UTUserCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8B821A828A1007A0C2E /* UTUserCenterTableViewCell.m */; };
 		1425A8BD21A8503F007A0C2E /* UTMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BC21A8503F007A0C2E /* UTMemberViewController.m */; };
 		1425A8C021A85976007A0C2E /* UTMemberScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BF21A85976007A0C2E /* UTMemberScrollViewController.m */; };
@@ -357,6 +360,12 @@
 		14239B6B2172F9FA0033FB7D /* GPUImageStretchDistortionFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageStretchDistortionFilter.h; sourceTree = "<group>"; };
 		14239B6C2172F9FA0033FB7D /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
 		14239B6E2172F9FA0033FB7D /* libGPUImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGPUImage.a; sourceTree = "<group>"; };
+		1423E29C21ACE128005A9F6E /* DraftTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DraftTemplate.h; sourceTree = "<group>"; };
+		1423E29D21ACE128005A9F6E /* DraftTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DraftTemplate.m; sourceTree = "<group>"; };
+		1423E2A021ACE6D0005A9F6E /* UTDraftViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTDraftViewController.h; sourceTree = "<group>"; };
+		1423E2A121ACE6D0005A9F6E /* UTDraftViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTDraftViewController.m; sourceTree = "<group>"; };
+		1423E2A421ACE6F8005A9F6E /* UTDraftCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTDraftCollectionViewCell.h; sourceTree = "<group>"; };
+		1423E2A521ACE6F8005A9F6E /* UTDraftCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTDraftCollectionViewCell.m; sourceTree = "<group>"; };
 		1425A8B721A828A1007A0C2E /* UTUserCenterTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserCenterTableViewCell.h; sourceTree = "<group>"; };
 		1425A8B821A828A1007A0C2E /* UTUserCenterTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserCenterTableViewCell.m; sourceTree = "<group>"; };
 		1425A8BB21A8503F007A0C2E /* UTMemberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberViewController.h; sourceTree = "<group>"; };
@@ -899,6 +908,25 @@
 				14239B6E2172F9FA0033FB7D /* libGPUImage.a */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		1423E29F21ACE6B5005A9F6E /* DraftView */ = {
+			isa = PBXGroup;
+			children = (
+				1423E2A321ACE6D6005A9F6E /* UTDraftCollectionViewCell */,
+				1423E2A021ACE6D0005A9F6E /* UTDraftViewController.h */,
+				1423E2A121ACE6D0005A9F6E /* UTDraftViewController.m */,
+			);
+			path = DraftView;
+			sourceTree = "<group>";
+		};
+		1423E2A321ACE6D6005A9F6E /* UTDraftCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1423E2A421ACE6F8005A9F6E /* UTDraftCollectionViewCell.h */,
+				1423E2A521ACE6F8005A9F6E /* UTDraftCollectionViewCell.m */,
+			);
+			path = UTDraftCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		1425A8B621A82873007A0C2E /* UserCenterTableViewCell */ = {
@@ -1460,6 +1488,8 @@
 				142CE2BD21AA42BB00B17FBA /* SavedTemplate.m */,
 				142CE2BF21AA42D200B17FBA /* LoadedTemplate.h */,
 				142CE2C021AA42D200B17FBA /* LoadedTemplate.m */,
+				1423E29C21ACE128005A9F6E /* DraftTemplate.h */,
+				1423E29D21ACE128005A9F6E /* DraftTemplate.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1467,6 +1497,7 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1423E29F21ACE6B5005A9F6E /* DraftView */,
 				142CE2C621AA4A1F00B17FBA /* UserDownloadedView */,
 				142CE2B821AA41A200B17FBA /* SaveView */,
 				1425A90721A9BFB4007A0C2E /* UTShareView */,
@@ -1995,6 +2026,7 @@
 				14482EF821A3BD9A00D640F1 /* Media.m in Sources */,
 				04110A9E21A14BCE00732B3D /* UTUserCenterHeadView.m in Sources */,
 				1425A8DF21A99CAC007A0C2E /* UTUserSettingTableViewCell.m in Sources */,
+				1423E2A621ACE6F8005A9F6E /* UTDraftCollectionViewCell.m in Sources */,
 				144357A221A6A39700FEA9AE /* UTMusicView.m in Sources */,
 				04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */,
 				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
@@ -2016,6 +2048,7 @@
 				142AC2FD21AC393900368ABE /* SelVideoPlayer.m in Sources */,
 				142CE2CD21AA4AA100B17FBA /* UTUserDownloadedCollectionViewCell.m in Sources */,
 				14482EFE21A3BE5C00D640F1 /* Text.m in Sources */,
+				1423E29E21ACE128005A9F6E /* DraftTemplate.m in Sources */,
 				14580375216F2BCC006BB33D /* LaunchAnimateView.m in Sources */,
 				14262A30218AF02300768E6A /* LLTabBar.m in Sources */,
 				1425A90A21A9C0BD007A0C2E /* UTShareViewController.m in Sources */,
@@ -2121,6 +2154,7 @@
 				144357C421A6ACDA00FEA9AE /* PSTCollectionViewData.m in Sources */,
 				1425A8C421A8707A007A0C2E /* UTMemberCoinViewController.m in Sources */,
 				14EDA16821A310EE00C1BD3E /* Author.m in Sources */,
+				1423E2A221ACE6D0005A9F6E /* UTDraftViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

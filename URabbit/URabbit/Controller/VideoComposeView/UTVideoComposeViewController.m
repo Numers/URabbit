@@ -21,7 +21,8 @@
 #import "UTVideoComposeSuccessViewController.h"
 
 #import "Composition.h"
-
+#import "DraftTemplate.h"
+#import "UINavigationController+NavigationBar.h"
 
 @interface UTVideoComposeViewController ()<UTPlaySubViewProtocol,UTSelectViewProtocol>
 {
@@ -29,7 +30,7 @@
     NSString *movieURL;
     NSString *audioURL;
     Composition *currentComposition;
-    NSMutableArray *imageList;
+    DraftTemplate *currentDraftTemplate;
     
     GPUImageView *imageView;
     GPUImageMovie *movieFile;
@@ -44,11 +45,13 @@
     UTSegmentView *segmentView;
     CMTime pausedTime;
     float duration;
+    
+    BOOL isInDraft;
 }
 @end
 
 @implementation UTVideoComposeViewController
--(instancetype)initWithResource:(Resource *)m movieUrl:(NSString *)url images:(NSMutableArray *)images composition:(Composition *)composition
+-(instancetype)initWithResource:(Resource *)m movieUrl:(NSString *)url composition:(Composition *)composition draftTemplate:(DraftTemplate *)draftTemplate
 {
     self = [super init];
     if (self) {
@@ -56,7 +59,8 @@
         movieURL = url;
         audioURL = resource.music;
         currentComposition = composition;
-        imageList = [NSMutableArray arrayWithArray:images];
+        currentDraftTemplate = draftTemplate;
+        isInDraft = NO;
     }
     return self;
 }
@@ -114,11 +118,11 @@
         
         //当前视图控制器不在栈中，故为pop操作
         NSLog(@"pop");
-        if ([[NSFileManager defaultManager] fileExistsAtPath:movieURL]) {
-            [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
+        if (!isInDraft) {
+            if ([[NSFileManager defaultManager] fileExistsAtPath:movieURL]) {
+                [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
+            }
         }
-        [imageList removeAllObjects];
-        imageList = nil;
         
         if (player && player.rate != 0.0f ) {
             player.rate = 0.0f;
@@ -163,6 +167,7 @@
 
 -(void)navigationBarSetting
 {
+    [self.navigationController setTranslucentView];
     UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
     [rightItem1 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithTitle:@"存草稿" style:UIBarButtonItemStylePlain target:self action:@selector(saveInDraft)];
@@ -185,8 +190,10 @@
     NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
     
     [[UTVideoManager shareManager] mergeMovie:movieURL withAudio:audioURL output:tempVideoPath completely:^{
-        if ([[NSFileManager defaultManager] fileExistsAtPath:movieURL]) {
-            [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
+        if (!isInDraft) {
+            if ([[NSFileManager defaultManager] fileExistsAtPath:movieURL]) {
+                [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
+            }
         }
         GPUImageFilter *movieFilter = [[UTImageHanderManager shareManager] filterWithFilterType:currentFilterType];
         NSString *videoCompeletelyPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
@@ -218,7 +225,16 @@
 
 -(void)saveInDraft
 {
-    
+    currentDraftTemplate.movieUrl = movieURL;
+    [currentDraftTemplate bg_saveAsync:^(BOOL isSuccess) {
+        if (isSuccess) {
+            [AppUtils showInfo:@"保存成功"];
+            isInDraft = YES;
+        }else{
+            [AppUtils showInfo:@"保存失败"];
+            isInDraft = NO;
+        }
+    }];
 }
 
 -(void)splitImages
