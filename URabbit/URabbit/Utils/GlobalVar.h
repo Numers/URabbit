@@ -78,14 +78,11 @@ typedef enum
 {
     //图片渲染
     FilterNormal = 0, //无
-    FilterToon, //卡通
-    FilterBulgeDistortion,//凸起
-    FilterSketch,//素描
-    FilterGamma, //伽马线
-    FilterToneCurve, //色调曲线
+    FilterBeautyFace, //美颜
     FilterSepia, //怀旧
     FilterGrayscale, //灰度
-    FilterHistogram, //色彩直方图
+    FilterSketch,//素描
+    FilterToon, //卡通
     
     //像素处理
     FilterAddBlend, //图片混合

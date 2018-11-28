@@ -21,7 +21,7 @@
 -(CGColorSpaceRef)currentColorSpaceRef;
 -(void)setCurrentImageSize:(CGSize)size;
 -(UIImage *)filterImage:(UIImage *)image filterName:(NSString *)filterName size:(CGSize)size;
--(GPUImageFilter *)filterWithFilterType:(FilterType)type;
+-(GPUImageOutput<GPUImageInput> *)filterWithFilterType:(FilterType)type;
 
 
 

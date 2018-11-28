@@ -51,6 +51,8 @@
 		14266C8E21A59794008A1926 /* UTKeyboardTextFieldManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8D21A59794008A1926 /* UTKeyboardTextFieldManager.m */; };
 		14266C9121A5CBFD008A1926 /* ComposeCoverStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */; };
 		14266C9421A5CC46008A1926 /* ComposeCoverOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */; };
+		142A3C4821AE3B3F00EF02D3 /* GPUImageBeautyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A3C4721AE3B3F00EF02D3 /* GPUImageBeautyFilter.m */; };
+		142A3C4A21AE769F00EF02D3 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142A3C4921AE769F00EF02D3 /* CoreText.framework */; };
 		142AC2FC21AC393900368ABE /* SelPlaybackControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 142AC2F121AC393900368ABE /* SelPlaybackControls.m */; };
 		142AC2FD21AC393900368ABE /* SelVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 142AC2F221AC393900368ABE /* SelVideoPlayer.m */; };
 		142AC2FE21AC393900368ABE /* UIViewController+PlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 142AC2F621AC393900368ABE /* UIViewController+PlayerRotation.m */; };
@@ -430,6 +432,9 @@
 		14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeCoverStrategy.m; sourceTree = "<group>"; };
 		14266C9221A5CC46008A1926 /* ComposeCoverOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeCoverOperation.h; sourceTree = "<group>"; };
 		14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeCoverOperation.m; sourceTree = "<group>"; };
+		142A3C4621AE3B3F00EF02D3 /* GPUImageBeautyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBeautyFilter.h; sourceTree = "<group>"; };
+		142A3C4721AE3B3F00EF02D3 /* GPUImageBeautyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageBeautyFilter.m; sourceTree = "<group>"; };
+		142A3C4921AE769F00EF02D3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		142AC2F121AC393900368ABE /* SelPlaybackControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelPlaybackControls.m; sourceTree = "<group>"; };
 		142AC2F221AC393900368ABE /* SelVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelVideoPlayer.m; sourceTree = "<group>"; };
 		142AC2F321AC393900368ABE /* SelVideoSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelVideoSlider.h; sourceTree = "<group>"; };
@@ -678,6 +683,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				142A3C4A21AE769F00EF02D3 /* CoreText.framework in Frameworks */,
 				1423E2C321AD60EB005A9F6E /* Photos.framework in Frameworks */,
 				1423E2C121AD60D6005A9F6E /* libz.tbd in Frameworks */,
 				1423E2BF21AD60CD005A9F6E /* libc++.tbd in Frameworks */,
@@ -1120,6 +1126,15 @@
 				14266C8D21A59794008A1926 /* UTKeyboardTextFieldManager.m */,
 			);
 			path = UTkeyboardTextFieldManager;
+			sourceTree = "<group>";
+		};
+		142A3C4521AE3B2400EF02D3 /* CustomFilter */ = {
+			isa = PBXGroup;
+			children = (
+				142A3C4621AE3B3F00EF02D3 /* GPUImageBeautyFilter.h */,
+				142A3C4721AE3B3F00EF02D3 /* GPUImageBeautyFilter.m */,
+			);
+			path = CustomFilter;
 			sourceTree = "<group>";
 		};
 		142AC2F021AC393900368ABE /* VideoPlayer */ = {
@@ -1633,6 +1648,7 @@
 		145B6131216F27B600DA950E /* URabbit */ = {
 			isa = PBXGroup;
 			children = (
+				142A3C4521AE3B2400EF02D3 /* CustomFilter */,
 				145803C321703C80001B9535 /* View */,
 				14580397216F2FF2006BB33D /* Controller */,
 				14580396216F2FEA006BB33D /* Model */,
@@ -1869,6 +1885,7 @@
 		7B66372339C95543FFFDEC4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				142A3C4921AE769F00EF02D3 /* CoreText.framework */,
 				1423E2C221AD60EB005A9F6E /* Photos.framework */,
 				1423E2C021AD60D6005A9F6E /* libz.tbd */,
 				1423E2BE21AD60CD005A9F6E /* libc++.tbd */,
@@ -2053,6 +2070,7 @@
 				1425A8B921A828A1007A0C2E /* UTUserCenterTableViewCell.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
 				142CE2C521AA482D00B17FBA /* UTSaveTemplateCollectionViewCell.m in Sources */,
+				142A3C4821AE3B3F00EF02D3 /* GPUImageBeautyFilter.m in Sources */,
 				14482F2221A475FF00D640F1 /* UTPhotoEditCanMoveView.m in Sources */,
 				14482F0421A3BE8600D640F1 /* Snapshot.m in Sources */,
 				1425A8C021A85976007A0C2E /* UTMemberScrollViewController.m in Sources */,

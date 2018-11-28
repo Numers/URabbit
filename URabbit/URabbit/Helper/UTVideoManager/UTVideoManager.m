@@ -8,7 +8,6 @@
 
 #import "UTVideoManager.h"
 #import <AVFoundation/AVFoundation.h>
-#import "GPUImage.h"
 #import <YYImage/YYImage.h>
 @interface UTVideoManager()
 {
@@ -113,7 +112,7 @@
     }];
 }
 
--(void)filterMovieWithInputUrl:(NSString *)inputUrl outputUrl:(NSString *)outputUrl videoSize:(CGSize)size filter:(GPUImageFilter *)filter completely:(void (^)(BOOL result))callback
+-(void)filterMovieWithInputUrl:(NSString *)inputUrl outputUrl:(NSString *)outputUrl videoSize:(CGSize)size filter:(GPUImageOutput<GPUImageInput> *)filter completely:(void (^)(BOOL result))callback
 {
     NSURL *inputURL = [NSURL fileURLWithPath:inputUrl];
     movieFile = [[GPUImageMovie alloc] initWithURL:inputURL];

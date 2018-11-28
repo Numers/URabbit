@@ -31,7 +31,7 @@
 //                if (_text.fontSize > 0) {
 //                    [_textLabel setFont:[UIFont systemFontOfSize:_text.fontSize]];
 //                }
-
+                
                 if (_text.fontColor) {
                     [_textLabel setTextColor:[UIColor colorFromHexString:_text.fontColor]];
                 }

@@ -14,6 +14,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <math.h>
 #import <SDWebImage/UIImage+GIF.h>
+#import <CoreText/CoreText.h>
 #import "SSZipArchive.h"
 #import "UIImage+FixImage.h"
 #import <YYImage/YYImage.h>
@@ -1061,5 +1062,30 @@
         NSString* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
         [manager removeItemAtPath:fileAbsolutePath error:nil];
     }
+}
+
++(UIFont*)customFontWithPath:(NSString*)path isDirectory:(BOOL)isDir size:(CGFloat)size
+{
+    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtPath:path];
+    NSString *url = [path stringByAppendingPathComponent:[[enumerator allObjects] firstObject]];
+    NSURL *fontUrl = [NSURL fileURLWithPath:url isDirectory:isDir];
+    CGDataProviderRef fontDataProvider = CGDataProviderCreateWithURL((__bridge CFURLRef)fontUrl);
+    CGFontRef fontRef = CGFontCreateWithDataProvider(fontDataProvider);
+    CGDataProviderRelease(fontDataProvider);
+    NSString *fontName = CFBridgingRelease(CGFontCopyPostScriptName(fontRef));
+    UIFont *font = [UIFont fontWithName:fontName size:size];
+    if (font == nil) {
+        CFErrorRef error = NULL;
+        BOOL isRegister =  CTFontManagerRegisterGraphicsFont(fontRef, &error);
+        if (isRegister) {
+            font = [UIFont fontWithName:fontName size:size];
+        }else{
+            CFStringRef errorDescription = CFErrorCopyDescription(error);
+            NSLog(@"%@",errorDescription);
+            font = [UIFont systemFontOfSize:size];
+        }
+    }
+    CGFontRelease(fontRef);
+    return font;
 }
 @end

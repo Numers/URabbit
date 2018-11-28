@@ -35,7 +35,7 @@
     GPUImageView *imageView;
     GPUImageMovie *movieFile;
     AVPlayer *player;
-    GPUImageFilter *filter;
+    GPUImageOutput<GPUImageInput> *filter;
     FilterType currentFilterType;
     
     AVAudioPlayer *audioPlayer;
@@ -190,12 +190,12 @@
     NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
     
     [[UTVideoManager shareManager] mergeMovie:movieURL withAudio:audioURL output:tempVideoPath completely:^{
-        if (!isInDraft) {
-            if ([[NSFileManager defaultManager] fileExistsAtPath:movieURL]) {
-                [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
-            }
-        }
-        GPUImageFilter *movieFilter = [[UTImageHanderManager shareManager] filterWithFilterType:currentFilterType];
+//        if (!isInDraft) {
+//            if ([[NSFileManager defaultManager] fileExistsAtPath:movieURL]) {
+//                [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
+//            }
+//        }
+        GPUImageOutput<GPUImageInput> *movieFilter = [[UTImageHanderManager shareManager] filterWithFilterType:currentFilterType];
         NSString *videoCompeletelyPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
         [[UTVideoManager shareManager] filterMovieWithInputUrl:tempVideoPath outputUrl:videoCompeletelyPath videoSize:resource.videoSize filter:movieFilter completely:^(BOOL result) {
             if (result) {
@@ -388,7 +388,7 @@
 -(NSMutableArray *)requestFilterViewDataSource
 {
     NSMutableArray *filterList = [NSMutableArray array];
-    NSArray *filterNames = @[@"无",@"卡通",@"凸起",@"素描",@"伽马线",@"色调曲线",@"怀旧",@"灰度",@"色彩直方图"];
+    NSArray *filterNames = @[@"无",@"美颜",@"怀旧",@"黑白",@"素描",@"卡通"];
     for (NSInteger i = 0;i < filterNames.count;i++) {
         NSString *name = [filterNames objectAtIndex:i];
         FilterInfo *info = [[FilterInfo alloc] init];
@@ -403,7 +403,7 @@
 -(NSMutableArray *)requestMusicViewDataSource
 {
     NSMutableArray *filterList = [NSMutableArray array];
-    NSArray *filterNames = @[@"默认",@"卡通",@"凸起",@"素描"];
+    NSArray *filterNames = @[@"默认"];
     for (NSInteger i = 0;i < filterNames.count;i++) {
         NSString *name = [filterNames objectAtIndex:i];
         MusicInfo *info = [[MusicInfo alloc] init];

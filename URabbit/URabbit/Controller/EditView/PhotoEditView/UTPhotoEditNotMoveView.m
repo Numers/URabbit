@@ -53,7 +53,15 @@
             [snapshotText.textLabel setFrame:CGRectMake(0, 0, width, height)];
             snapshotText.textLabel.delegate = self;
             CGFloat fontsize = snapshotText.text.fontSize * (frame.size.width / snapshot.videoSize.width);
-            [snapshotText.textLabel setFont:[UIFont systemFontOfSize:fontsize]];
+            UIFont *font = nil;
+            NSString *fontDirectory = [AppUtils createDirectory:@"UTFont"];
+            NSString *fontFileDirectoryPath = [NSString stringWithFormat:@"%@/%@",fontDirectory,[AppUtils getMd5_32Bit:snapshotText.text.fontUrl]];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:fontFileDirectoryPath]) {
+                font = [AppUtils customFontWithPath:fontFileDirectoryPath isDirectory:YES size:fontsize];
+            }else{
+                font = [UIFont systemFontOfSize:fontsize];
+            }
+            [snapshotText.textLabel setFont:font];
             [snapshotText.textLabel setCenter:center];
             if (height < 30) {
                 [snapshotText.textLabel setVerticalAlignment:VerticalAlignmentDefault];
@@ -108,7 +116,15 @@
             layerText.bounds = CGRectMake(0, 0, width, height);
             [layerText setForegroundColor:[UIColor colorFromHexString:snapshotText.text.fontColor].CGColor];
             // 字体名称、大小
-            UIFont *font = [UIFont systemFontOfSize:snapshotText.text.fontSize];
+            UIFont *font = nil;
+            NSString *fontDirectory = [AppUtils createDirectory:@"UTFont"];
+            NSString *fontFileDirectoryPath = [NSString stringWithFormat:@"%@/%@",fontDirectory,[AppUtils getMd5_32Bit:snapshotText.text.fontUrl]];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:fontFileDirectoryPath]) {
+                font = [AppUtils customFontWithPath:fontFileDirectoryPath isDirectory:YES size:snapshotText.text.fontSize];
+            }else{
+                font = [UIFont systemFontOfSize:snapshotText.text.fontSize];
+            }
+            
             CFStringRef fontName = (__bridge CFStringRef)font.fontName;
             CGFontRef fontRef =CGFontCreateWithFontName(fontName);
             layerText.font = fontRef;

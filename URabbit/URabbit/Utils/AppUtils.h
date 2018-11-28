@@ -355,6 +355,12 @@
 
 + (NSArray *)cdi_imagesWithWebp:(NSString *)webpName;
 
+/**
+ 创建文件夹
+ 
+ @param directory 文件夹名称
+ @return 文件夹路径
+ */
 +(NSString *)createDirectory:(NSString *)directory;
 +(NSString *)createDirectoryWithUniqueIndex:(long)index;
 +(NSString *)videoPathWithDirectory:(NSString *)directory;
@@ -378,11 +384,12 @@
  */
 + (float)folderSizeAtPath:(NSString *)folderPath;
 
-
 /**
  删除文件夹下的所有文件
 
  @param folderPath 文件夹路径
  */
 +(void)deleteFolderFilesAtPath:(NSString *)folderPath;
+
++(UIFont*)customFontWithPath:(NSString*)path isDirectory:(BOOL)isDir size:(CGFloat)size;
 @end

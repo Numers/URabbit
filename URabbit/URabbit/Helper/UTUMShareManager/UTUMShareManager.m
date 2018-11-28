@@ -42,4 +42,55 @@
         
     }];
 }
+
+- (void)shareVedioToPlatformType:(UMSocialPlatformType)platformType title:(NSString *)title description:(NSString *)desc thumImage:(UIImage *)image videoUrl:(NSString *)videoUrl callback:(void (^)(id response))callback
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建视频内容对象
+    UMShareVideoObject *shareObject = [UMShareVideoObject shareObjectWithTitle:title descr:desc thumImage:image];
+    //设置视频网页播放地址
+    shareObject.videoUrl = videoUrl;
+    //            shareObject.videoStreamUrl = @"这里设置视频数据流地址（如果有的话，而且也要看所分享的平台支不支持）";
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            NSLog(@"************Share fail with error %@*********",error);
+            [AppUtils showInfo:[NSString stringWithFormat:@"分享失败,%@",error.description]];
+        }else{
+            NSLog(@"response data is %@",data);
+            callback(data);
+        }
+    }];
+}
+
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType title:(NSString *)title description:(NSString *)desc thumImage:(UIImage *)image webpageUrl:(NSString *)webpageUrl callback:(void (^)(id response))callback
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建网页内容对象
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:desc thumImage:image];
+    //设置网页地址
+    shareObject.webpageUrl = webpageUrl;
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            NSLog(@"************Share fail with error %@*********",error);
+            [AppUtils showInfo:[NSString stringWithFormat:@"分享失败,%@",error.description]];
+        }else{
+            NSLog(@"response data is %@",data);
+            callback(data);
+        }
+    }];
+}
 @end

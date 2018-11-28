@@ -7,6 +7,7 @@
 //
 
 #import "UTImageHanderManager.h"
+#import "GPUImageBeautyFilter.h"
 #import <CoreMedia/CMSampleBuffer.h>
 @interface UTImageHanderManager()
 {
@@ -202,36 +203,37 @@
     return resultImage;
 }
 
--(GPUImageFilter *)filterWithFilterType:(FilterType)type
+-(GPUImageOutput<GPUImageInput> *)filterWithFilterType:(FilterType)type
 {
-    GPUImageFilter *filter = nil;
+    /*FilterNormal = 0, //无
+    FilterBeautyFace, //美颜
+    FilterSepia, //怀旧
+    FilterGrayscale, //灰度
+    FilterSketch,//素描
+    FilterToon, //卡通*/
+    GPUImageOutput<GPUImageInput> *filter = nil;
     switch (type) {
         case FilterNormal:
             filter = [[GPUImageFilter alloc] init];
             break;
-        case FilterToon:
-            filter = [[GPUImageToonFilter alloc] init];
+        case FilterBeautyFace:
+            filter = [[GPUImageBeautyFilter alloc] init];
             break;
-        case FilterBulgeDistortion:
-            filter = [[GPUImageBulgeDistortionFilter alloc] init];
+        case FilterToon:
+            filter = [[GPUImageSmoothToonFilter alloc] init];
             break;
         case FilterSketch:
             filter = [[GPUImageSketchFilter alloc] init];
             break;
-        case FilterGamma:
-            filter = [[GPUImageGammaFilter alloc] init];
-            break;
-        case FilterToneCurve:
-            filter = [[GPUImageToneCurveFilter alloc] init];
-            break;
         case FilterSepia:
+        {
             filter = [[GPUImageSepiaFilter alloc] init];
+            GPUImageSepiaFilter *sepiaFilter = (GPUImageSepiaFilter *)filter;
+            sepiaFilter.intensity = 0.45;
+        }
             break;
         case FilterGrayscale:
             filter = [[GPUImageGrayscaleFilter alloc] init];
-            break;
-        case FilterHistogram:
-            filter = [[GPUImageHistogramFilter alloc] init];
             break;
         default:
             break;

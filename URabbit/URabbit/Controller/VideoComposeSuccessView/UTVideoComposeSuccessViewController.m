@@ -87,7 +87,7 @@
 }
 
 -(void)complete{
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)share{

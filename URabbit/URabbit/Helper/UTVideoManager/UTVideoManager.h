@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class GPUImageFilter;
+#import "GPUImage.h"
 @interface UTVideoManager : NSObject
 +(instancetype)shareManager;
 /**
@@ -50,7 +50,7 @@
  @param outputUrl 输出视频url
  @param filter 滤镜
  */
--(void)filterMovieWithInputUrl:(NSString *)inputUrl outputUrl:(NSString *)outputUrl videoSize:(CGSize)size filter:(GPUImageFilter *)filter completely:(void (^)(BOOL result))callback;
+-(void)filterMovieWithInputUrl:(NSString *)inputUrl outputUrl:(NSString *)outputUrl videoSize:(CGSize)size filter:(GPUImageOutput<GPUImageInput> *)filter completely:(void (^)(BOOL result))callback;
 
 - (void)splitVideo:(NSURL *)fileUrl fps:(float)fps splitCompleteBlock:(void(^)(BOOL success, NSMutableArray *splitimgs))splitCompleteBlock ;
 /**

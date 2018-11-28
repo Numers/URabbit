@@ -19,6 +19,7 @@
 
 #import "Custom.h"
 #import "Resource.h"
+#import "Text.h"
 #import "AnimationForMedia.h"
 #import "AnimationSwitch.h"
 #import "Snapshot.h"
@@ -241,10 +242,42 @@
         }
     }
     
+    [self downloadFontFile:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UTPhotoEditViewController *photoEditVC = [[UTPhotoEditViewController alloc] initWithResource:resource snapshots:snapshotList compositon:composition];
+            [self.navigationController pushViewController:photoEditVC animated:YES];
+        });
+    }];
+}
+
+-(void)downloadFontFile:(void (^)(void))callback
+{
     dispatch_async(dispatch_get_main_queue(), ^{
-        UTPhotoEditViewController *photoEditVC = [[UTPhotoEditViewController alloc] initWithResource:resource snapshots:snapshotList compositon:composition];
-        [self.navigationController pushViewController:photoEditVC animated:YES];
-    });
+        if(custom.textList.count > 0){
+            NSString *fontDirectory = [AppUtils createDirectory:@"UTFont"];
+            for (Text *text in custom.textList) {
+                NSString *relativeFontFileDirectiory = [AppUtils getMd5_32Bit:text.fontUrl];
+                NSString *fontFileDirectoryPath = [NSString stringWithFormat:@"%@/%@",fontDirectory,relativeFontFileDirectiory];
+                if (![[NSFileManager defaultManager] fileExistsAtPath:fontFileDirectoryPath]) {
+                    
+                    [AppUtils showLoadingInView:self.view];
+                    NSString *zipFile = [NSString stringWithFormat:@"%@/%@",fontDirectory,@"fontzip.zip"];
+                    NSURL *fileUrl = [NSURL URLWithString:text.fontUrl];
+                    NSData *zipData = [NSData dataWithContentsOfURL:fileUrl];
+                    [zipData writeToFile:zipFile atomically:NO];
+                    BOOL result = [AppUtils unzipWithFilePath:zipFile destinationPath:fontDirectory unzipFileName:relativeFontFileDirectiory];
+                    if (result) {
+                        NSLog(@"解压字体文件成功");
+                        [[NSFileManager defaultManager] removeItemAtPath:zipFile error:nil];
+                    }
+                    [AppUtils hiddenLoadingInView:self.view];
+                }
+            }
+            callback();
+        }else{
+            callback();
+        }
+   });
 }
 
 -(BOOL)unzipFile:(NSString *)zipFile directory:(NSString *)directory
