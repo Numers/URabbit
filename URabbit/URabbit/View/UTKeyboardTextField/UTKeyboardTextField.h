@@ -11,7 +11,7 @@
 -(void)resignFirstResponseWithText:(NSString *)text;
 @end
 @interface UTKeyboardTextField : UIView
-@property(nonatomic, strong) UITextField *textField;
+@property(nonatomic, strong) UITextView *textField;
 @property(nonatomic, weak) id<UTKeyboardTextFieldProtocol> delegate;
 @property(nonatomic, strong) UIButton *completeButton;
 

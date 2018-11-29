@@ -9,12 +9,19 @@
 #import "UTPhotoEditCanMoveView.h"
 #import "Snapshot.h"
 #import "SnapshotMedia.h"
+#import "SnapshotText.h"
+#import "Text.h"
+#import "UTTextLabel.h"
 #import "UTPictureImageLayerView.h"
 #import "UTTplImageLayerView.h"
 #import <Photos/Photos.h>
 #import "UIImage+FixImage.h"
 #import "UTImageHanderManager.h"
-@interface UTPhotoEditCanMoveView()<UTPictureImageLayerViewProtocol>
+#import "UTKeyboardTextFieldManager.h"
+@interface UTPhotoEditCanMoveView()<UTPictureImageLayerViewProtocol,UTTextLabelProtocol>
+{
+    Snapshot *currentSnapshot;
+}
 @end
 @implementation UTPhotoEditCanMoveView
 -(instancetype)initWithSnapshot:(Snapshot *)snapshot frame:(CGRect)frame
@@ -22,6 +29,7 @@
     self = [super initWithSnapshot:snapshot frame:frame];
     if (self) {
         [self setUserInteractionEnabled:YES];
+        currentSnapshot = snapshot;
         tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
         tapGesture.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tapGesture];
@@ -47,6 +55,28 @@
             [self addSubview:snapshotMedia.demoImageView];
         }
         
+        for (SnapshotText *snapshotText in snapshot.textList) {
+            CGFloat width = frame.size.width * snapshotText.widthPercent;
+            CGFloat height = frame.size.height * snapshotText.heightPercent;
+            CGPoint center = CGPointMake(frame.size.width * snapshotText.centerXPercent, frame.size.height * snapshotText.centerYPercent);
+            [snapshotText.textLabel setFrame:CGRectMake(0, 0, width, height)];
+            snapshotText.textLabel.delegate = self;
+            CGFloat fontsize = snapshotText.text.fontSize * (frame.size.width / snapshot.videoSize.width);
+            UIFont *font = nil;
+            NSString *fontDirectory = [AppUtils createDirectory:@"UTFont"];
+            NSString *fontFileDirectoryPath = [NSString stringWithFormat:@"%@/%@",fontDirectory,[AppUtils getMd5_32Bit:snapshotText.text.fontUrl]];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:fontFileDirectoryPath]) {
+                font = [AppUtils customFontWithPath:fontFileDirectoryPath isDirectory:YES size:fontsize];
+            }else{
+                font = [UIFont systemFontOfSize:fontsize];
+            }
+            [snapshotText.textLabel setFont:font];
+            [snapshotText.textLabel setCenter:center];
+            if (height < 30) {
+                [snapshotText.textLabel setVerticalAlignment:VerticalAlignmentDefault];
+            }
+            [self addSubview:snapshotText.textLabel];
+        }
     }
     return self;
 }
@@ -85,6 +115,7 @@
     CGContextRotateCTM(mainViewContentContext, -rotation);
     CGContextDrawImage(mainViewContentContext, CGRectMake( - imageSize.width / 2,  - imageSize.height / 2, imageSize.width, imageSize.height), imageRef);
     CGContextRestoreGState(mainViewContentContext);
+    
     CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
     UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
     CGImageRelease(newImageRef);
@@ -149,5 +180,17 @@
             [self.delegate openImagePickerView];
         }
     }
+}
+
+#pragma -mark UTTextLabelProtocol
+-(void)didSelectTextLabelWithName:(NSString *)name content:(NSString *)content
+{
+    [[UTKeyboardTextFieldManager shareManager] showKeyboardTextFieldWithText:content callback:^(NSString *text) {
+        for(SnapshotText *snapshotText in currentSnapshot.textList){
+            if ([snapshotText.textName isEqualToString:name]) {
+                [snapshotText changeText:text];
+            }
+        }
+    }];
 }
 @end

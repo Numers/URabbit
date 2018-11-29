@@ -1781,22 +1781,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "URabbit/Model/ComposeRotationOperation.m"
-            timestampString = "564936247.753987"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-imageWithMask:snapshotMedia:animation:frameIndex:pixelSize:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/EditView/UTPhotoEditViewController.m"
             timestampString = "565019200.8748209"
             startingColumnNumber = "9223372036854775807"
@@ -1814,11 +1798,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Model/ComposeRotationOperation.m"
-            timestampString = "564936247.7540751"
+            timestampString = "565176610.148698"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "-main"
             landmarkType = "7">
          </BreakpointContent>
@@ -2006,11 +1990,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Model/ComposeRotationOperation.m"
-            timestampString = "564936247.754451"
+            timestampString = "565176610.148931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "-main"
             landmarkType = "7">
          </BreakpointContent>
@@ -2182,7 +2166,7 @@
                   moduleName = "URabbit"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Category/UIImage+FixImage/UIImage+FixImage.m"
-                  timestampString = "565092164.91197"
+                  timestampString = "565176610.382522"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "96"
@@ -2197,7 +2181,7 @@
                   moduleName = "URabbit"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Category/UIImage+FixImage/UIImage+FixImage.m"
-                  timestampString = "565092164.914319"
+                  timestampString = "565176610.384374"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "96"
@@ -2383,38 +2367,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "URabbit/Model/ComposeRotationStrategy.m"
-            timestampString = "564809845.499132"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "-readVideoFrames:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "URabbit/Model/ComposeRotationStrategy.m"
-            timestampString = "564809845.499177"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "-initlizeData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "URabbit/Model/ComposeStrategy.m"
             timestampString = "564519218.309101"
             startingColumnNumber = "9223372036854775807"
@@ -2432,11 +2384,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Model/ComposeRotationStrategy.m"
-            timestampString = "564809845.4992419"
+            timestampString = "565176610.149387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "-initlizeData"
             landmarkType = "7">
          </BreakpointContent>
@@ -2448,12 +2400,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Model/ComposeRotationStrategy.m"
-            timestampString = "564809845.499289"
+            timestampString = "565176610.149442"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "-isFrameInAxios:"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-isFrameInAxios:frame:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2464,12 +2416,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Model/ComposeRotationStrategy.m"
-            timestampString = "564809845.499346"
+            timestampString = "565176610.14949"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "-isFrameInAxios:"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-isFrameInAxios:frame:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2480,12 +2432,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Model/ComposeRotationStrategy.m"
-            timestampString = "564809845.4993891"
+            timestampString = "565176610.1495349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "-isFrameInAxios:"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-isFrameInAxios:frame:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2511,28 +2463,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "URabbit/Model/ComposeRotationStrategy.m"
-            timestampString = "564809845.499454"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-readVideoFrames:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "URabbit/Model/ComposeRotationOperation.m"
-            timestampString = "564936247.755622"
+            timestampString = "565176610.1496021"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "-main"
             landmarkType = "7">
          </BreakpointContent>
@@ -2566,38 +2502,6 @@
             startingLineNumber = "217"
             endingLineNumber = "217"
             landmarkName = "-writeSampleBufferRef:frame:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "URabbit/Model/ComposeRotationOperation.m"
-            timestampString = "564936247.755734"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "-imageWithMask:snapshotMedia:animation:frameIndex:pixelSize:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "URabbit/Model/ComposeRotationOperation.m"
-            timestampString = "564936247.755777"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "-imageWithMask:snapshotMedia:animation:frameIndex:pixelSize:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2895,7 +2799,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditNotMoveView.m"
-            timestampString = "565092729.9584889"
+            timestampString = "565158408.235819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "179"
@@ -2974,11 +2878,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/View/UTKeyboardTextField/UTKeyboardTextField.m"
-            timestampString = "564519218.336024"
+            timestampString = "565176610.1499929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-keyBoardWillHide:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2990,11 +2894,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/View/UTKeyboardTextField/UTKeyboardTextField.m"
-            timestampString = "564519218.336761"
+            timestampString = "565176610.150076"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "-keyBoardWillShow:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3006,11 +2910,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/View/UTKeyboardTextField/UTKeyboardTextField.m"
-            timestampString = "564519218.337268"
+            timestampString = "565176610.1501729"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "-keyBoardWillShow:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3118,7 +3022,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditNotMoveView.m"
-            timestampString = "565092729.958817"
+            timestampString = "565158408.23602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "135"
@@ -3134,7 +3038,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditNotMoveView.m"
-            timestampString = "565092729.958863"
+            timestampString = "565158408.236062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
@@ -3150,7 +3054,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditNotMoveView.m"
-            timestampString = "565092729.958907"
+            timestampString = "565158408.2361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -3198,11 +3102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
-            timestampString = "564589862.0281039"
+            timestampString = "565176610.150646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-generateImageWithSize:style:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3214,11 +3118,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
-            timestampString = "564589862.02815"
+            timestampString = "565176610.150746"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "-generateImageWithSize:style:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3533,7 +3437,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Model/SnapshotText.m"
-            timestampString = "565092729.9594769"
+            timestampString = "565176610.1511821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "18"
@@ -3549,44 +3453,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Model/SnapshotText.m"
-            timestampString = "565092729.95952"
+            timestampString = "565176610.15154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-filterTextWithName:inArray:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "URabbit/Model/ComposeRotationOperation.m"
-            timestampString = "564936247.757571"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-imageWithMask:snapshotMedia:animation:frameIndex:pixelSize:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "URabbit/Model/ComposeRotationOperation.m"
-            timestampString = "564936247.757614"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "-imageWithMask:snapshotMedia:animation:frameIndex:pixelSize:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3629,7 +3501,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Utils/AppUtils.m"
-            timestampString = "565092729.959681"
+            timestampString = "565168864.140148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "944"
@@ -4186,38 +4058,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "URabbit/Model/ComposeRotationOperation.m"
-            timestampString = "564936247.7589"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "-imageWithMask:snapshotMedia:animation:frameIndex:pixelSize:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "URabbit/Model/ComposeRotationOperation.m"
-            timestampString = "564936247.758942"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "-imageWithMask:snapshotMedia:animation:frameIndex:pixelSize:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTVideoInfoView/UTVideoInfoView.m"
             timestampString = "564982557.575092"
             startingColumnNumber = "9223372036854775807"
@@ -4666,7 +4506,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditNotMoveView.m"
-            timestampString = "565092729.963357"
+            timestampString = "565158408.238259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -4682,7 +4522,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditNotMoveView.m"
-            timestampString = "565092729.9634041"
+            timestampString = "565158408.238305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -4698,7 +4538,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditNotMoveView.m"
-            timestampString = "565092729.963448"
+            timestampString = "565158408.238343"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "123"
@@ -4714,7 +4554,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Utils/AppUtils.m"
-            timestampString = "565092729.963492"
+            timestampString = "565168864.141341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1071"
@@ -4730,7 +4570,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Utils/AppUtils.m"
-            timestampString = "565092729.963546"
+            timestampString = "565168864.141403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1074"
@@ -4806,16 +4646,319 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Utils/AppUtils.m"
-            timestampString = "565092729.963716"
+            timestampString = "565168864.141506"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1071"
             endingLineNumber = "1071"
             landmarkName = "+customFontWithPath:isDirectory:size:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Model/ComposeRotationStrategy.m"
+            timestampString = "565176610.15288"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-readVideoFrames:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+            timestampString = "565176610.152939"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-initWithSnapshot:frame:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+            timestampString = "565176610.152992"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-imageWithCenter:image:imageSize:rotation:toSize:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/EditView/UTPhotoEditViewController.m"
+            timestampString = "565153817.835541"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "-nextStep"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Model/ComposeRotationOperation.m"
+            timestampString = "565176610.153084"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "-addTextlayerWithSnapshotTexts:onImage:pixelSize:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Model/SnapshotText.m"
+            timestampString = "565176610.153137"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "-initWithDictionary:withCustom:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+            timestampString = "565176610.1533329"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "-initWithSnapshot:frame:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+            timestampString = "565176610.15338"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "-initWithSnapshot:frame:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Model/Text.m"
+            timestampString = "565176610.153422"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "-initWithDictionary:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+            timestampString = "565176610.153461"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "-didSelectTextLabelWithName:content:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UTPhotoEditCanMoveView didSelectTextLabelWithName:content:]"
+                  moduleName = "URabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+                  timestampString = "565169278.10588"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__61-[UTPhotoEditCanMoveView didSelectTextLabelWithName:content:]_block_invoke"
+                  moduleName = "URabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+                  timestampString = "565169278.110739"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "URabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+                  timestampString = "565169278.115079"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+            timestampString = "565176610.1534981"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "-didSelectTextLabelWithName:content:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__61-[UTPhotoEditCanMoveView didSelectTextLabelWithName:content:]_block_invoke"
+                  moduleName = "URabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+                  timestampString = "565169449.879108"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__61-[UTPhotoEditCanMoveView didSelectTextLabelWithName:content:]_block_invoke"
+                  moduleName = "URabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+                  timestampString = "565169449.8845561"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "148">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/EditView/PhotoEditView/UTPhotoEditCanMoveView.m"
+            timestampString = "565176610.153536"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "-initWithSnapshot:frame:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Model/SnapshotText.m"
+            timestampString = "565176610.153573"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "-initWithDictionary:withCustom:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Model/SnapshotText.m"
+            timestampString = "565176610.153751"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "-initWithDictionary:withCustom:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

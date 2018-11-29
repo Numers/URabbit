@@ -13,6 +13,8 @@
 		04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9121A1123400F206E3 /* UTRegisterFirstStepViewController.m */; };
 		04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */; };
 		04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */; };
+		1422A54721AF94F40025D859 /* AnimationForText.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422A54621AF94F40025D859 /* AnimationForText.m */; };
+		1422A54A21AFD8760025D859 /* FrameAxios.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422A54921AFD8760025D859 /* FrameAxios.m */; };
 		14239B6F2172F9FA0033FB7D /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14239B6E2172F9FA0033FB7D /* libGPUImage.a */; };
 		1423E29E21ACE128005A9F6E /* DraftTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E29D21ACE128005A9F6E /* DraftTemplate.m */; };
 		1423E2A221ACE6D0005A9F6E /* UTDraftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E2A121ACE6D0005A9F6E /* UTDraftViewController.m */; };
@@ -190,6 +192,10 @@
 		04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterSecondStepViewController.m; sourceTree = "<group>"; };
 		04372B9621A1134100F206E3 /* UTRegisterThirdStepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTRegisterThirdStepViewController.h; sourceTree = "<group>"; };
 		04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterThirdStepViewController.m; sourceTree = "<group>"; };
+		1422A54521AF94F40025D859 /* AnimationForText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationForText.h; sourceTree = "<group>"; };
+		1422A54621AF94F40025D859 /* AnimationForText.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationForText.m; sourceTree = "<group>"; };
+		1422A54821AFD8760025D859 /* FrameAxios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameAxios.h; sourceTree = "<group>"; };
+		1422A54921AFD8760025D859 /* FrameAxios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FrameAxios.m; sourceTree = "<group>"; };
 		14239ABF2172F9FA0033FB7D /* GPUImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBuffer.h; sourceTree = "<group>"; };
 		14239AC02172F9FA0033FB7D /* GPUImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageView.h; sourceTree = "<group>"; };
 		14239AC12172F9FA0033FB7D /* GPUImageShiTomasiFeatureDetectionFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageShiTomasiFeatureDetectionFilter.h; sourceTree = "<group>"; };
@@ -1535,6 +1541,10 @@
 				1423E29D21ACE128005A9F6E /* DraftTemplate.m */,
 				1423E2C821AD77E6005A9F6E /* Account.h */,
 				1423E2C921AD77E6005A9F6E /* Account.m */,
+				1422A54521AF94F40025D859 /* AnimationForText.h */,
+				1422A54621AF94F40025D859 /* AnimationForText.m */,
+				1422A54821AFD8760025D859 /* FrameAxios.h */,
+				1422A54921AFD8760025D859 /* FrameAxios.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2095,6 +2105,7 @@
 				14266C8A21A5939F008A1926 /* UTKeyboardTextField.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
 				144357C321A6ACDA00FEA9AE /* PSTGridLayoutInfo.m in Sources */,
+				1422A54A21AFD8760025D859 /* FrameAxios.m in Sources */,
 				146B639621914AE800A3A679 /* UTPhotoEditCollectionViewCell.m in Sources */,
 				14482F0121A3BE6C00D640F1 /* SnapshotText.m in Sources */,
 				04372B8E21A110F600F206E3 /* UTLoginWithPasswordViewController.m in Sources */,
@@ -2193,6 +2204,7 @@
 				0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */,
 				144357C421A6ACDA00FEA9AE /* PSTCollectionViewData.m in Sources */,
 				1425A8C421A8707A007A0C2E /* UTMemberCoinViewController.m in Sources */,
+				1422A54721AF94F40025D859 /* AnimationForText.m in Sources */,
 				14EDA16821A310EE00C1BD3E /* Author.m in Sources */,
 				1423E2A221ACE6D0005A9F6E /* UTDraftViewController.m in Sources */,
 			);

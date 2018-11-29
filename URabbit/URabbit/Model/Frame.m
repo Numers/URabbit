@@ -9,5 +9,13 @@
 #import "Frame.h"
 
 @implementation Frame
-
+-(instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _snapshotMedias = [NSMutableArray array];
+        _snapshotTexts = [NSMutableArray array];
+    }
+    return self;
+}
 @end

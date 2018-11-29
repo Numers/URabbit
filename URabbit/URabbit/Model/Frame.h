@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class SnapshotMedia,SnapshotText;
 @interface Frame : NSObject
-@property(nonatomic) NSInteger snapshotIndex;
-@property(nonatomic) NSInteger snapshotMediaIndex;
-@property(nonatomic) NSInteger animationIndex;
+@property(nonatomic, strong) NSMutableArray *snapshotMedias;
+@property(nonatomic, strong) NSMutableArray *snapshotTexts;
 @end

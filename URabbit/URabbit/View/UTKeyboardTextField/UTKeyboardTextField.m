@@ -14,7 +14,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor blackColor]];
-        _textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - 50, frame.size.height)];
+        _textField = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - 50, frame.size.height)];
+        [_textField setBackgroundColor:[UIColor clearColor]];
         [_textField setTextColor:[UIColor whiteColor]];
         [self addSubview:_textField];
         

@@ -8,6 +8,9 @@
 
 #import "ComposeRotationStrategy.h"
 #import "AnimationForMedia.h"
+#import "AnimationForText.h"
+#import "SnapshotText.h"
+#import "FrameAxios.h"
 #import "UTVideoReader.h"
 #import "Frame.h"
 
@@ -20,25 +23,14 @@
     [super initlizeData];
     self.frames = [NSMutableArray array];
     for (int i = 0; i < self.resource.totalFrame; i++) {
-        NSMutableArray *axiosArray = [self isFrameInAxios:i];
         Frame *frame = [[Frame alloc] init];
-        if (axiosArray.count > 0) {
-            NSDictionary *dic = [axiosArray objectAtIndex:0];
-            frame.snapshotIndex = [[dic objectForKey:@"snapshotIndex"] integerValue];
-            frame.snapshotMediaIndex = [[dic objectForKey:@"snapshotMediaIndex"] integerValue];
-            frame.animationIndex = [[dic objectForKey:@"animationIndex"] integerValue];
-        }else{
-            frame.snapshotIndex = -1;
-            frame.snapshotMediaIndex = -1;
-            frame.animationIndex = -1;
-        }
+        [self isFrameInAxios:i frame:frame];
         [self.frames addObject:frame];
     }
 }
 
--(NSMutableArray *)isFrameInAxios:(NSInteger)index
+-(void)isFrameInAxios:(NSInteger)index frame:(Frame *)frame
 {
-    NSMutableArray *array = [NSMutableArray array];
     for (NSInteger i=0; i<self.snapshotList.count; i++) {
         Snapshot *snapshot = [self.snapshotList objectAtIndex:i];
         for (NSInteger j=0; j<snapshot.mediaList.count; j++) {
@@ -46,13 +38,33 @@
             for (NSInteger k=0; k<media.animationForMediaList.count; k++) {
                 AnimationForMedia *animation = [media.animationForMediaList objectAtIndex:k];
                 if (index >= animation.range.location && index < (animation.range.length + animation.range.location)) {
-                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(i),@"snapshotIndex",@(j),@"snapshotMediaIndex",@(k),@"animationIndex", nil];
-                    [array addObject:dic];
+                    FrameAxios *axios = [[FrameAxios alloc] init];
+                    axios.snapshotMedia = media;
+                    axios.animationForMedia = animation;
+                    [frame.snapshotMedias addObject:axios];
                 }
             }
         }
+        
+        for (NSInteger j=0; j<snapshot.textList.count; j++) {
+            SnapshotText *text = [snapshot.textList objectAtIndex:j];
+            if (text.animationForTextList.count > 0) {
+                for (NSInteger k=0; k<text.animationForTextList.count; k++) {
+                    AnimationForText *animation = [text.animationForTextList objectAtIndex:k];
+                    if (index >= animation.range.location && index < (animation.range.length + animation.range.location)) {
+                        FrameAxios *axios = [[FrameAxios alloc] init];
+                        axios.snapshotText = text;
+                        axios.animationForText = animation;
+                        [frame.snapshotTexts addObject:axios];
+                    }
+                }
+            }else{
+                FrameAxios *axios = [[FrameAxios alloc] init];
+                axios.snapshotText = text;
+                [frame.snapshotTexts addObject:axios];
+            }
+        }
     }
-    return array;
 }
 
 -(void)readVideoFrames:(int)index
@@ -61,13 +73,10 @@
     CMSampleBufferRef templateSampleBufferRef = [self.fgVideoReader readVideoFrames:index];
     CMSampleBufferRef maskSampleBufferRef = [self.maskVideoReader readVideoFrames:index];
     if (index < self.frames.count) {
-        CGSize pixelSize = [[UTImageHanderManager shareManager] sizeForSampleBuffer:templateSampleBufferRef];
+        CGSize pixelSize = self.resource.videoSize;
         Frame *frame = [self.frames objectAtIndex:index];
-        if (frame.snapshotIndex != -1) {
-            Snapshot *snapshot = [self.snapshotList objectAtIndex:frame.snapshotIndex];
-            SnapshotMedia *media = [snapshot.mediaList objectAtIndex:frame.snapshotMediaIndex];
-            AnimationForMedia *animation = [media.animationForMediaList objectAtIndex:frame.animationIndex];
-            ComposeRotationOperation *operation = [[ComposeRotationOperation alloc] initWithTemplateSampleBufferRef:templateSampleBufferRef maskSampleBufferRef:maskSampleBufferRef frame:index snapshotMedia:media animation:animation pixelSize:pixelSize fps:self.resource.fps];
+        if (frame.snapshotMedias.count > 0 || frame.snapshotTexts.count > 0) {
+            ComposeRotationOperation *operation = [[ComposeRotationOperation alloc] initWithTemplateSampleBufferRef:templateSampleBufferRef maskSampleBufferRef:maskSampleBufferRef frame:index snapshotMedias:frame.snapshotMedias snapshotText:frame.snapshotTexts pixelSize:pixelSize fps:self.resource.fps];
             operation.delegate = self;
             [self.operationQueue addOperation:operation];
         }else{

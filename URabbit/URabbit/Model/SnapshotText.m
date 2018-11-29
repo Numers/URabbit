@@ -31,7 +31,7 @@
 //                if (_text.fontSize > 0) {
 //                    [_textLabel setFont:[UIFont systemFontOfSize:_text.fontSize]];
 //                }
-                
+                [_textLabel setNumberOfLines:_text.rowLimit];
                 if (_text.fontColor) {
                     [_textLabel setTextColor:[UIColor colorFromHexString:_text.fontColor]];
                 }
@@ -64,8 +64,17 @@
                 }
                 
                 [_textLabel setText:_text.content];
+                
+//                if ([_text.content isEqualToString:@"你若不努力"]) {
+//                    _centerYPercent = 949.0f / 1334.0f;
+//                }else{
+//                    _centerYPercent = 1039.0f / 1334.0f;
+//                    _widthPercent = 0.9f;
+//                }
             }
         }
+        
+        _animationForTextList = [NSMutableArray array];
     }
     return self;
 }

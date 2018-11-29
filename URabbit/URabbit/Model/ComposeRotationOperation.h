@@ -9,17 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 #import "Protocol.h"
-@class SnapshotMedia,AnimationForMedia;
+#import "FrameAxios.h"
 @interface ComposeRotationOperation : NSOperation
 {
     CMSampleBufferRef currentTemplateSampleBufferRef;
     CMSampleBufferRef currentMaskSampleBufferRef;
     NSInteger currentFrame;
-    SnapshotMedia *currentSnapshotMedia;
-    AnimationForMedia *currentAnimation;
+    NSMutableArray *currentSnapshotMedias;
+    NSMutableArray *currentSnapshotTexts;
     CGSize currentPixelSize;
     int halfVideoFps;
 }
 @property(nonatomic,weak) id<ComposeOperationProtocol> delegate;
--(instancetype)initWithTemplateSampleBufferRef:(CMSampleBufferRef)templateSampleBufferRef maskSampleBufferRef:(CMSampleBufferRef)maskSampleBufferRef frame:(NSInteger)frame snapshotMedia:(SnapshotMedia *)snapshotMedia animation:(AnimationForMedia *)animation pixelSize:(CGSize)pixelSize fps:(CGFloat)fps;
+-(instancetype)initWithTemplateSampleBufferRef:(CMSampleBufferRef)templateSampleBufferRef maskSampleBufferRef:(CMSampleBufferRef)maskSampleBufferRef frame:(NSInteger)frame snapshotMedias:(NSMutableArray *)snapshotMedias snapshotText:(NSMutableArray *)snapshotTexts pixelSize:(CGSize)pixelSize fps:(CGFloat)fps;
 @end

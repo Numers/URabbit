@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Text,Custom,UTTextLabel;
+@class Text,Custom,UTTextLabel,AnimationForText;
 @interface SnapshotText : NSObject
 @property(nonatomic, strong) Text *text;
 @property(nonatomic, copy) NSString *textName;
@@ -17,6 +17,8 @@
 @property(nonatomic) CGFloat heightPercent;
 @property(nonatomic) CGFloat angle;
 @property(nonatomic) CGFloat opacity;
+
+@property(nonatomic, strong) NSMutableArray<AnimationForText *> *animationForTextList;
 
 @property(nonatomic, strong) UTTextLabel *textLabel;
 

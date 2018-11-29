@@ -18,6 +18,9 @@
         _fontUrl = [dic objectForKey:@"fontUrl"];
         _fontSize = [[dic objectForKey:@"fontSize"] floatValue];
         _fontColor = [dic objectForKey:@"fontColor"];
+        if (_fontColor == nil) {
+            _fontColor = @"#FFFFFF";
+        }
         _wordLimit = [[dic objectForKey:@"wordLimit"] integerValue];
         _horizontalAlignType = (TextHorizontalAlignType)[[dic objectForKey:@"align"] integerValue];
         _verticalAlignType = (TextVerticalAlignType)[[dic objectForKey:@"valign"] integerValue];
