@@ -74,6 +74,27 @@
     return colorSpace;
 }
 
+-(UIImage *) bgImageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size{
+    size_t bytesPerRow = size.width * 4;
+    
+    // 用抽样缓存的数据创建一个位图格式的图形上下文（graphics context）对象
+    CGContextRef context = CGBitmapContextCreate(pixelBuffer, size.width, size.height, 8,
+                                                 bytesPerRow, colorSpace,  kCGBitmapByteOrder32Little |kCGImageAlphaPremultipliedFirst);
+    // 根据这个位图context中的像素数据创建一个Quartz image对象
+    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
+    
+    // 释放context和颜色空间
+    CGContextRelease(context);
+    
+    // 用Quartz image创建一个UIImage对象image
+    UIImage *image = [UIImage imageWithCGImage:quartzImage];
+    
+    // 释放Quartz image对象
+    CGImageRelease(quartzImage);
+    
+    return (image);
+}
+
 
 -(UIImage *) imageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size{
     size_t bytesPerRow = size.width * 4;

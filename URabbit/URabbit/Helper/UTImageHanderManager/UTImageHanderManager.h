@@ -13,6 +13,7 @@
 @interface UTImageHanderManager : NSObject
 +(instancetype)shareManager;
 -(void *)baseAddressFromSampleBuffer:(CMSampleBufferRef) sampleBuffer;
+-(UIImage *) bgImageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size;
 -(UIImage *) imageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size;
 -(void)convertImagePixelReverse:(void *)pixelBuffer size:(CGSize)size;
 -(void *)baseAddressWithCVPixelBuffer:(CVPixelBufferRef)pixelBufferRef;

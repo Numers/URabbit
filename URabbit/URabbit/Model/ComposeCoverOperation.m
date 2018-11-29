@@ -34,7 +34,7 @@
     @autoreleasepool {
         if (currentTemplateSampleBufferRef) {
             void *templatePixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:currentTemplateSampleBufferRef];
-            UIImage *templateImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:templatePixelBuffer size:currentPixelSize];
+            UIImage *templateImage = [[UTImageHanderManager shareManager] bgImageFromPixelBuffer:templatePixelBuffer size:currentPixelSize];
 
             UIImage *resultImage = [self coverImageWithBackgroundImage:templateImage maskImage:currentMaskImage snapImage:currentSnapshot.snapshotImage size:currentPixelSize];
 
