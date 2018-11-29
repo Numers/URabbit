@@ -143,7 +143,7 @@ static NSString *draftCollectionViewCellIdentify = @"DraftCollectionViewCellIden
     resource.music = draftTemplate.resourceMusic;
     resource.fps = draftTemplate.resourceFps;
     
-    UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:resource movieUrl:draftTemplate.movieUrl composition:composition draftTemplate:draftTemplate];
+    UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:resource movieUrl:draftTemplate.movieUrl composition:composition draftTemplate:draftTemplate isFromDraft:YES];
     [self.navigationController pushViewController:videoComposeVC animated:YES];
 }
 

@@ -51,7 +51,7 @@
 @end
 
 @implementation UTVideoComposeViewController
--(instancetype)initWithResource:(Resource *)m movieUrl:(NSString *)url composition:(Composition *)composition draftTemplate:(DraftTemplate *)draftTemplate
+-(instancetype)initWithResource:(Resource *)m movieUrl:(NSString *)url composition:(Composition *)composition draftTemplate:(DraftTemplate *)draftTemplate isFromDraft:(BOOL)fromDraft
 {
     self = [super init];
     if (self) {
@@ -60,7 +60,7 @@
         audioURL = resource.music;
         currentComposition = composition;
         currentDraftTemplate = draftTemplate;
-        isInDraft = NO;
+        isInDraft = fromDraft;
     }
     return self;
 }

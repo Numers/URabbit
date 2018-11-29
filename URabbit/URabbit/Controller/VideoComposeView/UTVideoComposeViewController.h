@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 @class Resource,Composition,DraftTemplate;
 @interface UTVideoComposeViewController : UIViewController
--(instancetype)initWithResource:(Resource *)m movieUrl:(NSString *)url composition:(Composition *)composition draftTemplate:(DraftTemplate *)draftTemplate;
+-(instancetype)initWithResource:(Resource *)m movieUrl:(NSString *)url composition:(Composition *)composition draftTemplate:(DraftTemplate *)draftTemplate isFromDraft:(BOOL)fromDraft;
 @end

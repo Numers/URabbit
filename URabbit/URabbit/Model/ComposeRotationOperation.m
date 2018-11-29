@@ -157,9 +157,15 @@
     for (FrameAxios *axios in frameAxiosList) {
         SnapshotText *snapshotText = axios.snapshotText;
         AnimationForText *animationForText = axios.animationForText;
+        
         CGFloat width = size.width * snapshotText.widthPercent;
         CGFloat height = size.height * snapshotText.heightPercent;
-        CGPoint currentCenterPoint = CGPointMake(size.width * animationForText.centerXPercent, size.height * animationForText.centerYPercent);
+        CGPoint currentCenterPoint = CGPointZero;
+        if (animationForText) {
+            currentCenterPoint = CGPointMake(size.width * animationForText.centerXPercent, size.height * animationForText.centerYPercent);
+        }else{
+            currentCenterPoint = CGPointMake(size.width * snapshotText.centerXPercent, size.height * snapshotText.centerYPercent);
+        }
         CGContextSaveGState(mainViewContentContext);
         CGContextTranslateCTM(mainViewContentContext, currentCenterPoint.x, size.height - currentCenterPoint.y);
         CATextLayer *layerText = [CATextLayer layer];

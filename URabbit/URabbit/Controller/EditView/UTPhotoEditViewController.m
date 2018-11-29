@@ -188,6 +188,14 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     [self.navigationItem setRightBarButtonItem:rightItem1];
 }
 
+-(void)pushVideoComposeViewWithMovieUrl:(NSString *)movieUrl
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:movieUrl composition:currentComposition draftTemplate:draftTemplate isFromDraft:NO];
+        [self.navigationController pushViewController:videoComposeVC animated:YES];
+    });
+}
+
 -(void)setHudProgress:(CGFloat)progress step:(ComposeStep)step isCompletely:(BOOL)isCompletely callback:(void(^)(void))callback
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -412,6 +420,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                 if (currentResource.fgWebp) {
                     [self setHudProgress:1.0f step:ComposeStepAnimation isCompletely:NO callback:nil];
                     NSString *videoUrl = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
+                    __weak typeof(self) weakSelf = self;
                     [[UTVideoManager shareManager] addWebpWithMovieUrl:outPutURL withWebpPath:currentResource.fgWebp output:videoUrl videoSize:currentResource.videoSize completely:^(BOOL isSucess) {
                         if (success) {
                             if ([[NSFileManager defaultManager] fileExistsAtPath:outPutURL]) {
@@ -419,20 +428,15 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                             }
                             
                             [self setHudProgress:1.0f step:ComposeStepWebp isCompletely:YES callback:^{
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoUrl composition:currentComposition draftTemplate:draftTemplate];
-                                    [self.navigationController pushViewController:videoComposeVC animated:YES];
-                                });
+                                [weakSelf pushVideoComposeViewWithMovieUrl:videoUrl];
                             }];
                             
                         }
                     }];
                 }else{
+                    __weak typeof(self) weakSelf = self;
                     [self setHudProgress:1.0f step:ComposeStepAnimation isCompletely:YES callback:^{
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:outPutURL composition:currentComposition draftTemplate:draftTemplate];
-                            [self.navigationController pushViewController:videoComposeVC animated:YES];
-                        });
+                        [weakSelf pushVideoComposeViewWithMovieUrl:outPutURL];
                     }];
                 }
             }];
@@ -444,20 +448,16 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                         if ([[NSFileManager defaultManager] fileExistsAtPath:videoPath]) {
                             [[NSFileManager defaultManager] removeItemAtPath:videoPath error:nil];
                         }
+                        __weak typeof(self) weakSelf = self;
                         [self setHudProgress:1.0f step:ComposeStepWebp isCompletely:YES callback:^{
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoUrl  composition:currentComposition draftTemplate:draftTemplate];
-                                [self.navigationController pushViewController:videoComposeVC animated:YES];
-                            });
+                             [weakSelf pushVideoComposeViewWithMovieUrl:videoUrl];
                         }];
                     }
                 }];
             }else{
+                __weak typeof(self) weakSelf = self;
                 [self setHudProgress:1.0f step:ComposeStepVideo isCompletely:YES callback:^{
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:videoPath composition:currentComposition draftTemplate:draftTemplate];
-                        [self.navigationController pushViewController:videoComposeVC animated:YES];
-                    });
+                    [weakSelf pushVideoComposeViewWithMovieUrl:videoPath];
                 }];
             }
             
