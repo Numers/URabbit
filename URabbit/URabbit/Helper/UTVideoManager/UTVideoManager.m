@@ -115,6 +115,9 @@
 -(void)filterMovieWithInputUrl:(NSString *)inputUrl outputUrl:(NSString *)outputUrl videoSize:(CGSize)size filter:(GPUImageOutput<GPUImageInput> *)filter completely:(void (^)(BOOL result))callback
 {
     NSURL *inputURL = [NSURL fileURLWithPath:inputUrl];
+    if (movieFile) {
+        movieFile = nil;
+    }
     movieFile = [[GPUImageMovie alloc] initWithURL:inputURL];
     movieFile.runBenchmark = YES;
     movieFile.playAtActualSpeed = NO;
@@ -127,6 +130,9 @@
     }
     NSURL *outputURL = [NSURL fileURLWithPath:outputUrl];
     
+    if (movieWriter) {
+        movieWriter = nil;
+    }
     movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:outputURL size:size];
     [filter addTarget:movieWriter];
     
@@ -137,9 +143,11 @@
     [movieFile startProcessing];
     
     __weak typeof(movieWriter) weakWriter = movieWriter;
+    __weak typeof(movieFile) weakMovieFile = movieFile;
     [movieWriter setCompletionBlock:^{
         [filter removeTarget:weakWriter];
         [weakWriter finishRecording];
+        [weakMovieFile endProcessing];
         callback(YES);
     }];
     
@@ -147,6 +155,7 @@
         NSLog(@"合成失败 error=%@",error.description);
         [filter removeTarget:weakWriter];
         [weakWriter finishRecording];
+        [weakMovieFile endProcessing];
         callback(NO);
     }];
 }
@@ -157,6 +166,7 @@
     {
         [[NSFileManager defaultManager] removeItemAtPath:outputPath error:nil];
     }
+    
     NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
     NSURL *audioURL = [NSURL fileURLWithPath:audioPath];
     // 时间起点
@@ -198,6 +208,9 @@
     session.outputFileType = AVFileTypeMPEG4;
     //开辟子线程处理耗时操作
     [session exportAsynchronouslyWithCompletionHandler:^{
+        if (session.error) {
+            NSLog(@"%@",session.error.description);
+        }
         callback();
     }];
 }
@@ -218,6 +231,9 @@
     
     NSURL *inputURL = [NSURL fileURLWithPath:moviePath];
     AVAsset *asset = [AVAsset assetWithURL:inputURL];
+    if (movieFile) {
+        movieFile = nil;
+    }
     movieFile = [[GPUImageMovie alloc] initWithAsset:asset];
     movieFile.runBenchmark = YES;
     movieFile.playAtActualSpeed = NO;
@@ -248,6 +264,9 @@
         [[NSFileManager defaultManager] removeItemAtPath:outputPath error:nil];
     }
     NSURL *outputURL = [NSURL fileURLWithPath:outputPath];
+    if (movieWriter) {
+        movieWriter = nil;
+    }
     movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:outputURL size:size];
     [filter addTarget:movieWriter];
     
@@ -264,9 +283,11 @@
     [movieFile startProcessing];
     
     __weak typeof(movieWriter) weakWriter = movieWriter;
+    __weak typeof(movieFile) weakMovieFile = movieFile;
     [movieWriter setCompletionBlock:^{
         [filter removeTarget:weakWriter];
         [weakWriter finishRecording];
+        [weakMovieFile endProcessing];
         callback(YES);
     }];
     
@@ -274,6 +295,7 @@
         NSLog(@"合成失败 error=%@",error.description);
         [filter removeTarget:weakWriter];
         [weakWriter finishRecording];
+        [weakMovieFile endProcessing];
         callback(NO);
     }];
 }
