@@ -24,4 +24,6 @@
 @property(nonatomic) CGFloat endBlur;
 
 @property(nonatomic) CGFloat fps;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dic startFrame:(NSInteger)startFrame endFrame:(NSInteger)endFrame animationType:(AnimationType)animationType fps:(CGFloat)fps;
 @end

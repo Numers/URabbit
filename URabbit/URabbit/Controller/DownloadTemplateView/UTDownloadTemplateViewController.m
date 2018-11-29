@@ -22,8 +22,10 @@
 #import "Text.h"
 #import "AnimationForMedia.h"
 #import "AnimationSwitch.h"
+#import "AnimationForText.h"
 #import "Snapshot.h"
 #import "SnapshotMedia.h"
+#import "SnapshotText.h"
 
 #import "Composition.h"
 #import "LoadedTemplate.h"
@@ -242,6 +244,26 @@
         }
     }
     
+    NSArray *textAnimations = [animationsDic objectForKey:@"textAnimation"];
+    if (textAnimations && textAnimations.count > 0) {
+        for (NSDictionary *animationDic in textAnimations) {
+            AnimationType type = (AnimationType)[[animationDic objectForKey:@"type"] integerValue];
+            NSInteger startFrame = [[animationDic objectForKey:@"startFrame"] integerValue];
+            NSInteger endFrame = [[animationDic objectForKey:@"endFrame"] integerValue];
+            
+            NSArray *texts = [animationDic objectForKey:@"text"];
+            if (texts && texts.count > 0) {
+                for (NSDictionary *textDic in texts) {
+                    AnimationForText *animationForText = [[AnimationForText alloc] initWithDictionary:textDic startFrame:startFrame endFrame:endFrame animationType:type fps:resource.fps];
+                    SnapshotText *snapshotText = [self filterArray:snapshotList withTextName:animationForText.name];
+                    if (snapshotText) {
+                        [snapshotText.animationForTextList addObject:animationForText];
+                    }
+                }
+            }
+        }
+    }
+    
     [self downloadFontFile:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             UTPhotoEditViewController *photoEditVC = [[UTPhotoEditViewController alloc] initWithResource:resource snapshots:snapshotList compositon:composition];
@@ -297,6 +319,19 @@
         }
     }
     return media;
+}
+
+-(SnapshotText *)filterArray:(NSArray *)array withTextName:(NSString *)name
+{
+    SnapshotText *text = nil;
+    for (Snapshot *snapshot in array) {
+        NSArray *snapshotTexts = [AppUtils fiterArray:snapshot.textList fieldName:@"textName" value:name];
+        if (snapshotTexts && snapshotTexts.count > 0) {
+            text = [snapshotTexts objectAtIndex:0];
+            break;
+        }
+    }
+    return text;
 }
 
 -(void)clickShareButton

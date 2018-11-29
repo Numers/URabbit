@@ -156,10 +156,10 @@
     CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, size.width, size.height), image.CGImage);
     for (FrameAxios *axios in frameAxiosList) {
         SnapshotText *snapshotText = axios.snapshotText;
-        
+        AnimationForText *animationForText = axios.animationForText;
         CGFloat width = size.width * snapshotText.widthPercent;
         CGFloat height = size.height * snapshotText.heightPercent;
-        CGPoint currentCenterPoint = CGPointMake(size.width * snapshotText.centerXPercent, size.height * snapshotText.centerYPercent);
+        CGPoint currentCenterPoint = CGPointMake(size.width * animationForText.centerXPercent, size.height * animationForText.centerYPercent);
         CGContextSaveGState(mainViewContentContext);
         CGContextTranslateCTM(mainViewContentContext, currentCenterPoint.x, size.height - currentCenterPoint.y);
         CATextLayer *layerText = [CATextLayer layer];
