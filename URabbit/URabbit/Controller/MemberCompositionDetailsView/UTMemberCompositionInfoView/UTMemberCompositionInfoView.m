@@ -27,13 +27,13 @@
         playView = [[SelVideoPlayer alloc] initWithFrame:CGRectMake(57, 0, playerWidth, playerHeight) configuration:configuration];
         [self addSubview:playView];
         
-        videoNameLabel = [[UILabel alloc] init];
+        videoNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, playView.frame.origin.y + playView.frame.size.height + 31, SCREEN_WIDTH, 22)];
         [videoNameLabel setTextAlignment:NSTextAlignmentCenter];
         [videoNameLabel setFont:[UIFont systemFontOfSize:16.0f]];
         [videoNameLabel setTextColor:[UIColor whiteColor]];
         [self addSubview:videoNameLabel];
         
-        videoDurationLabel = [[UILabel alloc] init];
+        videoDurationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, videoNameLabel.frame.origin.y + videoNameLabel.frame.size.height + 5, SCREEN_WIDTH, 20)];
         [videoDurationLabel setTextAlignment:NSTextAlignmentCenter];
         [videoDurationLabel setFont:[UIFont systemFontOfSize:14.0f]];
         [videoDurationLabel setTextColor:[UIColor whiteColor]];
@@ -41,37 +41,37 @@
         [self addSubview:videoDurationLabel];
         
         
-        videoDescLabel = [[UILabel alloc] init];
+        videoDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, videoDurationLabel.frame.origin.y + videoDurationLabel.frame.size.height + 15, SCREEN_WIDTH - 140, 0)];
         [videoDescLabel setNumberOfLines:0];
         [videoDescLabel setTextAlignment:NSTextAlignmentCenter];
         [videoDescLabel setFont:[UIFont systemFontOfSize:13.0f]];
         [videoDescLabel setTextColor:[UIColor whiteColor]];
         [self addSubview:videoDescLabel];
-        [self makeConstraints];
+//        [self makeConstraints];
     }
     return self;
 }
 
--(void)makeConstraints
-{
-    [videoNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(playView.bottom).offset(31);
-        make.centerX.equalTo(self.centerX);
-        make.height.equalTo(@(22));
-    }];
-    
-    [videoDurationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(videoNameLabel.bottom).offset(5);
-        make.centerX.equalTo(self.centerX);
-        make.height.equalTo(@(20));
-    }];
-    
-    [videoDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(videoDurationLabel.bottom).offset(15);
-        make.centerX.equalTo(self.centerX);
-        make.leading.equalTo(@(70));
-    }];
-}
+//-(void)makeConstraints
+//{
+//    [videoNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(playView.bottom).offset(31);
+//        make.centerX.equalTo(self.centerX);
+//        make.height.equalTo(@(22));
+//    }];
+//
+//    [videoDurationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(videoNameLabel.bottom).offset(5);
+//        make.centerX.equalTo(self.centerX);
+//        make.height.equalTo(@(20));
+//    }];
+//
+//    [videoDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(videoDurationLabel.bottom).offset(15);
+//        make.centerX.equalTo(self.centerX);
+//        make.leading.equalTo(@(70));
+//    }];
+//}
 
 -(void)setupViewWithComposition:(Composition *)composition
 {
