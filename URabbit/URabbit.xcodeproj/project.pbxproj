@@ -28,6 +28,11 @@
 		1423E2C321AD60EB005A9F6E /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423E2C221AD60EB005A9F6E /* Photos.framework */; };
 		1423E2C721AD6BC4005A9F6E /* UTUMShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E2C621AD6BC4005A9F6E /* UTUMShareManager.m */; };
 		1423E2CA21AD77E6005A9F6E /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423E2C921AD77E6005A9F6E /* Account.m */; };
+		14254EF621B0EB18003C1E89 /* XFCameraButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14254EF121B0EB18003C1E89 /* XFCameraButton.m */; };
+		14254EF721B0EB18003C1E89 /* XFCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14254EF321B0EB18003C1E89 /* XFCameraController.m */; };
+		14254EF821B0EB18003C1E89 /* XFCameraController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14254EF421B0EB18003C1E89 /* XFCameraController.xib */; };
+		14254EFC21B0ED9F003C1E89 /* XFPhotoLibraryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14254EFB21B0ED9E003C1E89 /* XFPhotoLibraryManager.m */; };
+		14254F0721B111DC003C1E89 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14254F0221B111DC003C1E89 /* music.mp3 */; };
 		1425A8B921A828A1007A0C2E /* UTUserCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8B821A828A1007A0C2E /* UTUserCenterTableViewCell.m */; };
 		1425A8BD21A8503F007A0C2E /* UTMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BC21A8503F007A0C2E /* UTMemberViewController.m */; };
 		1425A8C021A85976007A0C2E /* UTMemberScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BF21A85976007A0C2E /* UTMemberScrollViewController.m */; };
@@ -388,6 +393,14 @@
 		1423E2C621AD6BC4005A9F6E /* UTUMShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUMShareManager.m; sourceTree = "<group>"; };
 		1423E2C821AD77E6005A9F6E /* Account.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		1423E2C921AD77E6005A9F6E /* Account.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		14254EF121B0EB18003C1E89 /* XFCameraButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFCameraButton.m; sourceTree = "<group>"; };
+		14254EF221B0EB18003C1E89 /* XFCameraButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFCameraButton.h; sourceTree = "<group>"; };
+		14254EF321B0EB18003C1E89 /* XFCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFCameraController.m; sourceTree = "<group>"; };
+		14254EF421B0EB18003C1E89 /* XFCameraController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XFCameraController.xib; sourceTree = "<group>"; };
+		14254EF521B0EB18003C1E89 /* XFCameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFCameraController.h; sourceTree = "<group>"; };
+		14254EFA21B0ED9E003C1E89 /* XFPhotoLibraryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFPhotoLibraryManager.h; sourceTree = "<group>"; };
+		14254EFB21B0ED9E003C1E89 /* XFPhotoLibraryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFPhotoLibraryManager.m; sourceTree = "<group>"; };
+		14254F0221B111DC003C1E89 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		1425A8B721A828A1007A0C2E /* UTUserCenterTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserCenterTableViewCell.h; sourceTree = "<group>"; };
 		1425A8B821A828A1007A0C2E /* UTUserCenterTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserCenterTableViewCell.m; sourceTree = "<group>"; };
 		1425A8BB21A8503F007A0C2E /* UTMemberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberViewController.h; sourceTree = "<group>"; };
@@ -968,6 +981,43 @@
 			path = UTUMShareManager;
 			sourceTree = "<group>";
 		};
+		14254EEF21B0EB18003C1E89 /* XFAVFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				14254EF021B0EB18003C1E89 /* XFCameraButton */,
+				14254EF321B0EB18003C1E89 /* XFCameraController.m */,
+				14254EF421B0EB18003C1E89 /* XFCameraController.xib */,
+				14254EF521B0EB18003C1E89 /* XFCameraController.h */,
+			);
+			path = XFAVFoundation;
+			sourceTree = "<group>";
+		};
+		14254EF021B0EB18003C1E89 /* XFCameraButton */ = {
+			isa = PBXGroup;
+			children = (
+				14254EF121B0EB18003C1E89 /* XFCameraButton.m */,
+				14254EF221B0EB18003C1E89 /* XFCameraButton.h */,
+			);
+			path = XFCameraButton;
+			sourceTree = "<group>";
+		};
+		14254EF921B0ED9E003C1E89 /* XFPhotoLibraryManager */ = {
+			isa = PBXGroup;
+			children = (
+				14254EFA21B0ED9E003C1E89 /* XFPhotoLibraryManager.h */,
+				14254EFB21B0ED9E003C1E89 /* XFPhotoLibraryManager.m */,
+			);
+			path = XFPhotoLibraryManager;
+			sourceTree = "<group>";
+		};
+		14254EFE21B111DC003C1E89 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				14254F0221B111DC003C1E89 /* music.mp3 */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		1425A8B621A82873007A0C2E /* UserCenterTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1313,6 +1363,8 @@
 		14580315216F2BCB006BB33D /* ThirdPartPlugins */ = {
 			isa = PBXGroup;
 			children = (
+				14254EF921B0ED9E003C1E89 /* XFPhotoLibraryManager */,
+				14254EEF21B0EB18003C1E89 /* XFAVFoundation */,
 				142AC2F021AC393900368ABE /* VideoPlayer */,
 				144357A321A6ACD900FEA9AE /* PSTCollectionView */,
 				14262A2A218AF02300768E6A /* LLTabBar */,
@@ -1658,6 +1710,7 @@
 		145B6131216F27B600DA950E /* URabbit */ = {
 			isa = PBXGroup;
 			children = (
+				14254EFE21B111DC003C1E89 /* Resource */,
 				142A3C4521AE3B2400EF02D3 /* CustomFilter */,
 				145803C321703C80001B9535 /* View */,
 				14580397216F2FF2006BB33D /* Controller */,
@@ -1988,6 +2041,8 @@
 				1458035D216F2BCC006BB33D /* iconfont.ttf in Resources */,
 				145B613C216F27B700DA950E /* Assets.xcassets in Resources */,
 				145B613A216F27B600DA950E /* Main.storyboard in Resources */,
+				14254EF821B0EB18003C1E89 /* XFCameraController.xib in Resources */,
+				14254F0721B111DC003C1E89 /* music.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2078,6 +2133,7 @@
 				04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */,
 				146B639D2191911000A3A679 /* UTPhotoEditShowImageCollectionViewCell.m in Sources */,
 				1425A8B921A828A1007A0C2E /* UTUserCenterTableViewCell.m in Sources */,
+				14254EFC21B0ED9F003C1E89 /* XFPhotoLibraryManager.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
 				142CE2C521AA482D00B17FBA /* UTSaveTemplateCollectionViewCell.m in Sources */,
 				142A3C4821AE3B3F00EF02D3 /* GPUImageBeautyFilter.m in Sources */,
@@ -2151,6 +2207,7 @@
 				14266C8221A53EDE008A1926 /* SwitchAnimationManager.m in Sources */,
 				142CE2BE21AA42BB00B17FBA /* SavedTemplate.m in Sources */,
 				14580392216F2D6F006BB33D /* UITabBar+CustomerTabBar.m in Sources */,
+				14254EF721B0EB18003C1E89 /* XFCameraController.m in Sources */,
 				04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */,
 				1425A8DB21A99BB6007A0C2E /* UTUserSettingViewController.m in Sources */,
 				14580377216F2BCC006BB33D /* FeThreeDotGlow.m in Sources */,
@@ -2173,6 +2230,7 @@
 				04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */,
 				14262A34218AF23200768E6A /* UTUserCenterViewController.m in Sources */,
 				14580470216F50D3006BB33D /* ComposeStrategy.m in Sources */,
+				14254EF621B0EB18003C1E89 /* XFCameraButton.m in Sources */,
 				145803A2216F312C006BB33D /* UTHomeViewController.m in Sources */,
 				14580395216F2D6F006BB33D /* UIColor+HexString.m in Sources */,
 				148D0F86219D9C7100B4E59A /* AnimationManager.m in Sources */,

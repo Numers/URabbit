@@ -15,11 +15,18 @@
 #import "AppLaunchManager.h"
 #import "PushMessageManager.h"
 #import "UTHomeViewController.h"
+#import "UTVideoComposeViewController.h"
 #import "UTUserCenterViewController.h"
 #import "UTGuidViewController.h"
 #import "UTLoginScrollViewController.h"
+#import "XFCameraController.h"
 #import "UINavigationController+NavigationBar.h"
 #import "LLTabBar.h"
+
+#import "DraftTemplate.h"
+#import "Composition.h"
+#import "Resource.h"
+#import "UTVideoManager.h"
 
 
 #define HostProfilePlist @"PersonProfile.plist"
@@ -222,7 +229,59 @@
 
 #pragma -mark protocol LLTabBarDelegate
 - (void)tabBarDidSelectedRiseButton {
+    XFCameraController *cameraController = [XFCameraController defaultCameraController];
     
+    __weak XFCameraController *weakCameraController = cameraController;
+    
+    cameraController.takePhotosCompletionBlock = ^(UIImage *image, NSError *error) {
+        NSLog(@"takePhotosCompletionBlock");
+        
+        [weakCameraController dismissViewControllerAnimated:YES completion:nil];
+    };
+    
+    cameraController.shootCompletionBlock = ^(NSURL *videoUrl, CGFloat videoTimeLength, UIImage *thumbnailImage, NSError *error) {
+        NSLog(@"shootCompletionBlock");
+        DraftTemplate *draftTemplate = [[DraftTemplate alloc] init];
+        draftTemplate.memberId = host.memberId == nil ? NOUSERMemberID : host.memberId;
+        draftTemplate.templateId = 1000000;
+        draftTemplate.title = @"自制视频";
+        draftTemplate.coverUrl = nil;
+        draftTemplate.videoWidth = SCREEN_WIDTH;
+        draftTemplate.videoHeight = SCREEN_HEIGHT;
+        draftTemplate.duration = videoTimeLength;
+        draftTemplate.summary = @"";
+        draftTemplate.bg_tableName = DraftTemplateTableName;
+        draftTemplate.movieUrl = [videoUrl absoluteString];
+        draftTemplate.resourceFps = [[UTVideoManager shareManager] getFpsWithVideoPath:draftTemplate.movieUrl];
+        draftTemplate.resourceMusic = [[NSBundle mainBundle] pathForResource:@"music" ofType:@"mp3"];
+        
+        Composition *composition = [[Composition alloc] init];
+        composition.memberId = draftTemplate.memberId;
+        composition.templateId = draftTemplate.templateId;
+        composition.title = draftTemplate.title;
+        composition.coverUrl = draftTemplate.coverUrl;
+        composition.videoWidth = draftTemplate.videoWidth;
+        composition.videoHeight = draftTemplate.videoHeight;
+        composition.duration = draftTemplate.duration;
+        composition.summary = draftTemplate.summary;
+        composition.bg_tableName = CompositionTableName;
+        
+        Resource *resource = [[Resource alloc] init];
+        resource.music = draftTemplate.resourceMusic;
+        resource.fps = draftTemplate.resourceFps;
+        resource.videoSize = CGSizeMake(draftTemplate.videoWidth, draftTemplate.videoHeight);
+        
+        [weakCameraController dismissViewControllerAnimated:YES completion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:resource movieUrl:draftTemplate.movieUrl composition:composition draftTemplate:draftTemplate isFromDraft:YES];
+                [videoComposeVC setHidesBottomBarWhenPushed:YES];
+                UINavigationController *selectNav = [_tabBarController selectedViewController];
+                [selectNav pushViewController:videoComposeVC animated:YES];
+            });
+        }];
+    };
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:cameraController animated:YES completion:nil];
 }
 
 -(id)currentTabbarController
@@ -235,6 +294,7 @@
     [self generateTabBarController];
     _navigationController = [[UINavigationController alloc] initWithRootViewController:_tabBarController];
     [_navigationController setNavigationBarHidden:YES];
+    [self setNavigationColor:_navigationController];
     [[(AppDelegate *)[UIApplication sharedApplication].delegate window] setRootViewController:_navigationController];
     [_tabBarController setSelectedIndex:0];
 }

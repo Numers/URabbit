@@ -160,13 +160,14 @@
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(playView.top).offset(-23);
         make.top.equalTo(self.view).offset([UIDevice safeAreaTopHeight] + 9);
-        make.width.equalTo(imageView.mas_height).multipliedBy(544.0f/960.0f);
+        make.width.equalTo(imageView.mas_height).multipliedBy(resource.videoSize.width / resource.videoSize.height);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
 }
 
 -(void)navigationBarSetting
 {
+    [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setTranslucentView];
     UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
     [rightItem1 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];

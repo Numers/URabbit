@@ -80,7 +80,9 @@
         CGImageRef imageRef = [imgGenerator copyCGImageAtTime:timeFrame actualTime:nil error:nil];
         UIImage *frameImg = [UIImage imageWithCGImage:imageRef];
         CGImageRelease(imageRef);
-        [splitImages addObject:frameImg];
+        if (frameImg) {
+            [splitImages addObject:frameImg];
+        }
     }
     
     if (splitCompleteBlock) {
