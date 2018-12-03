@@ -33,8 +33,9 @@
     CGFloat latestTemplateViewHeight;
 }
 @property(nonatomic, strong)  UIView *searchBarBackgroundView;
-@property(nonatomic, strong)  UISearchBar *searchBar;
-@property(nonatomic, strong)  UIButton *filterButton;
+//@property(nonatomic, strong)  UISearchBar *searchBar;
+//@property(nonatomic, strong)  UIButton *filterButton;
+@property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong)  UIView *topLineView;
 
 @property(nonatomic, strong) UIScrollView *scrollView;;
@@ -57,36 +58,43 @@
     _topLineView = [[UIView alloc] init];
     [_topLineView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:_topLineView];
-    _searchBarBackgroundView = [[UIView alloc] init];
-    [_searchBarBackgroundView setBackgroundColor:[UIColor colorFromHexString:@"#F0F1F3"]];
-    [_searchBarBackgroundView.layer setCornerRadius:16.0f];
-    [_searchBarBackgroundView.layer setMasksToBounds:YES];
-    [self.view addSubview:_searchBarBackgroundView];
+//    _searchBarBackgroundView = [[UIView alloc] init];
+//    [_searchBarBackgroundView setBackgroundColor:[UIColor colorFromHexString:@"#F0F1F3"]];
+//    [_searchBarBackgroundView.layer setCornerRadius:16.0f];
+//    [_searchBarBackgroundView.layer setMasksToBounds:YES];
+//    [self.view addSubview:_searchBarBackgroundView];
     
-    _searchBar = [[UISearchBar alloc] init];
-    UIView *searchTextFieldView = [[[self.searchBar.subviews firstObject] subviews] lastObject];
-    [searchTextFieldView setBackgroundColor:[UIColor clearColor]];
-    [_searchBar setBackgroundImage:[AppUtils imageWithColor:[UIColor clearColor]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    [_searchBar setImage:[UIImage imageNamed:@"sousou"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
-    [_searchBar setPlaceholder:@"关键词搜索"];
-    UITextField * searchField = [_searchBar valueForKey:@"_searchField"];
-    [searchField setBackgroundColor:[UIColor clearColor]];
-    [searchField setValue:[UIColor colorFromHexString:@"#AEAEAE"] forKeyPath:@"_placeholderLabel.textColor"];
-    [searchField setValue:[UIFont boldSystemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
-    _searchBar.tintColor = [UIColor colorFromHexString:@"#333333"];
-    // 输入文本颜色
-    searchField.textColor = [UIColor colorFromHexString:@"#333333"];
-    searchField.font = [UIFont systemFontOfSize:13.0f];
-    [_searchBarBackgroundView addSubview:_searchBar];
+    _titleLabel = [[UILabel alloc] init];
+    [_titleLabel setText:@"有兔"];
+    [_titleLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
+    [_titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
+    [_titleLabel setTextAlignment: NSTextAlignmentCenter];
+    [self.view addSubview:_titleLabel];
     
-    _filterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_filterButton setImage:[UIImage imageNamed:@"shaixuan"] forState:UIControlStateNormal];
-    NSAttributedString *filterTitle = [AppUtils generateAttriuteStringWithStr:@"筛选" WithColor:[UIColor colorFromHexString:@"#999999"] WithFont:[UIFont systemFontOfSize:13.0f]];
-    [_filterButton setAttributedTitle:filterTitle forState:UIControlStateNormal];
-    [self.view addSubview:_filterButton];
+//    _searchBar = [[UISearchBar alloc] init];
+//    UIView *searchTextFieldView = [[[self.searchBar.subviews firstObject] subviews] lastObject];
+//    [searchTextFieldView setBackgroundColor:[UIColor clearColor]];
+//    [_searchBar setBackgroundImage:[AppUtils imageWithColor:[UIColor clearColor]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+//    [_searchBar setImage:[UIImage imageNamed:@"sousou"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+//    [_searchBar setPlaceholder:@"关键词搜索"];
+//    UITextField * searchField = [_searchBar valueForKey:@"_searchField"];
+//    [searchField setBackgroundColor:[UIColor clearColor]];
+//    [searchField setValue:[UIColor colorFromHexString:@"#AEAEAE"] forKeyPath:@"_placeholderLabel.textColor"];
+//    [searchField setValue:[UIFont boldSystemFontOfSize:13] forKeyPath:@"_placeholderLabel.font"];
+//    _searchBar.tintColor = [UIColor colorFromHexString:@"#333333"];
+//    // 输入文本颜色
+//    searchField.textColor = [UIColor colorFromHexString:@"#333333"];
+//    searchField.font = [UIFont systemFontOfSize:13.0f];
+//    [_searchBarBackgroundView addSubview:_searchBar];
     
-    _filterButton.imageEdgeInsets = UIEdgeInsetsMake(0, _filterButton.frame.size.width - _filterButton.imageView.frame.origin.x - _filterButton.imageView.frame.size.width-5, 0, 0);
-    _filterButton.titleEdgeInsets = UIEdgeInsetsMake(0, -(_filterButton.frame.size.width - _filterButton.imageView.frame.size.width ), 0, 0);
+//    _filterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [_filterButton setImage:[UIImage imageNamed:@"shaixuan"] forState:UIControlStateNormal];
+//    NSAttributedString *filterTitle = [AppUtils generateAttriuteStringWithStr:@"筛选" WithColor:[UIColor colorFromHexString:@"#999999"] WithFont:[UIFont systemFontOfSize:13.0f]];
+//    [_filterButton setAttributedTitle:filterTitle forState:UIControlStateNormal];
+//    [self.view addSubview:_filterButton];
+//
+//    _filterButton.imageEdgeInsets = UIEdgeInsetsMake(0, _filterButton.frame.size.width - _filterButton.imageView.frame.origin.x - _filterButton.imageView.frame.size.width-5, 0, 0);
+//    _filterButton.titleEdgeInsets = UIEdgeInsetsMake(0, -(_filterButton.frame.size.width - _filterButton.imageView.frame.size.width ), 0, 0);
     
     _scrollView = [[UIScrollView alloc] init];
     [_scrollView setShowsVerticalScrollIndicator:NO];
@@ -133,26 +141,32 @@
         make.top.equalTo(self.view).offset([UIDevice safeAreaTopHeight]);
     }];
     
-    [_filterButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(self.view);
-        make.width.equalTo(@(69));
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(_topLineView.top).offset(-6);
         make.height.equalTo(@(32));
-        make.bottom.equalTo(_topLineView.top).offset(-6);
+        make.centerX.equalTo(self.view.centerX);
     }];
     
-    [_searchBarBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(_filterButton.leading);
-        make.bottom.equalTo(_topLineView.top).offset(-6);
-        make.width.equalTo(@([UIDevice adaptWidthWithIphone6Width:265.0f]));
-        make.height.equalTo(@(32.0f));
-    }];
-    
-    [_searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_searchBarBackgroundView.top);
-        make.leading.equalTo(_searchBarBackgroundView.leading);
-        make.trailing.equalTo(_searchBarBackgroundView.trailing);
-        make.bottom.equalTo(_searchBarBackgroundView.bottom);
-    }];
+//    [_filterButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.trailing.equalTo(self.view);
+//        make.width.equalTo(@(69));
+//        make.height.equalTo(@(32));
+//        make.bottom.equalTo(_topLineView.top).offset(-6);
+//    }];
+//
+//    [_searchBarBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.trailing.equalTo(_filterButton.leading);
+//        make.bottom.equalTo(_topLineView.top).offset(-6);
+//        make.width.equalTo(@([UIDevice adaptWidthWithIphone6Width:265.0f]));
+//        make.height.equalTo(@(32.0f));
+//    }];
+//
+//    [_searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(_searchBarBackgroundView.top);
+//        make.leading.equalTo(_searchBarBackgroundView.leading);
+//        make.trailing.equalTo(_searchBarBackgroundView.trailing);
+//        make.bottom.equalTo(_searchBarBackgroundView.bottom);
+//    }];
     
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_topLineView.bottom);

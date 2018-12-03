@@ -15,6 +15,8 @@
 @property(nonatomic) double duration;
 @property(nonatomic) CGSize videoSize;
 @property(nonatomic) double fps;
+@property(nonatomic, copy) NSString *latestVersion;
+@property(nonatomic) BOOL isVip;
 @property(nonatomic) NSInteger totalFrame;
 @property(nonatomic) TemplateStyle style;
 @property(nonatomic,copy) NSString *summary;

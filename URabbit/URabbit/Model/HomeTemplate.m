@@ -17,6 +17,8 @@
         _templateId = [[dic objectForKey:@"id"] longValue];
         _title = [dic objectForKey:@"title"];
         _coverUrl = [dic objectForKey:@"coverUrl"];
+        _latestVersion = [dic objectForKey:@"iosVersion"];
+        _isVip = [[dic objectForKey:@"isVip"] boolValue];
         _duration = [[dic objectForKey:@"duration"] doubleValue];
         _fps = [[dic objectForKey:@"frameRate"] doubleValue];
         _totalFrame = floor(_duration * _fps);

@@ -8,6 +8,7 @@
 
 #import "UTMemberCompositonCollectionViewCell.h"
 #import "Composition.h"
+#import "UTVideoManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 @implementation UTMemberCompositonCollectionViewCell
 -(instancetype)initWithFrame:(CGRect)frame
@@ -30,7 +31,8 @@
 
 -(void)setupCellWithCompositon:(Composition *)compositon
 {
-    [templateImageView sd_setImageWithURL:[NSURL URLWithString:compositon.coverUrl] placeholderImage:[UIImage imageNamed:@"CoverPlaceholdImage"]];
+    UIImage *previewImage = [[UTVideoManager shareManager] getVideoPreViewImage:[NSURL fileURLWithPath:compositon.moviePath]];
+    [templateImageView setImage:previewImage];
     [nameLabel setText:compositon.title];
 }
 @end

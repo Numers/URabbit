@@ -30,7 +30,9 @@
 #import "Composition.h"
 #import "LoadedTemplate.h"
 #import "AppStartManager.h"
+#import "UTUserSaveNetworkAPIManager.h"
 #import "UINavigationController+NavigationBar.h"
+#import "UTLoginScrollViewController.h"
 
 @interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol>
 {
@@ -45,6 +47,8 @@
     Resource *resource;
     Custom *custom;
     NSMutableArray *snapshotList;
+    
+    BOOL isSaved;
 }
 @end
 
@@ -76,14 +80,13 @@
     makeButtonView = [[UTDownloadButtonView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - [UIDevice safeAreaBottomHeight] - 72.0f, SCREEN_WIDTH, 72.0f)];
     makeButtonView.delegate = self;
     [self.view addSubview:makeButtonView];
-    
-    [self requestTemplateInfo];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self navigationBarSetting];
+    [self requestTemplateInfo];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -105,8 +108,18 @@
     [self.navigationItem setTitle:currentHomeTemplate.title];
     [self.navigationController setTranslucentView];
     UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"share_button"] style:UIBarButtonItemStylePlain target:self action:@selector(clickShareButton)];
-    UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"collection_button"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
-    rightItem2.imageInsets = UIEdgeInsetsMake(0, 15, 0, -10);
+    
+    UIBarButtonItem *rightItem2;
+    Member *host = [[AppStartManager shareManager] currentMember];
+    if (host && [host.saveTemplates containsObject:@(currentHomeTemplate.templateId)]) {
+        UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"collectionImage"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
+        rightItem2.imageInsets = UIEdgeInsetsMake(0, 15, 0, -10);
+        isSaved = YES;
+    }else{
+        UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"unCollectionImage"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
+        rightItem2.imageInsets = UIEdgeInsetsMake(0, 15, 0, -10);
+        isSaved = NO;
+    }
     [self.navigationItem setRightBarButtonItems:@[rightItem1,rightItem2]];
     
 }
@@ -341,7 +354,24 @@
 
 -(void)clickCollectionButton
 {
-    
+    Member *host = [[AppStartManager shareManager] currentMember];
+    if (isSaved) {
+        [[UTUserSaveNetworkAPIManager shareManager] deleteTemplateWithTemplateId:currentHomeTemplate.templateId callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+            if ([code integerValue] == 200) {
+                [AppUtils showInfo:@"取消成功"];
+                isSaved = NO;
+                [host.saveTemplates removeObject:@(currentHomeTemplate.templateId)];
+            }
+        }];
+    }else{
+        [[UTUserSaveNetworkAPIManager shareManager] saveTemplateWithTemplateId:currentHomeTemplate.templateId callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+            if ([code integerValue] == 200) {
+                [AppUtils showInfo:@"收藏成功"];
+                isSaved = YES;
+                [host.saveTemplates addObject:@(currentHomeTemplate.templateId)];
+            }
+        }];
+    }
 }
 
 -(BOOL)isDownloadResource
@@ -354,6 +384,20 @@
 #pragma -mark UTDownloadButtonViewProtocol
 -(void)beginDownload
 {
+    Member *host = [[AppStartManager shareManager] currentMember];
+    if (host == nil) {
+        UTLoginScrollViewController *loginScrollVC = [[UTLoginScrollViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginScrollVC];
+        [self presentViewController:nav animated:YES completion:nil];
+        return;
+    }
+    
+    if (currentHomeTemplate.isVip) {
+        if (!host.isVip) {
+            return;
+        }
+    }
+    
     NSString *videoDic = [AppUtils createDirectoryWithUniqueIndex:currentHomeTemplate.templateId];
     NSString *zipPath = [NSString stringWithFormat:@"%@/resource-%ld.zip",videoDic,currentHomeTemplate.templateId];
     NSString *unzipFileDirectory = [NSString stringWithFormat:@"%@/unzip-%ld",videoDic,currentHomeTemplate.templateId];

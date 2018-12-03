@@ -58,9 +58,10 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
 
 -(void)loginoutWithIndexPath:(NSIndexPath *)indexPath
 {
-    [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [[AppStartManager shareManager] setMember:nil];
     [[AppStartManager shareManager] removeLocalHostMemberData];
+    [_tableView reloadData];
 }
 
 -(void)deleteCache
@@ -88,17 +89,17 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
         case 0:
         {
             switch (indexPath.row) {
+//                case 0:
+//                {
+//                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//                    UTEditUserInfoViewController *editUserInfoVC = [storyboard instantiateViewControllerWithIdentifier:@"UTEditUserInfoViewIdentify"];
+//                    [self.navigationController pushViewController:editUserInfoVC animated:YES];
+//                }
+//                    break;
                 case 0:
-                {
-                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    UTEditUserInfoViewController *editUserInfoVC = [storyboard instantiateViewControllerWithIdentifier:@"UTEditUserInfoViewIdentify"];
-                    [self.navigationController pushViewController:editUserInfoVC animated:YES];
-                }
-                    break;
-                case 1:
                     
                     break;
-                case 2:
+                case 1:
                 {
                     [self deleteCache];
                 }
@@ -161,7 +162,7 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
     NSInteger numbers = 0;
     switch (section) {
         case 0:
-            numbers = 3;
+            numbers = 2;
             break;
         case 1:
             numbers = 4;
@@ -210,13 +211,13 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
         case 0:
         {
             switch (indexPath.row) {
+//                case 0:
+//                    [cell setLeftTitle:@"个人信息" rightTitle:@"" isShowBottomLine:YES];
+//                    break;
                 case 0:
-                    [cell setLeftTitle:@"个人信息" rightTitle:@"" isShowBottomLine:YES];
-                    break;
-                case 1:
                     [cell setLeftTitle:@"账号绑定" rightTitle:@"" isShowBottomLine:YES];
                     break;
-                case 2:{
+                case 1:{
                     NSString * cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
                     float size = [AppUtils folderSizeAtPath:cacheDir];
                     [cell setLeftTitle:@"清理缓存" rightTitle:[NSString stringWithFormat:@"%.2fM",size] isShowBottomLine:NO];

@@ -62,6 +62,18 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(IBAction)clickDeleteBtn:(id)sender
+{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:currentCompositon.moviePath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:currentCompositon.moviePath error:nil];
+    }
+    
+    NSString *sql = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"templateId"),bg_sqlValue(@(currentCompositon.templateId))];
+    [Composition bg_delete:CompositionTableName where:sql];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(IBAction)clickShareBtn:(id)sender
 {
     

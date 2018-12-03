@@ -13,7 +13,10 @@
 @property(nonatomic, copy) NSString *nickName;
 @property(nonatomic, copy) NSString *headIcon;
 @property(nonatomic, copy) NSString *token;
+@property(nonatomic) BOOL isVip;
+@property(nonatomic) NSTimeInterval vipExpire;
 @property(nonatomic, strong) NSMutableArray<Account *> *accountList;
+@property(nonatomic, strong) NSMutableArray *saveTemplates;
 
 
 /**

@@ -19,6 +19,8 @@
     if (self) {
         [self setBackgroundColor:[UIColor whiteColor]];
         headImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headIconImage"]];
+        [headImageView.layer setCornerRadius:30.0f];
+        [headImageView.layer setMasksToBounds:YES];
         [self addSubview:headImageView];
         
         nickNameLabel = [[UILabel alloc] init];
@@ -46,6 +48,7 @@
         [saveNumberLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
         [saveNumberLabel setFont:[UIFont systemFontOfSize:18.0f]];
         [saveNumberLabel setTextAlignment:NSTextAlignmentCenter];
+        [saveNumberLabel setText:@"0"];
         [self addSubview:saveNumberLabel];
         
         saveNumberDescLabel = [[UILabel alloc] init];

@@ -20,10 +20,12 @@
     self = [super init];
     if (self) {
         if (dic) {
-            self.memberId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"memberId"]];
-            self.nickName = [dic objectForKey:@"nickName"];
+            self.memberId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"id"]];
+            self.nickName = [dic objectForKey:@"nickname"];
             self.token = [dic objectForKey:@"token"];
-            self.headIcon = [dic objectForKey:@"headIcon"];
+            self.headIcon = [dic objectForKey:@"portrait"];
+            _isVip = [[dic objectForKey:@"isVip"] boolValue];
+            _vipExpire = [[dic objectForKey:@"vipExpire"] doubleValue];
             
             _accountList = [NSMutableArray array];
             NSArray *accounts = [dic objectForKey:@"account"];
@@ -32,6 +34,13 @@
                     Account *account = [[Account alloc] initWithDictionary:accountDic];
                     [_accountList addObject:account];
                 }
+            }
+            
+            id templates = [dic objectForKey:@"templetId"];
+            if (templates) {
+                _saveTemplates = [NSMutableArray arrayWithArray:templates];
+            }else{
+                _saveTemplates = [NSMutableArray array];
             }
         }
     }
@@ -48,20 +57,23 @@
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (_memberId) {
-        [dic setObject:_memberId forKey:@"memberId"];
+        [dic setObject:_memberId forKey:@"id"];
     }
     
     if (_nickName) {
-        [dic setObject:_nickName forKey:@"nickName"];
+        [dic setObject:_nickName forKey:@"nickname"];
     }
     
     if (_headIcon) {
-        [dic setObject:_headIcon forKey:@"headIcon"];
+        [dic setObject:_headIcon forKey:@"portrait"];
     }
     
     if (_token) {
         [dic setObject:_token forKey:@"token"];
     }
+    
+    [dic setObject:@(_isVip) forKey:@"isVip"];
+    [dic setObject:@(_vipExpire) forKey:@"vipExpire"];
     
     if (_accountList && _accountList.count > 0) {
         NSMutableArray *accounts = [NSMutableArray array];
@@ -71,6 +83,8 @@
         }
         [dic setObject:accounts forKey:@"account"];
     }
+    
+    [dic setObject:_saveTemplates forKey:@"templetId"];
     return dic;
 }
 @end

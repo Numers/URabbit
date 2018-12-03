@@ -35,6 +35,14 @@
 
 
 /**
+ 获取第一帧的图片
+
+ @param path 视频路径
+ @return 图片
+ */
+- (UIImage*) getVideoPreViewImage:(NSURL *)path;
+
+/**
  压缩导出视频
 
  @param url 原视频url

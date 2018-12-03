@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.0206701"
+            timestampString = "565537795.408343"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "-filterMovieWithInputUrl:outputUrl:videoSize:filter:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.0207421"
+            timestampString = "565537795.408435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-filterMovieWithInputUrl:outputUrl:videoSize:filter:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -554,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.020786"
+            timestampString = "565537795.408492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-filterMovieWithInputUrl:outputUrl:videoSize:filter:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -586,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "564780796.325132"
+            timestampString = "565537795.4086159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-addConstraints"
             landmarkType = "7">
             <Locations>
@@ -649,27 +649,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "564780796.32524"
+            timestampString = "565537795.408691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "564780796.325316"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
@@ -935,11 +919,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "564780796.326026"
+            timestampString = "565537795.409272"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "-updateViewHeight:identify:"
             landmarkType = "7">
          </BreakpointContent>
@@ -951,11 +935,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "564780796.326107"
+            timestampString = "565537795.4093159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "-updateViewHeight:identify:"
             landmarkType = "7">
          </BreakpointContent>
@@ -967,11 +951,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "564780796.326176"
+            timestampString = "565537795.409367"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "-updateViewHeight:identify:"
             landmarkType = "7">
          </BreakpointContent>
@@ -983,11 +967,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "564780796.326245"
+            timestampString = "565537795.409405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "-setScrollViewContentSize"
             landmarkType = "7">
          </BreakpointContent>
@@ -999,11 +983,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "564780796.3263119"
+            timestampString = "565537795.409441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "-setScrollViewContentSize"
             landmarkType = "7">
          </BreakpointContent>
@@ -1127,13 +1111,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.612735"
+            timestampString = "565537795.409799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "UTDownloadTemplateViewController"
-            landmarkType = "3">
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1191,11 +1175,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.612851"
+            timestampString = "565537795.409973"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "-navigationBarSetting"
             landmarkType = "7">
          </BreakpointContent>
@@ -1367,7 +1351,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.022141"
+            timestampString = "565537795.4103349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
@@ -1383,7 +1367,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.022204"
+            timestampString = "565537795.410387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "212"
@@ -1399,7 +1383,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.022264"
+            timestampString = "565537795.410427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "243"
@@ -1463,7 +1447,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.022379"
+            timestampString = "565537795.410563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "275"
@@ -1526,7 +1510,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.022478"
+            timestampString = "565537795.410625"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "344"
@@ -1542,7 +1526,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.022536"
+            timestampString = "565537795.410665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "338"
@@ -1558,7 +1542,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.022576"
+            timestampString = "565537795.4107029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "339"
@@ -1574,7 +1558,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.022625"
+            timestampString = "565537795.410742"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "260"
@@ -1590,7 +1574,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.022664"
+            timestampString = "565537795.41078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "209"
@@ -1622,7 +1606,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.022787"
+            timestampString = "565537795.410869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "245"
@@ -1638,7 +1622,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.0228291"
+            timestampString = "565537795.4109221"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "278"
@@ -1654,7 +1638,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.0228831"
+            timestampString = "565537795.410961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "261"
@@ -1670,7 +1654,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.022923"
+            timestampString = "565537795.410998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "276"
@@ -1702,7 +1686,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.023006"
+            timestampString = "565537795.411072"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "72"
@@ -1830,7 +1814,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.023229"
+            timestampString = "565537795.411323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "206"
@@ -1846,7 +1830,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.023279"
+            timestampString = "565537795.411363"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "252"
@@ -1926,11 +1910,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.023387"
+            timestampString = "565537795.4114749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "-splitVideo:fps:splitCompleteBlock:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1942,11 +1926,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.023436"
+            timestampString = "565537795.411523"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "-splitVideo:fps:splitCompleteBlock:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1958,11 +1942,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.023478"
+            timestampString = "565537795.411568"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "-splitVideo:fps:splitCompleteBlock:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2150,7 +2134,7 @@
                   moduleName = "URabbit"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Category/UIImage+FixImage/UIImage+FixImage.m"
-                  timestampString = "565262451.241671"
+                  timestampString = "565537795.701727"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "96"
@@ -2165,7 +2149,7 @@
                   moduleName = "URabbit"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Category/UIImage+FixImage/UIImage+FixImage.m"
-                  timestampString = "565262451.243255"
+                  timestampString = "565537795.703298"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "96"
@@ -2288,12 +2272,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.614925"
+            timestampString = "565537795.4121799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-requestTemplateInfo"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-navigationBarSetting"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2304,12 +2288,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.61497"
+            timestampString = "565537795.4122421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
-            landmarkName = "-filterArray:withMediaName:"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "-downloadFontFile:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2560,12 +2544,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.61553"
+            timestampString = "565537795.41273"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363"
-            landmarkName = "-beginDownload"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
+            landmarkName = "-clickCollectionButton"
             landmarkType = "7">
             <Locations>
                <Location
@@ -2687,11 +2671,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "564780796.3313971"
+            timestampString = "565537795.41289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "-requestLatestTemplateList"
             landmarkType = "7">
          </BreakpointContent>
@@ -2703,11 +2687,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "564780796.331496"
+            timestampString = "565537795.412938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "-requestChoosenTemplateList"
             landmarkType = "7">
          </BreakpointContent>
@@ -3469,11 +3453,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.025352"
+            timestampString = "565537795.414247"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "-addWebpWithMovieUrl:withWebpPath:output:videoSize:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3501,11 +3485,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.0254329"
+            timestampString = "565537795.414331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "-addWebpWithMovieUrl:withWebpPath:output:videoSize:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3517,11 +3501,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.0254689"
+            timestampString = "565537795.414376"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "-addWebpWithMovieUrl:withWebpPath:output:videoSize:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3533,11 +3517,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.0255049"
+            timestampString = "565537795.41442"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "-addWebpWithMovieUrl:withWebpPath:output:videoSize:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3549,11 +3533,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.0255409"
+            timestampString = "565537795.414467"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "-addWebpWithMovieUrl:withWebpPath:output:videoSize:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3565,11 +3549,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.025592"
+            timestampString = "565537795.4145"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "-addWebpWithMovieUrl:withWebpPath:output:videoSize:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3581,11 +3565,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.0256439"
+            timestampString = "565537795.414547"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "-addWebpWithMovieUrl:withWebpPath:output:videoSize:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3724,12 +3708,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.61751"
+            timestampString = "565537795.414745"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
-            landmarkName = "-unzipFile:directory:"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "-downloadFontFile:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3852,11 +3836,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/UserCenterView/UserCenterHeadView/UTUserCenterHeadView.m"
-            timestampString = "565019200.877792"
+            timestampString = "565537795.4150341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "-downloadButtonClick"
             landmarkType = "7">
          </BreakpointContent>
@@ -3868,11 +3852,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/UserCenterView/UserCenterHeadView/UTUserCenterHeadView.m"
-            timestampString = "565019200.877835"
+            timestampString = "565537795.415082"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "-saveButtonClick"
             landmarkType = "7">
          </BreakpointContent>
@@ -3916,11 +3900,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/UserCenterView/UserCenterHeadView/UTUserCenterHeadView.m"
-            timestampString = "565019200.877956"
+            timestampString = "565537795.41518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "-setCurrentMember:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3995,12 +3979,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.6178319"
+            timestampString = "565537795.415252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "-initlizedDatabase"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "-requestTemplateInfo"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4011,12 +3995,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.617877"
+            timestampString = "565537795.415309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "-initlizedDatabase"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "-requestTemplateInfo"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4027,11 +4011,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.617927"
+            timestampString = "565537795.415351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "-initlizedDatabase"
             landmarkType = "7">
          </BreakpointContent>
@@ -4075,23 +4059,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.618017"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.6180609"
+            timestampString = "565537795.415466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
@@ -4107,12 +4075,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.618102"
+            timestampString = "565537795.415511"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "-requestTemplateInfo"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4123,13 +4091,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.618143"
+            timestampString = "565537795.415552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "-navigationBarSetting"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
+            timestampString = "565537795.415608"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "UTDownloadTemplateViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4171,12 +4155,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.618229"
+            timestampString = "565537795.415733"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "-requestTemplateInfo"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "-navigationBarSetting"
             landmarkType = "7">
             <Locations>
                <Location
@@ -4314,11 +4298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/UserCenterView/UserCenterHeadView/UTUserCenterHeadView.m"
-            timestampString = "565019200.878601"
+            timestampString = "565537795.415916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "-setCurrentMember:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4330,11 +4314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/UserCenterView/UserCenterHeadView/UTUserCenterHeadView.m"
-            timestampString = "565019200.8786401"
+            timestampString = "565537795.415965"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
             landmarkName = "-setCurrentMember:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4346,7 +4330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.026558"
+            timestampString = "565537795.416002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "231"
@@ -4362,7 +4346,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.026614"
+            timestampString = "565537795.416037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "229"
@@ -4458,7 +4442,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/LoginView/UTLoginViewController.m"
-            timestampString = "565069446.646751"
+            timestampString = "565498418.81467"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "121"
@@ -4474,7 +4458,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/LoginView/UTLoginViewController.m"
-            timestampString = "565069491.072003"
+            timestampString = "565498418.814988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "169"
@@ -4953,11 +4937,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-            timestampString = "565196041.619767"
+            timestampString = "565537795.41697"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "-initWithHomeTemplate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5049,7 +5033,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.027529"
+            timestampString = "565537795.4172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "186"
@@ -5065,7 +5049,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.0275871"
+            timestampString = "565537795.4172421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "193"
@@ -5128,11 +5112,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.027643"
+            timestampString = "565537795.417294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "-mergeMovie:withAudio:output:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5144,11 +5128,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.027679"
+            timestampString = "565537795.417336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "-mergeMovie:withAudio:output:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5160,7 +5144,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.027717"
+            timestampString = "565537795.417374"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "199"
@@ -5176,7 +5160,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.027755"
+            timestampString = "565537795.417412"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "202"
@@ -5192,11 +5176,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.027802"
+            timestampString = "565537795.417451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "-filterMovieWithInputUrl:outputUrl:videoSize:filter:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5208,11 +5192,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.027843"
+            timestampString = "565537795.417486"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-filterMovieWithInputUrl:outputUrl:videoSize:filter:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5224,11 +5208,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.027879"
+            timestampString = "565537795.417519"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "-filterMovieWithInputUrl:outputUrl:videoSize:filter:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5240,7 +5224,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/VideoComposeView/UTVideoComposeViewController.m"
-            timestampString = "565262451.0279289"
+            timestampString = "565537795.4175529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "201"
@@ -5399,11 +5383,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.028163"
+            timestampString = "565537795.4177589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "-filterMovieWithInputUrl:outputUrl:videoSize:filter:completely:"
             landmarkType = "7">
             <Locations>
@@ -5462,11 +5446,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Helper/UTVideoManager/UTVideoManager.m"
-            timestampString = "565262451.028204"
+            timestampString = "565537795.417805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "-mergeMovie:withAudio:output:completely:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5612,6 +5596,86 @@
             startingLineNumber = "1004"
             endingLineNumber = "1004"
             landmarkName = "-previewVideoAfterShoot"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/UserSettingView/UTUserSettingViewController.m"
+            timestampString = "565537795.41812"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "-tableView:numberOfRowsInSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/UserSettingView/UTUserSettingViewController.m"
+            timestampString = "565537795.418173"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "-loginoutWithIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/SaveView/UTSaveViewController.m"
+            timestampString = "565537795.418254"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "-requestUserSavedTemplate"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/SaveView/UTSaveViewController.m"
+            timestampString = "565537795.418301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "-endRefresh"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/Controller/SaveView/UTSaveViewController.m"
+            timestampString = "565537795.4183559"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "-endRefresh"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

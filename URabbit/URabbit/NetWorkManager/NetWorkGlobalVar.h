@@ -20,14 +20,14 @@
 #define UT_ChoiceRecommend_API @"/templet/list/recommend"
 /*******************************************************/
 
-/************************模板详情API***********************/
+/************************模板API***********************/
 #define UT_TemplateDetails_API @"/templet/{id}"
+#define UT_SaveTemplate_API @"/templet/{id}/collect/add"
+#define UT_CancelSaveTemplate_API @"/templet/{id}/collect/delete"
 /*******************************************************/
 
 /************************个人中心API***********************/
 #define UT_UserSavedTemplate_API @"/user/templet/list"
-#define UT_SaveTemplate_API @"/templet/{id}/collect/add"
-#define UT_CancelSaveTemplate_API @"/templet/{id}/collect/delete"
 /*******************************************************/
 
 /************************SystemInfoAPI***********************/

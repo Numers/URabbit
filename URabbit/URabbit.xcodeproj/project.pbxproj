@@ -173,6 +173,7 @@
 		1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4ED21946F6500809626 /* UTFilterCollectionViewCell.m */; };
 		1486C4F1219473A500809626 /* FilterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4F0219473A500809626 /* FilterInfo.m */; };
 		1486C4F7219554C800809626 /* ComposeRotationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4F6219554C800809626 /* ComposeRotationOperation.m */; };
+		14878C6F21B536A70091F99F /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 14878C6D21B536A60091F99F /* RSA.m */; };
 		148D0F72219BF5F500B4E59A /* ComposeRotationStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F71219BF5F500B4E59A /* ComposeRotationStrategy.m */; };
 		148D0F78219D11A000B4E59A /* ComposeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F77219D11A000B4E59A /* ComposeAnimation.m */; };
 		148D0F7B219D1FF800B4E59A /* ComposeAnimationStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F7A219D1FF800B4E59A /* ComposeAnimationStrategy.m */; };
@@ -675,6 +676,8 @@
 		1486C4F0219473A500809626 /* FilterInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterInfo.m; sourceTree = "<group>"; };
 		1486C4F5219554C800809626 /* ComposeRotationOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeRotationOperation.h; sourceTree = "<group>"; };
 		1486C4F6219554C800809626 /* ComposeRotationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeRotationOperation.m; sourceTree = "<group>"; };
+		14878C6D21B536A60091F99F /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSA.m; sourceTree = "<group>"; };
+		14878C6E21B536A70091F99F /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
 		148D0F70219BF5F500B4E59A /* ComposeRotationStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeRotationStrategy.h; sourceTree = "<group>"; };
 		148D0F71219BF5F500B4E59A /* ComposeRotationStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeRotationStrategy.m; sourceTree = "<group>"; };
 		148D0F76219D11A000B4E59A /* ComposeAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeAnimation.h; sourceTree = "<group>"; };
@@ -1330,6 +1333,8 @@
 		14580305216F2BCB006BB33D /* NetWorkManager */ = {
 			isa = PBXGroup;
 			children = (
+				14878C6E21B536A70091F99F /* RSA.h */,
+				14878C6D21B536A60091F99F /* RSA.m */,
 				1458030B216F2BCB006BB33D /* NetWorkAPIManager */,
 				14580306216F2BCB006BB33D /* GeneralManager.m */,
 				14580307216F2BCB006BB33D /* NetWorkManager.h */,
@@ -2136,6 +2141,7 @@
 				14254EFC21B0ED9F003C1E89 /* XFPhotoLibraryManager.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
 				142CE2C521AA482D00B17FBA /* UTSaveTemplateCollectionViewCell.m in Sources */,
+				14878C6F21B536A70091F99F /* RSA.m in Sources */,
 				142A3C4821AE3B3F00EF02D3 /* GPUImageBeautyFilter.m in Sources */,
 				14482F2221A475FF00D640F1 /* UTPhotoEditCanMoveView.m in Sources */,
 				14482F0421A3BE8600D640F1 /* Snapshot.m in Sources */,

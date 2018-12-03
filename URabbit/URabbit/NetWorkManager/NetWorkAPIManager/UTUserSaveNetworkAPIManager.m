@@ -27,7 +27,7 @@
 
 -(void)saveTemplateWithTemplateId:(long)templateId callback:(APIRequstCallBack)callback
 {
-    NSString *uri = [UT_TemplateDetails_API stringByReplacingOccurrencesOfString:@"{id}" withString:[NSString stringWithFormat:@"%ld",templateId]];
+    NSString *uri = [UT_SaveTemplate_API stringByReplacingOccurrencesOfString:@"{id}" withString:[NSString stringWithFormat:@"%ld",templateId]];
     [[NetWorkRequestManager shareManager] put:uri parameters:nil callback:callback isNotify:YES];
 }
 

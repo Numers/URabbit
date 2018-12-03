@@ -14,6 +14,7 @@
 #import "UTSaveTemplateCollectionViewCell.h"
 #import "UTUserSaveNetworkAPIManager.h"
 #import "UINavigationController+NavigationBar.h"
+#import <MJRefresh/MJRefresh.h>
 
 static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollectionViewCellIdentify";
 @interface UTSaveViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LJJWaterFlowLayoutProtocol>
@@ -53,7 +54,11 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     
     [self makeConstraints];
     
-    [self requestUserSavedTemplate];
+    collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self refreshPageData];
+    }];
+
+    [self refreshPageData];
 }
 
 -(void)makeConstraints
@@ -71,12 +76,38 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationItem setTitle:@"我的收藏"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)refreshPageData
+{
+    currentPage = 0;
+    hasMore = YES;
+    collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self requestUserSavedTemplate];
+    }];
+    [self requestUserSavedTemplate];
+}
+
+-(void)endRefresh
+{
+    if ([collectionView.mj_header isRefreshing]) {
+        [collectionView.mj_header endRefreshing];
+    }
+    
+    if ([collectionView.mj_footer isRefreshing]) {
+        if (hasMore) {
+            [collectionView.mj_footer endRefreshing];
+        }else{
+            [collectionView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }
 }
 
 -(void)requestUserSavedTemplate
@@ -90,6 +121,9 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
         if (data) {
             NSArray *savedTemplateArray = (NSArray *)data;
             if (savedTemplateArray && savedTemplateArray.count > 0) {
+                if (savedTemplateArray.count < currentSize) {
+                    hasMore = NO;
+                }
                 for (NSDictionary *dic in savedTemplateArray) {
                     SavedTemplate *savedTemplate = [[SavedTemplate alloc] init];
                     savedTemplate.templateId = [[dic objectForKey:@"id"] longValue];
@@ -101,8 +135,13 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
                 }
                 currentPage ++;
                 [collectionView reloadData];
+            }else{
+                hasMore = NO;
             }
+        }else{
+            hasMore = NO;
         }
+        [self endRefresh];
     }];
 }
 
