@@ -8,9 +8,14 @@
 
 #import "UTMemberScrollViewController.h"
 #import "UTMemberViewController.h"
-@interface UTMemberScrollViewController ()
+#import "AppStartManager.h"
+#import "VIPPrice.h"
+#import "UTUserVipNetworkAPIManager.h"
+#import "UTLoginScrollViewController.h"
+@interface UTMemberScrollViewController ()<MemberViewProtocol>
 {
     UTMemberViewController *memberVC;
+    Member *currentHost;
 }
 @property(nonatomic, strong) UIScrollView *scrollView;
 @property(nonatomic, strong) UIButton *agreeButton;
@@ -30,9 +35,8 @@
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     memberVC = [storyboard instantiateViewControllerWithIdentifier:@"UTMemberViewIdentify"];
-    [memberVC.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, 590)];
+    memberVC.delegate = self;
     [_scrollView addSubview:memberVC.view];
-    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 590)];
     
     _agreeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_agreeButton addTarget:self action:@selector(clickAgreeButton) forControlEvents:UIControlEventTouchUpInside];
@@ -74,6 +78,8 @@
 {
     [super viewWillAppear:animated];
     [self.navigationItem setTitle:@"开通会员"];
+    currentHost = [[AppStartManager shareManager] currentMember];
+    [memberVC setCurrentMember:currentHost];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,7 +94,27 @@
 
 -(void)clickOpenMemeberButton
 {
-    
+    VIPPrice *price = [memberVC selectedVipPrice];
+    if (currentHost) {
+        [[UTUserVipNetworkAPIManager shareManager] requestBuyVipBillInfoWithPriceId:price.priceId channel:WechatPay callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+            
+        }];
+    }else{
+        [self presentLoginView];
+    }
 }
 
+#pragma -mark MemberViewProtocol
+-(void)returnContentSizeHeight:(CGFloat)height
+{
+    [memberVC.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, height)];
+    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, height + (SCREEN_HEIGHT -_openMemberButton.frame.origin.y) + 10)];
+}
+
+-(void)presentLoginView
+{
+    UTLoginScrollViewController *loginScrollVC = [[UTLoginScrollViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginScrollVC];
+    [self presentViewController:nav animated:YES completion:nil];
+}
 @end

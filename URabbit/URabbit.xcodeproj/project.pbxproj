@@ -169,6 +169,10 @@
 		146B63D02192EAE700A3A679 /* UTSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63CF2192EAE700A3A679 /* UTSelectView.m */; };
 		146B63D32192EAF800A3A679 /* UTPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63D22192EAF800A3A679 /* UTPlayView.m */; };
 		146B63D72193064300A3A679 /* UTPlayCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B63D62193064300A3A679 /* UTPlayCollectionViewCell.m */; };
+		1473D5BE21B6318A00AB946D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1473D5BD21B6318A00AB946D /* Social.framework */; };
+		1473D5C121B676F900AB946D /* UTUserVipNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1473D5C021B676F900AB946D /* UTUserVipNetworkAPIManager.m */; };
+		1473D5C521B6845900AB946D /* UTMemberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1473D5C421B6845900AB946D /* UTMemberTableViewCell.m */; };
+		1473D5C821B684C000AB946D /* VIPPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1473D5C721B684C000AB946D /* VIPPrice.m */; };
 		1486C4EA21946DB400809626 /* UTFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4E921946DB400809626 /* UTFilterView.m */; };
 		1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4ED21946F6500809626 /* UTFilterCollectionViewCell.m */; };
 		1486C4F1219473A500809626 /* FilterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1486C4F0219473A500809626 /* FilterInfo.m */; };
@@ -179,6 +183,7 @@
 		148D0F7B219D1FF800B4E59A /* ComposeAnimationStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F7A219D1FF800B4E59A /* ComposeAnimationStrategy.m */; };
 		148D0F82219D22C300B4E59A /* ComposeAnimationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */; };
 		148D0F86219D9C7100B4E59A /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F85219D9C7100B4E59A /* AnimationManager.m */; };
+		14E4442D21B6B759008062EF /* UTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4442C21B6B759008062EF /* UTAboutViewController.m */; };
 		14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16421A30B1800C1BD3E /* UTHomeNetworkAPIManager.m */; };
 		14EDA16821A310EE00C1BD3E /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16721A310EE00C1BD3E /* Author.m */; };
 		14EDA16B21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16A21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m */; };
@@ -668,6 +673,13 @@
 		146B63D22192EAF800A3A679 /* UTPlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPlayView.m; sourceTree = "<group>"; };
 		146B63D52193064300A3A679 /* UTPlayCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPlayCollectionViewCell.h; sourceTree = "<group>"; };
 		146B63D62193064300A3A679 /* UTPlayCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPlayCollectionViewCell.m; sourceTree = "<group>"; };
+		1473D5BD21B6318A00AB946D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		1473D5BF21B676F900AB946D /* UTUserVipNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserVipNetworkAPIManager.h; sourceTree = "<group>"; };
+		1473D5C021B676F900AB946D /* UTUserVipNetworkAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserVipNetworkAPIManager.m; sourceTree = "<group>"; };
+		1473D5C321B6845900AB946D /* UTMemberTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberTableViewCell.h; sourceTree = "<group>"; };
+		1473D5C421B6845900AB946D /* UTMemberTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTMemberTableViewCell.m; sourceTree = "<group>"; };
+		1473D5C621B684C000AB946D /* VIPPrice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPPrice.h; sourceTree = "<group>"; };
+		1473D5C721B684C000AB946D /* VIPPrice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPPrice.m; sourceTree = "<group>"; };
 		1486C4E821946DB400809626 /* UTFilterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTFilterView.h; sourceTree = "<group>"; };
 		1486C4E921946DB400809626 /* UTFilterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTFilterView.m; sourceTree = "<group>"; };
 		1486C4EC21946F6500809626 /* UTFilterCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTFilterCollectionViewCell.h; sourceTree = "<group>"; };
@@ -689,6 +701,8 @@
 		148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeAnimationOperation.m; sourceTree = "<group>"; };
 		148D0F84219D9C7100B4E59A /* AnimationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		148D0F85219D9C7100B4E59A /* AnimationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
+		14E4442B21B6B759008062EF /* UTAboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTAboutViewController.h; sourceTree = "<group>"; };
+		14E4442C21B6B759008062EF /* UTAboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTAboutViewController.m; sourceTree = "<group>"; };
 		14EDA16321A30B1800C1BD3E /* UTHomeNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTHomeNetworkAPIManager.h; sourceTree = "<group>"; };
 		14EDA16421A30B1800C1BD3E /* UTHomeNetworkAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTHomeNetworkAPIManager.m; sourceTree = "<group>"; };
 		14EDA16621A310EE00C1BD3E /* Author.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
@@ -705,6 +719,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1473D5BE21B6318A00AB946D /* Social.framework in Frameworks */,
 				142A3C4A21AE769F00EF02D3 /* CoreText.framework in Frameworks */,
 				1423E2C321AD60EB005A9F6E /* Photos.framework in Frameworks */,
 				1423E2C121AD60D6005A9F6E /* libz.tbd in Frameworks */,
@@ -1033,6 +1048,7 @@
 		1425A8BA21A84FB4007A0C2E /* MemberView */ = {
 			isa = PBXGroup;
 			children = (
+				1473D5C221B6843600AB946D /* UTMemberTableViewCell */,
 				1425A8BB21A8503F007A0C2E /* UTMemberViewController.h */,
 				1425A8BC21A8503F007A0C2E /* UTMemberViewController.m */,
 				1425A8BE21A85976007A0C2E /* UTMemberScrollViewController.h */,
@@ -1361,6 +1377,8 @@
 				142CE2CF21AA667F00B17FBA /* UTUserSaveNetworkAPIManager.m */,
 				142CE2D121AA80F300B17FBA /* UTLoginNetworkAPIManager.h */,
 				142CE2D221AA80F300B17FBA /* UTLoginNetworkAPIManager.m */,
+				1473D5BF21B676F900AB946D /* UTUserVipNetworkAPIManager.h */,
+				1473D5C021B676F900AB946D /* UTUserVipNetworkAPIManager.m */,
 			);
 			path = NetWorkAPIManager;
 			sourceTree = "<group>";
@@ -1602,6 +1620,8 @@
 				1422A54621AF94F40025D859 /* AnimationForText.m */,
 				1422A54821AFD8760025D859 /* FrameAxios.h */,
 				1422A54921AFD8760025D859 /* FrameAxios.m */,
+				1473D5C621B684C000AB946D /* VIPPrice.h */,
+				1473D5C721B684C000AB946D /* VIPPrice.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1609,6 +1629,7 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				14E4442A21B6B740008062EF /* AboutView */,
 				1423E29F21ACE6B5005A9F6E /* DraftView */,
 				142CE2C621AA4A1F00B17FBA /* UserDownloadedView */,
 				142CE2B821AA41A200B17FBA /* SaveView */,
@@ -1920,6 +1941,15 @@
 			path = UTPlayCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		1473D5C221B6843600AB946D /* UTMemberTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1473D5C321B6845900AB946D /* UTMemberTableViewCell.h */,
+				1473D5C421B6845900AB946D /* UTMemberTableViewCell.m */,
+			);
+			path = UTMemberTableViewCell;
+			sourceTree = "<group>";
+		};
 		1486C4E721946C5E00809626 /* UTFilterView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1950,9 +1980,19 @@
 			path = AnimationManager;
 			sourceTree = "<group>";
 		};
+		14E4442A21B6B740008062EF /* AboutView */ = {
+			isa = PBXGroup;
+			children = (
+				14E4442B21B6B759008062EF /* UTAboutViewController.h */,
+				14E4442C21B6B759008062EF /* UTAboutViewController.m */,
+			);
+			path = AboutView;
+			sourceTree = "<group>";
+		};
 		7B66372339C95543FFFDEC4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1473D5BD21B6318A00AB946D /* Social.framework */,
 				142A3C4921AE769F00EF02D3 /* CoreText.framework */,
 				1423E2C221AD60EB005A9F6E /* Photos.framework */,
 				1423E2C021AD60D6005A9F6E /* libz.tbd */,
@@ -2125,6 +2165,7 @@
 				14580479216F7689006BB33D /* Frame.m in Sources */,
 				14580379216F2BCC006BB33D /* FXBlurView.m in Sources */,
 				14482F0D21A3D67400D640F1 /* Custom.m in Sources */,
+				1473D5C121B676F900AB946D /* UTUserVipNetworkAPIManager.m in Sources */,
 				14580393216F2D6F006BB33D /* UIDevice+FixedLength.m in Sources */,
 				146B638A219071EB00A3A679 /* UTPhotoEditView.m in Sources */,
 				146B63862190657F00A3A679 /* UTPhotoEditViewController.m in Sources */,
@@ -2140,6 +2181,7 @@
 				1425A8B921A828A1007A0C2E /* UTUserCenterTableViewCell.m in Sources */,
 				14254EFC21B0ED9F003C1E89 /* XFPhotoLibraryManager.m in Sources */,
 				14580378216F2BCC006BB33D /* UIColor+flat.m in Sources */,
+				1473D5C821B684C000AB946D /* VIPPrice.m in Sources */,
 				142CE2C521AA482D00B17FBA /* UTSaveTemplateCollectionViewCell.m in Sources */,
 				14878C6F21B536A70091F99F /* RSA.m in Sources */,
 				142A3C4821AE3B3F00EF02D3 /* GPUImageBeautyFilter.m in Sources */,
@@ -2202,6 +2244,7 @@
 				14580391216F2D6F006BB33D /* UIImage+FixImage.m in Sources */,
 				148D0F7B219D1FF800B4E59A /* ComposeAnimationStrategy.m in Sources */,
 				1425A8E321A9AB94007A0C2E /* UTEditUserInfoViewController.m in Sources */,
+				14E4442D21B6B759008062EF /* UTAboutViewController.m in Sources */,
 				14678FFB218EE07500CD7F4B /* HomeTemplate.m in Sources */,
 				144357C121A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.m in Sources */,
 				146B638221904DF900A3A679 /* UTVideoAuthorView.m in Sources */,
@@ -2216,6 +2259,7 @@
 				14254EF721B0EB18003C1E89 /* XFCameraController.m in Sources */,
 				04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */,
 				1425A8DB21A99BB6007A0C2E /* UTUserSettingViewController.m in Sources */,
+				1473D5C521B6845900AB946D /* UTMemberTableViewCell.m in Sources */,
 				14580377216F2BCC006BB33D /* FeThreeDotGlow.m in Sources */,
 				144357C521A6ACDA00FEA9AE /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				146B63922190726D00A3A679 /* UTTplImageLayerView.m in Sources */,

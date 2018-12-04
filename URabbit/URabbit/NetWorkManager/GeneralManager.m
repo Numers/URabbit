@@ -26,6 +26,7 @@ static GeneralManager *generalManager;
 
 -(void)getNewAppVersion
 {
+    return;
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"IOS",@"type", nil];
     [[NetWorkRequestManager shareManager] get:UP_UpdateVersion_API parameters:param callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         if (data) {
@@ -58,6 +59,7 @@ static GeneralManager *generalManager;
 
 -(void)sendRegID
 {
+    return;
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (delegate.regId && [AppUtils token]) {
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:delegate.regId,@"regId", nil];

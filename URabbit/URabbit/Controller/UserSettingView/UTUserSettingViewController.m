@@ -9,6 +9,7 @@
 #import "UTUserSettingViewController.h"
 #import "UTUserSettingTableViewCell.h"
 #import "UTEditUserInfoViewController.h"
+#import "UTAboutViewController.h"
 #import "AppStartManager.h"
 #import "LoadedTemplate.h"
 #import "Composition.h"
@@ -116,7 +117,11 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
                     
                     break;
                 case 1:
-                    
+                {
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    UTAboutViewController *aboutVC = [storyboard instantiateViewControllerWithIdentifier:@"UTAboutViewIdentify"];
+                    [self.navigationController pushViewController:aboutVC animated:YES];
+                }
                     break;
                 case 2:
                     

@@ -12,6 +12,8 @@
 {
     UIImageView *templateImageView;
     UILabel *nameLabel;
+    
+    UILabel *vipLabel;
 }
 -(void)setupCellWithHomeTemplate:(HomeTemplate *)homeTemplate;
 @end

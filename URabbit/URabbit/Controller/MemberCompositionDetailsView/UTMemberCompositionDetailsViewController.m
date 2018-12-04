@@ -9,6 +9,7 @@
 #import "UTMemberCompositionDetailsViewController.h"
 #import "UTMemberCompositionInfoView.h"
 #import "Composition.h"
+#import "UINavigationController+NavigationBar.h"
 
 @interface UTMemberCompositionDetailsViewController ()
 {
@@ -44,12 +45,13 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH,compositionInfoView.frame.origin.y + compositionInfoView.frame.size.height)];
+    [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH,compositionInfoView.frame.origin.y + compositionInfoView.frame.size.height + 65)];
 }
 
 - (void)didReceiveMemoryWarning {

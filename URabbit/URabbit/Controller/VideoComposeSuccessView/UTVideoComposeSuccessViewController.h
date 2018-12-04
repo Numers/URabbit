@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UTVideoComposeSuccessViewController : UIViewController
-
+-(instancetype)initWithVideoURL:(NSURL *)videoURL;
 @end
 

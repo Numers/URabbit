@@ -93,4 +93,34 @@
         }
     }];
 }
+
+-(void)indirectShareVideo:(NSURL *)url{
+    NSArray *activityItems = @[url];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:activityItems
+                                                                            applicationActivities:nil];
+    //不出现在活动项目
+    activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList];
+    
+    //给activityVC的属性completionHandler写一个block。
+    //用以UIActivityViewController执行结束后，被调用，做一些后续处理。
+    UIActivityViewControllerCompletionWithItemsHandler myBlock = ^(UIActivityType activityType, BOOL completed, NSArray * returnedItems, NSError * activityError)
+    {
+        
+        if (completed)
+        {
+            
+        }
+        else
+        {
+            
+        }
+    };
+    
+    // 初始化completionHandler，当post结束之后（无论是done还是cancell）该blog都会被调用
+    activityVC.completionWithItemsHandler = myBlock;
+    
+    UIViewController * rootVc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    [rootVc presentViewController:activityVC animated:YES completion:nil];
+}
 @end

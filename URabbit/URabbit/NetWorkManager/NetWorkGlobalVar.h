@@ -28,14 +28,8 @@
 
 /************************个人中心API***********************/
 #define UT_UserSavedTemplate_API @"/user/templet/list"
-/*******************************************************/
-
-/************************SystemInfoAPI***********************/
-#define UP_systemInfo_API @"/api/app/listApp"
-#define UP_Report_API @"/api/app/report"
-#define UP_Report_Customer_API @"/api/app/report/customer"
-#define UP_Report_Project_API @"/api/app/report/project"
-#define UP_Report_Manager_Rank_API @"/api/app/report/manager/rank/use"
+#define UT_VIPPriceList_API @"/vip/price"
+#define UT_VIPBuy_API @"/vip/buy"
 /*******************************************************/
 
 /************************UpdateVersionAPI***********************/
@@ -46,5 +40,6 @@
 #define UP_SendRegId_API @"/app/sendRegId"
 /*******************************************************/
 /*******************************************************/
+#define UT_ServiceToken @"6c9691b1-261c-4b08-a2ef-484606f76cfe"
 
 #endif /* NetWorkGlobalVar_h */

@@ -219,7 +219,7 @@
     else {
         NSLog(@"保存视频成功");
         [currentComposition bg_save];
-        UTVideoComposeSuccessViewController *videoComposeSuccessVC = [[UTVideoComposeSuccessViewController alloc] init];
+        UTVideoComposeSuccessViewController *videoComposeSuccessVC = [[UTVideoComposeSuccessViewController alloc] initWithVideoURL:[NSURL fileURLWithPath:videoPath]];
         [self.navigationController pushViewController:videoComposeSuccessVC animated:YES];
     }
 }

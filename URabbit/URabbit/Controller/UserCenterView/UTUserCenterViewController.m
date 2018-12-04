@@ -20,6 +20,7 @@
 #import "UTSaveViewController.h"
 #import "UTDraftViewController.h"
 #import "UTLoginScrollViewController.h"
+#import "UINavigationController+NavigationBar.h"
 static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIdentify";
 @interface UTUserCenterViewController ()<UITableViewDelegate,UITableViewDataSource,UTUserCenterHeadViewProtocol>
 {
@@ -76,6 +77,7 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     [self.navigationController.navigationBar setTranslucent:NO];
+    [self.navigationController setStatusBarStyle:UIStatusBarStyleDefault];
     [self.navigationItem setTitle:@"个人中心"];
     
     currentMember = [[AppStartManager shareManager] currentMember];

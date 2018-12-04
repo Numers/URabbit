@@ -7,6 +7,7 @@
 //
 
 #import "UTVideoComposeSuccessViewController.h"
+#import "UTUMShareManager.h"
 
 @interface UTVideoComposeSuccessViewController ()
 {
@@ -14,10 +15,20 @@
     UIImageView *movieImageView;
     UILabel *successLabel;
     UILabel *saveLabel;
+    
+    NSURL *videoUrl;
 }
 @end
 
 @implementation UTVideoComposeSuccessViewController
+-(instancetype)initWithVideoURL:(NSURL *)videoURL
+{
+    self = [super init];
+    if (self) {
+        videoUrl = videoURL;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -91,6 +102,6 @@
 }
 
 -(void)share{
-    
+    [[UTUMShareManager shareManager] indirectShareVideo:videoUrl];
 }
 @end

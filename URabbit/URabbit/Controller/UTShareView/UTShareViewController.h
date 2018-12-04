@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol UTSHareViewProtocol <NSObject>
+@protocol UTShareViewProtocol <NSObject>
+@optional
 -(void)sendShareToWeixin;
 -(void)sendShareToFriend;
 -(void)sendShareToQQ;
 -(void)sendShareToWeibo;
 @end
 @interface UTShareViewController : UIViewController
-@property(nonatomic, weak) id<UTSHareViewProtocol> delegate;
+@property(nonatomic, weak) id<UTShareViewProtocol> delegate;
 @property(nonatomic, strong) IBOutlet UIButton *weixinButton;
 @property(nonatomic, strong) IBOutlet UIButton *friendButton;
 @property(nonatomic, strong) IBOutlet UIButton *qqButton;

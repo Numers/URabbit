@@ -20,6 +20,15 @@
         [templateImageView.layer setMasksToBounds:YES];
         [self addSubview:templateImageView];
         
+        vipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 17)];
+        [vipLabel setText:@"vip"];
+        [vipLabel setHidden:NO];
+        [vipLabel setTextColor:[UIColor whiteColor]];
+        [vipLabel setBackgroundColor:[UIColor redColor]];
+        [vipLabel setFont:[UIFont boldSystemFontOfSize:12]];
+        [vipLabel setTextAlignment:NSTextAlignmentCenter];
+        [templateImageView addSubview:vipLabel];
+        
         nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height - 40, frame.size.width, 20)];
         [nameLabel setTextAlignment:NSTextAlignmentLeft];
         [nameLabel setFont:[UIFont systemFontOfSize:14.0f]];
@@ -33,5 +42,10 @@
 {
     [templateImageView sd_setImageWithURL:[NSURL URLWithString:homeTemplate.coverUrl] placeholderImage:[UIImage imageNamed:@"CoverPlaceholdImage"]];
     [nameLabel setText:homeTemplate.title];
+    if (homeTemplate.isVip) {
+        [vipLabel setHidden:NO];
+    }else{
+        [vipLabel setHidden:YES];
+    }
 }
 @end

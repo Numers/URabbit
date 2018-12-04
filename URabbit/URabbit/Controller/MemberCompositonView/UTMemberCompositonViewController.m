@@ -11,6 +11,7 @@
 #import "Composition.h"
 #import "LJJWaterFlowLayout.h"
 #import "AppStartManager.h"
+#import "UINavigationController+NavigationBar.h"
 
 #import "UTMemberCompositionDetailsViewController.h"
 
@@ -28,19 +29,7 @@ static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositi
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#F8F8F8"]];
-    Member *host = [[AppStartManager shareManager] currentMember];
-    NSString *sqlStirng = nil;
-    if (host) {
-        sqlStirng = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),bg_sqlValue(host.memberId)];
-    }else{
-        sqlStirng = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),bg_sqlValue(NOUSERMemberID)];
-    }
-    NSArray *dataArray = [Composition bg_find:CompositionTableName where:sqlStirng];
-    if (dataArray && dataArray.count > 0) {
-        dataSource = [NSMutableArray arrayWithArray:dataArray];
-    }else{
-        dataSource = [NSMutableArray array];
-    }
+    dataSource = [NSMutableArray array];
     LJJWaterFlowLayout *layout = [[LJJWaterFlowLayout alloc] init];
     layout.delegate = self;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -73,7 +62,29 @@ static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositi
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setStatusBarStyle:UIStatusBarStyleDefault];
     [self.navigationItem setTitle:@"我的作品"];
+    [self searchCompostions];
+}
+
+-(void)searchCompostions
+{
+    if (dataSource && dataSource.count > 0) {
+        [dataSource removeAllObjects];
+    }
+    
+    Member *host = [[AppStartManager shareManager] currentMember];
+    NSString *sqlStirng = nil;
+    if (host) {
+        sqlStirng = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),bg_sqlValue(host.memberId)];
+    }else{
+        sqlStirng = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"memberId"),bg_sqlValue(NOUSERMemberID)];
+    }
+    NSArray *dataArray = [Composition bg_find:CompositionTableName where:sqlStirng];
+    if (dataArray && dataArray.count > 0) {
+        [dataSource addObjectsFromArray:dataArray];
+        [collectionView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

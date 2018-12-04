@@ -13,8 +13,10 @@
 #import "UTHomeTemplateView.h"
 #import "HomeTemplate.h"
 #import "UTDownloadTemplateViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 #import "UTHomeNetworkAPIManager.h"
+#import "UINavigationController+NavigationBar.h"
 #define ChoosenTemplateViewIdentify @"jingxuan"
 #define LatestTemplateViewIdentify @"latest"
 @interface UTHomeViewController ()<HomeTemplateViewProtocol>
@@ -118,6 +120,9 @@
     
     [self addConstraints];
     [self setScrollViewContentSize];
+    _scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self requestData];
+    }];
     [self requestData];
 }
 
@@ -125,6 +130,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -204,6 +210,13 @@
     [self requestLatestTemplateList];
 }
 
+-(void)endRefresh
+{
+    if ([_scrollView.mj_header isRefreshing]) {
+        [_scrollView.mj_header endRefreshing];
+    }
+}
+
 -(void)requestWithRecommendList
 {
     if (recommendList.count > 0) {
@@ -256,6 +269,7 @@
             }
             [latestTemplateView setDatasource:latestTemplateList];
         }
+        [self endRefresh];
     }];
 }
 #pragma -mark HomeTemplateViewProtocol

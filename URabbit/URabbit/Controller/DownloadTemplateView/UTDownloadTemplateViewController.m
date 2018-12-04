@@ -107,21 +107,26 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationItem setTitle:currentHomeTemplate.title];
     [self.navigationController setTranslucentView];
+    
+    [self setRightItems];
+}
+
+-(void)setRightItems
+{
     UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"share_button"] style:UIBarButtonItemStylePlain target:self action:@selector(clickShareButton)];
     
     UIBarButtonItem *rightItem2;
     Member *host = [[AppStartManager shareManager] currentMember];
     if (host && [host.saveTemplates containsObject:@(currentHomeTemplate.templateId)]) {
-        UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"collectionImage"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
+        rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"collectionImage"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
         rightItem2.imageInsets = UIEdgeInsetsMake(0, 15, 0, -10);
         isSaved = YES;
     }else{
-        UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"unCollectionImage"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
+        rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"unCollectionImage"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
         rightItem2.imageInsets = UIEdgeInsetsMake(0, 15, 0, -10);
         isSaved = NO;
     }
     [self.navigationItem setRightBarButtonItems:@[rightItem1,rightItem2]];
-    
 }
 
 -(void)requestTemplateInfo
@@ -361,6 +366,7 @@
                 [AppUtils showInfo:@"取消成功"];
                 isSaved = NO;
                 [host.saveTemplates removeObject:@(currentHomeTemplate.templateId)];
+                [self setRightItems];
             }
         }];
     }else{
@@ -369,6 +375,7 @@
                 [AppUtils showInfo:@"收藏成功"];
                 isSaved = YES;
                 [host.saveTemplates addObject:@(currentHomeTemplate.templateId)];
+                [self setRightItems];
             }
         }];
     }

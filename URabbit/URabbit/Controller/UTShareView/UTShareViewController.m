@@ -42,30 +42,42 @@
 
 -(IBAction)clickWeixinBtn:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(sendShareToWeixin)]) {
-        [self.delegate sendShareToWeixin];
-    }
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(sendShareToWeixin)]) {
+            [self.delegate sendShareToWeixin];
+        }
+    }];
 }
 
 -(IBAction)clickFriendBtn:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(sendShareToFriend)]) {
-        [self.delegate sendShareToFriend];
-    }
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(sendShareToFriend)]) {
+            [self.delegate sendShareToFriend];
+        }
+    }];
 }
 
 -(IBAction)clickQQBtn:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(sendShareToQQ)]) {
-        [self.delegate sendShareToQQ];
-    }
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(sendShareToQQ)]) {
+            [self.delegate sendShareToQQ];
+        }
+    }];
 }
 
 -(IBAction)clickWeiboBtn:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(sendShareToWeibo)]) {
-        [self.delegate sendShareToWeibo];
-    }
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(sendShareToWeibo)]) {
+            [self.delegate sendShareToWeibo];
+        }
+    }];
 }
 
 -(IBAction)clickCancelBtn:(id)sender

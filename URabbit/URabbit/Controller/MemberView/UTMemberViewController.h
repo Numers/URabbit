@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class Member,VIPPrice;
+@protocol MemberViewProtocol <NSObject>
+-(void)returnContentSizeHeight:(CGFloat)height;
+-(void)presentLoginView;
+@end
 @interface UTMemberViewController : UIViewController
-
+@property(nonatomic, weak) id<MemberViewProtocol> delegate;
+-(CGFloat)returnMemberContentHeight;
+-(VIPPrice *)selectedVipPrice;
+-(void)setCurrentMember:(Member *)member;
 @end
