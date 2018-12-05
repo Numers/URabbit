@@ -100,6 +100,7 @@
             
         }];
     }else{
+        [_scrollView setContentOffset:CGPointZero animated:NO];
         [self presentLoginView];
     }
 }

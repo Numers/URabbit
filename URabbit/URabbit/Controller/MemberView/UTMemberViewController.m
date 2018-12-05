@@ -90,7 +90,8 @@ static NSString *memberTableViewCellIdentify = @"MemberTableViewCellIdentify";
         [_headImageView sd_setImageWithURL:[NSURL URLWithString:member.headIcon] placeholderImage:[UIImage imageNamed:@"headIconImage"]];
         [_nickNameLabel setText:member.nickName];
         if ([member isVip]) {
-            [_isMemeberLabel setText:@"已开通VIP会员"];
+            NSString *expireTime = [AppUtils getDateFormatterFromTime:member.vipExpire formatter:@"YYYY-MM-dd"];
+            [_isMemeberLabel setText:[NSString stringWithFormat:@"已开通VIP会员 有效期至%@",expireTime]];
         }else{
             [_isMemeberLabel setText:@"未开通VIP会员"];
         }

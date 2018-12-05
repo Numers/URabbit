@@ -940,6 +940,15 @@
     
 }
 
++(NSString *)getDateFormatterFromTime:(NSTimeInterval)timeInterval formatter:(NSString *)formatter
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:formatter];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    return dateString;
+}
+
 + (NSArray *)cdi_imagesWithGif:(NSString *)gifName {
     NSURL *fileUrl = [NSURL fileURLWithPath:gifName];
     CGImageSourceRef gifSource = CGImageSourceCreateWithURL((CFURLRef)fileUrl, NULL);

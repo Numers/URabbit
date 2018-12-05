@@ -344,6 +344,8 @@
  */
 +(NSString *)getMMSSFromSS:(double)totalTime;
 
++(NSString *)getDateFormatterFromTime:(NSTimeInterval)timeInterval formatter:(NSString *)formatter;
+
 
 /**
  将gif解成图片数组

@@ -98,9 +98,6 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
 //                }
 //                    break;
                 case 0:
-                    
-                    break;
-                case 1:
                 {
                     [self deleteCache];
                 }
@@ -124,9 +121,6 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
                 }
                     break;
                 case 2:
-                    
-                    break;
-                case 3:
                     
                     break;
                 default:
@@ -167,10 +161,10 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
     NSInteger numbers = 0;
     switch (section) {
         case 0:
-            numbers = 2;
+            numbers = 1;
             break;
         case 1:
-            numbers = 4;
+            numbers = 3;
             break;
         case 2:
         {
@@ -219,10 +213,10 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
 //                case 0:
 //                    [cell setLeftTitle:@"个人信息" rightTitle:@"" isShowBottomLine:YES];
 //                    break;
-                case 0:
-                    [cell setLeftTitle:@"账号绑定" rightTitle:@"" isShowBottomLine:YES];
-                    break;
-                case 1:{
+//                case 0:
+//                    [cell setLeftTitle:@"账号绑定" rightTitle:@"" isShowBottomLine:YES];
+//                    break;
+                case 0:{
                     NSString * cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
                     float size = [AppUtils folderSizeAtPath:cacheDir];
                     [cell setLeftTitle:@"清理缓存" rightTitle:[NSString stringWithFormat:@"%.2fM",size] isShowBottomLine:NO];
@@ -243,11 +237,11 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
                     [cell setLeftTitle:@"关于我们" rightTitle:@"" isShowBottomLine:YES];
                     break;
                 case 2:
-                    [cell setLeftTitle:@"帮助中心" rightTitle:@"" isShowBottomLine:YES];
+                    [cell setLeftTitle:@"帮助中心" rightTitle:@"" isShowBottomLine:NO];
                     break;
-                case 3:
-                    [cell setLeftTitle:@"问题与反馈" rightTitle:@"" isShowBottomLine:YES];
-                    break;
+//                case 3:
+//                    [cell setLeftTitle:@"问题与反馈" rightTitle:@"" isShowBottomLine:YES];
+//                    break;
                 default:
                     break;
             }
