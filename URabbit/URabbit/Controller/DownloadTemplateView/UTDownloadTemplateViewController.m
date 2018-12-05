@@ -118,7 +118,7 @@
     UIBarButtonItem *rightItem2;
     Member *host = [[AppStartManager shareManager] currentMember];
     if (host && [host.saveTemplates containsObject:@(currentHomeTemplate.templateId)]) {
-        rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"collectionImage"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
+        rightItem2 = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"collectionImage"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
         rightItem2.imageInsets = UIEdgeInsetsMake(0, 15, 0, -10);
         isSaved = YES;
     }else{
@@ -360,12 +360,20 @@
 -(void)clickCollectionButton
 {
     Member *host = [[AppStartManager shareManager] currentMember];
+    if (host == nil) {
+        UTLoginScrollViewController *loginScrollVC = [[UTLoginScrollViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginScrollVC];
+        [self presentViewController:nav animated:YES completion:nil];
+        return;
+    }
+    
     if (isSaved) {
         [[UTUserSaveNetworkAPIManager shareManager] deleteTemplateWithTemplateId:currentHomeTemplate.templateId callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
             if ([code integerValue] == 200) {
                 [AppUtils showInfo:@"取消成功"];
                 isSaved = NO;
                 [host.saveTemplates removeObject:@(currentHomeTemplate.templateId)];
+                [[AppStartManager shareManager] setMember:host];
                 [self setRightItems];
             }
         }];
@@ -375,6 +383,7 @@
                 [AppUtils showInfo:@"收藏成功"];
                 isSaved = YES;
                 [host.saveTemplates addObject:@(currentHomeTemplate.templateId)];
+                [[AppStartManager shareManager] setMember:host];
                 [self setRightItems];
             }
         }];

@@ -29,7 +29,7 @@ static NetWorkManager *scNetWorkManager;
     
     // 2.设置请求头
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[AppUtils token] forHTTPHeaderField:@"token"];
+    [request setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
     [request setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
 
     
@@ -65,7 +65,7 @@ static NetWorkManager *scNetWorkManager;
     
     // 2.设置请求头
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[AppUtils token] forHTTPHeaderField:@"token"];
+    [request setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
     [request setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
     
     
@@ -111,7 +111,7 @@ static NetWorkManager *scNetWorkManager;
     
     // 2.设置请求头
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[AppUtils token] forHTTPHeaderField:@"token"];
+    [request setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
     [request setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
     
     
@@ -141,7 +141,7 @@ static NetWorkManager *scNetWorkManager;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:TimeOut];
     [request setHTTPMethod:@"GET"];//设置请求方式为POST，默认为GET
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[AppUtils token] forHTTPHeaderField:@"token"];
+    [request setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
     [request setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
     
     if (parameters) {
@@ -171,7 +171,7 @@ static NetWorkManager *scNetWorkManager;
     
     // 2.设置请求头
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[AppUtils token] forHTTPHeaderField:@"token"];
+    [request setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
     [request setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
     
     
@@ -231,7 +231,7 @@ static NetWorkManager *scNetWorkManager;
     NSString *url = [NSString stringWithFormat:@"%@%@",API_BASE,uri];
     AFHTTPSessionManager *requestManager = [AFHTTPSessionManager manager];
     [requestManager.requestSerializer setTimeoutInterval:TimeOut];
-    [requestManager.requestSerializer setValue:[AppUtils token] forHTTPHeaderField:@"token"];
+    [requestManager.requestSerializer setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
     [requestManager.requestSerializer setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
     [requestManager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         UIImage *fixImage = [image fixOrientationWithSize:CGSizeMake(96.0f, 96.0f)];
