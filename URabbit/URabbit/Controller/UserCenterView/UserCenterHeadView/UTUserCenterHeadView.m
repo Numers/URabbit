@@ -235,6 +235,8 @@
         
         NSInteger draftCount = [DraftTemplate bg_count:DraftTemplateTableName where:sql];
         [draftNumberLabel setText:[NSString stringWithFormat:@"%ld",draftCount]];
+        
+        [saveNumberLabel setText:[NSString stringWithFormat:@"%ld",member.saveTemplates.count]];
     }else{
         [nickNameLabel setHidden:YES];
         [memberIdLabel setHidden:YES];
