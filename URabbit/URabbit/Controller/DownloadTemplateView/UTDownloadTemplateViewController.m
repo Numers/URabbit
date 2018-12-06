@@ -292,7 +292,7 @@
 
 -(void)downloadFontFile:(void (^)(void))callback
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if(custom.textList.count > 0){
             NSString *fontDirectory = [AppUtils createDirectory:@"UTFont"];
             for (Text *text in custom.textList) {
@@ -300,7 +300,7 @@
                 NSString *fontFileDirectoryPath = [NSString stringWithFormat:@"%@/%@",fontDirectory,relativeFontFileDirectiory];
                 if (![[NSFileManager defaultManager] fileExistsAtPath:fontFileDirectoryPath]) {
                     
-                    [AppUtils showLoadingInView:self.view];
+                    [AppUtils showHudProgress:@"下载字体" forView:self.view];
                     NSString *zipFile = [NSString stringWithFormat:@"%@/%@",fontDirectory,@"fontzip.zip"];
                     NSURL *fileUrl = [NSURL URLWithString:text.fontUrl];
                     NSData *zipData = [NSData dataWithContentsOfURL:fileUrl];
@@ -310,7 +310,7 @@
                         NSLog(@"解压字体文件成功");
                         [[NSFileManager defaultManager] removeItemAtPath:zipFile error:nil];
                     }
-                    [AppUtils hiddenLoadingInView:self.view];
+                    [AppUtils hidenHudProgressForView:self.view];
                 }
             }
             callback();

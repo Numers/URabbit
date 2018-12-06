@@ -43,6 +43,10 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
 @property (nonatomic, strong) AVAssetWriter *assetWriter;
 @property (nonatomic, strong) AVAssetWriterInput *assetWriterVideoInput;
 @property (nonatomic, strong) AVAssetWriterInput *assetWriterAudioInput;
+
+@property (nonatomic, strong) AVAssetWriter *assetAudioWriter;
+@property (nonatomic, strong) AVAssetWriterInput *assetWriterAudioInput2;
+
 @property (nonatomic, strong) NSDictionary *videoCompressionSettings;
 @property (nonatomic, strong) NSDictionary *audioCompressionSettings;
 @property (nonatomic, assign) BOOL canWrite;
@@ -74,6 +78,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
 @property (strong, nonatomic) UIImageView *photoPreviewImageView;                        //相片预览ImageView
 @property (strong, nonatomic) UIView *videoPreviewContainerView;                         //视频预览View
 @property (strong, nonatomic) NSURL *videoURL;                                           //视频文件地址
+@property (strong, nonatomic) NSURL *audioURL;                                           //音频文件地址
 @property (strong, nonatomic) AVPlayerLayer *playerLayer;
 @property (strong, nonatomic) AVPlayer *player;
 @property (strong, nonatomic) AVPlayerItem *playerItem;
@@ -276,7 +281,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
             if (isSuccess)
             {
                 UIImage *image = [weakSelf thumbnailImageRequestWithVideoUrl:outputURL andTime:0.01f];
-                weakSelf.shootCompletionBlock(outputURL, videoDuration, image, nil);
+                weakSelf.shootCompletionBlock(outputURL, videoDuration,weakSelf.audioURL, image, nil);
                 weakSelf.confirmButton.userInteractionEnabled = NO;
             }
             else
@@ -285,6 +290,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
                 [[NSFileManager defaultManager] removeItemAtURL:weakSelf.videoURL error:nil];
                 weakSelf.videoURL = nil;
                 [[NSFileManager defaultManager] removeItemAtURL:outputURL error:nil];
+                [[NSFileManager defaultManager] removeItemAtURL:weakSelf.audioURL error:nil];
             }
             
             
@@ -765,6 +771,10 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
         NSURL *url = [NSURL fileURLWithPath:[weakSelf createVideoFilePath]];
         self.videoURL = url;
         
+        NSString *audioPath = [NSString stringWithFormat:@"%@/originAudio.caf",[self createVideoFolderPath]];
+        NSURL *audioUrl = [NSURL fileURLWithPath:audioPath];
+        self.audioURL = audioUrl;
+        
         [self setUpWriter];
         
         [weakSelf timerFired];
@@ -797,6 +807,15 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
 //            });
         }
         
+        if(_assetAudioWriter && _assetAudioWriter.status == AVAssetWriterStatusWriting)
+        {
+            //            dispatch_async(self.videoQueue, ^{
+            [_assetAudioWriter finishWritingWithCompletionHandler:^{
+                weakSelf.assetWriterAudioInput2 = nil;
+            }];
+            //            });
+        }
+        
         if (timeLength < VIDEO_RECORDER_MIN_TIME)
         {
             return;
@@ -827,6 +846,8 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }
     
     self.assetWriter = [AVAssetWriter assetWriterWithURL:self.videoURL fileType:AVFileTypeMPEG4 error:nil];
+    
+    self.assetAudioWriter = [AVAssetWriter assetWriterWithURL:self.audioURL fileType:AVFileTypeCoreAudioFormat error:nil];
     //写入视频大小
     NSInteger numPixels = kScreenWidth * kScreenHeight;
     
@@ -899,6 +920,26 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     else
     {
         NSLog(@"AssetWriter audioInput Append Failed");
+    }
+    
+    NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
+                              [NSNumber numberWithFloat:22050], AVSampleRateKey,
+                              [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
+                              [NSNumber numberWithInt:16], AVLinearPCMBitDepthKey,
+                              [NSNumber numberWithBool:NO], AVLinearPCMIsNonInterleaved,
+                              [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
+                              [NSNumber numberWithBool:NO], AVLinearPCMIsBigEndianKey,nil];
+    _assetWriterAudioInput2 = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:settings];
+    _assetWriterAudioInput2.expectsMediaDataInRealTime = YES;
+    
+    if ([_assetAudioWriter canAddInput:_assetWriterAudioInput2])
+    {
+        [_assetAudioWriter addInput:_assetWriterAudioInput2];
+    }
+    else
+    {
+        NSLog(@"AssetWriter audioInput append Failed");
     }
     
     _canWrite = NO;
@@ -1313,6 +1354,9 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
             {
                 [self.assetWriter startWriting];
                 [self.assetWriter startSessionAtSourceTime:CMSampleBufferGetPresentationTimeStamp(sampleBuffer)];
+                
+                [self.assetAudioWriter startWriting];
+                [self.assetAudioWriter startSessionAtSourceTime:CMSampleBufferGetPresentationTimeStamp(sampleBuffer)];
                 self.canWrite = YES;
             }
             
@@ -1338,6 +1382,18 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
                 if (self.assetWriterAudioInput.readyForMoreMediaData)
                 {
                     BOOL success = [self.assetWriterAudioInput appendSampleBuffer:sampleBuffer];
+                    if (!success)
+                    {
+                        @synchronized (self)
+                        {
+                            [self stopVideoRecorder];
+                        }
+                    }
+                }
+                
+                if (self.assetWriterAudioInput2.readyForMoreMediaData)
+                {
+                    BOOL success = [self.assetWriterAudioInput2 appendSampleBuffer:sampleBuffer];
                     if (!success)
                     {
                         @synchronized (self)

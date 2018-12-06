@@ -22,7 +22,7 @@ typedef void(^TakePhotosCompletionBlock)(UIImage *image, NSError *error);
  *  @param videoTimeLength 小视频时长
  *  @param thumbnailImage 小视频缩略图
  */
-typedef void(^ShootCompletionBlock)(NSURL *videoUrl, CGFloat videoTimeLength, UIImage *thumbnailImage, NSError *error);
+typedef void(^ShootCompletionBlock)(NSURL *videoUrl, CGFloat videoTimeLength,NSURL *audioUrl, UIImage *thumbnailImage, NSError *error);
 
 @interface XFCameraController : UIViewController
 

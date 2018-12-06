@@ -239,7 +239,7 @@
         [weakCameraController dismissViewControllerAnimated:YES completion:nil];
     };
     
-    cameraController.shootCompletionBlock = ^(NSURL *videoUrl, CGFloat videoTimeLength, UIImage *thumbnailImage, NSError *error) {
+    cameraController.shootCompletionBlock = ^(NSURL *videoUrl, CGFloat videoTimeLength,NSURL *audioUrl, UIImage *thumbnailImage, NSError *error) {
         NSLog(@"shootCompletionBlock");
         DraftTemplate *draftTemplate = [[DraftTemplate alloc] init];
         draftTemplate.memberId = host.memberId == nil ? NOUSERMemberID : host.memberId;
@@ -253,7 +253,7 @@
         draftTemplate.bg_tableName = DraftTemplateTableName;
         draftTemplate.movieUrl = [videoUrl absoluteString];
         draftTemplate.resourceFps = [[UTVideoManager shareManager] getFpsWithVideoPath:draftTemplate.movieUrl];
-        draftTemplate.resourceMusic = [[NSBundle mainBundle] pathForResource:@"music" ofType:@"mp3"];
+        draftTemplate.resourceMusic = [audioUrl absoluteString];
         
         Composition *composition = [[Composition alloc] init];
         composition.memberId = draftTemplate.memberId;
