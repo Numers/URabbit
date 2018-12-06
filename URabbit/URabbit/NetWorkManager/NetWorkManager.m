@@ -90,7 +90,9 @@ static NetWorkManager *scNetWorkManager;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSMutableDictionary *headerDic = [self headerDictionary];
     for (NSString *key in [headerDic allKeys]) {
-        [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        if (![key isEqualToString:@"UT-App-Secret"]) {
+            [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        }
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
@@ -132,7 +134,9 @@ static NetWorkManager *scNetWorkManager;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSMutableDictionary *headerDic = [self headerDictionary];
     for (NSString *key in [headerDic allKeys]) {
-        [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        if (![key isEqualToString:@"UT-App-Secret"]) {
+            [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        }
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
@@ -185,7 +189,9 @@ static NetWorkManager *scNetWorkManager;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSMutableDictionary *headerDic = [self headerDictionary];
     for (NSString *key in [headerDic allKeys]) {
-        [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        if (![key isEqualToString:@"UT-App-Secret"]) {
+            [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        }
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
@@ -222,7 +228,9 @@ static NetWorkManager *scNetWorkManager;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSMutableDictionary *headerDic = [self headerDictionary];
     for (NSString *key in [headerDic allKeys]) {
-        [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        if (![key isEqualToString:@"UT-App-Secret"]) {
+            [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        }
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
@@ -259,7 +267,9 @@ static NetWorkManager *scNetWorkManager;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSMutableDictionary *headerDic = [self headerDictionary];
     for (NSString *key in [headerDic allKeys]) {
-        [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        if (![key isEqualToString:@"UT-App-Secret"]) {
+            [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        }
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
@@ -329,7 +339,9 @@ static NetWorkManager *scNetWorkManager;
     [requestManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSMutableDictionary *headerDic = [self headerDictionary];
     for (NSString *key in [headerDic allKeys]) {
-        [requestManager.requestSerializer setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        if (![key isEqualToString:@"UT-App-Secret"]) {
+            [requestManager.requestSerializer setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+        }
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
