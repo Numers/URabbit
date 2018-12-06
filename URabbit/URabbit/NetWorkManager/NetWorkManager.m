@@ -96,7 +96,7 @@ static NetWorkManager *scNetWorkManager;
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
-        [request setValue:signature forHTTPHeaderField:@"UT_Signature"];
+        [request setValue:signature forHTTPHeaderField:@"UT-Signature"];
     }
     
     //    NSData --> NSDictionary
@@ -140,7 +140,7 @@ static NetWorkManager *scNetWorkManager;
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
-        [request setValue:signature forHTTPHeaderField:@"UT_Signature"];
+        [request setValue:signature forHTTPHeaderField:@"UT-Signature"];
     }
     
     
@@ -195,7 +195,7 @@ static NetWorkManager *scNetWorkManager;
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
-        [request setValue:signature forHTTPHeaderField:@"UT_Signature"];
+        [request setValue:signature forHTTPHeaderField:@"UT-Signature"];
     }
     
     
@@ -234,7 +234,7 @@ static NetWorkManager *scNetWorkManager;
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
-        [request setValue:signature forHTTPHeaderField:@"UT_Signature"];
+        [request setValue:signature forHTTPHeaderField:@"UT-Signature"];
     }
     
     if (parameters) {
@@ -273,7 +273,7 @@ static NetWorkManager *scNetWorkManager;
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
-        [request setValue:signature forHTTPHeaderField:@"UT_Signature"];
+        [request setValue:signature forHTTPHeaderField:@"UT-Signature"];
     }
     
     
@@ -345,7 +345,7 @@ static NetWorkManager *scNetWorkManager;
     }
     NSString *signature = [self signatureStringWithDictionary:headerDic];
     if (signature) {
-        [requestManager.requestSerializer setValue:signature forHTTPHeaderField:@"UT_Signature"];
+        [requestManager.requestSerializer setValue:signature forHTTPHeaderField:@"UT-Signature"];
     }
     
     [requestManager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
