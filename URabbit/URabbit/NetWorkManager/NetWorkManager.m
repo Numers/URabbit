@@ -8,6 +8,7 @@
 
 #import "NetWorkManager.h"
 #import "UIImage+FixImage.h"
+#import "RSA.h"
 static NetWorkManager *scNetWorkManager;
 @implementation NetWorkManager
 +(id)defaultManager
@@ -21,17 +22,80 @@ static NetWorkManager *scNetWorkManager;
     return scNetWorkManager;
 }
 
+-(NSMutableDictionary *)headerDictionary
+{
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970] * 1000;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    NSString *token = [AppUtils token];
+    if (![AppUtils isNullStr:token]) {
+        [dic setObject:[AppUtils token] forKey:@"Auth-Token"];
+    }
+    [dic setObject:UTAppKey forKey:@"UT-App-Key"];
+    [dic setObject:@"ios" forKey:@"User-Agent-Platform"];
+    [dic setObject:UTAppSecret forKey:@"UT-App-Secret"];
+    [dic setObject:[NSString stringWithFormat:@"%.0f",now] forKey:@"UT-Timestamp"];
+    return dic;
+}
+
+-(NSString *)md5Pvk
+{
+    return @"13A7EF3DB15B7DF96607F204D197625F";
+}
+
+-(NSData *)decodeData:(NSData *)data{
+    if (data == nil || data.length==0) {
+        return data;
+    }
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if ([str hasPrefix:@"{"] && [str hasSuffix:@"}"]) {
+        return data;
+    }
+    NSString *ret = [[NSString alloc ] initWithData:[[NSData alloc] initWithBase64EncodedData:data options:NSDataBase64DecodingIgnoreUnknownCharacters] encoding:NSUTF8StringEncoding];
+    if (ret.length == 0) {
+        return data;
+    }
+    ret = [ret stringByReplacingOccurrencesOfString:[self md5Pvk] withString:@""];
+    ret = [RSA decryptString:ret privateKey:UTRSAPublicKey];
+    NSData *retData = [ret dataUsingEncoding:NSUTF8StringEncoding];
+    return retData;
+}
+
+-(NSString *)signatureStringWithDictionary:(NSDictionary *)dic
+{
+    NSArray *keys = [dic allKeys];
+    NSMutableString *containerString = [[NSMutableString alloc] initWithString:@"{"];
+    NSArray *sortArray = [keys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [obj1 compare:obj2 options:NSNumericSearch|
+                NSWidthInsensitiveSearch|NSForcedOrderingSearch];
+    }];
+    for (NSString *key in sortArray) {
+        [containerString appendFormat:@"\"%@\":\"%@\"",key,[dic objectForKey:key]];
+        if (![key isEqualToString:[sortArray lastObject]]) {
+            [containerString appendString:@","];
+        }
+    }
+    [containerString appendString:@"}"];
+    NSString *signature = [AppUtils getMd5_32Bit:containerString];
+    return signature;
+}
+
 -(void)post:(NSString *)uri parameters:(id)parameters success:(ApiSuccessCallback)success failed:(ApiFailedCallback)failed
 {
     NSString *url = [NSString stringWithFormat:@"%@%@",API_BASE,uri];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:TimeOut];
     request.HTTPMethod = @"POST";
     
+    
     // 2.设置请求头
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
-    [request setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
-
+    NSMutableDictionary *headerDic = [self headerDictionary];
+    for (NSString *key in [headerDic allKeys]) {
+        [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+    }
+    NSString *signature = [self signatureStringWithDictionary:headerDic];
+    if (signature) {
+        [request setValue:signature forHTTPHeaderField:@"UT_Signature"];
+    }
     
     //    NSData --> NSDictionary
          // NSDictionary --> NSData
@@ -48,7 +112,8 @@ static NetWorkManager *scNetWorkManager;
             NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
             NSInteger statusCode =  res.statusCode;
             if (data) {
-                id obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                NSData *decodeData = [self decodeData:data];
+                id obj = [NSJSONSerialization JSONObjectWithData:decodeData options:NSJSONReadingMutableContainers error:nil];
                 success(@(statusCode),obj);
             }else{
                 success(@(statusCode),nil);
@@ -65,8 +130,14 @@ static NetWorkManager *scNetWorkManager;
     
     // 2.设置请求头
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
-    [request setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
+    NSMutableDictionary *headerDic = [self headerDictionary];
+    for (NSString *key in [headerDic allKeys]) {
+        [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+    }
+    NSString *signature = [self signatureStringWithDictionary:headerDic];
+    if (signature) {
+        [request setValue:signature forHTTPHeaderField:@"UT_Signature"];
+    }
     
     
     //    NSData --> NSDictionary
@@ -83,7 +154,8 @@ static NetWorkManager *scNetWorkManager;
         failed(error);
     }else{
         if (received) {
-            id obj = [NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingMutableContainers error:nil];
+            NSData *decodeData = [self decodeData:received];
+            id obj = [NSJSONSerialization JSONObjectWithData:decodeData options:NSJSONReadingMutableContainers error:nil];
             success(nil,obj);
         }else{
             success(nil,nil);
@@ -111,8 +183,14 @@ static NetWorkManager *scNetWorkManager;
     
     // 2.设置请求头
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
-    [request setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
+    NSMutableDictionary *headerDic = [self headerDictionary];
+    for (NSString *key in [headerDic allKeys]) {
+        [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+    }
+    NSString *signature = [self signatureStringWithDictionary:headerDic];
+    if (signature) {
+        [request setValue:signature forHTTPHeaderField:@"UT_Signature"];
+    }
     
     
     // 4.发送请求
@@ -123,7 +201,8 @@ static NetWorkManager *scNetWorkManager;
             NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
             NSInteger statusCode =  res.statusCode;
             if (data) {
-                id obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                NSData *decodeData = [self decodeData:data];
+                id obj = [NSJSONSerialization JSONObjectWithData:decodeData options:NSJSONReadingMutableContainers error:nil];
                 success(@(statusCode),obj);
             }else{
                 success(@(statusCode),nil);
@@ -139,10 +218,16 @@ static NetWorkManager *scNetWorkManager;
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",API_BASE,uri]];
     //第二步，创建请求
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:TimeOut];
-    [request setHTTPMethod:@"GET"];//设置请求方式为POST，默认为GET
+    // 2.设置请求头
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
-    [request setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
+    NSMutableDictionary *headerDic = [self headerDictionary];
+    for (NSString *key in [headerDic allKeys]) {
+        [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+    }
+    NSString *signature = [self signatureStringWithDictionary:headerDic];
+    if (signature) {
+        [request setValue:signature forHTTPHeaderField:@"UT_Signature"];
+    }
     
     if (parameters) {
         NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
@@ -155,7 +240,8 @@ static NetWorkManager *scNetWorkManager;
         failed(error);
     }else{
         if (received) {
-            id obj = [NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingMutableContainers error:nil];
+            NSData *decodeData = [self decodeData:received];
+            id obj = [NSJSONSerialization JSONObjectWithData:decodeData options:NSJSONReadingMutableContainers error:nil];
             success(nil,obj);
         }else{
             success(nil,nil);
@@ -171,8 +257,14 @@ static NetWorkManager *scNetWorkManager;
     
     // 2.设置请求头
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
-    [request setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
+    NSMutableDictionary *headerDic = [self headerDictionary];
+    for (NSString *key in [headerDic allKeys]) {
+        [request setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+    }
+    NSString *signature = [self signatureStringWithDictionary:headerDic];
+    if (signature) {
+        [request setValue:signature forHTTPHeaderField:@"UT_Signature"];
+    }
     
     
     //    NSData --> NSDictionary
@@ -190,7 +282,8 @@ static NetWorkManager *scNetWorkManager;
             NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
             NSInteger statusCode =  res.statusCode;
             if (data) {
-                id obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                NSData *decodeData = [self decodeData:data];
+                id obj = [NSJSONSerialization JSONObjectWithData:decodeData options:NSJSONReadingMutableContainers error:nil];
                 success(@(statusCode),obj);
             }else{
                 success(@(statusCode),nil);
@@ -231,8 +324,18 @@ static NetWorkManager *scNetWorkManager;
     NSString *url = [NSString stringWithFormat:@"%@%@",API_BASE,uri];
     AFHTTPSessionManager *requestManager = [AFHTTPSessionManager manager];
     [requestManager.requestSerializer setTimeoutInterval:TimeOut];
-    [requestManager.requestSerializer setValue:[AppUtils token] forHTTPHeaderField:@"Auth-Token"];
-    [requestManager.requestSerializer setValue:SignatureAPPKey forHTTPHeaderField:@"Glp-Appid"];
+    
+    // 2.设置请求头
+    [requestManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSMutableDictionary *headerDic = [self headerDictionary];
+    for (NSString *key in [headerDic allKeys]) {
+        [requestManager.requestSerializer setValue:[headerDic objectForKey:key] forHTTPHeaderField:key];
+    }
+    NSString *signature = [self signatureStringWithDictionary:headerDic];
+    if (signature) {
+        [requestManager.requestSerializer setValue:signature forHTTPHeaderField:@"UT_Signature"];
+    }
+    
     [requestManager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         UIImage *fixImage = [image fixOrientationWithSize:CGSizeMake(96.0f, 96.0f)];
         NSData *imageData = UIImagePNGRepresentation(fixImage);
@@ -244,7 +347,9 @@ static NetWorkManager *scNetWorkManager;
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-        success(@(response.statusCode),responseObject);
+        NSData *decodeData = [self decodeData:responseObject];
+        id obj = [NSJSONSerialization JSONObjectWithData:decodeData options:NSJSONReadingMutableContainers error:nil];
+        success(@(response.statusCode),decodeData);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failed(error);
     }];

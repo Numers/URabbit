@@ -34,7 +34,7 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#F8F8F8"]];
-    currentPage = 0;
+    currentPage = 1;
     currentSize = 20;
     hasMore = YES;
     dataSource = [NSMutableArray array];
@@ -56,6 +56,10 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     
     collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refreshPageData];
+    }];
+    
+    collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self requestUserSavedTemplate];
     }];
 
     [self refreshPageData];
@@ -87,11 +91,9 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
 
 -(void)refreshPageData
 {
-    currentPage = 0;
+    currentPage = 1;
     hasMore = YES;
-    collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self requestUserSavedTemplate];
-    }];
+    [collectionView.mj_footer resetNoMoreData];
     [self requestUserSavedTemplate];
 }
 
@@ -107,12 +109,18 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
         }else{
             [collectionView.mj_footer endRefreshingWithNoMoreData];
         }
+    }else{
+        if (hasMore) {
+
+        }else{
+            [collectionView.mj_footer endRefreshingWithNoMoreData];
+        }
     }
 }
 
 -(void)requestUserSavedTemplate
 {
-    if (currentPage == 0) {
+    if (currentPage == 1) {
         if (dataSource.count > 0) {
             [dataSource removeAllObjects];
         }
