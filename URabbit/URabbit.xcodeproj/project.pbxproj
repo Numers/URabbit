@@ -13,6 +13,8 @@
 		04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9121A1123400F206E3 /* UTRegisterFirstStepViewController.m */; };
 		04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */; };
 		04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */; };
+		1421EB7521BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1421EB7421BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.m */; };
+		1421EB7921BA52A600BCCD7B /* UTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1421EB7821BA52A600BCCD7B /* UTWebViewController.m */; };
 		1422A54721AF94F40025D859 /* AnimationForText.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422A54621AF94F40025D859 /* AnimationForText.m */; };
 		1422A54A21AFD8760025D859 /* FrameAxios.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422A54921AFD8760025D859 /* FrameAxios.m */; };
 		14239B6F2172F9FA0033FB7D /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14239B6E2172F9FA0033FB7D /* libGPUImage.a */; };
@@ -32,7 +34,6 @@
 		14254EF721B0EB18003C1E89 /* XFCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14254EF321B0EB18003C1E89 /* XFCameraController.m */; };
 		14254EF821B0EB18003C1E89 /* XFCameraController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14254EF421B0EB18003C1E89 /* XFCameraController.xib */; };
 		14254EFC21B0ED9F003C1E89 /* XFPhotoLibraryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14254EFB21B0ED9E003C1E89 /* XFPhotoLibraryManager.m */; };
-		14254F0721B111DC003C1E89 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 14254F0221B111DC003C1E89 /* music.mp3 */; };
 		1425A8B921A828A1007A0C2E /* UTUserCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8B821A828A1007A0C2E /* UTUserCenterTableViewCell.m */; };
 		1425A8BD21A8503F007A0C2E /* UTMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BC21A8503F007A0C2E /* UTMemberViewController.m */; };
 		1425A8C021A85976007A0C2E /* UTMemberScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425A8BF21A85976007A0C2E /* UTMemberScrollViewController.m */; };
@@ -203,6 +204,10 @@
 		04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterSecondStepViewController.m; sourceTree = "<group>"; };
 		04372B9621A1134100F206E3 /* UTRegisterThirdStepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTRegisterThirdStepViewController.h; sourceTree = "<group>"; };
 		04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterThirdStepViewController.m; sourceTree = "<group>"; };
+		1421EB7321BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTVideoComposeNetworkAPIManager.h; sourceTree = "<group>"; };
+		1421EB7421BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTVideoComposeNetworkAPIManager.m; sourceTree = "<group>"; };
+		1421EB7721BA52A600BCCD7B /* UTWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTWebViewController.h; sourceTree = "<group>"; };
+		1421EB7821BA52A600BCCD7B /* UTWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTWebViewController.m; sourceTree = "<group>"; };
 		1422A54521AF94F40025D859 /* AnimationForText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationForText.h; sourceTree = "<group>"; };
 		1422A54621AF94F40025D859 /* AnimationForText.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationForText.m; sourceTree = "<group>"; };
 		1422A54821AFD8760025D859 /* FrameAxios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameAxios.h; sourceTree = "<group>"; };
@@ -406,7 +411,6 @@
 		14254EF521B0EB18003C1E89 /* XFCameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFCameraController.h; sourceTree = "<group>"; };
 		14254EFA21B0ED9E003C1E89 /* XFPhotoLibraryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFPhotoLibraryManager.h; sourceTree = "<group>"; };
 		14254EFB21B0ED9E003C1E89 /* XFPhotoLibraryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFPhotoLibraryManager.m; sourceTree = "<group>"; };
-		14254F0221B111DC003C1E89 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		1425A8B721A828A1007A0C2E /* UTUserCenterTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTUserCenterTableViewCell.h; sourceTree = "<group>"; };
 		1425A8B821A828A1007A0C2E /* UTUserCenterTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTUserCenterTableViewCell.m; sourceTree = "<group>"; };
 		1425A8BB21A8503F007A0C2E /* UTMemberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTMemberViewController.h; sourceTree = "<group>"; };
@@ -773,6 +777,15 @@
 			path = RegisterView;
 			sourceTree = "<group>";
 		};
+		1421EB7621BA524B00BCCD7B /* UTWebView */ = {
+			isa = PBXGroup;
+			children = (
+				1421EB7721BA52A600BCCD7B /* UTWebViewController.h */,
+				1421EB7821BA52A600BCCD7B /* UTWebViewController.m */,
+			);
+			path = UTWebView;
+			sourceTree = "<group>";
+		};
 		14239ABD2172F9FA0033FB7D /* GPUImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1031,7 +1044,6 @@
 		14254EFE21B111DC003C1E89 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				14254F0221B111DC003C1E89 /* music.mp3 */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1379,6 +1391,8 @@
 				142CE2D221AA80F300B17FBA /* UTLoginNetworkAPIManager.m */,
 				1473D5BF21B676F900AB946D /* UTUserVipNetworkAPIManager.h */,
 				1473D5C021B676F900AB946D /* UTUserVipNetworkAPIManager.m */,
+				1421EB7321BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.h */,
+				1421EB7421BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.m */,
 			);
 			path = NetWorkAPIManager;
 			sourceTree = "<group>";
@@ -1629,6 +1643,7 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1421EB7621BA524B00BCCD7B /* UTWebView */,
 				14E4442A21B6B740008062EF /* AboutView */,
 				1423E29F21ACE6B5005A9F6E /* DraftView */,
 				142CE2C621AA4A1F00B17FBA /* UserDownloadedView */,
@@ -2087,7 +2102,6 @@
 				145B613C216F27B700DA950E /* Assets.xcassets in Resources */,
 				145B613A216F27B600DA950E /* Main.storyboard in Resources */,
 				14254EF821B0EB18003C1E89 /* XFCameraController.xib in Resources */,
-				14254F0721B111DC003C1E89 /* music.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2102,14 +2116,17 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-URabbit/Pods-URabbit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/ARChromeActivity/ARChromeActivity.framework",
 				"${BUILT_PRODUCTS_DIR}/BGFMDB/BGFMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/DMProgressHUD/DMProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/IconFont/IconFont.framework",
+				"${BUILT_PRODUCTS_DIR}/KINWebBrowser/KINWebBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
+				"${BUILT_PRODUCTS_DIR}/TUSafariActivity/TUSafariActivity.framework",
 				"${BUILT_PRODUCTS_DIR}/WZLBadge/WZLBadge.framework",
 				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
 				"${BUILT_PRODUCTS_DIR}/iCards/iCards.framework",
@@ -2117,14 +2134,17 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ARChromeActivity.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BGFMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DMProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IconFont.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KINWebBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TUSafariActivity.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZLBadge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCards.framework",
@@ -2195,6 +2215,7 @@
 				1458037E216F2BCC006BB33D /* AppUtils.m in Sources */,
 				14262A48218C45F000768E6A /* LJJWaterFlowLayout.m in Sources */,
 				145803DF21708433001B9535 /* VideoCompose.m in Sources */,
+				1421EB7521BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.m in Sources */,
 				14482F0A21A3BEB800D640F1 /* AnimationSwitch.m in Sources */,
 				148D0F72219BF5F500B4E59A /* ComposeRotationStrategy.m in Sources */,
 				142AC2FD21AC393900368ABE /* SelVideoPlayer.m in Sources */,
@@ -2244,6 +2265,7 @@
 				14580391216F2D6F006BB33D /* UIImage+FixImage.m in Sources */,
 				148D0F7B219D1FF800B4E59A /* ComposeAnimationStrategy.m in Sources */,
 				1425A8E321A9AB94007A0C2E /* UTEditUserInfoViewController.m in Sources */,
+				1421EB7921BA52A600BCCD7B /* UTWebViewController.m in Sources */,
 				14E4442D21B6B759008062EF /* UTAboutViewController.m in Sources */,
 				14678FFB218EE07500CD7F4B /* HomeTemplate.m in Sources */,
 				144357C121A6ACDA00FEA9AE /* PSTCollectionViewFlowLayout.m in Sources */,

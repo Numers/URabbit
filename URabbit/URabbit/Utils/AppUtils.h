@@ -21,6 +21,16 @@
 
 
 /**
+ 版本比较
+
+ @param version1 版本号1
+ @param version2 版本号2
+ @return 1/version1 大于 version2  -1/version1 小于 version2 0 / 相等
+ */
++(NSInteger)compareVersion:(NSString *)version1 to:(NSString *)version2;
+
+
+/**
  返回当前app Build版本号
 
  @return app Build版本号

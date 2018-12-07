@@ -17,6 +17,7 @@
         recommendImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         [recommendImageView.layer setCornerRadius:5];
         [recommendImageView.layer masksToBounds];
+        [recommendImageView setContentMode:UIViewContentModeScaleAspectFit];
         [self addSubview:recommendImageView];
     }
     return self;

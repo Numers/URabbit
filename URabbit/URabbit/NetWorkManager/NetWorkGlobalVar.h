@@ -32,8 +32,12 @@
 #define UT_VIPBuy_API @"/vip/buy"
 /*******************************************************/
 
+/************************音乐列表API***********************/
+#define UT_RecommendMusicList_API @"/music/list/{templetId}}"
+/*******************************************************/
+
 /************************UpdateVersionAPI***********************/
-#define UP_UpdateVersion_API @"/account/app/version/latest"
+#define UT_UpdateVersion_API @"/config/app/version"
 /*******************************************************/
 
 /************************UploadRegIdAPI***********************/

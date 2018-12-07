@@ -24,26 +24,35 @@ static GeneralManager *generalManager;
     return generalManager;
 }
 
+-(void)jumpToDownloadHtml
+{
+    if (downloadHtml) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downloadHtml] options:@{UIApplicationOpenURLOptionsSourceApplicationKey : @YES} completionHandler:nil];
+        });
+    }
+}
+
 -(void)getNewAppVersion
 {
-    return;
-    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"IOS",@"type", nil];
-    [[NetWorkRequestManager shareManager] get:UP_UpdateVersion_API parameters:param callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+    [[NetWorkRequestManager shareManager] get:UT_UpdateVersion_API parameters:nil callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         if (data) {
-            NSInteger versionCode = [[data objectForKey:@"versionCode"] integerValue];
-            if (Version_Code < versionCode) {
-                NSString *link = [data objectForKey:@"downOutRul"];
-                NSString *downloadHtml = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=%@",[AppUtils URLEncodedString:link]];
-                NSString *log = [data objectForKey:@"changelog"];
+            NSString *newVersion = [data objectForKey:@"version"];
+            NSString *currentVersion = [AppUtils appVersion];
+            if ([AppUtils compareVersion:currentVersion to:newVersion] < 0) {
+                downloadHtml = [data objectForKey:@"url"];
+//                NSString *downloadHtml = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=%@",[AppUtils URLEncodedString:link]];
+//                NSString *downloadHtml = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id1329918420?mt=8"];
+                NSString *log = [data objectForKey:@"description"];
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:log preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *comfirmAction = [UIAlertAction actionWithTitle:@"去更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downloadHtml]];
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downloadHtml] options:@{UIApplicationOpenURLOptionsSourceApplicationKey : @YES} completionHandler:nil];
                     });
                 }];
                 [alert addAction:comfirmAction];
-                NSInteger lastVersion = [[data objectForKey:@"lastVersionNum"] integerValue];
-                if (Version_Code >= lastVersion) {
+                NSInteger isIgnore = [[data objectForKey:@"isIgnore"] integerValue];
+                if (isIgnore == 1) {
                     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         [(AppDelegate *)[UIApplication sharedApplication].delegate setNeedShowUpdateAlert:NO];
                     }];

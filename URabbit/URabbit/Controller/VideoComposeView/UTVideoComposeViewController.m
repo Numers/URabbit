@@ -18,6 +18,8 @@
 
 #import "UTVideoManager.h"
 #import "UTImageHanderManager.h"
+#import "UTVideoComposeNetworkAPIManager.h"
+#import "NetWorkManager.h"
 #import "UTVideoComposeSuccessViewController.h"
 
 #import "Composition.h"
@@ -404,15 +406,21 @@
 -(NSMutableArray *)requestMusicViewDataSource
 {
     NSMutableArray *filterList = [NSMutableArray array];
-    NSArray *filterNames = @[@"默认"];
-    for (NSInteger i = 0;i < filterNames.count;i++) {
-        NSString *name = [filterNames objectAtIndex:i];
-        MusicInfo *info = [[MusicInfo alloc] init];
-        info.musicName = name;
-        info.musicImage = @"recommend";
-        info.musicUrl = resource.music;
-        [filterList addObject:info];
-    }
+    MusicInfo *info = [[MusicInfo alloc] init];
+    info.musicName = @"默认";
+    info.musicImage = nil;
+    info.musicUrl = resource.music;
+    [filterList addObject:info];
+    [[UTVideoComposeNetworkAPIManager shareManager] requestRecommendMusicWithTemplateId:currentComposition.templateId Callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        NSArray *dataArray = (NSArray *)data;
+        if (dataArray && dataArray.count > 0) {
+            for (NSDictionary *dic in dataArray) {
+                MusicInfo *info = [[MusicInfo alloc] initWithDictionary:dic];
+                [filterList addObject:info];
+            }
+        }
+        [selectView setMusicList:filterList];
+    }];
     return filterList;
 }
 
@@ -423,6 +431,26 @@
 
 -(void)didSelectMusic:(MusicInfo *)info
 {
-    [self changeMusic:resource.music];
+    if ([info.musicUrl isEqualToString:resource.music]) {
+        [self changeMusic:resource.music];
+    }else{
+        NSString *fileName = [AppUtils getMd5_32Bit:info.musicUrl];
+        NSString *directory  = [AppUtils createDirectoryWithUniqueIndex:currentComposition.templateId];
+        NSString *path = [NSString stringWithFormat:@"%@/%@",directory,fileName];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            [self changeMusic:path];
+        }else{
+            [AppUtils showHudProgress:@"下载音乐" forView:self.view];
+            [[NetWorkManager defaultManager] downloadFileWithOption:nil withInferface:info.musicUrl savedPath:path downloadSuccess:^(NSURL *filePath) {
+                [AppUtils hidenHudProgressForView:self.view];
+                [self changeMusic:path];
+            } downloadFailure:^(NSError *error) {
+                [AppUtils hidenHudProgressForView:self.view];
+                [AppUtils showInfo:@"下载失败"];
+            } progress:^(NSProgress *downloadProgress) {
+                
+            }];
+        }
+    }
 }
 @end

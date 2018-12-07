@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "NetWorkManager.h"
 @interface GeneralManager : NSObject
+{
+    NSString *downloadHtml;
+}
 +(id)defaultManager;
 
 -(void)getGlovalVarWithVersion;
 -(void)getNewAppVersion;
+-(void)jumpToDownloadHtml;
 -(void)sendRegID;
 @end

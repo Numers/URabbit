@@ -1367,6 +1367,9 @@
                                 <state key="normal" title="去评分">
                                     <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="clickScoreBtn:" destination="KGu-Qg-TPf" eventType="touchUpInside" id="7WL-nf-Zcr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vyh-IA-p1z">
                                 <rect key="frame" x="25" y="267" width="325" height="59"/>
@@ -1374,6 +1377,9 @@
                                 <state key="normal" title="检测新版本">
                                     <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="clickVersionCheckBtn:" destination="KGu-Qg-TPf" eventType="touchUpInside" id="dFb-Wv-b9p"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrG-mG-iEl">
                                 <rect key="frame" x="344" y="207" width="6" height="59"/>
@@ -1408,6 +1414,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dem-XT-CT9"/>
                     </view>
+                    <connections>
+                        <outlet property="versionLabel" destination="SNv-vr-yqb" id="AC9-vu-Bfn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wya-uZ-kjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

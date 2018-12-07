@@ -22,4 +22,6 @@
 }
 @property(nonatomic, weak) id<UTSelectViewProtocol> delegate;
 -(void)showViewWithIndex:(NSInteger)index;
+-(void)setMusicList:(NSMutableArray *)list;
+-(void)setFilterList:(NSMutableArray *)list;
 @end

@@ -8,6 +8,7 @@
 
 #import "UTMusicCollectionViewCell.h"
 #import "MusicInfo.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UTMusicCollectionViewCell
 -(instancetype)initWithFrame:(CGRect)frame
@@ -48,7 +49,16 @@
 
 -(void)setupCellWithMusicInfo:(MusicInfo *)info
 {
-    [musicImageView setImage:[UIImage imageNamed:info.musicImage]];
+    if (info.musicImage) {
+        [musicImageView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+        [musicImageView setContentMode:UIViewContentModeScaleAspectFit];
+        [musicImageView sd_setImageWithURL:[NSURL URLWithString:info.musicImage] placeholderImage:[UIImage imageNamed:@"defaultMusic_Image"]];
+    }else{
+        [musicImageView setBackgroundColor:[UIColor colorFromHexString:@"#173B8A"]];
+        [musicImageView setContentMode:UIViewContentModeCenter];
+        [musicImageView setImage:[UIImage imageNamed:@"defaultMusic_Image"]];
+    }
+    
     [nameLabel setText:info.musicName];
 }
 

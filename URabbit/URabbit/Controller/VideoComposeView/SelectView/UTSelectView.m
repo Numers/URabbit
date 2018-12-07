@@ -43,8 +43,7 @@
                 musicView = [[UTMusicView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
                 musicView.delegate = self;
                 if ([self.delegate respondsToSelector:@selector(requestMusicViewDataSource)]) {
-                    NSMutableArray *datasource = [self.delegate requestMusicViewDataSource];
-                    [musicView setMusicList:datasource];
+                   [self.delegate requestMusicViewDataSource];
                 }
             }
             [self addSubview:musicView];
@@ -56,6 +55,19 @@
     }
 }
 
+-(void)setMusicList:(NSMutableArray *)list
+{
+    if (musicView) {
+        [musicView setMusicList:list];
+    }
+}
+
+-(void)setFilterList:(NSMutableArray *)list
+{
+    if (filterView) {
+        [filterView setFilterList:list];
+    }
+}
 #pragma -mark UTFilterViewProtocol
 -(void)selectFilter:(FilterInfo *)info
 {

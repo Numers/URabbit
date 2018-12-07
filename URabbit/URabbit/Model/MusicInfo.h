@@ -12,4 +12,8 @@
 @property(nonatomic, copy) NSString *musicName;
 @property(nonatomic, copy) NSString *musicImage;
 @property(nonatomic, copy) NSString *musicUrl;
+@property(nonatomic) NSInteger size;
+@property(nonatomic) CGFloat duration;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dic;
 @end

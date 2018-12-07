@@ -16,6 +16,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         templateImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - 50)];
+        [templateImageView setContentMode:UIViewContentModeScaleAspectFit];
         [templateImageView.layer setCornerRadius:5];
         [templateImageView.layer setMasksToBounds:YES];
         [self addSubview:templateImageView];

@@ -39,6 +39,31 @@
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
++(NSInteger)compareVersion:(NSString *)version1 to:(NSString *)version2
+{
+    if (!version1 && !version2) {
+        return 0;
+    }
+    
+    // v1为空，v2不为空，返回-1
+    if (!version1 && version2) {
+        return -1;
+    }
+    
+    // v2为空，v1不为空，返回1
+    if (version1 && !version2) {
+        return 1;
+    }
+    
+    NSComparisonResult result = [version1 compare:version2 options:NSNumericSearch];
+    if (result == NSOrderedDescending) {
+        return 1;
+    }else if (result == NSOrderedAscending){
+        return -1;
+    }
+    return 0;
+}
+
 +(NSInteger) buildVersion
 {
     NSString *app_build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];

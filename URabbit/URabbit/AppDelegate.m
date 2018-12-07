@@ -10,6 +10,7 @@
 #import "AppStartManager.h"
 #import <UMCommon/UMCommon.h>
 #import <UMShare/UMShare.h>
+#import "GeneralManager.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.needShowUpdateAlert = YES;
     [UMConfigure initWithAppkey:@"5bfce226b465f589030001ec" channel:nil];
     [self configUSharePlatforms];
     
@@ -94,6 +96,9 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if (self.needShowUpdateAlert) {
+        [[GeneralManager defaultManager] getNewAppVersion];
+    }
 }
 
 

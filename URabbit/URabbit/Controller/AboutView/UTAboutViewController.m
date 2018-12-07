@@ -7,9 +7,10 @@
 //
 
 #import "UTAboutViewController.h"
+#import "GeneralManager.h"
 
 @interface UTAboutViewController ()
-
+@property(nonatomic, strong) IBOutlet UILabel *versionLabel;
 @end
 
 @implementation UTAboutViewController
@@ -17,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [_versionLabel setText:[AppUtils appVersion]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,6 +30,16 @@
 {
     [super viewWillAppear:animated];
     [self.navigationItem setTitle:@"关于有兔"];
+}
+
+-(IBAction)clickVersionCheckBtn:(id)sender
+{
+    [[GeneralManager defaultManager] getNewAppVersion];
+}
+
+-(IBAction)clickScoreBtn:(id)sender
+{
+    [[GeneralManager defaultManager] jumpToDownloadHtml];
 }
 /*
 #pragma mark - Navigation

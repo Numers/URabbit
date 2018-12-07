@@ -10,6 +10,7 @@
 #import "UTUserSettingTableViewCell.h"
 #import "UTEditUserInfoViewController.h"
 #import "UTAboutViewController.h"
+#import "UTWebViewController.h"
 #import "AppStartManager.h"
 #import "LoadedTemplate.h"
 #import "Composition.h"
@@ -111,7 +112,12 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
         {
             switch (indexPath.row) {
                 case 0:
-                    
+                {
+                    UTWebViewController *webVC = [[UTWebViewController alloc] init];
+                    webVC.navTitle = @"相关条款";
+                    webVC.loadUrl = @"https://www.baidu.com";
+                    [self.navigationController pushViewController:webVC animated:YES];
+                }
                     break;
                 case 1:
                 {
@@ -121,7 +127,12 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
                 }
                     break;
                 case 2:
-                    
+                {
+                    UTWebViewController *webVC = [[UTWebViewController alloc] init];
+                    webVC.navTitle = @"帮助中心";
+                    webVC.loadUrl = @"https://www.baidu.com";
+                    [self.navigationController pushViewController:webVC animated:YES];
+                }
                     break;
                 default:
                     break;
