@@ -33,6 +33,7 @@
 #import "UTUserSaveNetworkAPIManager.h"
 #import "UINavigationController+NavigationBar.h"
 #import "UTLoginScrollViewController.h"
+#import "UTMemberScrollViewController.h"
 
 @interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol>
 {
@@ -410,6 +411,9 @@
     
     if (currentHomeTemplate.isVip) {
         if (!host.isVip) {
+            UTMemberScrollViewController *memberScrollVC = [[UTMemberScrollViewController alloc] initWithTransitionMethod:NO];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberScrollVC];
+            [self presentViewController:nav animated:YES completion:nil];
             return;
         }
     }

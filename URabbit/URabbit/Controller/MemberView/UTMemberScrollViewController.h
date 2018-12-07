@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UTMemberScrollViewController : UIViewController
-
+-(instancetype)initWithTransitionMethod:(BOOL)isPush;
 @end

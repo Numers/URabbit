@@ -12,10 +12,12 @@
 #import "VIPPrice.h"
 #import "UTUserVipNetworkAPIManager.h"
 #import "UTLoginScrollViewController.h"
+#import "UINavigationController+NavigationBar.h"
 @interface UTMemberScrollViewController ()<MemberViewProtocol>
 {
     UTMemberViewController *memberVC;
     Member *currentHost;
+    BOOL isPushIn;
 }
 @property(nonatomic, strong) UIScrollView *scrollView;
 @property(nonatomic, strong) UIButton *agreeButton;
@@ -23,6 +25,23 @@
 @end
 
 @implementation UTMemberScrollViewController
+-(instancetype)init
+{
+    self = [super init];
+    if (self) {
+        isPushIn = YES;
+    }
+    return self;
+}
+
+-(instancetype)initWithTransitionMethod:(BOOL)isPush
+{
+    self = [super init];
+    if (self) {
+        isPushIn = isPush;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -80,6 +99,21 @@
     [self.navigationItem setTitle:@"开通会员"];
     currentHost = [[AppStartManager shareManager] currentMember];
     [memberVC setCurrentMember:currentHost];
+    if (!isPushIn) {
+        [self navigationBarSetting];
+    }
+}
+
+-(void)navigationBarSetting
+{
+    [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"closeImage"] style:UIBarButtonItemStylePlain target:self action:@selector(close)];
+    [self.navigationItem setRightBarButtonItem:rightItem];
+}
+
+-(void)close
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
