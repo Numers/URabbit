@@ -51,7 +51,7 @@ static NSString *musicCollectionViewCellIdentify = @"MusicCollectionViewCellIden
     if (dataSource.count > 0) {
         [dataSource removeAllObjects];
     }
-    selectIndex = 0;
+    selectIndex = 1;
     [dataSource addObjectsFromArray:list];
     [collectionView reloadData];
     [collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0] animated:NO scrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally];

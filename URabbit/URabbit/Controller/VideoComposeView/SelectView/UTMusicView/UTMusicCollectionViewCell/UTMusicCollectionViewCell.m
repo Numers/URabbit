@@ -52,11 +52,21 @@
     if (info.musicImage) {
         [musicImageView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
         [musicImageView setContentMode:UIViewContentModeScaleAspectFit];
-        [musicImageView sd_setImageWithURL:[NSURL URLWithString:info.musicImage] placeholderImage:[UIImage imageNamed:@"defaultMusic_Image"]];
+        [musicImageView sd_setImageWithURL:[NSURL URLWithString:info.musicImage] placeholderImage:[UIImage imageNamed:@"defaultMusic_Image"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (image) {
+                [musicImageView setContentMode:UIViewContentModeScaleAspectFit];
+            }else{
+                [musicImageView setContentMode:UIViewContentModeCenter];
+            }
+        }];
     }else{
         [musicImageView setBackgroundColor:[UIColor colorFromHexString:@"#173B8A"]];
         [musicImageView setContentMode:UIViewContentModeCenter];
-        [musicImageView setImage:[UIImage imageNamed:@"defaultMusic_Image"]];
+        if (info.musicUrl) {
+            [musicImageView setImage:[UIImage imageNamed:@"defaultMusic_Image"]];
+        }else{
+            [musicImageView setImage:[UIImage imageNamed:@"noMusic_Image"]];
+        }
     }
     
     [nameLabel setText:info.musicName];

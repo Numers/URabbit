@@ -284,7 +284,12 @@
     
     
     if (audioURL) {
-        audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:audioURL] error:nil];
+        NSError *error = nil;
+        NSData *audioData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:audioURL]];
+        audioPlayer = [[AVAudioPlayer alloc] initWithData:audioData error:&error];
+        if (error) {
+            NSLog(@"%@",error.description);
+        }
     }else{
         audioPlayer = nil;
     }
@@ -422,6 +427,12 @@
 -(NSMutableArray *)requestMusicViewDataSource
 {
     NSMutableArray *filterList = [NSMutableArray array];
+    MusicInfo *noMusicInfo = [[MusicInfo alloc] init];
+    noMusicInfo.musicName = @"无音乐";
+    noMusicInfo.musicImage = nil;
+    noMusicInfo.musicUrl = nil;
+    [filterList addObject:noMusicInfo];
+    
     MusicInfo *info = [[MusicInfo alloc] init];
     info.musicName = @"默认";
     info.musicImage = nil;
@@ -449,10 +460,12 @@
 {
     if ([info.musicUrl isEqualToString:resource.music]) {
         [self changeMusic:resource.music];
+    }else if(info.musicUrl == nil){
+        [self changeMusic:nil];
     }else{
         NSString *fileName = [AppUtils getMd5_32Bit:info.musicUrl];
         NSString *directory  = [AppUtils createDirectoryWithUniqueIndex:currentComposition.templateId];
-        NSString *path = [NSString stringWithFormat:@"%@/%@.mp3",directory,fileName];
+        NSString *path = [NSString stringWithFormat:@"%@/%@.%@",directory,fileName,[info.musicUrl pathExtension]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
             [self changeMusic:path];
         }else{
