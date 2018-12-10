@@ -16,6 +16,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         templateImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - 50)];
+        [templateImageView setContentMode:UIViewContentModeScaleAspectFit];
+        [templateImageView setBackgroundColor:[UIColor colorWithRed:241.0f/ 255 green:241.0f/ 255 blue:241.0f/ 255 alpha:1.0f]];
         [templateImageView.layer setCornerRadius:5];
         [templateImageView.layer setMasksToBounds:YES];
         [self addSubview:templateImageView];
