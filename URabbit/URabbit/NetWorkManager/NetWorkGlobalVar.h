@@ -33,7 +33,7 @@
 /*******************************************************/
 
 /************************音乐列表API***********************/
-#define UT_RecommendMusicList_API @"/music/list/{templetId}}"
+#define UT_RecommendMusicList_API @"/music/list/{templetId}"
 /*******************************************************/
 
 /************************UpdateVersionAPI***********************/

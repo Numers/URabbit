@@ -155,9 +155,15 @@
     }
     movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:outputURL size:size];
     [filter addTarget:movieWriter];
-    
-    movieWriter.shouldPassthroughAudio = YES;
-    movieFile.audioEncodingTarget = movieWriter;
+    AVAsset *asset = [AVAsset assetWithURL:inputURL];
+    if ([[asset tracksWithMediaType:AVMediaTypeAudio] count] > 0){
+        movieWriter.shouldPassthroughAudio = YES;
+        movieFile.audioEncodingTarget = movieWriter;
+    }else{
+        movieWriter.shouldPassthroughAudio = NO;
+        movieFile.audioEncodingTarget = nil;
+    }
+
     [movieFile enableSynchronizedEncodingUsingMovieWriter:movieWriter];
     [movieWriter startRecording];
     [movieFile startProcessing];

@@ -72,9 +72,9 @@
 {
     [super drawRect:rect];
     if (isSelected) {
-        [nameLabel setTextColor:[UIColor colorFromHexString:@"#E22262"]];
+        [nameLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
         self.layer.borderWidth = 2;
-        self.layer.borderColor = [UIColor colorFromHexString:@"#E22262"].CGColor;
+        self.layer.borderColor = [UIColor colorFromHexString:@"#FFDE44"].CGColor;
     }else{
         [nameLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
         self.layer.borderWidth = 0.01;

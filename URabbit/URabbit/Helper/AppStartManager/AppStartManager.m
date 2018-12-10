@@ -180,7 +180,7 @@
         if ([autoLogin isEqualToString:@"1"]) {
             [self setHomeView];
         }else{
-            [self setLoginView];
+            [self setHomeView];
         }
     }else{
         [self setHomeView];
@@ -291,8 +291,9 @@
 ///////////////////////////////////////////////////////
 -(void)setHomeView
 {
-    [self generateTabBarController];
-    _navigationController = [[UINavigationController alloc] initWithRootViewController:_tabBarController];
+//    [self generateTabBarController];
+    UTHomeViewController *homeVC = [[UTHomeViewController alloc] init];
+    _navigationController = [[UINavigationController alloc] initWithRootViewController:homeVC];
     [_navigationController setNavigationBarHidden:YES];
     [self setNavigationColor:_navigationController];
     [[(AppDelegate *)[UIApplication sharedApplication].delegate window] setRootViewController:_navigationController];

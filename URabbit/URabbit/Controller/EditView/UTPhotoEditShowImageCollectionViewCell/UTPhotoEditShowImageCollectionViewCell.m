@@ -19,9 +19,9 @@
         imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.5, 0.5, frame.size.width - 1, frame.size.height - 1)];
         [self addSubview:imageView];
         indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width - 16, 0, 16, 11)];
-        [indexLabel setBackgroundColor:[UIColor colorFromHexString:@"#E22262"]];
+        [indexLabel setBackgroundColor:[UIColor colorFromHexString:@"#FFDE44"]];
         [indexLabel setFont:[UIFont systemFontOfSize:10.0f]];
-        [indexLabel setTextColor:[UIColor whiteColor]];
+        [indexLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
         [indexLabel setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:indexLabel];
     }
@@ -47,7 +47,7 @@
     isSelected = selected;
     if (isSelected) {
         self.layer.borderWidth = 2;
-        self.layer.borderColor = [UIColor colorFromHexString:@"#E22262"].CGColor;
+        self.layer.borderColor = [UIColor colorFromHexString:@"#FFDE44"].CGColor;
     }else{
         self.layer.borderWidth = 0;
         self.layer.borderColor = [UIColor clearColor].CGColor;

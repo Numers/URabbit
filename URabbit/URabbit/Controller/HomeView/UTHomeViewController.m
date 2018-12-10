@@ -13,9 +13,12 @@
 #import "UTHomeTemplateView.h"
 #import "HomeTemplate.h"
 #import "UTDownloadTemplateViewController.h"
+#import "UTUserCenterViewController.h"
 #import <MJRefresh/MJRefresh.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #import "UTHomeNetworkAPIManager.h"
+#import "AppStartManager.h"
 #import "UINavigationController+NavigationBar.h"
 #define ChoosenTemplateViewIdentify @"jingxuan"
 #define LatestTemplateViewIdentify @"latest"
@@ -37,6 +40,8 @@
 @property(nonatomic, strong)  UIView *searchBarBackgroundView;
 //@property(nonatomic, strong)  UISearchBar *searchBar;
 //@property(nonatomic, strong)  UIButton *filterButton;
+@property(nonatomic, strong) UIImageView *userCenterImageView;
+@property(nonatomic, strong) UIButton *userCenterButton;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong)  UIView *topLineView;
 
@@ -65,6 +70,14 @@
 //    [_searchBarBackgroundView.layer setCornerRadius:16.0f];
 //    [_searchBarBackgroundView.layer setMasksToBounds:YES];
 //    [self.view addSubview:_searchBarBackgroundView];
+    _userCenterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_userCenterButton addTarget:self action:@selector(clickUserCenterButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_userCenterButton];
+    
+    _userCenterImageView = [[UIImageView alloc] init];
+    [_userCenterImageView.layer setCornerRadius:16];
+    [_userCenterImageView.layer setMasksToBounds:YES];
+    [self.view insertSubview:_userCenterImageView belowSubview:_userCenterButton];
     
     _titleLabel = [[UILabel alloc] init];
     [_titleLabel setText:@"有兔"];
@@ -131,6 +144,14 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController setStatusBarStyle:UIStatusBarStyleDefault];
+    Member *host = [[AppStartManager shareManager] currentMember];
+    if (host) {
+        [_userCenterImageView setContentMode:UIViewContentModeScaleAspectFit];
+        [_userCenterImageView sd_setImageWithURL:[NSURL URLWithString:host.headIcon]  placeholderImage:[UIImage imageNamed:@"tabbar_usercenter_normal"]];
+    }else{
+        [_userCenterImageView setContentMode:UIViewContentModeCenter];
+        [_userCenterImageView setImage:[UIImage imageNamed:@"tabbar_usercenter_normal"]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -151,6 +172,20 @@
         make.bottom.equalTo(_topLineView.top).offset(-6);
         make.height.equalTo(@(32));
         make.centerX.equalTo(self.view.centerX);
+    }];
+    
+    [_userCenterButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.view).offset(0);
+        make.width.equalTo(@(49));
+        make.height.equalTo(@(32));
+        make.centerY.equalTo(_titleLabel.mas_centerY);
+    }];
+    
+    [_userCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.view).offset(15);
+        make.width.equalTo(@(32));
+        make.height.equalTo(@(32));
+        make.centerY.equalTo(_titleLabel.mas_centerY);
     }];
     
 //    [_filterButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -178,7 +213,7 @@
         make.top.equalTo(_topLineView.bottom);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaTabbarHeight]);
+        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaBottomHeight]);
     }];
 }
 
@@ -271,6 +306,13 @@
         }
         [self endRefresh];
     }];
+}
+
+#pragma -mark IBAction
+-(void)clickUserCenterButton
+{
+    UTUserCenterViewController *userCenterVC = [[UTUserCenterViewController alloc] init];
+    [self.navigationController pushViewController:userCenterVC animated:YES];
 }
 #pragma -mark HomeTemplateViewProtocol
 -(void)updateViewHeight:(CGFloat)height identify:(id)identify

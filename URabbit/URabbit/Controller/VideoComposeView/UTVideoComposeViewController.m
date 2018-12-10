@@ -190,17 +190,27 @@
         [movieFile endProcessing];
     }
     [AppUtils showLoadingInView:self.view];
-    NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
-    
-    [[UTVideoManager shareManager] mergeMovie:movieURL withAudio:audioURL output:tempVideoPath completely:^{
-//        if (!isInDraft) {
-//            if ([[NSFileManager defaultManager] fileExistsAtPath:movieURL]) {
-//                [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
-//            }
-//        }
+    if (audioURL) {
+        NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
+        
+        [[UTVideoManager shareManager] mergeMovie:movieURL withAudio:audioURL output:tempVideoPath completely:^{
+            GPUImageOutput<GPUImageInput> *movieFilter = [[UTImageHanderManager shareManager] filterWithFilterType:currentFilterType];
+            NSString *videoCompeletelyPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
+            [[UTVideoManager shareManager] filterMovieWithInputUrl:tempVideoPath outputUrl:videoCompeletelyPath videoSize:resource.videoSize filter:movieFilter completely:^(BOOL result) {
+                if (result) {
+                    [AppUtils hiddenLoadingInView:self.view];
+                    currentComposition.moviePath = videoCompeletelyPath;
+                    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoCompeletelyPath)) {
+                        //保存相册核心代码
+                        UISaveVideoAtPathToSavedPhotosAlbum(videoCompeletelyPath, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
+                    }
+                }
+            }];
+        }];
+    }else{
         GPUImageOutput<GPUImageInput> *movieFilter = [[UTImageHanderManager shareManager] filterWithFilterType:currentFilterType];
         NSString *videoCompeletelyPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
-        [[UTVideoManager shareManager] filterMovieWithInputUrl:tempVideoPath outputUrl:videoCompeletelyPath videoSize:resource.videoSize filter:movieFilter completely:^(BOOL result) {
+        [[UTVideoManager shareManager] filterMovieWithInputUrl:movieURL outputUrl:videoCompeletelyPath videoSize:resource.videoSize filter:movieFilter completely:^(BOOL result) {
             if (result) {
                 [AppUtils hiddenLoadingInView:self.view];
                 currentComposition.moviePath = videoCompeletelyPath;
@@ -210,7 +220,7 @@
                 }
             }
         }];
-    }];
+    }
 }
 
 //保存视频完成之后的回调
@@ -272,7 +282,12 @@
     [filter addTarget:imageView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayFinished) name:AVPlayerItemDidPlayToEndTimeNotification object:playItem];
     
-    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:audioURL] error:nil];
+    
+    if (audioURL) {
+        audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:audioURL] error:nil];
+    }else{
+        audioPlayer = nil;
+    }
 }
 
 -(void)stopVideo
@@ -367,6 +382,7 @@
     [self stopVideo];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         audioURL = url;
+        pausedTime = CMTimeMake(0, resource.fps);
         [self startVideo];
     });
 }
@@ -436,7 +452,7 @@
     }else{
         NSString *fileName = [AppUtils getMd5_32Bit:info.musicUrl];
         NSString *directory  = [AppUtils createDirectoryWithUniqueIndex:currentComposition.templateId];
-        NSString *path = [NSString stringWithFormat:@"%@/%@",directory,fileName];
+        NSString *path = [NSString stringWithFormat:@"%@/%@.mp3",directory,fileName];
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
             [self changeMusic:path];
         }else{
