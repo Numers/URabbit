@@ -73,8 +73,6 @@
     [_openMemberButton.layer setCornerRadius:22.0f];
     [_openMemberButton.layer setMasksToBounds:YES];
     [_openMemberButton addTarget:self action:@selector(clickOpenMemeberButton) forControlEvents:UIControlEventTouchUpInside];
-    NSAttributedString *openTitle = [AppUtils generateAttriuteStringWithStr:@"开通VIP会员" WithColor:[UIColor colorFromHexString:@"#333333"] WithFont:[UIFont systemFontOfSize:16]];
-    [_openMemberButton setAttributedTitle:openTitle forState:UIControlStateNormal];
     [self.view addSubview:_openMemberButton];
     [self makeConstraints];
 }
@@ -104,6 +102,20 @@
     [memberVC setCurrentMember:currentHost];
     if (!isPushIn) {
         [self navigationBarSetting];
+    }
+    
+    Member *host = [[AppStartManager shareManager] currentMember];
+    if (host) {
+        if ([host isVip]) {
+            NSAttributedString *openTitle = [AppUtils generateAttriuteStringWithStr:@"续费VIP会员" WithColor:[UIColor colorFromHexString:@"#333333"] WithFont:[UIFont systemFontOfSize:16]];
+            [_openMemberButton setAttributedTitle:openTitle forState:UIControlStateNormal];
+        }else{
+            NSAttributedString *openTitle = [AppUtils generateAttriuteStringWithStr:@"开通VIP会员" WithColor:[UIColor colorFromHexString:@"#333333"] WithFont:[UIFont systemFontOfSize:16]];
+            [_openMemberButton setAttributedTitle:openTitle forState:UIControlStateNormal];
+        }
+    }else{
+        NSAttributedString *openTitle = [AppUtils generateAttriuteStringWithStr:@"开通VIP会员" WithColor:[UIColor colorFromHexString:@"#333333"] WithFont:[UIFont systemFontOfSize:16]];
+        [_openMemberButton setAttributedTitle:openTitle forState:UIControlStateNormal];
     }
 }
 
