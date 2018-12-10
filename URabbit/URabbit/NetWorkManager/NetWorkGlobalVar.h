@@ -20,6 +20,11 @@
 #define UT_ChoiceRecommend_API @"/templet/list/recommend"
 /*******************************************************/
 
+/************************作者API***********************/
+#define UT_Author_API @"/author/{id}"
+#define UT_AuthorComposition_API @"/author/{id}/templet"
+/*******************************************************/
+
 /************************模板API***********************/
 #define UT_TemplateDetails_API @"/templet/{id}"
 #define UT_SaveTemplate_API @"/templet/{id}/collect/add"

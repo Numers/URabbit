@@ -185,6 +185,10 @@
 		148D0F82219D22C300B4E59A /* ComposeAnimationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */; };
 		148D0F86219D9C7100B4E59A /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F85219D9C7100B4E59A /* AnimationManager.m */; };
 		14E4320521BE1B5A00C0CB9C /* UTDownloadAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4320421BE1B5A00C0CB9C /* UTDownloadAlertView.m */; };
+		14E4320921BE780000C0CB9C /* UTAuthorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4320821BE780000C0CB9C /* UTAuthorViewController.m */; };
+		14E4320D21BE78C200C0CB9C /* UTAuthorHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4320C21BE78C200C0CB9C /* UTAuthorHeadView.m */; };
+		14E4321121BE8C0100C0CB9C /* UTAuthorCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4321021BE8C0100C0CB9C /* UTAuthorCollectionViewCell.m */; };
+		14E4321421BE8EA400C0CB9C /* UTAuthorNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4321321BE8EA400C0CB9C /* UTAuthorNetworkAPIManager.m */; };
 		14E4442D21B6B759008062EF /* UTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4442C21B6B759008062EF /* UTAboutViewController.m */; };
 		14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16421A30B1800C1BD3E /* UTHomeNetworkAPIManager.m */; };
 		14EDA16821A310EE00C1BD3E /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16721A310EE00C1BD3E /* Author.m */; };
@@ -708,6 +712,14 @@
 		148D0F85219D9C7100B4E59A /* AnimationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
 		14E4320321BE1B5A00C0CB9C /* UTDownloadAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTDownloadAlertView.h; sourceTree = "<group>"; };
 		14E4320421BE1B5A00C0CB9C /* UTDownloadAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTDownloadAlertView.m; sourceTree = "<group>"; };
+		14E4320721BE780000C0CB9C /* UTAuthorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTAuthorViewController.h; sourceTree = "<group>"; };
+		14E4320821BE780000C0CB9C /* UTAuthorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTAuthorViewController.m; sourceTree = "<group>"; };
+		14E4320B21BE78C200C0CB9C /* UTAuthorHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTAuthorHeadView.h; sourceTree = "<group>"; };
+		14E4320C21BE78C200C0CB9C /* UTAuthorHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTAuthorHeadView.m; sourceTree = "<group>"; };
+		14E4320F21BE8C0100C0CB9C /* UTAuthorCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTAuthorCollectionViewCell.h; sourceTree = "<group>"; };
+		14E4321021BE8C0100C0CB9C /* UTAuthorCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTAuthorCollectionViewCell.m; sourceTree = "<group>"; };
+		14E4321221BE8EA400C0CB9C /* UTAuthorNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTAuthorNetworkAPIManager.h; sourceTree = "<group>"; };
+		14E4321321BE8EA400C0CB9C /* UTAuthorNetworkAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTAuthorNetworkAPIManager.m; sourceTree = "<group>"; };
 		14E4442B21B6B759008062EF /* UTAboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTAboutViewController.h; sourceTree = "<group>"; };
 		14E4442C21B6B759008062EF /* UTAboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTAboutViewController.m; sourceTree = "<group>"; };
 		14EDA16321A30B1800C1BD3E /* UTHomeNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTHomeNetworkAPIManager.h; sourceTree = "<group>"; };
@@ -1396,6 +1408,8 @@
 				1473D5C021B676F900AB946D /* UTUserVipNetworkAPIManager.m */,
 				1421EB7321BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.h */,
 				1421EB7421BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.m */,
+				14E4321221BE8EA400C0CB9C /* UTAuthorNetworkAPIManager.h */,
+				14E4321321BE8EA400C0CB9C /* UTAuthorNetworkAPIManager.m */,
 			);
 			path = NetWorkAPIManager;
 			sourceTree = "<group>";
@@ -1646,6 +1660,7 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				14E4320621BE77DC00C0CB9C /* UTAuthorView */,
 				1421EB7621BA524B00BCCD7B /* UTWebView */,
 				14E4442A21B6B740008062EF /* AboutView */,
 				1423E29F21ACE6B5005A9F6E /* DraftView */,
@@ -2008,6 +2023,35 @@
 			path = UTDownloadAlertView;
 			sourceTree = "<group>";
 		};
+		14E4320621BE77DC00C0CB9C /* UTAuthorView */ = {
+			isa = PBXGroup;
+			children = (
+				14E4320E21BE8BD100C0CB9C /* UTAuthorCollectionViewCell */,
+				14E4320A21BE789F00C0CB9C /* AuthorHeadView */,
+				14E4320721BE780000C0CB9C /* UTAuthorViewController.h */,
+				14E4320821BE780000C0CB9C /* UTAuthorViewController.m */,
+			);
+			path = UTAuthorView;
+			sourceTree = "<group>";
+		};
+		14E4320A21BE789F00C0CB9C /* AuthorHeadView */ = {
+			isa = PBXGroup;
+			children = (
+				14E4320B21BE78C200C0CB9C /* UTAuthorHeadView.h */,
+				14E4320C21BE78C200C0CB9C /* UTAuthorHeadView.m */,
+			);
+			path = AuthorHeadView;
+			sourceTree = "<group>";
+		};
+		14E4320E21BE8BD100C0CB9C /* UTAuthorCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				14E4320F21BE8C0100C0CB9C /* UTAuthorCollectionViewCell.h */,
+				14E4321021BE8C0100C0CB9C /* UTAuthorCollectionViewCell.m */,
+			);
+			path = UTAuthorCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		14E4442A21B6B740008062EF /* AboutView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2258,6 +2302,7 @@
 				146B637A2190274C00A3A679 /* UIImage+Gradient.m in Sources */,
 				142CE2C121AA42D200B17FBA /* LoadedTemplate.m in Sources */,
 				14580394216F2D6F006BB33D /* UINavigationController+NavigationBar.m in Sources */,
+				14E4321121BE8C0100C0CB9C /* UTAuthorCollectionViewCell.m in Sources */,
 				142AC2FF21AC393900368ABE /* SelPlayerConfiguration.m in Sources */,
 				14482F2521A4761D00D640F1 /* UTPhotoEditNotMoveView.m in Sources */,
 				14E4320521BE1B5A00C0CB9C /* UTDownloadAlertView.m in Sources */,
@@ -2302,6 +2347,7 @@
 				144357CA21A6ACDA00FEA9AE /* PSTGridLayoutRow.m in Sources */,
 				14580366216F2BCC006BB33D /* TPKeyboardAvoidingTableView.m in Sources */,
 				146B63D72193064300A3A679 /* UTPlayCollectionViewCell.m in Sources */,
+				14E4320921BE780000C0CB9C /* UTAuthorViewController.m in Sources */,
 				14EDA16B21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m in Sources */,
 				144357C821A6ACDA00FEA9AE /* PSTCollectionViewItemKey.m in Sources */,
 				1458037B216F2BCC006BB33D /* AppLaunchManager.m in Sources */,
@@ -2341,9 +2387,11 @@
 				142AC30021AC393900368ABE /* SelVideoSlider.m in Sources */,
 				14482F1021A3F12200D640F1 /* Resource.m in Sources */,
 				14580473216F526A006BB33D /* UTVideoReader.m in Sources */,
+				14E4320D21BE78C200C0CB9C /* UTAuthorHeadView.m in Sources */,
 				14580365216F2BCC006BB33D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				14262A38218BF94700768E6A /* UTHomeCollectionViewCell.m in Sources */,
 				1423E2CA21AD77E6005A9F6E /* Account.m in Sources */,
+				14E4321421BE8EA400C0CB9C /* UTAuthorNetworkAPIManager.m in Sources */,
 				1425A8D321A98B3B007A0C2E /* UTMemberCompositionDetailsViewController.m in Sources */,
 				0434F04721A03D1300A1B65F /* UTVideoComposeSuccessViewController.m in Sources */,
 				144357C421A6ACDA00FEA9AE /* PSTCollectionViewData.m in Sources */,

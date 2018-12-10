@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 @class HomeTemplate;
+@protocol UTVideoAuthorViewProtocol <NSObject>
+-(void)didTapClickAuthorView;
+@end
 @interface UTVideoAuthorView : UIView
 {
     HomeTemplate *currentHomeTemplate;
@@ -16,5 +19,6 @@
     
     UIImageView *nextImageView;
 }
+@property(nonatomic, weak) id<UTVideoAuthorViewProtocol> delegate;
 -(void)setHomeTemplate:(HomeTemplate *)homeTemplate;
 @end

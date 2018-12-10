@@ -35,8 +35,9 @@
 #import "UTLoginScrollViewController.h"
 #import "UTMemberScrollViewController.h"
 #import "UTDownloadAlertView.h"
+#import "UTAuthorViewController.h"
 
-@interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol,UTDownloadAlertViewProtocl>
+@interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol,UTDownloadAlertViewProtocl,UTVideoAuthorViewProtocol>
 {
     HomeTemplate *currentHomeTemplate;
     Composition *composition;
@@ -79,6 +80,7 @@
     videoInfoView = [[UTVideoInfoView alloc] initWithVideoSize:currentHomeTemplate.videoSize frame:CGRectMake(0,17, SCREEN_WIDTH, 0)];
     [scrollView addSubview:videoInfoView];
     videoAuthorView = [[UTVideoAuthorView alloc] initWithFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
+    videoAuthorView.delegate = self;
     [scrollView addSubview:videoAuthorView];
     
     makeButtonView = [[UTDownloadButtonView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - [UIDevice safeAreaBottomHeight] - 105.0f, SCREEN_WIDTH, 105.0f)];
@@ -497,5 +499,12 @@
             });
         }];
     }
+}
+
+#pragma -mark UTVideoAuthorViewProtocol
+-(void)didTapClickAuthorView
+{
+    UTAuthorViewController *authorVC = [[UTAuthorViewController alloc] initWithAuthor:currentHomeTemplate.author];
+    [self.navigationController pushViewController:authorVC animated:YES];
 }
 @end

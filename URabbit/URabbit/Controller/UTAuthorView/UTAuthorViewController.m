@@ -1,51 +1,72 @@
 //
-//  UTSaveViewController.m
+//  UTAuthorViewController.m
 //  URabbit
 //
-//  Created by 鲍利成 on 2018/11/25.
+//  Created by 鲍利成 on 2018/12/10.
 //  Copyright © 2018年 鲍利成. All rights reserved.
 //
 
-#import "UTSaveViewController.h"
-#import "SavedTemplate.h"
-#import "HomeTemplate.h"
+#import "UTAuthorViewController.h"
 #import "UTDownloadTemplateViewController.h"
+#import "UTAuthorHeadView.h"
+#import "UTAuthorNetworkAPIManager.h"
+#import "HomeTemplate.h"
+#import "Author.h"
 #import "LJJWaterFlowLayout.h"
-#import "UTSaveTemplateCollectionViewCell.h"
-#import "UTUserSaveNetworkAPIManager.h"
+#import "UTAuthorCollectionViewCell.h"
 #import "UINavigationController+NavigationBar.h"
 #import <MJRefresh/MJRefresh.h>
 
-static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollectionViewCellIdentify";
-@interface UTSaveViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LJJWaterFlowLayoutProtocol>
+static NSString *authorCollectionViewCellIdentify = @"AuthorCollectionViewCellIdentify";
+static NSString *authorHeadViewIdentify = @"AuthorHeadViewIdentify";
+@interface UTAuthorViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LJJWaterFlowLayoutProtocol>
 {
+    Author *currentAuthor;
+    UTAuthorHeadView *headView;
     UICollectionView *collectionView;
     NSMutableArray *dataSource;
     NSInteger currentPage;
     NSInteger currentSize;
     BOOL hasMore;
 }
+@property(nonatomic, strong) IBOutlet UIView *navBarView;
+@property(nonatomic, strong) IBOutlet NSLayoutConstraint *navHeightConstraint;
 
 @end
 
-@implementation UTSaveViewController
+@implementation UTAuthorViewController
+-(instancetype)initWithAuthor:(Author *)author
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"UTAuthorViewIdentify"];
+    if (self) {
+        currentAuthor = author;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorFromHexString:@"#F8F8F8"]];
+    [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
+    [_navBarView setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
     currentPage = 1;
     currentSize = 20;
     hasMore = YES;
     dataSource = [NSMutableArray array];
-    LJJWaterFlowLayout *layout = [[LJJWaterFlowLayout alloc] init];
-    layout.delegate = self;
+    
+    _navHeightConstraint.constant = [UIDevice safeAreaTopHeight];
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//    layout.delegate = self;
+    layout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 110);
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:layout];
-    [collectionView registerClass:[UTSaveTemplateCollectionViewCell class] forCellWithReuseIdentifier:savedTemplateCollectionViewCellIdentify];
+    [collectionView registerClass:[UTAuthorCollectionViewCell class] forCellWithReuseIdentifier:authorCollectionViewCellIdentify];
+    [collectionView registerClass:[UTAuthorHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:authorHeadViewIdentify];
     collectionView.delegate = self;
     collectionView.dataSource = self;
-    [collectionView setBackgroundColor:[UIColor whiteColor]];
+    [collectionView setBackgroundColor:[UIColor clearColor]];
     [collectionView setShowsHorizontalScrollIndicator:NO];
     [collectionView setShowsVerticalScrollIndicator:NO];
     [collectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
@@ -58,16 +79,16 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     }];
     
     collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self requestUserSavedTemplate];
+        [self requestHomeTemplate];
     }];
-
+    
     [self refreshPageData];
 }
 
 -(void)makeConstraints
 {
     [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(6);
+        make.top.equalTo(_navBarView.bottom).offset(0);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
         make.bottom.equalTo(self.view);
@@ -77,23 +98,22 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTranslucent:NO];
-    [self.navigationItem setTitle:@"我的收藏"];
+    [self.navigationController setNavigationBarHidden:YES];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
 -(void)refreshPageData
 {
     currentPage = 1;
     hasMore = YES;
     [collectionView.mj_footer resetNoMoreData];
-    [self requestUserSavedTemplate];
+    [self requestHomeTemplate];
 }
 
 -(void)endRefresh
@@ -110,35 +130,34 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
         }
     }else{
         if (hasMore) {
-
+            
         }else{
             [collectionView.mj_footer endRefreshingWithNoMoreData];
         }
     }
 }
 
--(void)requestUserSavedTemplate
+-(void)requestHomeTemplate
 {
     if (currentPage == 1) {
         if (dataSource.count > 0) {
             [dataSource removeAllObjects];
         }
     }
-    [[UTUserSaveNetworkAPIManager shareManager] requestUserSavedTemplateWithPage:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+    [[UTAuthorNetworkAPIManager shareManager] requestAuthorCompositionsWithAuthorId:currentAuthor.authorId page:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         if (data) {
-            NSArray *savedTemplateArray = (NSArray *)data;
-            if (savedTemplateArray && savedTemplateArray.count > 0) {
-                if (savedTemplateArray.count < currentSize) {
+            NSArray *templateArray = (NSArray *)data;
+            if (templateArray && templateArray.count > 0) {
+                if (templateArray.count < currentSize) {
                     hasMore = NO;
                 }
-                for (NSDictionary *dic in savedTemplateArray) {
-                    SavedTemplate *savedTemplate = [[SavedTemplate alloc] init];
-                    savedTemplate.templateId = [[dic objectForKey:@"id"] longValue];
-                    savedTemplate.title = [dic objectForKey:@"title"];
-                    savedTemplate.coverUrl = [dic objectForKey:@"coverUrl"];
-                    savedTemplate.videoWidth = 544;
-                    savedTemplate.videoHeight = 960;
-                    [dataSource addObject:savedTemplate];
+                for (NSDictionary *dic in templateArray) {
+                    HomeTemplate *template = [[HomeTemplate alloc] init];
+                    template.templateId = [[dic objectForKey:@"id"] longValue];
+                    template.title = [dic objectForKey:@"title"];
+                    template.coverUrl = [dic objectForKey:@"coverUrl"];
+                    template.videoSize = CGSizeMake(544, 960);
+                    [dataSource addObject:template];
                 }
                 currentPage ++;
                 [collectionView reloadData];
@@ -152,6 +171,10 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     }];
 }
 
+-(IBAction)clickBackBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -163,13 +186,22 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     return dataSource.count;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UTAuthorHeadView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:authorHeadViewIdentify forIndexPath:indexPath];
+    if (headView) {
+        [headView setAuthor:currentAuthor];
+    }
+    return headView;
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UTSaveTemplateCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:savedTemplateCollectionViewCellIdentify forIndexPath:indexPath];
+    UTAuthorCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:authorCollectionViewCellIdentify forIndexPath:indexPath];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        SavedTemplate *savedTemplate = [dataSource objectAtIndex:indexPath.row];
+        HomeTemplate *template = [dataSource objectAtIndex:indexPath.row];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [cell setupCellWithSavedTemplate:savedTemplate];
+            [cell setupCellWithHomeTemplate:template];
         });
     });
     return cell;
@@ -188,21 +220,17 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    SavedTemplate *savedTemplate = [dataSource objectAtIndex:indexPath.row];
+    HomeTemplate *template = [dataSource objectAtIndex:indexPath.row];
     CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
-    CGFloat height = width * (savedTemplate.videoHeight / savedTemplate.videoWidth) + 50;
+    CGFloat height = width * (template.videoSize.height / template.videoSize.width) + 50;
     return CGSizeMake(width,height);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SavedTemplate *savedTemplate = [dataSource objectAtIndex:indexPath.row];
-    
-    HomeTemplate *homeTemplate = [[HomeTemplate alloc] init];
-    homeTemplate.templateId = savedTemplate.templateId;
-    homeTemplate.title = savedTemplate.title;
-    homeTemplate.videoSize = CGSizeMake(savedTemplate.videoWidth, savedTemplate.videoHeight);
+    HomeTemplate *homeTemplate = [dataSource objectAtIndex:indexPath.row];
     UTDownloadTemplateViewController *downloadTemplateVC = [[UTDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
     [self.navigationController pushViewController:downloadTemplateVC animated:YES];
 }
+
 @end

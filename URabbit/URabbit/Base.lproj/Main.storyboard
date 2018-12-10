@@ -1457,6 +1457,62 @@
             </objects>
             <point key="canvasLocation" x="7768.8000000000002" y="18.440779610194905"/>
         </scene>
+        <!--Author View Controller-->
+        <scene sceneID="zmh-vM-S6n">
+            <objects>
+                <viewController storyboardIdentifier="UTAuthorViewIdentify" id="K2S-8f-twx" customClass="UTAuthorViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wWq-h9-821">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zb-Qs-bCc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GF7-DY-j0n">
+                                        <rect key="frame" x="0.0" y="20" width="50" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="olj-mc-x1o"/>
+                                            <constraint firstAttribute="height" constant="44" id="zbr-b0-g0D"/>
+                                        </constraints>
+                                        <state key="normal" image="backImage"/>
+                                        <connections>
+                                            <action selector="clickBackBtn:" destination="K2S-8f-twx" eventType="touchUpInside" id="KON-Rt-BAH"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人主页" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4l1-1M-dHj">
+                                        <rect key="frame" x="153" y="31.5" width="69.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.070588235294117646" green="0.090196078431372548" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="GF7-DY-j0n" secondAttribute="bottom" id="0HL-K7-Xm4"/>
+                                    <constraint firstItem="GF7-DY-j0n" firstAttribute="leading" secondItem="0zb-Qs-bCc" secondAttribute="leading" id="KUj-QU-RpQ"/>
+                                    <constraint firstItem="4l1-1M-dHj" firstAttribute="centerY" secondItem="GF7-DY-j0n" secondAttribute="centerY" id="PHH-uc-Jqh"/>
+                                    <constraint firstItem="4l1-1M-dHj" firstAttribute="centerX" secondItem="0zb-Qs-bCc" secondAttribute="centerX" id="Pi4-Lx-MaB"/>
+                                    <constraint firstAttribute="height" constant="64" id="kdc-7h-V14"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0zb-Qs-bCc" firstAttribute="top" secondItem="wWq-h9-821" secondAttribute="top" id="32V-9r-IhQ"/>
+                            <constraint firstItem="0zb-Qs-bCc" firstAttribute="trailing" secondItem="zKY-yu-DfB" secondAttribute="trailing" id="60k-Rj-U1T"/>
+                            <constraint firstItem="0zb-Qs-bCc" firstAttribute="leading" secondItem="zKY-yu-DfB" secondAttribute="leading" id="R12-gw-NcS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zKY-yu-DfB"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBarView" destination="0zb-Qs-bCc" id="0Ex-lW-RUZ"/>
+                        <outlet property="navHeightConstraint" destination="kdc-7h-V14" id="f1u-fo-P37"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yrc-Vm-PMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8527" y="18"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CoinImage" width="39" height="30"/>

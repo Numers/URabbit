@@ -21,6 +21,8 @@
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
         [self addGestureRecognizer:tapGesture];
         headImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"authorHeadImage"]];
+        [headImageView.layer setCornerRadius:20.5];
+        [headImageView.layer setMasksToBounds:YES];
         [self addSubview:headImageView];
         
         authorNameLabel = [[UILabel alloc] init];
@@ -65,6 +67,8 @@
 
 -(void)tapClick
 {
-    
+    if ([self.delegate respondsToSelector:@selector(didTapClickAuthorView)]) {
+        [self.delegate didTapClickAuthorView];
+    }
 }
 @end
