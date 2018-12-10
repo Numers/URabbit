@@ -267,7 +267,7 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
                     [loginoutCell.textLabel setText:@"退出登录"];
                     [loginoutCell.textLabel setTextAlignment:NSTextAlignmentCenter];
                     [loginoutCell.textLabel setFont:[UIFont systemFontOfSize:16]];
-                    [loginoutCell.textLabel setTextColor:[UIColor colorFromHexString:@"#FF5858"]];
+                    [loginoutCell.textLabel setTextColor:[UIColor colorFromHexString:@"#2D99F6"]];
                     return loginoutCell;
                 }
                     break;

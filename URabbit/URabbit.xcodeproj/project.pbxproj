@@ -184,6 +184,7 @@
 		148D0F7B219D1FF800B4E59A /* ComposeAnimationStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F7A219D1FF800B4E59A /* ComposeAnimationStrategy.m */; };
 		148D0F82219D22C300B4E59A /* ComposeAnimationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */; };
 		148D0F86219D9C7100B4E59A /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F85219D9C7100B4E59A /* AnimationManager.m */; };
+		14E4320521BE1B5A00C0CB9C /* UTDownloadAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4320421BE1B5A00C0CB9C /* UTDownloadAlertView.m */; };
 		14E4442D21B6B759008062EF /* UTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4442C21B6B759008062EF /* UTAboutViewController.m */; };
 		14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16421A30B1800C1BD3E /* UTHomeNetworkAPIManager.m */; };
 		14EDA16821A310EE00C1BD3E /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16721A310EE00C1BD3E /* Author.m */; };
@@ -705,6 +706,8 @@
 		148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeAnimationOperation.m; sourceTree = "<group>"; };
 		148D0F84219D9C7100B4E59A /* AnimationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		148D0F85219D9C7100B4E59A /* AnimationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
+		14E4320321BE1B5A00C0CB9C /* UTDownloadAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTDownloadAlertView.h; sourceTree = "<group>"; };
+		14E4320421BE1B5A00C0CB9C /* UTDownloadAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTDownloadAlertView.m; sourceTree = "<group>"; };
 		14E4442B21B6B759008062EF /* UTAboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTAboutViewController.h; sourceTree = "<group>"; };
 		14E4442C21B6B759008062EF /* UTAboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTAboutViewController.m; sourceTree = "<group>"; };
 		14EDA16321A30B1800C1BD3E /* UTHomeNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTHomeNetworkAPIManager.h; sourceTree = "<group>"; };
@@ -1796,6 +1799,7 @@
 		146B6368218FDA8100A3A679 /* DownloadTemplateView */ = {
 			isa = PBXGroup;
 			children = (
+				14E431FC21BE0C5400C0CB9C /* UTDownloadAlertView */,
 				146B637F21904D2000A3A679 /* UTVideoAuthorView */,
 				146B637B219031FA00A3A679 /* UTVideoInfoView */,
 				146B63702190241500A3A679 /* UTDownloadButtonView */,
@@ -1993,6 +1997,15 @@
 				14266C8121A53EDE008A1926 /* SwitchAnimationManager.m */,
 			);
 			path = AnimationManager;
+			sourceTree = "<group>";
+		};
+		14E431FC21BE0C5400C0CB9C /* UTDownloadAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				14E4320321BE1B5A00C0CB9C /* UTDownloadAlertView.h */,
+				14E4320421BE1B5A00C0CB9C /* UTDownloadAlertView.m */,
+			);
+			path = UTDownloadAlertView;
 			sourceTree = "<group>";
 		};
 		14E4442A21B6B740008062EF /* AboutView */ = {
@@ -2247,6 +2260,7 @@
 				14580394216F2D6F006BB33D /* UINavigationController+NavigationBar.m in Sources */,
 				142AC2FF21AC393900368ABE /* SelPlayerConfiguration.m in Sources */,
 				14482F2521A4761D00D640F1 /* UTPhotoEditNotMoveView.m in Sources */,
+				14E4320521BE1B5A00C0CB9C /* UTDownloadAlertView.m in Sources */,
 				14266C9421A5CC46008A1926 /* ComposeCoverOperation.m in Sources */,
 				146B637E219033B600A3A679 /* UTVideoInfoView.m in Sources */,
 				14580362216F2BCC006BB33D /* NetWorkManager.m in Sources */,

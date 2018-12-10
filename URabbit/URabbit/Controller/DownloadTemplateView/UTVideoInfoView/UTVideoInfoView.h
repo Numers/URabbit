@@ -18,7 +18,7 @@
     UILabel *videoNameLabel;
     UILabel *videoDurationLabel;
     UILabel *videoDescLabel;
-
+    HomeTemplate *currentHomeTemplate;
 }
 
 -(instancetype)initWithVideoSize:(CGSize)size frame:(CGRect)frame;

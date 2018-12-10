@@ -8,6 +8,7 @@
 
 #import "UTLoginViewController.h"
 #import "UTLoginNetworkAPIManager.h"
+#import "UIButton+Gradient.h"
 #import "Member.h"
 #import "AppStartManager.h"
 #import "UTUMShareManager.h"
@@ -81,9 +82,13 @@
 -(void)textDidChange:(NSNotification *)notify
 {
     if (![AppUtils isNullStr:_mobieTextField.text] && ![AppUtils isNullStr:_validateCodeTextField.text]) {
-        [_loginButton setBackgroundColor:[UIColor colorFromHexString:@"#FF5756"]];
+        [_loginButton setTitleColor:[UIColor colorFromHexString:@"#333333"] forState:UIControlStateNormal];
+        [_loginButton setBackgroundColor:[UIColor clearColor]];
+        [_loginButton gradientButtonWithSize:CGSizeMake(SCREEN_WIDTH - 30, 44) colorArray:@[[UIColor colorFromHexString:@"#FED546"],[UIColor colorFromHexString:@"#FEBD43"]] percentageArray:@[@(0.1),@(1)] gradientType:GradientFromLeftToRight];
         [_loginButton setEnabled:YES];
     }else{
+        [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_loginButton setBackgroundImage:[UIImage new] forState:UIControlStateNormal];
         [_loginButton setBackgroundColor:[UIColor colorFromHexString:@"#D0D0D0"]];
         [_loginButton setEnabled:NO];
     }

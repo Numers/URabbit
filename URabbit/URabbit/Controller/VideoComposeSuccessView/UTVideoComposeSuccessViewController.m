@@ -8,6 +8,7 @@
 
 #import "UTVideoComposeSuccessViewController.h"
 #import "UTUMShareManager.h"
+#import "UIButton+Gradient.h"
 
 @interface UTVideoComposeSuccessViewController ()
 {
@@ -49,10 +50,12 @@
     [self.view addSubview:saveLabel];
     
     shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    NSAttributedString *titleString = [AppUtils generateAttriuteStringWithStr:@"立即分享" WithColor:[UIColor whiteColor] WithFont:[UIFont systemFontOfSize:16]];
+    NSAttributedString *titleString = [AppUtils generateAttriuteStringWithStr:@"立即分享" WithColor:[UIColor colorFromHexString:@"#333333"] WithFont:[UIFont systemFontOfSize:16]];
     [shareButton addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
     [shareButton setAttributedTitle:titleString forState:UIControlStateNormal];
-    [shareButton setBackgroundColor:[UIColor colorFromHexString:@"#E11F63"]];
+    [shareButton gradientButtonWithSize:CGSizeMake(SCREEN_WIDTH - 30, 44) colorArray:@[[UIColor colorFromHexString:@"#FED546"],[UIColor colorFromHexString:@"#FEBD43"]] percentageArray:@[@(0.1),@(1)] gradientType:GradientFromLeftToRight];
+    [shareButton.layer setCornerRadius:22.0f];
+    [shareButton.layer setMasksToBounds:YES];
     [self.view addSubview:shareButton];
     [self makeConstraints];
 }

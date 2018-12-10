@@ -17,14 +17,26 @@
     if (self) {
         [self setUserInteractionEnabled:YES];
         [self setBackgroundColor:[UIColor clearColor]];
+        vipDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 18)];
+        [vipDescLabel setTextAlignment:NSTextAlignmentCenter];
+        NSMutableAttributedString *vipDesc = [AppUtils generateAttriuteStringWithStr:@"开通vip" WithColor:[UIColor colorFromHexString:ThemeHexColor] WithFont:[UIFont systemFontOfSize:13.0f]];
+        NSAttributedString *appendString = [AppUtils generateAttriuteStringWithStr:@" 可免费制作会员专属模版" WithColor:[UIColor whiteColor] WithFont:[UIFont systemFontOfSize:13.0f]];
+        [vipDesc appendAttributedString:appendString];
+        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+        style.alignment = NSTextAlignmentCenter;
+        [vipDesc addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, vipDesc.length)];
+        [vipDescLabel setAttributedText:vipDesc];
+        [vipDescLabel setCenter:CGPointMake(frame.size.width / 2.0f, 9)];
+        [vipDescLabel setHidden:YES];
+        [self addSubview:vipDescLabel];
+        
         downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [downloadButton setFrame:CGRectMake(0, 0, frame.size.width - 30, 44)];
-        [downloadButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [downloadButton setFrame:CGRectMake(0, 33, frame.size.width - 30, 44)];
+        [downloadButton setTitleColor:[UIColor colorFromHexString:@"#333333"] forState:UIControlStateNormal];
         [downloadButton setTitle:@"一键制作" forState:UIControlStateNormal];
-//        [downloadButton setBackgroundColor:[UIColor redColor]];
-        [downloadButton gradientButtonWithSize:CGSizeMake(frame.size.width - 30, 44) colorArray:@[[UIColor colorFromHexString:@"#FF5756"],[UIColor colorFromHexString:@"#E11F63"]] percentageArray:@[@(0.5),@(1)] gradientType:GradientFromLeftToRight];
+        [downloadButton gradientButtonWithSize:CGSizeMake(frame.size.width - 30, 44) colorArray:@[[UIColor colorFromHexString:@"#FED546"],[UIColor colorFromHexString:@"#FEBD43"]] percentageArray:@[@(0.1),@(1)] gradientType:GradientFromLeftToRight];
         [downloadButton.layer setCornerRadius:22.0f];
-        [downloadButton.layer masksToBounds];
+        [downloadButton.layer setMasksToBounds:YES];
         [downloadButton addTarget:self action:@selector(clickDownloadButton) forControlEvents:UIControlEventTouchUpInside];
         [downloadButton setCenter:CGPointMake(frame.size.width / 2.0f, frame.size.height / 2.0f)];
         [self addSubview:downloadButton];
@@ -47,6 +59,12 @@
         NSString *buttonTitle = [NSString stringWithFormat:@"正在下载：%@ ",percent];
         [downloadButton setTitle:buttonTitle forState:UIControlStateNormal];
     });
+}
+
+-(void)setTitle:(NSString *)title isShowVipLabel:(BOOL)isShow
+{
+    [downloadButton setTitle:title forState:UIControlStateNormal];
+    [vipDescLabel setHidden:!isShow];
 }
 
 -(void)setButtonTitle:(NSString *)title

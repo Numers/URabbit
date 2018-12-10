@@ -34,8 +34,9 @@
 #import "UINavigationController+NavigationBar.h"
 #import "UTLoginScrollViewController.h"
 #import "UTMemberScrollViewController.h"
+#import "UTDownloadAlertView.h"
 
-@interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol>
+@interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol,UTDownloadAlertViewProtocl>
 {
     HomeTemplate *currentHomeTemplate;
     Composition *composition;
@@ -44,6 +45,8 @@
     UIScrollView *scrollView;
     UTVideoInfoView *videoInfoView;
     UTVideoAuthorView *videoAuthorView;
+    
+    UTDownloadAlertView *downloadAlertView;
     
     Resource *resource;
     Custom *custom;
@@ -78,7 +81,7 @@
     videoAuthorView = [[UTVideoAuthorView alloc] initWithFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
     [scrollView addSubview:videoAuthorView];
     
-    makeButtonView = [[UTDownloadButtonView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - [UIDevice safeAreaBottomHeight] - 72.0f, SCREEN_WIDTH, 72.0f)];
+    makeButtonView = [[UTDownloadButtonView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - [UIDevice safeAreaBottomHeight] - 105.0f, SCREEN_WIDTH, 105.0f)];
     makeButtonView.delegate = self;
     [self.view addSubview:makeButtonView];
 }
@@ -87,6 +90,16 @@
 {
     [super viewWillAppear:animated];
     [self navigationBarSetting];
+    if ([currentHomeTemplate isVip]) {
+        Member *host = [[AppStartManager shareManager] currentMember];
+        if (!host.isVip) {
+            [makeButtonView setTitle:@"VIP专属" isShowVipLabel:YES];
+        }else{
+            [makeButtonView setTitle:@"一键制作" isShowVipLabel:NO];
+        }
+    }else{
+        [makeButtonView setTitle:@"一键制作" isShowVipLabel:NO];
+    }
     [self requestTemplateInfo];
 }
 
@@ -139,7 +152,7 @@
             [videoInfoView setHomeTemplate:template];
             [videoAuthorView setFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
             [videoAuthorView setHomeTemplate:template];
-            [scrollView setContentSize:CGSizeMake(SCREEN_WIDTH,[UIDevice safeAreaTopHeight] + 17 + videoInfoView.frame.size.height + videoAuthorView.frame.size.height)];
+            [scrollView setContentSize:CGSizeMake(SCREEN_WIDTH, 17 + videoInfoView.frame.size.height + videoAuthorView.frame.size.height + makeButtonView.frame.size.height)];
             currentHomeTemplate = template;
             [self initlizedDatabase];
         }
@@ -411,9 +424,9 @@
     
     if (currentHomeTemplate.isVip) {
         if (!host.isVip) {
-            UTMemberScrollViewController *memberScrollVC = [[UTMemberScrollViewController alloc] initWithTransitionMethod:NO];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberScrollVC];
-            [self presentViewController:nav animated:YES completion:nil];
+            downloadAlertView = [[UTDownloadAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+            downloadAlertView.delegate = self;
+            [downloadAlertView alert];
             return;
         }
     }
@@ -470,5 +483,19 @@
 //            [animationInfoList addObject:info];
 //        }
 //    }
+}
+
+#pragma -mark UTDownloadAlertViewProtocl
+-(void)didComfirm
+{
+    if (downloadAlertView) {
+        [downloadAlertView dismiss:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UTMemberScrollViewController *memberScrollVC = [[UTMemberScrollViewController alloc] initWithTransitionMethod:NO];
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberScrollVC];
+                [self presentViewController:nav animated:YES completion:nil];
+            });
+        }];
+    }
 }
 @end

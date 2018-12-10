@@ -13,6 +13,7 @@
 #import "UTUserVipNetworkAPIManager.h"
 #import "UTLoginScrollViewController.h"
 #import "UINavigationController+NavigationBar.h"
+#import "UIButton+Gradient.h"
 @interface UTMemberScrollViewController ()<MemberViewProtocol>
 {
     UTMemberViewController *memberVC;
@@ -65,12 +66,14 @@
     [_agreeButton setAttributedTitle:title forState:UIControlStateNormal];
     [self.view addSubview:_agreeButton];
     
+    [_openMemberButton setTitleColor:[UIColor colorFromHexString:@"#333333"] forState:UIControlStateNormal];
+    
     _openMemberButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_openMemberButton addTarget:self action:@selector(clickOpenMemeberButton) forControlEvents:UIControlEventTouchUpInside];
-    [_openMemberButton setBackgroundColor:[UIColor colorFromHexString:@"#FF5756"]];
-    [_openMemberButton.layer setCornerRadius:22];
+    [_openMemberButton gradientButtonWithSize:CGSizeMake(SCREEN_WIDTH - 30, 44) colorArray:@[[UIColor colorFromHexString:@"#FED546"],[UIColor colorFromHexString:@"#FEBD43"]] percentageArray:@[@(0.1),@(1)] gradientType:GradientFromLeftToRight];
+    [_openMemberButton.layer setCornerRadius:22.0f];
     [_openMemberButton.layer setMasksToBounds:YES];
-    NSAttributedString *openTitle = [AppUtils generateAttriuteStringWithStr:@"开通VIP会员" WithColor:[UIColor whiteColor] WithFont:[UIFont systemFontOfSize:16]];
+    [_openMemberButton addTarget:self action:@selector(clickOpenMemeberButton) forControlEvents:UIControlEventTouchUpInside];
+    NSAttributedString *openTitle = [AppUtils generateAttriuteStringWithStr:@"开通VIP会员" WithColor:[UIColor colorFromHexString:@"#333333"] WithFont:[UIFont systemFontOfSize:16]];
     [_openMemberButton setAttributedTitle:openTitle forState:UIControlStateNormal];
     [self.view addSubview:_openMemberButton];
     [self makeConstraints];

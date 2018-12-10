@@ -51,8 +51,12 @@
 
 -(void)setHomeTemplate:(HomeTemplate *)homeTemplate
 {
+    if (currentHomeTemplate == nil) {
+        currentHomeTemplate = homeTemplate;
+    }else{
+        return;
+    }
     [playView setMovieUrl:[NSURL URLWithString:homeTemplate.demoUrl]];
-    
     [videoNameLabel setText:homeTemplate.title];
     [videoDurationLabel setText:[AppUtils getMMSSFromSS:homeTemplate.duration]];
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:13.0]};

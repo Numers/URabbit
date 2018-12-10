@@ -35,7 +35,7 @@
         [backView addSubview:descLabel];
         
         priceLabel = [[UILabel alloc] init];
-        [priceLabel setTextColor:[UIColor colorFromHexString:@"#FF5858"]];
+        [priceLabel setTextColor:[UIColor colorFromHexString:@"#ED9248"]];
         [priceLabel setFont:[UIFont boldSystemFontOfSize:16.0f]];
         [priceLabel setTextAlignment:NSTextAlignmentRight];
         [backView addSubview:priceLabel];
@@ -94,13 +94,13 @@
 {
     isSelected = selected;
     if (selected) {
-        [backView.layer setBorderColor:[UIColor colorFromHexString:@"#FF5858"].CGColor];
+        [backView.layer setBorderColor:[UIColor colorFromHexString:@"#ED9248"].CGColor];
         [backView.layer setBorderWidth:1];
-        [backView setBackgroundColor:[UIColor colorWithRed:255.0f/ 255 green:88.0f / 255 blue:88.0 / 255 alpha:0.06]];
+        [backView setBackgroundColor:[UIColor colorFromHexString:@"#ED9248" opacity:0.08]];
     }else{
         [backView.layer setBorderColor:[UIColor colorFromHexString:@"#999999"].CGColor];
         [backView.layer setBorderWidth:1];
-        [backView setBackgroundColor:[UIColor colorWithRed:153.0f/ 255 green:153.0f / 255 blue:153.0 / 255 alpha:0.06]];
+        [backView setBackgroundColor:[UIColor colorWithRed:153.0f/ 255 green:153.0f / 255 blue:153.0 / 255 alpha:0.08]];
     }
 }
 

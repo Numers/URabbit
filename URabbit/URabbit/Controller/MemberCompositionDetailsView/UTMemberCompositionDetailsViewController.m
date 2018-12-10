@@ -10,6 +10,7 @@
 #import "UTMemberCompositionInfoView.h"
 #import "Composition.h"
 #import "UINavigationController+NavigationBar.h"
+#import "UIButton+Gradient.h"
 
 @interface UTMemberCompositionDetailsViewController ()
 {
@@ -17,6 +18,7 @@
     UTMemberCompositionInfoView *compositionInfoView;
 }
 @property(nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property(nonatomic, strong) IBOutlet UIButton *shareButton;
 @property(nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @end
 
@@ -37,6 +39,12 @@
     compositionInfoView = [[UTMemberCompositionInfoView alloc] initWithVideoSize:CGSizeMake(currentCompositon.videoWidth, currentCompositon.videoHeight) frame:CGRectMake(0, 51, SCREEN_WIDTH, 0)];
     [_scrollView addSubview:compositionInfoView];
     [compositionInfoView setupViewWithComposition:currentCompositon];
+    
+    [_shareButton setTitleColor:[UIColor colorFromHexString:@"#333333"] forState:UIControlStateNormal];
+    [_shareButton setBackgroundColor:[UIColor clearColor]];
+    [_shareButton gradientButtonWithSize:CGSizeMake(SCREEN_WIDTH - 30, 44) colorArray:@[[UIColor colorFromHexString:@"#FED546"],[UIColor colorFromHexString:@"#FEBD43"]] percentageArray:@[@(0.1),@(1)] gradientType:GradientFromLeftToRight];
+    [_shareButton.layer setCornerRadius:22.0f];
+    [_shareButton.layer setMasksToBounds:YES];
     
     [_titleLabel setText:currentCompositon.title];
 }

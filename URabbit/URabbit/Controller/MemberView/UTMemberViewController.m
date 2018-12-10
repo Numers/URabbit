@@ -18,7 +18,10 @@ static NSString *memberTableViewCellIdentify = @"MemberTableViewCellIdentify";
     NSMutableArray *datasource;
     NSInteger selectedRow;
     VIPPrice *selectPrice;
+    
+    UIImageView *vipMarkImageView;
 }
+@property(nonatomic, strong) IBOutlet UIView *headBackView;
 @property(nonatomic, strong) IBOutlet UIImageView *headImageView;
 @property(nonatomic, strong) IBOutlet UILabel *nickNameLabel;
 @property(nonatomic, strong) IBOutlet UILabel *isMemeberLabel;
@@ -89,9 +92,21 @@ static NSString *memberTableViewCellIdentify = @"MemberTableViewCellIdentify";
         [_isMemeberLabel setHidden:NO];
         [_headImageView sd_setImageWithURL:[NSURL URLWithString:member.headIcon] placeholderImage:[UIImage imageNamed:@"headIconImage"]];
         [_nickNameLabel setText:member.nickName];
+        [_nickNameLabel sizeToFit];
+        
+        if (vipMarkImageView) {
+            [vipMarkImageView removeFromSuperview];
+            vipMarkImageView = nil;
+        }
+    
         if ([member isVip]) {
             NSString *expireTime = [AppUtils getDateFormatterFromTime:member.vipExpire formatter:@"yyyy-MM-dd"];
             [_isMemeberLabel setText:[NSString stringWithFormat:@"已开通VIP会员 有效期至%@",expireTime]];
+            
+            UIImage *vipMarkImage = [UIImage imageNamed:@"VipMarkImage"];
+            vipMarkImageView = [[UIImageView alloc] initWithImage:vipMarkImage];
+            [vipMarkImageView setCenter:CGPointMake(_nickNameLabel.frame.origin.x + _nickNameLabel.frame.size.width + 7 + vipMarkImage.size.width / 2.0f, _nickNameLabel.center.y)];
+            [_backView addSubview:vipMarkImageView];
         }else{
             [_isMemeberLabel setText:@"未开通VIP会员"];
         }
@@ -124,7 +139,6 @@ static NSString *memberTableViewCellIdentify = @"MemberTableViewCellIdentify";
         [self.delegate presentLoginView];
     }
 }
-
 #pragma -mark UITableViewDelegate | UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

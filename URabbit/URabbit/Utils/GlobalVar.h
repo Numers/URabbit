@@ -101,7 +101,7 @@ typedef enum{
 } LoginPlatform;
 #define ViewBackgroundColor [UIColor whiteColor]
 
-#define ThemeHexColor @"#FFFFFF"
+#define ThemeHexColor @"#FFDE44"
 
 #define IconfontGoBackDefaultSize 18
 

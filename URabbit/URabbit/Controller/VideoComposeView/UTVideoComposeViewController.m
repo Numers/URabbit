@@ -396,7 +396,7 @@
         NSString *name = [filterNames objectAtIndex:i];
         FilterInfo *info = [[FilterInfo alloc] init];
         info.filterName = name;
-        info.filterImage = @"recommend";
+        info.filterImage = @"defaultFilterImage";
         info.type = (FilterType)i;
         [filterList addObject:info];
     }

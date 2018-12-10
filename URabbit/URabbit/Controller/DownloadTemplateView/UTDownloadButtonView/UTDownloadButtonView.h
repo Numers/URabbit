@@ -13,8 +13,10 @@
 @interface UTDownloadButtonView : UIView
 {
     UIButton *downloadButton;
+    UILabel *vipDescLabel;
 }
 @property(nonatomic, weak) id<UTDownloadButtonViewProtocol> delegate;
+-(void)setTitle:(NSString *)title isShowVipLabel:(BOOL)isShow;
 -(void)setProgress:(CGFloat)progress;
 -(void)setButtonTitle:(NSString *)title;
 @end

@@ -22,7 +22,7 @@
         [self addSubview:scrollView];
         
         lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 48, 2)];
-        [lineView setBackgroundColor:[UIColor colorFromHexString:@"#FF5756"]];
+        [lineView setBackgroundColor:[UIColor colorFromHexString:@"#FFDE44"]];
         [scrollView addSubview:lineView];
         
         bottomLineView = [[UIView alloc] init];
@@ -116,7 +116,7 @@
     
     UIButton *selectBtn = [_buttons objectAtIndex:index];
     NSString *title = [_titleList objectAtIndex:index];
-    NSAttributedString *tempAttrString = [AppUtils generateAttriuteStringWithStr:title WithColor:[UIColor colorFromHexString:@"#FF5756"] WithFont:[UIFont systemFontOfSize:14]];
+    NSAttributedString *tempAttrString = [AppUtils generateAttriuteStringWithStr:title WithColor:[UIColor colorFromHexString:@"#FFDE44"] WithFont:[UIFont systemFontOfSize:14]];
     [selectBtn setAttributedTitle:tempAttrString forState:UIControlStateNormal];
     if (animation) {
         [UIView animateWithDuration:0.25 animations:^{
