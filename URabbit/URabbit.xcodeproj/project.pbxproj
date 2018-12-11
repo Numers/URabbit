@@ -103,6 +103,8 @@
 		14482F1F21A46FCC00D640F1 /* UTPictureImageLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F1E21A46FCC00D640F1 /* UTPictureImageLayerView.m */; };
 		14482F2221A475FF00D640F1 /* UTPhotoEditCanMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F2121A475FF00D640F1 /* UTPhotoEditCanMoveView.m */; };
 		14482F2521A4761D00D640F1 /* UTPhotoEditNotMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F2421A4761D00D640F1 /* UTPhotoEditNotMoveView.m */; };
+		1457681E21BFA76300E3D932 /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1457681A21BFA76300E3D932 /* VPImageCropperViewController.m */; };
+		1457681F21BFA76300E3D932 /* LDImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1457681B21BFA76300E3D932 /* LDImagePicker.m */; };
 		1458035D216F2BCC006BB33D /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14580303216F2BCB006BB33D /* iconfont.ttf */; };
 		1458035F216F2BCC006BB33D /* GeneralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580306216F2BCB006BB33D /* GeneralManager.m */; };
 		14580362216F2BCC006BB33D /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14580311216F2BCB006BB33D /* NetWorkManager.m */; };
@@ -554,6 +556,10 @@
 		14482F2121A475FF00D640F1 /* UTPhotoEditCanMoveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditCanMoveView.m; sourceTree = "<group>"; };
 		14482F2321A4761D00D640F1 /* UTPhotoEditNotMoveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditNotMoveView.h; sourceTree = "<group>"; };
 		14482F2421A4761D00D640F1 /* UTPhotoEditNotMoveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditNotMoveView.m; sourceTree = "<group>"; };
+		1457681A21BFA76300E3D932 /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
+		1457681B21BFA76300E3D932 /* LDImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDImagePicker.m; sourceTree = "<group>"; };
+		1457681C21BFA76300E3D932 /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
+		1457681D21BFA76300E3D932 /* LDImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDImagePicker.h; sourceTree = "<group>"; };
 		14580303216F2BCB006BB33D /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		14580306216F2BCB006BB33D /* GeneralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralManager.m; sourceTree = "<group>"; };
 		14580307216F2BCB006BB33D /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
@@ -1365,6 +1371,17 @@
 			path = UTPictureImageLayerView;
 			sourceTree = "<group>";
 		};
+		1457681921BFA76300E3D932 /* LDImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				1457681A21BFA76300E3D932 /* VPImageCropperViewController.m */,
+				1457681B21BFA76300E3D932 /* LDImagePicker.m */,
+				1457681C21BFA76300E3D932 /* VPImageCropperViewController.h */,
+				1457681D21BFA76300E3D932 /* LDImagePicker.h */,
+			);
+			path = LDImagePicker;
+			sourceTree = "<group>";
+		};
 		145802FC216F2BCB006BB33D /* Iconfont */ = {
 			isa = PBXGroup;
 			children = (
@@ -1417,6 +1434,7 @@
 		14580315216F2BCB006BB33D /* ThirdPartPlugins */ = {
 			isa = PBXGroup;
 			children = (
+				1457681921BFA76300E3D932 /* LDImagePicker */,
 				14254EF921B0ED9E003C1E89 /* XFPhotoLibraryManager */,
 				14254EEF21B0EB18003C1E89 /* XFAVFoundation */,
 				142AC2F021AC393900368ABE /* VideoPlayer */,
@@ -2244,6 +2262,7 @@
 				14482F0D21A3D67400D640F1 /* Custom.m in Sources */,
 				1473D5C121B676F900AB946D /* UTUserVipNetworkAPIManager.m in Sources */,
 				14580393216F2D6F006BB33D /* UIDevice+FixedLength.m in Sources */,
+				1457681F21BFA76300E3D932 /* LDImagePicker.m in Sources */,
 				146B638A219071EB00A3A679 /* UTPhotoEditView.m in Sources */,
 				146B63862190657F00A3A679 /* UTPhotoEditViewController.m in Sources */,
 				1486C4EE21946F6500809626 /* UTFilterCollectionViewCell.m in Sources */,
@@ -2284,6 +2303,7 @@
 				1425A90A21A9C0BD007A0C2E /* UTShareViewController.m in Sources */,
 				14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */,
 				1425A8CB21A961F8007A0C2E /* UTMemberCompositonViewController.m in Sources */,
+				1457681E21BFA76300E3D932 /* VPImageCropperViewController.m in Sources */,
 				14266C8A21A5939F008A1926 /* UTKeyboardTextField.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
 				144357C321A6ACDA00FEA9AE /* PSTGridLayoutInfo.m in Sources */,

@@ -30,6 +30,7 @@
 #import "DraftTemplate.h"
 
 #import <DMProgressHUD/DMProgressHUD.h>
+#import "LDImagePicker.h"
 
 #define VideoRatio 5
 #define WebpRatio 3
@@ -41,7 +42,7 @@ typedef enum{
 } ComposeStep;
 
 static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowImageCollectionViewCellIdentify";
-@interface UTPhotoEditViewController ()<PSTCollectionViewDelegateFlowLayout,PSTCollectionViewDelegate,PSTCollectionViewDataSource,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UTMiddleEditContainerViewProtocol,VideoComposeProtocol,ComposeStrategyProtocl>
+@interface UTPhotoEditViewController ()<PSTCollectionViewDelegateFlowLayout,PSTCollectionViewDelegate,PSTCollectionViewDataSource,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UTMiddleEditContainerViewProtocol,VideoComposeProtocol,ComposeStrategyProtocl,LDImagePickerDelegate>
 {
     UIButton *importPhotosButton;
     UTMiddleEditContainerView *containerView;
@@ -371,16 +372,43 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     }];
 }
 
+#pragma -mark
+- (void)imagePicker:(LDImagePicker *)imagePicker didFinished:(UIImage *)editedImage
+{
+    if ([currentEditView isKindOfClass:[UTPhotoEditCanMoveView class]]) {
+        UTPhotoEditCanMoveView *view = (UTPhotoEditCanMoveView *)currentEditView;
+        [view setPictureImage:editedImage];
+    }else if([currentEditView isKindOfClass:[UTPhotoEditNotMoveView class]]){
+        UTPhotoEditNotMoveView *view = (UTPhotoEditNotMoveView *)currentEditView;
+        [view setPictureImage:editedImage];
+    }
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:selectedRow inSection:0];
+    UIImage *image = [containerView deSelectIndexPath:indexPath];
+    UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell setPictureImage:image];
+}
+
+- (void)imagePickerDidCancel:(LDImagePicker *)imagePicker
+{
+    
+}
 #pragma -mark UTMiddleEditContainerViewProtocol
--(void)openImagePickerViewFromView:(UTPhotoEditView *)view
+-(void)openImagePickerViewFromView:(UTPhotoEditView *)view scale:(CGFloat)scale
 {
     currentEditView = view;
-    UIImagePickerController *pickerContoller = [[UIImagePickerController alloc] init];
-    pickerContoller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    pickerContoller.delegate = self;
-    [self presentViewController:pickerContoller animated:YES completion:^{
-        
-    }];
+    if (currentResource.style == TemplateStyleFriend) {
+        LDImagePicker *imagePicker = [LDImagePicker sharedInstance];
+        imagePicker.delegate = self;
+        [imagePicker showImagePickerWithType:ImagePickerPhoto InViewController:self Scale:scale];
+    }else{
+        UIImagePickerController *pickerContoller = [[UIImagePickerController alloc] init];
+        pickerContoller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        pickerContoller.delegate = self;
+        [self presentViewController:pickerContoller animated:YES completion:^{
+            
+        }];
+    }
 }
 
 -(void)scrollToIndexPath:(NSIndexPath *)indexPath fromIndex:(NSIndexPath *)fromIndexPath

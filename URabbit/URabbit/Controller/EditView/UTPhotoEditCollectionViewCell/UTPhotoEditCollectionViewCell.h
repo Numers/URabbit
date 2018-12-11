@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class UTPhotoEditView,Snapshot;
 @protocol UTPhotoEditCollectionViewCellProtocol<NSObject>
--(void)openImagePickerViewFromView:(UTPhotoEditView *)view;
+-(void)openImagePickerViewFromView:(UTPhotoEditView *)view scale:(CGFloat)scale;
 @end
 @interface UTPhotoEditCollectionViewCell : UICollectionViewCell
 {

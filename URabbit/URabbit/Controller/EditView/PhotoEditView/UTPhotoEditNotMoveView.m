@@ -79,10 +79,10 @@
 -(void)setPictureImage:(UIImage *)image
 {
     for (SnapshotMedia *media in currentSnapshot.mediaList){
-        CGFloat width = self.frame.size.width * media.imageWidthPercent;
-        CGFloat height = self.frame.size.height * media.imageHeightPercent;
-        UIImage *cropImage = [AppUtils cropImage:image ratio:width/height];
         if ([media.mediaName isEqualToString:selectMediaName]) {
+            CGFloat width = self.frame.size.width * media.imageWidthPercent;
+            CGFloat height = self.frame.size.height * media.imageHeightPercent;
+            UIImage *cropImage = [AppUtils cropImage:image ratio:width/height];
             [media changePicture:cropImage];
         }
     }
@@ -189,8 +189,16 @@
 -(void)selectPictureWithMediaName:(NSString *)mediaName
 {
     selectMediaName = mediaName;
-    if ([self.delegate respondsToSelector:@selector(openImagePickerView)]) {
-        [self.delegate openImagePickerView];
+    CGFloat ratio = 1.0f;
+    for (SnapshotMedia *media in currentSnapshot.mediaList){
+        if ([media.mediaName isEqualToString:mediaName]) {
+            CGFloat width = self.frame.size.width * media.imageWidthPercent;
+            CGFloat height = self.frame.size.height * media.imageHeightPercent;
+            ratio = height / width;
+        }
+    }
+    if ([self.delegate respondsToSelector:@selector(openImagePickerViewWithScale:)]) {
+        [self.delegate openImagePickerViewWithScale:ratio];
     }
 }
 @end

@@ -100,10 +100,10 @@ static NSString *photoEditCollectionViewCellIdentify = @"PhotoEditCollectionView
 }
 
 #pragma -mark UTPhotoEditCollectionViewCellProtocol
--(void)openImagePickerViewFromView:(UTPhotoEditView *)view
+-(void)openImagePickerViewFromView:(UTPhotoEditView *)view scale:(CGFloat)scale
 {
-    if ([self.delegate respondsToSelector:@selector(openImagePickerViewFromView:)]) {
-        [self.delegate openImagePickerViewFromView:view];
+    if ([self.delegate respondsToSelector:@selector(openImagePickerViewFromView:scale:)]) {
+        [self.delegate openImagePickerViewFromView:view scale:scale];
     }
 }
 @end

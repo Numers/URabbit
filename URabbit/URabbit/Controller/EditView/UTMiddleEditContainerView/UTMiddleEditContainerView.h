@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class UTPhotoEditView;
 @protocol UTMiddleEditContainerViewProtocol <NSObject>
--(void)openImagePickerViewFromView:(UTPhotoEditView *)view;
+-(void)openImagePickerViewFromView:(UTPhotoEditView *)view scale:(CGFloat)scale;
 -(void)scrollToIndexPath:(NSIndexPath *)indexPath fromIndex:(NSIndexPath *)fromIndexPath;
 @end
 @interface UTMiddleEditContainerView : UIView

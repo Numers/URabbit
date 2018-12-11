@@ -174,10 +174,18 @@
 #pragma -mark UTPictureImageLayerViewProtocol
 -(void)selectPictureWithMediaName:(NSString *)mediaName
 {
+    CGFloat ratio = 1.0f;
+    for (SnapshotMedia *media in currentSnapshot.mediaList){
+        if ([media.mediaName isEqualToString:mediaName]) {
+            CGFloat width = self.frame.size.width * media.imageWidthPercent;
+            CGFloat height = self.frame.size.height * media.imageHeightPercent;
+            ratio = height / width;
+        }
+    }
     PHAuthorizationStatus authStatusAlbm  = [PHPhotoLibrary authorizationStatus];
     if (authStatusAlbm == PHAuthorizationStatusAuthorized || authStatusAlbm == PHAuthorizationStatusNotDetermined) {
-        if ([self.delegate respondsToSelector:@selector(openImagePickerView)]) {
-            [self.delegate openImagePickerView];
+        if ([self.delegate respondsToSelector:@selector(openImagePickerViewWithScale:)]) {
+            [self.delegate openImagePickerViewWithScale:ratio];
         }
     }
 }

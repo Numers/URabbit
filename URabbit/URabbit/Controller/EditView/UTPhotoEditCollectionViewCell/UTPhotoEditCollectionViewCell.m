@@ -71,10 +71,10 @@
     return image;
 }
 #pragma -mark UTPhotoEditViewProtocol
--(void)openImagePickerView
+-(void)openImagePickerViewWithScale:(CGFloat)scale
 {
-    if ([self.delegate respondsToSelector:@selector(openImagePickerViewFromView:)]) {
-        [self.delegate openImagePickerViewFromView:editView];
+    if ([self.delegate respondsToSelector:@selector(openImagePickerViewFromView:scale:)]) {
+        [self.delegate openImagePickerViewFromView:editView scale:scale];
     }
 }
 @end

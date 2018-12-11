@@ -120,22 +120,16 @@
 -(IBAction)clickLoginBtn:(id)sender
 {
     [AppUtils showLoadingInView:self.view];
-    [[UTLoginNetworkAPIManager shareManager] checkValidateCodeWithMobile:_mobieTextField.text code:_validateCodeTextField.text callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
-        if ([code integerValue] == 200) {
-            [[UTLoginNetworkAPIManager shareManager] loginWithMobile:_mobieTextField.text checkCode:_validateCodeTextField.text callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
-                [AppUtils hiddenLoadingInView:self.view];
-                if (data) {
-                    NSDictionary *memberInfo = (NSDictionary *)data;
-                    Member *member = [[Member alloc] initWithDictionary:memberInfo];
-                    [[AppStartManager shareManager] setMember:member];
-                    [AppUtils localUserDefaultsValue:@"1" forKey:KMY_AutoLogin];
-                    if ([self.delegate respondsToSelector:@selector(loginsuccess)]) {
-                        [self.delegate loginsuccess];
-                    }
-                }
-            }];
-        }else{
-            [AppUtils hiddenLoadingInView:self.view];
+    [[UTLoginNetworkAPIManager shareManager] loginWithMobile:_mobieTextField.text checkCode:_validateCodeTextField.text callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        [AppUtils hiddenLoadingInView:self.view];
+        if (data) {
+            NSDictionary *memberInfo = (NSDictionary *)data;
+            Member *member = [[Member alloc] initWithDictionary:memberInfo];
+            [[AppStartManager shareManager] setMember:member];
+            [AppUtils localUserDefaultsValue:@"1" forKey:KMY_AutoLogin];
+            if ([self.delegate respondsToSelector:@selector(loginsuccess)]) {
+                [self.delegate loginsuccess];
+            }
         }
     }];
 }
