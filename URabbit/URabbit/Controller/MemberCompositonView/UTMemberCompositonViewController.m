@@ -62,6 +62,7 @@ static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositi
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
     [self.navigationItem setTitle:@"我的作品"];
     [self searchCompostions];
 }
