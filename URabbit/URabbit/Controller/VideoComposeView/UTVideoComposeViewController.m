@@ -189,6 +189,7 @@
     if (movieFile) {
         [movieFile endProcessing];
     }
+    [NSThread sleepForTimeInterval:0.2];
     [AppUtils showLoadingInView:self.view];
     if (audioURL) {
         NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
@@ -309,6 +310,7 @@
 //    [movieFile cancelProcessing];
     [player setRate:0.0f];
     [audioPlayer pause];
+    [playView playFinished];
 }
 
 -(void)moviePlayFinished

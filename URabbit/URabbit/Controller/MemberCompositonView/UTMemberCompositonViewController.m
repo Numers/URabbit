@@ -37,7 +37,6 @@ static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositi
     [collectionView registerClass:[UTMemberCompositonCollectionViewCell class] forCellWithReuseIdentifier:memberCompositionCollectionViewCellIdentify];
     collectionView.delegate = self;
     collectionView.dataSource = self;
-    [collectionView setScrollEnabled:NO];
     [collectionView setBackgroundColor:[UIColor whiteColor]];
     [collectionView setContentInset:UIEdgeInsetsMake(18, 0, 0, 0)];
     [collectionView setShowsHorizontalScrollIndicator:NO];

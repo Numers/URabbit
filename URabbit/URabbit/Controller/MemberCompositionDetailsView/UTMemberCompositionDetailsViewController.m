@@ -78,9 +78,8 @@
         [[NSFileManager defaultManager] removeItemAtPath:currentCompositon.moviePath error:nil];
     }
     
-    NSString *sql = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"templateId"),bg_sqlValue(@(currentCompositon.templateId))];
+    NSString *sql = [NSString stringWithFormat:@"where %@=%@ and %@=%@",bg_sqlKey(@"templateId"),bg_sqlValue(@(currentCompositon.templateId)),bg_sqlKey(@"bg_updateTime"),bg_sqlValue(currentCompositon.bg_updateTime)];
     [Composition bg_delete:CompositionTableName where:sql];
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
