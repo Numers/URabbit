@@ -111,6 +111,24 @@
     if (videoInfoView) {
         [videoInfoView pausePlayView];
     }
+    NSArray *viewControllers = self.navigationController.viewControllers;//获取当前的视图控制其
+    
+    if (viewControllers.count > 1 && [viewControllers objectAtIndex:viewControllers.count-2] == self) {
+        
+        //当前视图控制器在栈中，故为push操作
+        
+        NSLog(@"push");
+        
+    } else if ([viewControllers indexOfObject:self] == NSNotFound) {
+        
+        //当前视图控制器不在栈中，故为pop操作
+        NSLog(@"pop");
+        NSString *videoDic = [AppUtils createDirectoryWithUniqueIndex:currentHomeTemplate.templateId];
+        NSString *unzipFileDirectory = [NSString stringWithFormat:@"%@/unzip-%ld",videoDic,currentHomeTemplate.templateId];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:unzipFileDirectory]){
+            [[NSFileManager defaultManager] removeItemAtPath:unzipFileDirectory error:nil];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -338,8 +356,11 @@
 
 -(BOOL)unzipFile:(NSString *)zipFile directory:(NSString *)directory
 {
+    [AppUtils showHudProgress:@"解压资源" forView:self.view];
     NSString *unzipFileName = [NSString stringWithFormat:@"unzip-%ld",currentHomeTemplate.templateId];
-    return [AppUtils unzipWithFilePath:zipFile destinationPath:directory unzipFileName:unzipFileName];
+    BOOL result =  [AppUtils unzipWithFilePath:zipFile destinationPath:directory unzipFileName:unzipFileName];
+    [AppUtils hidenHudProgressForView:self.view];
+    return result;
 }
 
 -(SnapshotMedia *)filterArray:(NSArray *)array withMediaName:(NSString *)name
@@ -437,15 +458,26 @@
     NSString *zipPath = [NSString stringWithFormat:@"%@/resource-%ld.zip",videoDic,currentHomeTemplate.templateId];
     NSString *unzipFileDirectory = [NSString stringWithFormat:@"%@/unzip-%ld",videoDic,currentHomeTemplate.templateId];
     if ([[NSFileManager defaultManager] fileExistsAtPath:zipPath]) {
-        [self analyzeResource:unzipFileDirectory];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if ([[NSFileManager defaultManager] fileExistsAtPath:unzipFileDirectory]) {
+                [self analyzeResource:unzipFileDirectory];
+            }else{
+                BOOL result = [self unzipFile:zipPath directory:videoDic];
+                if (result) {
+                    [self analyzeResource:unzipFileDirectory];
+                }
+            }
+        });
     }else{
         [[NetWorkManager defaultManager] downloadFileWithOption:nil withInferface:currentHomeTemplate.downloadUrl savedPath:zipPath downloadSuccess:^(NSURL *filePath) {
             [makeButtonView setButtonTitle:@"一键制作"];
             [loadedTemplate bg_saveOrUpdate];
-            BOOL result = [self unzipFile:zipPath directory:videoDic];
-            if (result) {
-                [self analyzeResource:unzipFileDirectory];
-            }
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                BOOL result = [self unzipFile:zipPath directory:videoDic];
+                if (result) {
+                    [self analyzeResource:unzipFileDirectory];
+                }
+            });
         } downloadFailure:^(NSError *error) {
             [AppUtils showInfo:@"下载失败"];
             [makeButtonView setButtonTitle:@"一键制作"];
