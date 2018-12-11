@@ -355,7 +355,12 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         [view setPictureImage:image];
     }
     [picker dismissViewControllerAnimated:YES completion:^{
-        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:selectedRow inSection:0];
+            UIImage *image = [containerView deSelectIndexPath:indexPath];
+            UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+            [cell setPictureImage:image];
+        });
     }];
 }
 

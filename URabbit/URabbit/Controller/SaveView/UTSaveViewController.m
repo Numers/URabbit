@@ -19,6 +19,7 @@
 static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollectionViewCellIdentify";
 @interface UTSaveViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LJJWaterFlowLayoutProtocol>
 {
+    UIView *navBackView;
     UICollectionView *collectionView;
     NSMutableArray *dataSource;
     NSInteger currentPage;
@@ -38,6 +39,10 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     currentSize = 20;
     hasMore = YES;
     dataSource = [NSMutableArray array];
+    
+    navBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, [UIDevice safeAreaTopHeight])];
+    [navBackView setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:navBackView];
     LJJWaterFlowLayout *layout = [[LJJWaterFlowLayout alloc] init];
     layout.delegate = self;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -48,9 +53,7 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     [collectionView setBackgroundColor:[UIColor whiteColor]];
     [collectionView setShowsHorizontalScrollIndicator:NO];
     [collectionView setShowsVerticalScrollIndicator:NO];
-    [collectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     [self.view addSubview:collectionView];
-    
     [self makeConstraints];
     
     collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -60,14 +63,14 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self requestUserSavedTemplate];
     }];
-
+    [collectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     [self refreshPageData];
 }
 
 -(void)makeConstraints
 {
     [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(6);
+        make.top.equalTo(navBackView.bottom).offset(6);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
         make.bottom.equalTo(self.view);
@@ -79,7 +82,6 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationItem setTitle:@"我的收藏"];
 }
 

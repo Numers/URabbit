@@ -10,8 +10,8 @@
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kColumnCount 2 //列数
-#define kInterItemSpacing 10.0f //item间距
-#define kLineSpacing 10.0f //行间距
+#define kInterItemSpacing 15.0f //item间距
+#define kLineSpacing 15.0f //行间距
 
 @interface LJJWaterFlowLayout()
 
@@ -149,7 +149,7 @@
             maxHeight = currentCloHeight;
         }
     }
-    
+    NSLog(@"%lf",self.collectionView.contentInset.bottom);
     if ([self.layoutDelegate respondsToSelector:@selector(calculateCollectionViewContentHeight:)]) {
         [self.layoutDelegate calculateCollectionViewContentHeight:maxHeight];
     }

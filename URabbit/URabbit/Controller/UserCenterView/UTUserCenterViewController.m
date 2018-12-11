@@ -78,7 +78,6 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationController setStatusBarStyle:UIStatusBarStyleDefault];
     [self.navigationItem setTitle:@"个人中心"];
     
