@@ -77,6 +77,12 @@ static NSString *userDownloadedCollectionViewCellIdentify = @"UserDownloadedColl
     [self.navigationItem setTitle:@"我的下载"];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

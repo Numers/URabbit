@@ -79,10 +79,10 @@
     [videoNameLabel setText:[NSString stringWithFormat:@"【%@】",composition.title]];
     [videoDurationLabel setText:[AppUtils getMMSSFromSS:composition.duration]];
     [videoDescLabel setText:composition.summary];
-    [videoDescLabel sizeToFit];
+//    [videoDescLabel sizeToFit];
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:13.0]};
     CGSize size = [composition.summary boundingRectWithSize:CGSizeMake(self.frame.size.width - 140, 36) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading  attributes:attribute context:nil].size;
-    
+    [videoDescLabel setFrame:CGRectMake(70, videoDurationLabel.frame.origin.y + videoDurationLabel.frame.size.height + 15, SCREEN_WIDTH - 140, size.height)];
     [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, playView.frame.size.height + 93 + size.height + 5)];
 }
 @end
