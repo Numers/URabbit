@@ -140,6 +140,7 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
                     savedTemplate.coverUrl = [dic objectForKey:@"coverUrl"];
                     savedTemplate.videoWidth = 544;
                     savedTemplate.videoHeight = 960;
+                    savedTemplate.bg_tableName = SavedTemplateTableName;
                     [dataSource addObject:savedTemplate];
                 }
                 currentPage ++;

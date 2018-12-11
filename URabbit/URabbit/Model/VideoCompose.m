@@ -200,7 +200,7 @@
                 }
             }
             
-//            [NSThread sleepForTimeInterval:0.02];
+            [NSThread sleepForTimeInterval:0.01];
         }
         
     });

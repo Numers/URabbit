@@ -138,6 +138,7 @@ static NSString *draftCollectionViewCellIdentify = @"DraftCollectionViewCellIden
     composition.videoHeight = draftTemplate.videoHeight;
     composition.duration = draftTemplate.duration;
     composition.summary = draftTemplate.summary;
+    composition.bg_tableName = CompositionTableName;
     
     Resource *resource = [[Resource alloc] init];
     resource.music = draftTemplate.resourceMusic;

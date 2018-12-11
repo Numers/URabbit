@@ -23,7 +23,6 @@
 
 -(void)readVideoFrames:(int)index
 {
-    NSLog(@"read frame %d",index);
      if (index < self.frames.count)
      {
          ComposeAnimationOperation *operation = [[ComposeAnimationOperation alloc] initWithFrame:index pixelSize:self.resource.videoSize];
