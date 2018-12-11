@@ -254,7 +254,9 @@
             AnimationType type = (AnimationType)[[animationDic objectForKey:@"type"] integerValue];
             NSInteger startFrame = [[animationDic objectForKey:@"startFrame"] integerValue];
             NSInteger endFrame = [[animationDic objectForKey:@"endFrame"] integerValue];
-            
+            if (currentHomeTemplate.totalFrame < startFrame) {
+                continue;
+            }
             AnimationSwitch *moveInAnimationSwitch = nil;
             id enterTypeObj = [animationDic objectForKey:@"enterType"];
             if (enterTypeObj) {
@@ -264,7 +266,7 @@
                 NSDictionary *moveInAnimationSwitchDic = [NSDictionary dictionaryWithObjectsAndKeys:@(moveInAnimationEndFrame),@"endFrame",@(moveInAnimationStartFrame),@"startFrame",@(enterType),@"type", nil];
                 moveInAnimationSwitch = [[AnimationSwitch alloc] initWithDictionary:moveInAnimationSwitchDic];
             }else{
-                NSDictionary *moveInAnimationSwitchDic = [NSDictionary dictionaryWithObjectsAndKeys:@(startFrame + 1),@"endFrame",@(startFrame),@"startFrame",@(0),@"type", nil];
+                NSDictionary *moveInAnimationSwitchDic = [NSDictionary dictionaryWithObjectsAndKeys:@(startFrame + 1),@"endFrame",@(startFrame),@"startFrame",@(SwitchAnimationNoneIn),@"type", nil];
                 moveInAnimationSwitch = [[AnimationSwitch alloc] initWithDictionary:moveInAnimationSwitchDic];
             }
             
@@ -277,7 +279,7 @@
                 NSDictionary *moveOutAnimationSwitchDic = [NSDictionary dictionaryWithObjectsAndKeys:@(moveOutAnimationEndFrame),@"endFrame",@(moveOutAnimationStartFrame),@"startFrame",@(exitType),@"type", nil];
                 moveOutAnimationSwitch = [[AnimationSwitch alloc] initWithDictionary:moveOutAnimationSwitchDic];
             }else{
-                NSDictionary *moveOutAnimationSwitchDic = [NSDictionary dictionaryWithObjectsAndKeys:@(startFrame + 1),@"endFrame",@(startFrame),@"startFrame",@(0),@"type", nil];
+                NSDictionary *moveOutAnimationSwitchDic = [NSDictionary dictionaryWithObjectsAndKeys:@(endFrame),@"endFrame",@(endFrame - 1),@"startFrame",@(SwitchAnimationNoneOut),@"type", nil];
                 moveOutAnimationSwitch = [[AnimationSwitch alloc] initWithDictionary:moveOutAnimationSwitchDic];
             }
             

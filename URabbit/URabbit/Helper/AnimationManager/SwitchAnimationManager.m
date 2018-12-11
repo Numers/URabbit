@@ -24,8 +24,13 @@
 {
     NSMutableArray *animations = [NSMutableArray array];
     switch (type) {
-        case SwitchAnimationNone:{
+        case SwitchAnimationNoneIn:{
             CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(-size.width / 2, size.height / 2) toCenter:CGPointMake(size.width /2, size.height/2) startTime:startTime duration:0.001 removeOnComplete:NO delegate:nil];
+            [animations addObject:animation];
+        }
+            break;
+        case SwitchAnimationNoneOut:{
+            CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width /2, size.height/2) toCenter:CGPointMake(-size.width, size.height / 2) startTime:startTime duration:0.001 removeOnComplete:NO delegate:nil];
             [animations addObject:animation];
         }
             break;
@@ -35,7 +40,7 @@
         }
             break;
         case SwitchAnimationLeftOut:{
-            CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width / 2, size.height / 2) toCenter:CGPointMake(-size.width /2, size.height/2) startTime:startTime duration:duration removeOnComplete:NO delegate:nil];
+            CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width / 2, size.height / 2) toCenter:CGPointMake(-size.width, size.height/2) startTime:startTime duration:duration removeOnComplete:NO delegate:nil];
             [animations addObject:animation];
         }
             break;
@@ -65,7 +70,7 @@
         }
             break;
         case SwitchAnimationBottomOut:{
-            CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width/2, size.height / 2) toCenter:CGPointMake(size.width /2, -size.height/2) startTime:startTime duration:duration removeOnComplete:NO delegate:nil];
+            CABasicAnimation *animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width/2, size.height / 2) toCenter:CGPointMake(size.width /2, -size.height) startTime:startTime duration:duration removeOnComplete:NO delegate:nil];
             [animations addObject:animation];
         }
             break;

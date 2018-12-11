@@ -86,7 +86,7 @@
             break;
         case AnimationTransform:
         {
-            animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width * _startCoordinate.x, size.height * _startCoordinate.y) toCenter:CGPointMake(size.width * _endCoordinate.x, size.height * _endCoordinate.y) startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
+            animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width * _startCoordinate.x, size.height * _startCoordinate.y) toCenter:CGPointMake(size.width * _endCoordinate.x, size.height * _endCoordinate.y) startTime:_range.location / _fps + 0.001 duration:_range.length / _fps - 0.002 removeOnComplete:NO delegate:nil];
         }
             break;
         case AnimationScale:

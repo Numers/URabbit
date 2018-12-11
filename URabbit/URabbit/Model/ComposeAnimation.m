@@ -61,46 +61,39 @@
     CALayer *parentLayer = [CALayer layer];
     CALayer *videoLayer = [CALayer layer];
     CALayer *frontLayer = [CALayer layer];
-    CALayer *backLayer = [CALayer layer];
+//    CALayer *backLayer = [CALayer layer];
     parentLayer.frame = CGRectMake(0, 0, videoSize.width, videoSize.height);
     videoLayer.frame = CGRectMake(0, 0, videoSize.width, videoSize.height);
     frontLayer.frame = CGRectMake(0, 0, videoSize.width, videoSize.height);
-    backLayer.frame = CGRectMake(0, 0, videoSize.width, videoSize.height);
+//    backLayer.frame = CGRectMake(0, 0, videoSize.width, videoSize.height);
     [parentLayer addSublayer:videoLayer];
     [parentLayer addSublayer:frontLayer];
-    [parentLayer addSublayer:backLayer];
+//    [parentLayer addSublayer:backLayer];
     
     for (Snapshot *snapshot in currentSnapshots) {
         for (SnapshotMedia *media in snapshot.mediaList) {
+            CALayer *imageLayer = [CALayer layer];
+            imageLayer.contents = (id)media.resultImage.CGImage;
+            CGFloat width = currentResource.videoSize.width;
+            CGFloat height = width * (media.resultImage.size.height / media.resultImage.size.width);
+            [imageLayer setFrame:CGRectMake(- width, 0, width, height)];
             if (media.animationForMediaList.count > 0) {
-                CALayer *imageLayer = [CALayer layer];
-                imageLayer.contents = (id)media.resultImage.CGImage;
-                CGFloat width = currentResource.videoSize.width * media.imageWidthPercent;
-                CGFloat height = width * (media.resultImage.size.height / media.resultImage.size.width);
-                [imageLayer setFrame:CGRectMake(- width/2, 0, width, height)];
-                
                 for (AnimationForMedia *animationForMedia in media.animationForMediaList) {
-                    
                     CABasicAnimation *animation = [animationForMedia animationForMediaWithSize:currentResource.videoSize];
                     [imageLayer addAnimation:animation forKey:nil];
                 }
-                [frontLayer addSublayer:imageLayer];
             }
             
             if (media.animationForSwitchList.count > 0) {
-                CALayer *imageLayer = [CALayer layer];
-                imageLayer.contents = (id)media.resultImage.CGImage;
-                CGFloat width = currentResource.videoSize.width * media.imageWidthPercent;
-                CGFloat height = width * (media.resultImage.size.height / media.resultImage.size.width);
-                [imageLayer setFrame:CGRectMake(- width/2, 0, width, height)];
                 for (AnimationSwitch *animationSwitch in media.animationForSwitchList) {
                     NSMutableArray *animations = [[SwitchAnimationManager shareManager] animationsWithSwitchAnimationType:animationSwitch.type startTime:animationSwitch.range.location/currentResource.fps duration:animationSwitch.range.length / currentResource.fps size:currentResource.videoSize];
                     for (CABasicAnimation *basicAnimation in animations) {
                         [imageLayer addAnimation:basicAnimation forKey:nil];
                     }
                 }
-                [backLayer addSublayer:imageLayer];
             }
+            
+            [frontLayer addSublayer:imageLayer];
         }
     }
     
