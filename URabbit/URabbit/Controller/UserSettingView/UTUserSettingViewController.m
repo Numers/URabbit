@@ -15,6 +15,7 @@
 #import "LoadedTemplate.h"
 #import "Composition.h"
 #import "DraftTemplate.h"
+#import <LGAlertView/LGAlertView.h>
 
 static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellIdentify";
 @interface UTUserSettingViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -78,6 +79,27 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
     [_tableView reloadData];
 }
 
+-(void)alertDeleteCacheView
+{
+    __weak typeof(self) weakSelf = self;
+    LGAlertView *alertView = [[LGAlertView alloc] initWithTitle:nil message:@"确定要清楚所有缓存数据吗？" style:LGAlertViewStyleAlert buttonTitles:@[@"确定"] cancelButtonTitle:@"取消" destructiveButtonTitle:nil actionHandler:^(LGAlertView *alertView, NSString *title, NSUInteger index) {
+        [weakSelf deleteCache];
+    } cancelHandler:^(LGAlertView *alertView) {
+        
+    } destructiveHandler:^(LGAlertView *alertView) {
+        
+    }];
+    [alertView setMessageFont:[UIFont systemFontOfSize:14]];
+    [alertView setMessageTextColor:[UIColor colorFromHexString:@"#333333"]];
+    [alertView setButtonsFont:[UIFont systemFontOfSize:14]];
+    [alertView setButtonsTitleColor:[UIColor colorFromHexString:ThemeHexColor]];
+    [alertView setCancelButtonFont:[UIFont systemFontOfSize:14]];
+    [alertView setCancelButtonTitleColor:[UIColor colorFromHexString:@"#999999"]];
+    [alertView showAnimated:YES completionHandler:^{
+        
+    }];
+}
+
 #pragma -mark UITableViewDelegate|UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -100,7 +122,7 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
 //                    break;
                 case 0:
                 {
-                    [self deleteCache];
+                    [self alertDeleteCacheView];
                 }
                     break;
                 default:

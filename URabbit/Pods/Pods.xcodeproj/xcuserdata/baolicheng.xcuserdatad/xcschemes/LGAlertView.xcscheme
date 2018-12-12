@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "184CAB6392EC2F0F1009DB6EBD45E4AA"
-               BlueprintName = "SSZipArchive"
+               BlueprintIdentifier = "ADCE3311817AEB870E3AB651D8327B81"
+               BlueprintName = "LGAlertView"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "SSZipArchive.framework">
+               BuildableName = "LGAlertView.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

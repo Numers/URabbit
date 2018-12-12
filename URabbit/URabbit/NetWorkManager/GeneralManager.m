@@ -56,6 +56,7 @@ static GeneralManager *generalManager;
                     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         [(AppDelegate *)[UIApplication sharedApplication].delegate setNeedShowUpdateAlert:NO];
                     }];
+                    [cancelAction setValue:[UIColor colorFromHexString:@"#999999"] forKey:@"titleTextColor"];
                     [alert addAction:cancelAction];
                 }
                 [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:^{
