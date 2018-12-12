@@ -82,7 +82,7 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
 -(void)alertDeleteCacheView
 {
     __weak typeof(self) weakSelf = self;
-    LGAlertView *alertView = [[LGAlertView alloc] initWithTitle:nil message:@"确定要清楚所有缓存数据吗？" style:LGAlertViewStyleAlert buttonTitles:@[@"确定"] cancelButtonTitle:@"取消" destructiveButtonTitle:nil actionHandler:^(LGAlertView *alertView, NSString *title, NSUInteger index) {
+    LGAlertView *alertView = [[LGAlertView alloc] initWithTitle:nil message:@"确定要清除所有缓存数据吗？" style:LGAlertViewStyleAlert buttonTitles:@[@"确定"] cancelButtonTitle:@"取消" destructiveButtonTitle:nil actionHandler:^(LGAlertView *alertView, NSString *title, NSUInteger index) {
         [weakSelf deleteCache];
     } cancelHandler:^(LGAlertView *alertView) {
         
