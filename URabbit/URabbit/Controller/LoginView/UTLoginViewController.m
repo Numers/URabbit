@@ -134,48 +134,52 @@
     }];
 }
 
+-(void)loginWithLoginPlatform:(LoginPlatform)type UMSocialUserInfoResponse:(UMSocialUserInfoResponse *)result
+{
+    NSString *oid = result.uid;
+    NSString *nickName = result.name;
+    NSString *portrait = result.iconurl;
+    SexType sexType = UnknownSex;
+    if ([@"男" isEqualToString:result.gender]) {
+        sexType = Male;
+    }
+    
+    if ([@"女" isEqualToString:result.gender]) {
+        sexType = Female;
+    }
+    [AppUtils showLoadingInView:self.view];
+    [[UTLoginNetworkAPIManager shareManager] loginPlatformWithOid:oid type:type nickName:nickName portrait:portrait gender:sexType callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        [AppUtils hiddenLoadingInView:self.view];
+        if (data) {
+            NSDictionary *memberInfo = (NSDictionary *)data;
+            Member *member = [[Member alloc] initWithDictionary:memberInfo];
+            [[AppStartManager shareManager] setMember:member];
+            [AppUtils localUserDefaultsValue:@"1" forKey:KMY_AutoLogin];
+            if ([self.delegate respondsToSelector:@selector(loginsuccess)]) {
+                [self.delegate loginsuccess];
+            }
+        }
+    }];
+}
+
 -(IBAction)clickLoginWithWeixin:(id)sender
 {
     [[UTUMShareManager shareManager] getUserInfoForPlatform:UMSocialPlatformType_WechatSession complete:^(UMSocialUserInfoResponse *result) {
-        
+        [self loginWithLoginPlatform:LoginPlatformWechat UMSocialUserInfoResponse:result];
     }];
 }
 
 -(IBAction)clickLoginWithQQ:(id)sender
 {
     [[UTUMShareManager shareManager] getUserInfoForPlatform:UMSocialPlatformType_QQ complete:^(UMSocialUserInfoResponse *result) {
-        
+        [self loginWithLoginPlatform:LoginPlatformQQ UMSocialUserInfoResponse:result];
     }];
 }
 
 -(IBAction)clickLoginWithWeibo:(id)sender
 {
     [[UTUMShareManager shareManager] getUserInfoForPlatform:UMSocialPlatformType_Sina complete:^(UMSocialUserInfoResponse *result) {
-        NSString *oid = result.uid;
-        NSString *nickName = result.name;
-        LoginPlatform type = LoginPlatformWeibo;
-        NSString *portrait = result.iconurl;
-        SexType sexType = UnknownSex;
-        if ([@"男" isEqualToString:result.gender]) {
-            sexType = Male;
-        }
-        
-        if ([@"女" isEqualToString:result.gender]) {
-            sexType = Female;
-        }
-        [AppUtils showLoadingInView:self.view];
-        [[UTLoginNetworkAPIManager shareManager] loginPlatformWithOid:oid type:type nickName:nickName portrait:portrait gender:sexType callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
-            [AppUtils hiddenLoadingInView:self.view];
-            if (data) {
-                NSDictionary *memberInfo = (NSDictionary *)data;
-                Member *member = [[Member alloc] initWithDictionary:memberInfo];
-                [[AppStartManager shareManager] setMember:member];
-                [AppUtils localUserDefaultsValue:@"1" forKey:KMY_AutoLogin];
-                if ([self.delegate respondsToSelector:@selector(loginsuccess)]) {
-                    [self.delegate loginsuccess];
-                }
-            }
-        }];
+        [self loginWithLoginPlatform:LoginPlatformWeibo UMSocialUserInfoResponse:result];
     }];
 }
 @end
