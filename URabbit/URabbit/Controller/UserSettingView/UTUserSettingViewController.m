@@ -62,9 +62,25 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
 -(void)loginoutWithIndexPath:(NSIndexPath *)indexPath
 {
 //    [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [[AppStartManager shareManager] setMember:nil];
-    [[AppStartManager shareManager] removeLocalHostMemberData];
-    [_tableView reloadData];
+    LGAlertView *alertView = [[LGAlertView alloc] initWithTitle:nil message:@"确定要退出登录吗？" style:LGAlertViewStyleAlert buttonTitles:@[@"确定"] cancelButtonTitle:@"取消" destructiveButtonTitle:nil actionHandler:^(LGAlertView *alertView, NSString *title, NSUInteger index) {
+        [[AppStartManager shareManager] setMember:nil];
+        [[AppStartManager shareManager] removeLocalHostMemberData];
+        [_tableView reloadData];
+    } cancelHandler:^(LGAlertView *alertView) {
+        
+    } destructiveHandler:^(LGAlertView *alertView) {
+        
+    }];
+    [alertView setMessageFont:[UIFont systemFontOfSize:14]];
+    [alertView setMessageTextColor:[UIColor colorFromHexString:@"#333333"]];
+    [alertView setButtonsFont:[UIFont systemFontOfSize:14]];
+    [alertView setButtonsTitleColor:[UIColor colorFromHexString:ThemeHexColor]];
+    [alertView setCancelButtonFont:[UIFont systemFontOfSize:14]];
+    [alertView setCancelButtonTitleColor:[UIColor colorFromHexString:@"#999999"]];
+    [alertView showAnimated:YES completionHandler:^{
+        
+    }];
+    
 }
 
 -(void)deleteCache
