@@ -249,7 +249,7 @@
 
 - (UIImage *)GPUImageStyleWithImage:(UIImage *)image blur:(CGFloat)blur{
     GPUImageGaussianBlurFilter *filter = [[GPUImageGaussianBlurFilter alloc] init];
-    filter.blurRadiusInPixels = blur;//值越大，模糊度越大
+    filter.blurRadiusInPixels = blur * 10;//值越大，模糊度越大
     UIImage *blurImage = [filter imageByFilteringImage:image];
     return blurImage;
 }
