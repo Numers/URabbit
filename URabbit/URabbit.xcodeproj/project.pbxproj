@@ -186,6 +186,7 @@
 		148D0F7B219D1FF800B4E59A /* ComposeAnimationStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F7A219D1FF800B4E59A /* ComposeAnimationStrategy.m */; };
 		148D0F82219D22C300B4E59A /* ComposeAnimationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */; };
 		148D0F86219D9C7100B4E59A /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0F85219D9C7100B4E59A /* AnimationManager.m */; };
+		14BFFFC021D0C5AD00BFDD73 /* ParentMediaAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BFFFBF21D0C5AD00BFDD73 /* ParentMediaAnimation.m */; };
 		14E4320521BE1B5A00C0CB9C /* UTDownloadAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4320421BE1B5A00C0CB9C /* UTDownloadAlertView.m */; };
 		14E4320921BE780000C0CB9C /* UTAuthorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4320821BE780000C0CB9C /* UTAuthorViewController.m */; };
 		14E4320D21BE78C200C0CB9C /* UTAuthorHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4320C21BE78C200C0CB9C /* UTAuthorHeadView.m */; };
@@ -716,6 +717,8 @@
 		148D0F81219D22C300B4E59A /* ComposeAnimationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeAnimationOperation.m; sourceTree = "<group>"; };
 		148D0F84219D9C7100B4E59A /* AnimationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		148D0F85219D9C7100B4E59A /* AnimationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
+		14BFFFBE21D0C5AD00BFDD73 /* ParentMediaAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParentMediaAnimation.h; sourceTree = "<group>"; };
+		14BFFFBF21D0C5AD00BFDD73 /* ParentMediaAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParentMediaAnimation.m; sourceTree = "<group>"; };
 		14E4320321BE1B5A00C0CB9C /* UTDownloadAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTDownloadAlertView.h; sourceTree = "<group>"; };
 		14E4320421BE1B5A00C0CB9C /* UTDownloadAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTDownloadAlertView.m; sourceTree = "<group>"; };
 		14E4320721BE780000C0CB9C /* UTAuthorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTAuthorViewController.h; sourceTree = "<group>"; };
@@ -1671,6 +1674,8 @@
 				1422A54921AFD8760025D859 /* FrameAxios.m */,
 				1473D5C621B684C000AB946D /* VIPPrice.h */,
 				1473D5C721B684C000AB946D /* VIPPrice.m */,
+				14BFFFBE21D0C5AD00BFDD73 /* ParentMediaAnimation.h */,
+				14BFFFBF21D0C5AD00BFDD73 /* ParentMediaAnimation.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2401,6 +2406,7 @@
 				14580368216F2BCC006BB33D /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				144357C921A6ACDA00FEA9AE /* PSTCollectionView.m in Sources */,
 				14678FFE218EE11C00CD7F4B /* UTHomeTemplateView.m in Sources */,
+				14BFFFC021D0C5AD00BFDD73 /* ParentMediaAnimation.m in Sources */,
 				144357D321A6B87200FEA9AE /* UTMusicCollectionViewCell.m in Sources */,
 				142CE2C921AA4A6900B17FBA /* UTUserDownloadedViewController.m in Sources */,
 				1458037C216F2BCC006BB33D /* AppStartManager.m in Sources */,

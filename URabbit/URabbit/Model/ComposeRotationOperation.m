@@ -13,6 +13,7 @@
 #import "Text.h"
 #import "AnimationForMedia.h"
 #import "UTImageHanderManager.h"
+#import "UIImage+FixImage.h"
 @interface ComposeRotationOperation()
 {
     GPUImageTwoInputFilter *filter;
@@ -90,51 +91,155 @@
 
 -(UIImage *)imageWithMask:(UIImage *)maskImage frameAxios:(NSMutableArray *)frameAxiosList frameIndex:(NSInteger)index pixelSize:(CGSize)pixelSize
 {
+    FrameAxios *frameAxios = [frameAxiosList objectAtIndex:0];
+    AnimationForMedia *animation = frameAxios.animationForMedia;
     CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
     CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, pixelSize.width, pixelSize.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     
     CGImageRef maskRef = maskImage.CGImage;
     CGContextClipToMask(mainViewContentContext, CGRectMake(0, 0, maskImage.size.width, maskImage.size.height), maskRef);
+    UIImage *snapshotImage = [self snapshotImageWithFrameAxios:frameAxiosList frameIndex:index pixelSize:pixelSize];
+    CGImageRef snapshotImageRef = snapshotImage.CGImage;
+    if (animation.parentMediaAnimation.type == AnimationRotation) {
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.parentMediaAnimation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.parentMediaAnimation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGFloat rotateAngle = -((animation.parentMediaAnimation.endAngle - animation.parentMediaAnimation.startAngle) * M_PI / 180) / (animation.range.length);
+        CGContextRotateCTM(mainViewContentContext,-animation.parentMediaAnimation.startAngle * M_PI / 180 + rotateAngle*(index - animation.range.location));
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, snapshotImage.size.width, snapshotImage.size.height), snapshotImageRef);
+        CGContextRestoreGState(mainViewContentContext);
+    }else if(animation.parentMediaAnimation.type == AnimationScale){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.parentMediaAnimation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.parentMediaAnimation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGFloat scaleRatio = (animation.parentMediaAnimation.endRatio - animation.parentMediaAnimation.startRatio) / animation.range.length;
+        CGContextScaleCTM(mainViewContentContext,animation.parentMediaAnimation.startRatio+scaleRatio*(index - animation.range.location),animation.parentMediaAnimation.startRatio+scaleRatio*(index - animation.range.location));
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, snapshotImage.size.width, snapshotImage.size.height), snapshotImageRef);
+        CGContextRestoreGState(mainViewContentContext);
+    }else if (animation.parentMediaAnimation.type == AnimationTransform){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat pieceX = (animation.parentMediaAnimation.endCoordinate.x - animation.parentMediaAnimation.startCoordinate.x) / animation.range.length;
+        CGFloat pieceY = -(animation.parentMediaAnimation.endCoordinate.y - animation.parentMediaAnimation.startCoordinate.y) / animation.range.length;
+        CGFloat centerX = pixelSize.width * (animation.parentMediaAnimation.startCoordinate.x + (index - animation.range.location) * pieceX);
+        CGFloat centerY = pixelSize.height * (animation.parentMediaAnimation.startCoordinate.y + (index - animation.range.location) * pieceY);
+        CGContextTranslateCTM(mainViewContentContext, centerX,centerY);
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, snapshotImage.size.width, snapshotImage.size.height), snapshotImageRef);
+        CGContextRestoreGState(mainViewContentContext);
+    }else if (animation.parentMediaAnimation.type == AnimationBlur){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.parentMediaAnimation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.parentMediaAnimation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGFloat blurPiece = (animation.parentMediaAnimation.endBlur - animation.parentMediaAnimation.startBlur) / animation.range.length;
+        CGFloat blurNum = animation.parentMediaAnimation.startBlur + (index - animation.range.location) * blurPiece;
+        
+        UIImage *renderImage = [self GPUImageStyleWithImage:snapshotImage blur:blurNum];
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, renderImage.size.width, renderImage.size.height), renderImage.CGImage);
+        CGContextRestoreGState(mainViewContentContext);
+    }else if(animation.parentMediaAnimation.type == AnimationNone){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.parentMediaAnimation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.parentMediaAnimation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, snapshotImage.size.width, snapshotImage.size.height), snapshotImageRef);
+        CGContextRestoreGState(mainViewContentContext);
+    }
+    CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    CGImageRelease(newImageRef);
+    CGContextRelease(mainViewContentContext);
+    return newImage;
+}
+
+-(UIImage *)snapshotImageWithFrameAxios:(NSMutableArray *)frameAxiosList frameIndex:(NSInteger)index pixelSize:(CGSize)pixelSize
+{
+    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, pixelSize.width, pixelSize.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    
     for(FrameAxios *axios in frameAxiosList){
         AnimationForMedia *animation = axios.animationForMedia;
-        SnapshotMedia *media = axios.snapshotMedia;
-        
-        if (animation.type == AnimationRotation) {
-            CGContextSaveGState(mainViewContentContext);
-            CGFloat centerX = pixelSize.width * animation.centerXPercent;
-            CGFloat centerY = pixelSize.height * (1-animation.centerYPercent);
-            CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
-            CGFloat rotateAngle = -((animation.endAngle - animation.startAngle) * M_PI / 180) / (animation.range.length);
-            CGContextRotateCTM(mainViewContentContext,-animation.startAngle * M_PI / 180 + rotateAngle*(index - animation.range.location));
-            CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
-            CGContextRestoreGState(mainViewContentContext);
-        }else if(animation.type == AnimationScale){
-            CGContextSaveGState(mainViewContentContext);
-            CGFloat centerX = pixelSize.width * animation.centerXPercent;
-            CGFloat centerY = pixelSize.height * (1-animation.centerYPercent);
-            CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
-            CGFloat scaleRatio = (animation.endRatio - animation.startRatio) / animation.range.length;
-            CGContextScaleCTM(mainViewContentContext,animation.startRatio+scaleRatio*(index - animation.range.location),animation.startRatio+scaleRatio*(index - animation.range.location));
-            CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
-            CGContextRestoreGState(mainViewContentContext);
-        }else if (animation.type == AnimationTransform){
-            CGContextSaveGState(mainViewContentContext);
-            CGFloat pieceX = (animation.endCoordinate.x - animation.startCoordinate.x) / animation.range.length;
-            CGFloat pieceY = -(animation.endCoordinate.y - animation.startCoordinate.y) / animation.range.length;
-            CGFloat centerX = pixelSize.width * ((index - animation.range.location) * pieceX);
-            CGFloat centerY = pixelSize.height * ((index - animation.range.location) * pieceY);
-            CGContextTranslateCTM(mainViewContentContext, centerX,centerY);
-            CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
-            CGContextRestoreGState(mainViewContentContext);
-        }else if (animation.type == AnimationBlur){
-            CGFloat blurPiece = (animation.endBlur - animation.startBlur) / animation.range.length;
-            CGFloat blurNum = animation.startBlur + (index - animation.range.location) * blurPiece;
-            UIImage *renderImage = [self GPUImageStyleWithImage:media.resultImage blur:blurNum];
-            CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, renderImage.size.width, renderImage.size.height), renderImage.CGImage);
+        UIImage *animationResultImage = [self animationImageWithFrameAxios:axios frameIndex:index pixelSize:pixelSize];
+        CGFloat width = pixelSize.width * animation.widthPercent;
+        CGFloat height = pixelSize.height * animation.heightPercent;
+        UIImage *resultImage = nil;
+        if (animation.widthPercent == 1.0f && animation.heightPercent == 1.0f) {
+            resultImage = animationResultImage;
         }else{
-            CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, media.resultImage.size.width, media.resultImage.size.height), media.resultImage.CGImage);
+            resultImage = [animationResultImage scaledToFillSize:CGSizeMake(width, height)];
         }
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.locationCenterXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.locationCenterYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-width / 2, -height/2, width, height), resultImage.CGImage);
+        CGContextRestoreGState(mainViewContentContext);
     }
+    CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    CGImageRelease(newImageRef);
+    CGContextRelease(mainViewContentContext);
+    return newImage;
+}
+
+-(UIImage *)animationImageWithFrameAxios:(FrameAxios *)frameAxios frameIndex:(NSInteger)index pixelSize:(CGSize)pixelSize
+{
+    AnimationForMedia *animation = frameAxios.animationForMedia;
+    SnapshotMedia *media = frameAxios.snapshotMedia;
+    CGImageRef mediaResultImageRef = media.resultImage.CGImage;
+    
+    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, pixelSize.width, pixelSize.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    
+    if (animation.type == AnimationRotation) {
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGFloat rotateAngle = -((animation.endAngle - animation.startAngle) * M_PI / 180) / (animation.range.length);
+        CGContextRotateCTM(mainViewContentContext,-animation.startAngle * M_PI / 180 + rotateAngle*(index - animation.range.location));
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, media.resultImage.size.width, media.resultImage.size.height), mediaResultImageRef);
+        CGContextRestoreGState(mainViewContentContext);
+    }else if(animation.type == AnimationScale){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGFloat scaleRatio = (animation.endRatio - animation.startRatio) / animation.range.length;
+        CGContextScaleCTM(mainViewContentContext,animation.startRatio+scaleRatio*(index - animation.range.location),animation.startRatio+scaleRatio*(index - animation.range.location));
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, media.resultImage.size.width, media.resultImage.size.height), mediaResultImageRef);
+        CGContextRestoreGState(mainViewContentContext);
+    }else if (animation.type == AnimationTransform){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat pieceX = (animation.endCoordinate.x - animation.startCoordinate.x) / animation.range.length;
+        CGFloat pieceY = -(animation.endCoordinate.y - animation.startCoordinate.y) / animation.range.length;
+        CGFloat centerX = pixelSize.width * (animation.startCoordinate.x + (index - animation.range.location) * pieceX);
+        CGFloat centerY = pixelSize.height * (animation.startCoordinate.y + (index - animation.range.location) * pieceY);
+        CGContextTranslateCTM(mainViewContentContext, centerX,centerY);
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, media.resultImage.size.width, media.resultImage.size.height), mediaResultImageRef);
+        CGContextRestoreGState(mainViewContentContext);
+    }else if (animation.type == AnimationBlur){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGFloat blurPiece = (animation.endBlur - animation.startBlur) / animation.range.length;
+        CGFloat blurNum = animation.startBlur + (index - animation.range.location) * blurPiece;
+
+        UIImage *renderImage = [self GPUImageStyleWithImage:media.resultImage blur:blurNum];
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, renderImage.size.width, renderImage.size.height), renderImage.CGImage);
+        CGContextRestoreGState(mainViewContentContext);
+    }else if(animation.type == AnimationNone){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, media.resultImage.size.width, media.resultImage.size.height), mediaResultImageRef);
+        CGContextRestoreGState(mainViewContentContext);
+    }
+    
+    
     CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
     UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
     CGImageRelease(newImageRef);

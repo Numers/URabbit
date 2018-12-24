@@ -286,7 +286,7 @@
             NSArray *medias = [animationDic objectForKey:@"media"];
             if (medias && medias.count > 0) {
                 for (NSDictionary *mediaDic in medias) {
-                    AnimationForMedia *animationForMedia = [[AnimationForMedia alloc] initWithDictionary:mediaDic startFrame:startFrame endFrame:endFrame animationType:type fps:resource.fps];
+                    AnimationForMedia *animationForMedia = [[AnimationForMedia alloc] initWithDictionary:mediaDic startFrame:startFrame endFrame:endFrame fps:resource.fps parentDic:animationDic];
                     SnapshotMedia *snapshotMedia = [self filterArray:snapshotList withMediaName:animationForMedia.name];
                     if (snapshotMedia) {
                         [snapshotMedia.animationForMediaList addObject:animationForMedia];

@@ -14,6 +14,8 @@
 
 -(UIImage *)scaledToFillSize:(CGSize)size;
 
+-(UIImage *)scaledToAspectSize:(CGSize)size;
+
 -(UIImage *)compressWithMaxLength:(NSUInteger)maxLength;
 
 - (UIImage *)imageWithMask:(UIImage*)imageMask orginImagePoint:(CGPoint)point colorSpace:(CGColorSpaceRef)colorSpace;

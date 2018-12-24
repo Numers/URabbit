@@ -108,6 +108,23 @@
     return newImage;
 }
 
+-(UIImage *)scaledToAspectSize:(CGSize)size
+{
+    CGFloat scale = MIN(size.width/self.size.width, size.height/self.size.height);
+    CGFloat width = self.size.width * scale;
+    CGFloat height = self.size.height * scale;
+    CGRect imageRect = CGRectMake((size.width - width)/2.0f,
+                                  (size.height - height)/2.0f,
+                                  width,
+                                  height);
+    
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [self drawInRect:imageRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 -(UIImage *)compressWithMaxLength:(NSUInteger)maxLength{
     // Compress by quality
     CGFloat compression = 1;

@@ -7,13 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ParentMediaAnimation.h"
 
 @interface AnimationForMedia : NSObject
 @property(nonatomic) AnimationType type;
 @property(nonatomic, copy) NSString *name;
+@property(nonatomic, strong) ParentMediaAnimation *parentMediaAnimation;
 @property(nonatomic) NSRange range;
-@property(nonatomic) CGFloat centerXPercent;
-@property(nonatomic) CGFloat centerYPercent;
+@property(nonatomic) CGFloat centerXPercent; //动画中心点X
+@property(nonatomic) CGFloat centerYPercent; //动画中心点Y
+@property(nonatomic) CGFloat locationCenterXPercent; //位置中心点X
+@property(nonatomic) CGFloat locationCenterYPercent; //位置中心点Y
+@property(nonatomic) CGFloat widthPercent;
+@property(nonatomic) CGFloat heightPercent;
 @property(nonatomic) CGFloat startAngle;
 @property(nonatomic) CGFloat endAngle;
 @property(nonatomic) CGFloat startRatio;
@@ -25,6 +31,6 @@
 
 @property(nonatomic) CGFloat fps;
 
--(instancetype)initWithDictionary:(NSDictionary *)dic startFrame:(NSInteger)startFrame endFrame:(NSInteger)endFrame animationType:(AnimationType)animationType fps:(CGFloat)fps;
+-(instancetype)initWithDictionary:(NSDictionary *)dic startFrame:(NSInteger)startFrame endFrame:(NSInteger)endFrame fps:(CGFloat)fps parentDic:(NSDictionary *)parentDic;
 -(CABasicAnimation *)animationForMediaWithSize:(CGSize)size;
 @end

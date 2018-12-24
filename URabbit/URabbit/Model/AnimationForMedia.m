@@ -10,22 +10,59 @@
 #import "AnimationManager.h"
 
 @implementation AnimationForMedia
--(instancetype)initWithDictionary:(NSDictionary *)dic startFrame:(NSInteger)startFrame endFrame:(NSInteger)endFrame animationType:(AnimationType)animationType fps:(CGFloat)fps
+-(instancetype)initWithDictionary:(NSDictionary *)dic startFrame:(NSInteger)startFrame endFrame:(NSInteger)endFrame fps:(CGFloat)fps parentDic:(NSDictionary *)parentDic
 {
     self = [super init];
     if (self) {
-        _type = animationType;
+        id animationType = [dic objectForKey:@"type"];
+        if (animationType) {
+            _type = (AnimationType)[animationType integerValue];
+        }else{
+            _type = AnimationNone;
+        }
         _range = NSMakeRange(startFrame, endFrame - startFrame + 1);
         _name = [dic objectForKey:@"name"];
         _fps = fps;
-        id centerX = [dic objectForKey:@"centreX"];
-        if (centerX) {
-            _centerXPercent = [centerX floatValue];
+        id locationCenterX = [dic objectForKey:@"locationCentreX"];
+        if (locationCenterX) {
+            _locationCenterXPercent = [locationCenterX floatValue];
+        }else{
+            _locationCenterXPercent = 0.5;
         }
         
-        id centerY = [dic objectForKey:@"centreY"];
-        if (centerY) {
-            _centerYPercent = [centerY floatValue];
+        id locationCenterY = [dic objectForKey:@"locationCentreY"];
+        if (locationCenterY) {
+            _locationCenterYPercent = [locationCenterY floatValue];
+        }else{
+            _locationCenterYPercent = 0.5;
+        }
+        
+        id animationCenterX = [dic objectForKey:@"centreX"];
+        if (animationCenterX) {
+            _centerXPercent = [animationCenterX floatValue];
+        }else{
+            _centerXPercent = 0;
+        }
+        id animationCenterY = [dic objectForKey:@"centreY"];
+        if (animationCenterY) {
+            _centerYPercent = [animationCenterY floatValue];
+        }else{
+            _centerYPercent = 1;
+        }
+        
+        
+        id width = [dic objectForKey:@"width"];
+        if (width) {
+            _widthPercent = [width floatValue];
+        }else{
+            _widthPercent = 1.0f;
+        }
+        
+        id height = [dic objectForKey:@"height"];
+        if (height) {
+            _heightPercent = [height floatValue];
+        }else{
+            _heightPercent = 1.0f;
         }
         
         id startAngle = [dic objectForKey:@"startAngle"];
@@ -73,6 +110,8 @@
         if (endBlur) {
             _endBlur = [endBlur floatValue];
         }
+        
+        _parentMediaAnimation = [[ParentMediaAnimation alloc] initWithDictionary:parentDic];
     }
     return self;
 }
