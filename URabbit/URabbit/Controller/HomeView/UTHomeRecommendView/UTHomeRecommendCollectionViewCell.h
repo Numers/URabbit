@@ -11,6 +11,7 @@
 @interface UTHomeRecommendCollectionViewCell : UICollectionViewCell
 {
     UIImageView *recommendImageView;
+    UILabel *nameLabel;
 }
 
 -(void)setupWithRecommendTemplate:(RecommendTemplate *)recommend;

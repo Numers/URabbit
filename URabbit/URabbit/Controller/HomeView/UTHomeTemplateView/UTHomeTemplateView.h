@@ -11,6 +11,7 @@
 @protocol HomeTemplateViewProtocol <NSObject>
 -(void)updateViewHeight:(CGFloat)height identify:(id)identify;
 -(void)selectHomeTemplate:(HomeTemplate *)homeTemplate;
+-(void)gotoCategoryView;
 @end
 @interface UTHomeTemplateView : UIView
 @property(nonatomic, weak) id<HomeTemplateViewProtocol> delegate;

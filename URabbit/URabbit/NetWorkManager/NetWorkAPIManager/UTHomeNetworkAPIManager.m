@@ -19,6 +19,11 @@
     return manager;
 }
 
+-(void)getReccmmendTemplateCallback:(APIRequstCallBack)callback
+{
+    [[NetWorkRequestManager shareManager] get:UT_CategoryRecommend_API parameters:nil callback:callback isNotify:NO];
+}
+
 -(void)getNewTemplateWithPage:(NSInteger)page size:(NSInteger)size callback:(APIRequstCallBack)callback
 {
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:@(page),@"page",@(size),@"size", nil];

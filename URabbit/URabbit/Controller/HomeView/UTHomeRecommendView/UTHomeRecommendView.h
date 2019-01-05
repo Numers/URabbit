@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol UTHomeRecommendViewProtocl <NSObject>
+-(void)gotoCategoryViewWithIndex:(NSInteger)index;
+@end
 @interface UTHomeRecommendView : UIView
+@property(nonatomic, weak) id<UTHomeRecommendViewProtocl> delegate;
 -(void)setHeadImage:(UIImage *)image headTitle:(NSString *)title;
 -(void)setDatasource:(NSArray *)datasource;
 @end

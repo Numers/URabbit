@@ -36,6 +36,7 @@ PODS:
   - SDWebImage/Core (4.0.0)
   - SSZipArchive (2.1.4)
   - TUSafariActivity (1.0.4)
+  - TYPagerController (2.1.2)
   - UMCCommon (1.5.3)
   - UMCShare/Core (6.9.5):
     - UMCCommon
@@ -72,6 +73,7 @@ DEPENDENCIES:
   - MJRefresh
   - SDWebImage (~> 4.0.0)
   - SSZipArchive
+  - TYPagerController
   - UMCShare/Social/ReducedQQ
   - UMCShare/Social/ReducedSina
   - UMCShare/Social/WeChat
@@ -95,6 +97,7 @@ SPEC REPOS:
     - SDWebImage
     - SSZipArchive
     - TUSafariActivity
+    - TYPagerController
     - UMCCommon
     - UMCShare
     - WZLBadge
@@ -115,11 +118,12 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
+  TYPagerController: 262556ecef99986d26ed77fb1288a198ed42f4af
   UMCCommon: 016af43c0f769feb1ae1861d65aaf2b23b89c9c7
   UMCShare: 552b29753f1b4da87b51d96545ed19e6263df397
   WZLBadge: 9ec779dcfd94c825518b395e8315fccaabff1bfa
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: 41ef3981334ee2feedb15f3070b92ae456a6489b
+PODFILE CHECKSUM: 2d3a3f222d3f026dabc2440b111ce9633e05e070
 
 COCOAPODS: 1.5.3

@@ -9,5 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface RecommendTemplate : NSObject
-@property(nonatomic, copy) NSString *image;
+@property(nonatomic, copy) NSString *coverImage;
+@property(nonatomic, copy) NSString *name;
+@property(nonatomic) long categoryId;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dic;
 @end

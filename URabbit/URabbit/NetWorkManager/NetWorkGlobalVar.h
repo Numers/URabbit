@@ -16,8 +16,13 @@
 #define UT_ValidateCheck_API @"checkcode/check"
 #define UT_PlatformLogin_API @"/user/login/platform"
 /************************首页API***********************/
+#define UT_CategoryRecommend_API @"/category/recommend"
 #define UT_NewTemplate_API @"/templet/list/new"
 #define UT_ChoiceRecommend_API @"/templet/list/recommend"
+/*******************************************************/
+
+/************************分类模板API***********************/
+#define UT_CategoryTemplateList_API @"/category/{id}/templet"
 /*******************************************************/
 
 /************************作者API***********************/

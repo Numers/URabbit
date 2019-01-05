@@ -109,19 +109,26 @@
 			<key>orderHint</key>
 			<integer>14</integer>
 		</dict>
-		<key>WZLBadge.xcscheme</key>
+		<key>TYPagerController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>16</integer>
 		</dict>
-		<key>YYImage.xcscheme</key>
+		<key>WZLBadge.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>17</integer>
+		</dict>
+		<key>YYImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>18</integer>
 		</dict>
 		<key>iCards.xcscheme</key>
 		<dict>

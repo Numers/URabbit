@@ -14,6 +14,7 @@
 #import "HomeTemplate.h"
 #import "UTDownloadTemplateViewController.h"
 #import "UTUserCenterViewController.h"
+#import "UTCategoryViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -22,7 +23,7 @@
 #import "UINavigationController+NavigationBar.h"
 #define ChoosenTemplateViewIdentify @"jingxuan"
 #define LatestTemplateViewIdentify @"latest"
-@interface UTHomeViewController ()<HomeTemplateViewProtocol>
+@interface UTHomeViewController ()<HomeTemplateViewProtocol,UTHomeRecommendViewProtocl>
 {
     UTHomeRecommendView *homeRecommendView;
     NSMutableArray *recommendList;
@@ -57,8 +58,8 @@
     recommendList = [NSMutableArray array];
     choosenTemplateList = [NSMutableArray array];
     latestTemplateList = [NSMutableArray array];
-//    recommendViewHeight = 167.0f;
-    recommendViewHeight = -8.0f;
+    recommendViewHeight = 167.0f;
+//    recommendViewHeight = -8.0f;
     choosenTemplateViewHeight = 0.0f;
     latestTemplateViewHeight = 0.0f;
     
@@ -118,8 +119,9 @@
     [self.view addSubview:_scrollView];
     
     homeRecommendView = [[UTHomeRecommendView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, recommendViewHeight)];
+    homeRecommendView.delegate = self;
     [homeRecommendView setHeadImage:[UIImage imageNamed:@"jingxuan"] headTitle:@"推荐合集"];
-//    [_scrollView addSubview:homeRecommendView];
+    [_scrollView addSubview:homeRecommendView];
     
     choosenTemplateView = [[UTHomeTemplateView alloc] initWithFrame:CGRectMake(0, recommendViewHeight + 8, SCREEN_WIDTH, choosenTemplateViewHeight)];
     choosenTemplateView.delegate = self;
@@ -240,7 +242,7 @@
 -(void)requestData
 {
     [AppUtils showLoadingInView:self.view];
-//    [self requestWithRecommendList];
+    [self requestWithRecommendList];
     [self requestChoosenTemplateList];
     [self requestLatestTemplateList];
 }
@@ -257,13 +259,16 @@
     if (recommendList.count > 0) {
         [recommendList removeAllObjects];
     }
-    for (NSInteger i = 0; i < 10; i++) {
-        RecommendTemplate *recommend = [[RecommendTemplate alloc] init];
-        recommend.image = @"recommend";
-        [recommendList addObject:recommend];
-    }
-    
-    [homeRecommendView setDatasource:recommendList];
+    [[UTHomeNetworkAPIManager shareManager] getReccmmendTemplateCallback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        NSArray *templateArr = (NSArray *)data;
+        if (templateArr && templateArr.count > 0) {
+            for (NSDictionary *dic in templateArr) {
+                RecommendTemplate *template = [[RecommendTemplate alloc] initWithDictionary:dic];
+                [recommendList addObject:template];
+            }
+            [homeRecommendView setDatasource:recommendList];
+        }
+    }];
 }
 
 -(void)requestChoosenTemplateList
@@ -346,5 +351,18 @@
     UTDownloadTemplateViewController *downloadTemplateVC = [[UTDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
     [downloadTemplateVC setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:downloadTemplateVC animated:YES];
+}
+
+-(void)gotoCategoryView
+{
+    UTCategoryViewController *categoryVC = [[UTCategoryViewController alloc] initWithItems:recommendList selectIndex:0];
+    [self.navigationController pushViewController:categoryVC animated:YES];
+}
+
+#pragma -mark UTHomeRecommendViewProtocl
+-(void)gotoCategoryViewWithIndex:(NSInteger)index
+{
+    UTCategoryViewController *categoryVC = [[UTCategoryViewController alloc] initWithItems:recommendList selectIndex:index];
+    [self.navigationController pushViewController:categoryVC animated:YES];
 }
 @end

@@ -10,6 +10,7 @@
 #import "NetWorkRequestManager.h"
 @interface UTHomeNetworkAPIManager : NSObject
 +(instancetype)shareManager;
+-(void)getReccmmendTemplateCallback:(APIRequstCallBack)callback;
 -(void)getNewTemplateWithPage:(NSInteger)page size:(NSInteger)size callback:(APIRequstCallBack)callback;
 -(void)getChoiceRecommendTemplateWithPage:(NSInteger)page size:(NSInteger)size callback:(APIRequstCallBack)callback;
 @end

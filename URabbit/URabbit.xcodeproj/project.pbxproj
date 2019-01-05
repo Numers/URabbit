@@ -196,6 +196,10 @@
 		14EDA16521A30B1800C1BD3E /* UTHomeNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16421A30B1800C1BD3E /* UTHomeNetworkAPIManager.m */; };
 		14EDA16821A310EE00C1BD3E /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16721A310EE00C1BD3E /* Author.m */; };
 		14EDA16B21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDA16A21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m */; };
+		14FA70CC21E0A86A00A5E447 /* UTCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA70CB21E0A86A00A5E447 /* UTCategoryViewController.m */; };
+		14FA70CF21E0AB6D00A5E447 /* UTCategoryPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA70CE21E0AB6D00A5E447 /* UTCategoryPageViewController.m */; };
+		14FA70D321E0DABC00A5E447 /* UTCategoryPageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA70D221E0DABC00A5E447 /* UTCategoryPageCollectionViewCell.m */; };
+		14FA70D621E0DBC700A5E447 /* UTCategoryNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA70D521E0DBC700A5E447 /* UTCategoryNetworkAPIManager.m */; };
 		BC0EEF5C062C06F4C3E98620 /* Pods_URabbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */; };
 /* End PBXBuildFile section */
 
@@ -737,6 +741,14 @@
 		14EDA16721A310EE00C1BD3E /* Author.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
 		14EDA16921A3160E00C1BD3E /* UTDownloadNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTDownloadNetworkAPIManager.h; sourceTree = "<group>"; };
 		14EDA16A21A3160E00C1BD3E /* UTDownloadNetworkAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTDownloadNetworkAPIManager.m; sourceTree = "<group>"; };
+		14FA70CA21E0A86A00A5E447 /* UTCategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCategoryViewController.h; sourceTree = "<group>"; };
+		14FA70CB21E0A86A00A5E447 /* UTCategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCategoryViewController.m; sourceTree = "<group>"; };
+		14FA70CD21E0AB6D00A5E447 /* UTCategoryPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCategoryPageViewController.h; sourceTree = "<group>"; };
+		14FA70CE21E0AB6D00A5E447 /* UTCategoryPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCategoryPageViewController.m; sourceTree = "<group>"; };
+		14FA70D121E0DABC00A5E447 /* UTCategoryPageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCategoryPageCollectionViewCell.h; sourceTree = "<group>"; };
+		14FA70D221E0DABC00A5E447 /* UTCategoryPageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCategoryPageCollectionViewCell.m; sourceTree = "<group>"; };
+		14FA70D421E0DBC700A5E447 /* UTCategoryNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTCategoryNetworkAPIManager.h; sourceTree = "<group>"; };
+		14FA70D521E0DBC700A5E447 /* UTCategoryNetworkAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTCategoryNetworkAPIManager.m; sourceTree = "<group>"; };
 		36AFCC5E9317FFA812781492 /* Pods-URabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		BCDDCEB5217198EA7BAC2262 /* Pods_URabbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_URabbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D640A9F686B5E9FFB7F4DB77 /* Pods-URabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URabbit.release.xcconfig"; path = "Pods/Target Support Files/Pods-URabbit/Pods-URabbit.release.xcconfig"; sourceTree = "<group>"; };
@@ -1430,6 +1442,8 @@
 				1421EB7421BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.m */,
 				14E4321221BE8EA400C0CB9C /* UTAuthorNetworkAPIManager.h */,
 				14E4321321BE8EA400C0CB9C /* UTAuthorNetworkAPIManager.m */,
+				14FA70D421E0DBC700A5E447 /* UTCategoryNetworkAPIManager.h */,
+				14FA70D521E0DBC700A5E447 /* UTCategoryNetworkAPIManager.m */,
 			);
 			path = NetWorkAPIManager;
 			sourceTree = "<group>";
@@ -1683,6 +1697,7 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				14FA70C921E0A84500A5E447 /* UTCategoryView */,
 				14E4320621BE77DC00C0CB9C /* UTAuthorView */,
 				1421EB7621BA524B00BCCD7B /* UTWebView */,
 				14E4442A21B6B740008062EF /* AboutView */,
@@ -2084,6 +2099,27 @@
 			path = AboutView;
 			sourceTree = "<group>";
 		};
+		14FA70C921E0A84500A5E447 /* UTCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				14FA70D021E0DA3F00A5E447 /* UTCategoryPageCollectionViewCell */,
+				14FA70CA21E0A86A00A5E447 /* UTCategoryViewController.h */,
+				14FA70CB21E0A86A00A5E447 /* UTCategoryViewController.m */,
+				14FA70CD21E0AB6D00A5E447 /* UTCategoryPageViewController.h */,
+				14FA70CE21E0AB6D00A5E447 /* UTCategoryPageViewController.m */,
+			);
+			path = UTCategoryView;
+			sourceTree = "<group>";
+		};
+		14FA70D021E0DA3F00A5E447 /* UTCategoryPageCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				14FA70D121E0DABC00A5E447 /* UTCategoryPageCollectionViewCell.h */,
+				14FA70D221E0DABC00A5E447 /* UTCategoryPageCollectionViewCell.m */,
+			);
+			path = UTCategoryPageCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		7B66372339C95543FFFDEC4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2208,6 +2244,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/TUSafariActivity/TUSafariActivity.framework",
+				"${BUILT_PRODUCTS_DIR}/TYPagerController/TYPagerController.framework",
 				"${BUILT_PRODUCTS_DIR}/WZLBadge/WZLBadge.framework",
 				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
 				"${BUILT_PRODUCTS_DIR}/iCards/iCards.framework",
@@ -2227,6 +2264,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TUSafariActivity.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TYPagerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZLBadge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCards.framework",
@@ -2312,6 +2350,7 @@
 				1425A8CB21A961F8007A0C2E /* UTMemberCompositonViewController.m in Sources */,
 				1457681E21BFA76300E3D932 /* VPImageCropperViewController.m in Sources */,
 				14266C8A21A5939F008A1926 /* UTKeyboardTextField.m in Sources */,
+				14FA70D321E0DABC00A5E447 /* UTCategoryPageCollectionViewCell.m in Sources */,
 				145803DC21707B75001B9535 /* UTImageHanderManager.m in Sources */,
 				144357C321A6ACDA00FEA9AE /* PSTGridLayoutInfo.m in Sources */,
 				1422A54A21AFD8760025D859 /* FrameAxios.m in Sources */,
@@ -2340,6 +2379,7 @@
 				146B63D32192EAF800A3A679 /* UTPlayView.m in Sources */,
 				144357CB21A6ACDA00FEA9AE /* PSTCollectionViewLayout.m in Sources */,
 				148D0F82219D22C300B4E59A /* ComposeAnimationOperation.m in Sources */,
+				14FA70D621E0DBC700A5E447 /* UTCategoryNetworkAPIManager.m in Sources */,
 				14482F0721A3BEA900D640F1 /* AnimationForMedia.m in Sources */,
 				145803D82170705B001B9535 /* UTVideoManager.m in Sources */,
 				1425A8CF21A9662A007A0C2E /* UTMemberCompositonCollectionViewCell.m in Sources */,
@@ -2393,6 +2433,7 @@
 				145803A2216F312C006BB33D /* UTHomeViewController.m in Sources */,
 				14580395216F2D6F006BB33D /* UIColor+HexString.m in Sources */,
 				148D0F86219D9C7100B4E59A /* AnimationManager.m in Sources */,
+				14FA70CF21E0AB6D00A5E447 /* UTCategoryPageViewController.m in Sources */,
 				145803A6216F3143006BB33D /* UTGuidViewController.m in Sources */,
 				146B63792190274C00A3A679 /* UIButton+Gradient.m in Sources */,
 				14266C7F21A52A0D008A1926 /* ComposeNomalOperation.m in Sources */,
@@ -2425,6 +2466,7 @@
 				144357C421A6ACDA00FEA9AE /* PSTCollectionViewData.m in Sources */,
 				1425A8C421A8707A007A0C2E /* UTMemberCoinViewController.m in Sources */,
 				1422A54721AF94F40025D859 /* AnimationForText.m in Sources */,
+				14FA70CC21E0A86A00A5E447 /* UTCategoryViewController.m in Sources */,
 				14EDA16821A310EE00C1BD3E /* Author.m in Sources */,
 				1423E2A221ACE6D0005A9F6E /* UTDraftViewController.m in Sources */,
 			);

@@ -18,6 +18,7 @@ NSString *homeTemplateCollectionViewCellIdentify = @"HomeTemplateCollectionViewC
     UIView *headerView;
     UIImageView *headImageView;
     UILabel *headLabel;
+    UIButton *categoryButton;
     
     UICollectionView *collectionView;
     
@@ -45,6 +46,14 @@ NSString *homeTemplateCollectionViewCellIdentify = @"HomeTemplateCollectionViewC
         [headLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
         [headerView addSubview:headLabel];
         
+        categoryButton = [[UIButton alloc] init];
+        [categoryButton addTarget:self action:@selector(clickCategoryButton) forControlEvents:UIControlEventTouchUpInside];
+        [categoryButton setImage:[UIImage imageNamed:@"nextIconImage"] forState:UIControlStateNormal];
+        [categoryButton setTitle:@"全部" forState:UIControlStateNormal];
+        [categoryButton setTitleColor:[UIColor colorFromHexString:@"#B4B4B4"] forState:UIControlStateNormal];
+        [categoryButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [headerView addSubview:categoryButton];
+        
         LJJWaterFlowLayout *layout = [[LJJWaterFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.layoutDelegate = self;
@@ -70,6 +79,12 @@ NSString *homeTemplateCollectionViewCellIdentify = @"HomeTemplateCollectionViewC
     [collectionView setFrame:CGRectMake(0, HeadViewHeight, frame.size.width, frame.size.height - HeadViewHeight)];
 }
 
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [categoryButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -categoryButton.imageView.image.size.width - 3, 0,  categoryButton.imageView.image.size.width + 3)];
+    [categoryButton setImageEdgeInsets:UIEdgeInsetsMake(0,  categoryButton.titleLabel.bounds.size.width + 3, 0, -categoryButton.titleLabel.bounds.size.width + 3)];
+}
 
 -(void)makeConstraints
 {
@@ -90,6 +105,13 @@ NSString *homeTemplateCollectionViewCellIdentify = @"HomeTemplateCollectionViewC
     [headLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(headImageView.trailing).offset(7);
         make.centerY.equalTo(headerView.centerY);
+    }];
+    
+    [categoryButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(headerView.mas_trailing).offset(15);
+        make.top.equalTo(headerView.mas_top);
+        make.bottom.equalTo(headerView.mas_bottom);
+        make.width.equalTo(@(100));
     }];
     
     [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -115,6 +137,13 @@ NSString *homeTemplateCollectionViewCellIdentify = @"HomeTemplateCollectionViewC
     
     [dataSource addObjectsFromArray:datasource];
     [collectionView reloadData];
+}
+
+-(void)clickCategoryButton
+{
+    if ([self.delegate respondsToSelector:@selector(gotoCategoryView)]) {
+        [self.delegate gotoCategoryView];
+    }
 }
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

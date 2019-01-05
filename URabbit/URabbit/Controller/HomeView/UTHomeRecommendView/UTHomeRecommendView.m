@@ -135,6 +135,8 @@ static NSString *homeRecommendCollectionViewCellIdentify = @"HomeRecommendCollec
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if ([self.delegate respondsToSelector:@selector(gotoCategoryViewWithIndex:)]) {
+        [self.delegate gotoCategoryViewWithIndex:indexPath.row];
+    }
 }
 @end

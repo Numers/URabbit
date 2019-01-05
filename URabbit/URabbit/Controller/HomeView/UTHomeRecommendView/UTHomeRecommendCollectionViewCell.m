@@ -8,6 +8,7 @@
 
 #import "UTHomeRecommendCollectionViewCell.h"
 #import "RecommendTemplate.h"
+#import "UIImageView+WebCache.h"
 
 @implementation UTHomeRecommendCollectionViewCell
 -(instancetype)initWithFrame:(CGRect)frame
@@ -19,12 +20,19 @@
         [recommendImageView.layer masksToBounds];
         [recommendImageView setContentMode:UIViewContentModeScaleAspectFit];
         [self addSubview:recommendImageView];
+        
+        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height - 30, frame.size.width, 20)];
+        [nameLabel setTextColor:[UIColor whiteColor]];
+        [nameLabel setTextAlignment:NSTextAlignmentCenter];
+        [nameLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
+        [self addSubview:nameLabel];
     }
     return self;
 }
 
 -(void)setupWithRecommendTemplate:(RecommendTemplate *)recommend
 {
-    [recommendImageView setImage:[UIImage imageNamed:recommend.image]];
+    [recommendImageView sd_setImageWithURL:[NSURL URLWithString:recommend.coverImage] placeholderImage:[UIImage imageNamed:@"CoverPlaceholdImage"]];
+    [nameLabel setText:recommend.name];
 }
 @end

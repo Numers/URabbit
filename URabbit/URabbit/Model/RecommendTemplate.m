@@ -9,5 +9,14 @@
 #import "RecommendTemplate.h"
 
 @implementation RecommendTemplate
-
+-(instancetype)initWithDictionary:(NSDictionary *)dic
+{
+    self = [super init];
+    if (self) {
+        _coverImage = [dic objectForKey:@"coverUrl"];
+        _name = [dic objectForKey:@"name"];
+        _categoryId = [[dic objectForKey:@"id"] longValue];
+    }
+    return self;
+}
 @end
