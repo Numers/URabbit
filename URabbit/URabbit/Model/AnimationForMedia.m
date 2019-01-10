@@ -129,28 +129,28 @@
 -(CABasicAnimation *)animationForMediaWithSize:(CGSize)size
 {
     CABasicAnimation *animation = nil;
-    switch (_type) {
+    switch (_parentMediaAnimation.type) {
         case AnimationNone:
             
             break;
         case AnimationTransform:
         {
-            animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width * _startCoordinate.x, size.height * _startCoordinate.y) toCenter:CGPointMake(size.width * _endCoordinate.x, size.height * _endCoordinate.y) startTime:_range.location / _fps + 0.001 duration:_range.length / _fps - 0.002 removeOnComplete:NO delegate:nil];
+            animation = [[AnimationManager shareManager] translateLineAnimation:kCAMediaTimingFunctionLinear fromCenter:CGPointMake(size.width * _parentMediaAnimation.startCoordinate.x, size.height * _parentMediaAnimation.startCoordinate.y) toCenter:CGPointMake(size.width * _parentMediaAnimation.endCoordinate.x, size.height * _parentMediaAnimation.endCoordinate.y) startTime:_range.location / _fps + 0.001 duration:_range.length / _fps - 0.002 removeOnComplete:NO delegate:nil];
         }
             break;
         case AnimationScale:
         {
-            animation = [[AnimationManager shareManager] scaleAnimationWithStartScale:_startRatio endScale:_endRatio startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
+            animation = [[AnimationManager shareManager] scaleAnimationWithStartScale:_parentMediaAnimation.startRatio endScale:_parentMediaAnimation.endRatio startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
         }
             break;
         case AnimationBlur:
         {
-            animation = [[AnimationManager shareManager] opacityAnimationWithStartOpacity:_startBlur endOpacity:_endBlur startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
+            animation = [[AnimationManager shareManager] opacityAnimationWithStartOpacity:_parentMediaAnimation.startBlur endOpacity:_parentMediaAnimation.endBlur startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
         }
             break;
         case AnimationRotation:
         {
-            animation = [[AnimationManager shareManager] rotationZAnimationWithStartAngle:_startAngle endAngle:_endAngle startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
+            animation = [[AnimationManager shareManager] rotationZAnimationWithStartAngle:_parentMediaAnimation.startAngle endAngle:_parentMediaAnimation.endAngle startTime:_range.location / _fps duration:_range.length / _fps removeOnComplete:NO delegate:nil];
         }
             break;
         default:

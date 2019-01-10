@@ -44,10 +44,14 @@
             UIImage *templateImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:templatePixelBuffer size:currentPixelSize];
             UIImage *theResultImage = nil;
             if (currentSnapshotMedias.count > 0) {
-                void *maskPixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:currentMaskSampleBufferRef];
-                [[UTImageHanderManager shareManager] convertImagePixelReverse:maskPixelBuffer size:currentPixelSize];
+                UIImage *maskImage = nil;
+                if (currentMaskSampleBufferRef) {
+                    void *maskPixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:currentMaskSampleBufferRef];
+                    [[UTImageHanderManager shareManager] convertImagePixelReverse:maskPixelBuffer size:currentPixelSize];
+                    
+                    maskImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:maskPixelBuffer size:currentPixelSize];
+                }
                 
-                UIImage *maskImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:maskPixelBuffer size:currentPixelSize];
                 UIImage *tempResultImage = [self imageWithMask:maskImage frameAxios:currentSnapshotMedias frameIndex:currentFrame pixelSize:currentPixelSize];
                 GPUImagePicture *tempPic1 = [[GPUImagePicture alloc] initWithImage:templateImage];
                 [tempPic1 addTarget:filter];
@@ -75,7 +79,9 @@
             void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
             memcpy(templatePixelBuffer, resultBaseAddress, 4*currentPixelSize.width*currentPixelSize.height);
             [filter removeOutputFramebuffer];
-            CFRelease(currentMaskSampleBufferRef);
+            if (currentMaskSampleBufferRef) {
+                CFRelease(currentMaskSampleBufferRef);
+            }
             
             if ([self.delegate respondsToSelector:@selector(sendSampleBufferRef:frame:)]) {
                 [self.delegate sendSampleBufferRef:currentTemplateSampleBufferRef frame:currentFrame];
@@ -95,9 +101,10 @@
     AnimationForMedia *animation = frameAxios.animationForMedia;
     CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
     CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, pixelSize.width, pixelSize.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-    
-    CGImageRef maskRef = maskImage.CGImage;
-    CGContextClipToMask(mainViewContentContext, CGRectMake(0, 0, maskImage.size.width, maskImage.size.height), maskRef);
+    if (maskImage) {
+        CGImageRef maskRef = maskImage.CGImage;
+        CGContextClipToMask(mainViewContentContext, CGRectMake(0, 0, maskImage.size.width, maskImage.size.height), maskRef);
+    }
     UIImage *snapshotImage = [self snapshotImageWithFrameAxios:frameAxiosList frameIndex:index pixelSize:pixelSize];
     CGImageRef snapshotImageRef = snapshotImage.CGImage;
     if (animation.parentMediaAnimation.type == AnimationRotation) {
