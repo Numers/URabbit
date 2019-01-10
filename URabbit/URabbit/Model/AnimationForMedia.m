@@ -111,6 +111,16 @@
             _endBlur = [endBlur floatValue];
         }
         
+        id startAlpha = [dic objectForKey:@"startAlpha"];
+        if (startAlpha) {
+            _startAlpha = [startAlpha floatValue];
+        }
+        
+        id endAlpha = [dic objectForKey:@"endAlpha"];
+        if (endAlpha) {
+            _endAlpha = [endAlpha floatValue];
+        }
+        
         _parentMediaAnimation = [[ParentMediaAnimation alloc] initWithDictionary:parentDic];
     }
     return self;

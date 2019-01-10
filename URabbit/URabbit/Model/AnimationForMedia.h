@@ -22,6 +22,8 @@
 @property(nonatomic) CGFloat heightPercent;
 @property(nonatomic) CGFloat startAngle;
 @property(nonatomic) CGFloat endAngle;
+@property(nonatomic) CGFloat startAlpha;
+@property(nonatomic) CGFloat endAlpha;
 @property(nonatomic) CGFloat startRatio;
 @property(nonatomic) CGFloat endRatio;
 @property(nonatomic) CGPoint startCoordinate;

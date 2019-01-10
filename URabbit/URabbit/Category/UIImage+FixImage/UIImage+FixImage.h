@@ -22,4 +22,6 @@
 - (UIImage *)imageWithMask:(UIImage*)imageMask orginImagePoint:(CGPoint)point;
 
 - (UIImage *)mergeImage:(UIImage *)image withMask:(UIImage*)imageMask orginImagePoint:(CGPoint)point;
+
+- (UIImage *)imageByApplyingAlpha:(CGFloat)alpha;
 @end

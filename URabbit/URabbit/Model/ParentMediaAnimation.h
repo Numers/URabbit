@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) CGPoint endCoordinate;
 @property(nonatomic) CGFloat startBlur;
 @property(nonatomic) CGFloat endBlur;
+@property(nonatomic) CGFloat startAlpha;
+@property(nonatomic) CGFloat endAlpha;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dic;
 @end

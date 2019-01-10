@@ -79,6 +79,16 @@
         if (endBlur) {
             _endBlur = [endBlur floatValue];
         }
+        
+        id startAlpha = [dic objectForKey:@"startAlpha"];
+        if (startAlpha) {
+            _startAlpha = [startAlpha floatValue];
+        }
+        
+        id endAlpha = [dic objectForKey:@"endAlpha"];
+        if (endAlpha) {
+            _endAlpha = [endAlpha floatValue];
+        }
     }
     return self;
 }

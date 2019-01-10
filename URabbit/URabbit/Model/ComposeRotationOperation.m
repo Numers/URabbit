@@ -138,6 +138,17 @@
         UIImage *renderImage = [self GPUImageStyleWithImage:snapshotImage blur:blurNum];
         CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, renderImage.size.width, renderImage.size.height), renderImage.CGImage);
         CGContextRestoreGState(mainViewContentContext);
+    }else if (animation.parentMediaAnimation.type == AnimationAlpha){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.parentMediaAnimation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.parentMediaAnimation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGFloat alphaPiece = (animation.parentMediaAnimation.endAlpha - animation.parentMediaAnimation.startAlpha) / animation.range.length;
+        CGFloat alphaNum = animation.parentMediaAnimation.startAlpha + (index - animation.range.location) * alphaPiece;
+        
+        UIImage *renderImage = [snapshotImage imageByApplyingAlpha:alphaNum];
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, renderImage.size.width, renderImage.size.height), renderImage.CGImage);
+        CGContextRestoreGState(mainViewContentContext);
     }else if(animation.parentMediaAnimation.type == AnimationNone){
         CGContextSaveGState(mainViewContentContext);
         CGFloat centerX = pixelSize.width * animation.parentMediaAnimation.centerXPercent;
@@ -228,6 +239,17 @@
         CGFloat blurNum = animation.startBlur + (index - animation.range.location) * blurPiece;
 
         UIImage *renderImage = [self GPUImageStyleWithImage:media.resultImage blur:blurNum];
+        CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, renderImage.size.width, renderImage.size.height), renderImage.CGImage);
+        CGContextRestoreGState(mainViewContentContext);
+    }else if (animation.type == AnimationAlpha){
+        CGContextSaveGState(mainViewContentContext);
+        CGFloat centerX = pixelSize.width * animation.centerXPercent;
+        CGFloat centerY = pixelSize.height * (1-animation.centerYPercent);
+        CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+        CGFloat alphaPiece = (animation.endAlpha - animation.startAlpha) / animation.range.length;
+        CGFloat alphaNum = animation.startAlpha + (index - animation.range.location) * alphaPiece;
+        
+        UIImage *renderImage = [media.resultImage imageByApplyingAlpha:alphaNum];
         CGContextDrawImage(mainViewContentContext, CGRectMake(-centerX, -centerY, renderImage.size.width, renderImage.size.height), renderImage.CGImage);
         CGContextRestoreGState(mainViewContentContext);
     }else if(animation.type == AnimationNone){
