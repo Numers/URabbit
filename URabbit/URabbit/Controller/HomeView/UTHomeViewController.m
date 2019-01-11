@@ -281,7 +281,7 @@
         [choosenTemplateList removeAllObjects];
     }
     
-    [[UTHomeNetworkAPIManager shareManager] getChoiceRecommendTemplateWithPage:1 size:20 callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+    [[UTHomeNetworkAPIManager shareManager] getChoiceRecommendTemplateWithPage:1 size:50 callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         NSArray *templateArr = (NSArray *)data;
         if (templateArr && templateArr.count > 0) {
             for (NSDictionary *dic in templateArr) {
@@ -301,7 +301,7 @@
         [latestTemplateList removeAllObjects];
     }
     
-    [[UTHomeNetworkAPIManager shareManager] getNewTemplateWithPage:1 size:20 callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+    [[UTHomeNetworkAPIManager shareManager] getNewTemplateWithPage:1 size:50 callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         [AppUtils hiddenLoadingInView:self.view];
         NSArray *templateArr = (NSArray *)data;
         if (templateArr && templateArr.count > 0) {
