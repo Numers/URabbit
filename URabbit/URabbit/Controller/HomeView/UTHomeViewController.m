@@ -21,6 +21,7 @@
 #import "UTHomeNetworkAPIManager.h"
 #import "AppStartManager.h"
 #import "UINavigationController+NavigationBar.h"
+#define HomeRecommendViewIdentify @"fenlei"
 #define ChoosenTemplateViewIdentify @"jingxuan"
 #define LatestTemplateViewIdentify @"latest"
 @interface UTHomeViewController ()<HomeTemplateViewProtocol,UTHomeRecommendViewProtocl>
@@ -58,8 +59,8 @@
     recommendList = [NSMutableArray array];
     choosenTemplateList = [NSMutableArray array];
     latestTemplateList = [NSMutableArray array];
-    recommendViewHeight = 167.0f;
-//    recommendViewHeight = -8.0f;
+//    recommendViewHeight = 167.0f;
+    recommendViewHeight = -8.0f;
     choosenTemplateViewHeight = 0.0f;
     latestTemplateViewHeight = 0.0f;
     
@@ -118,7 +119,7 @@
     [_scrollView setBackgroundColor:[UIColor colorFromHexString:@"#F0F1F3"]];
     [self.view addSubview:_scrollView];
     
-    homeRecommendView = [[UTHomeRecommendView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, recommendViewHeight)];
+    homeRecommendView = [[UTHomeRecommendView alloc] initWithFrame:CGRectMake(0, recommendViewHeight, SCREEN_WIDTH, recommendViewHeight)];
     homeRecommendView.delegate = self;
     [homeRecommendView setHeadImage:[UIImage imageNamed:@"jingxuan"] headTitle:@"推荐合集"];
     [_scrollView addSubview:homeRecommendView];
@@ -267,6 +268,9 @@
                 [recommendList addObject:template];
             }
             [homeRecommendView setDatasource:recommendList];
+            if (recommendList.count > 0) {
+                [self updateViewHeight:167.0f identify:HomeRecommendViewIdentify];
+            }
         }
     }];
 }
@@ -322,12 +326,23 @@
 #pragma -mark HomeTemplateViewProtocol
 -(void)updateViewHeight:(CGFloat)height identify:(id)identify
 {
+    if ([HomeRecommendViewIdentify isEqualToString:identify]) {
+        recommendViewHeight = height;
+    }
+    
     if ([ChoosenTemplateViewIdentify isEqualToString:identify]) {
         choosenTemplateViewHeight = height;
     }
     
     if ([LatestTemplateViewIdentify isEqualToString:identify]) {
         latestTemplateViewHeight = height;
+    }
+    
+    if (recommendViewHeight > 0) {
+        if (homeRecommendView) {
+            [homeRecommendView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, recommendViewHeight)];
+            [homeRecommendView setNeedsUpdateConstraints];
+        }
     }
     
     if (choosenTemplateViewHeight > 0) {
