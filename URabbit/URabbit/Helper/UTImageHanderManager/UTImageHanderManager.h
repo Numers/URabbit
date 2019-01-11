@@ -12,13 +12,16 @@
 
 @interface UTImageHanderManager : NSObject
 +(instancetype)shareManager;
+-(size_t)bytesPerRowFromSampleBuffer:(CMSampleBufferRef)sampleBuffer;
+-(CGImageRef)cgImageFromSampleBufferRef:(CMSampleBufferRef)sampleBufferRef;
+-(UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer;
 -(void *)baseAddressFromSampleBuffer:(CMSampleBufferRef) sampleBuffer;
--(UIImage *) bgImageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size;
--(UIImage *) imageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size;
+-(UIImage *) bgImageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size bytesPerRow:(size_t)bytesPerRow;
+-(UIImage *) imageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size bytesPerRow:(size_t)bytesPerRow;
 -(void)convertImagePixelReverse:(void *)pixelBuffer size:(CGSize)size;
 -(void *)baseAddressWithCVPixelBuffer:(CVPixelBufferRef)pixelBufferRef;
-- (CVPixelBufferRef)pixelBufferFromImage:(UIImage *)image size:(CGSize)size;
-- (CVPixelBufferRef)pixelBufferAdaptFromImage:(UIImage *)image size:(CGSize)size;
+- (CVPixelBufferRef)pixelBufferFromImage:(UIImage *)image size:(CGSize)size bytesPerRow:(size_t)bytesPerRow;
+- (CVPixelBufferRef)pixelBufferAdaptFromImage:(UIImage *)image size:(CGSize)size bytesPerRow:(size_t)bytesPerRow;
 -(CGColorSpaceRef)currentColorSpaceRef;
 -(void)setCurrentImageSize:(CGSize)size;
 -(UIImage *)filterImage:(UIImage *)image filterName:(NSString *)filterName size:(CGSize)size;
@@ -27,7 +30,6 @@
 
 
 
-- (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer;
 -(void *) imagePixelBufferFromSampleBuffer:(CMSampleBufferRef) sampleBuffer;
 -(CVImageBufferRef) imagePixelBufferAlphaOnlyFromSampleBuffer:(CMSampleBufferRef) sampleBuffer;
 
@@ -40,6 +42,4 @@
 - (UIImage *)addImage:(UIImage *)image1 rect:(CGRect)rect1 toImage:(UIImage *)image2 rect:(CGRect)rect2 size:(CGSize)size;
 -(NSData *)zipScaleWithImage:(UIImage *)sourceImage;
 -(CMSampleBufferRef) GPUImageCreateResizedSampleBuffer:(CVPixelBufferRef)cameraFrame size: (CGSize) finalSize frame:(int)frame fps:(int32_t)fps;
-
--(UIImage *)blendImage:(UIImage *)image1 withOtherImage:(void *)templateImageBuffer;
 @end

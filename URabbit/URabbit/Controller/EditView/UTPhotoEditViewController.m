@@ -248,8 +248,8 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     [containerView generateImagesToCompose];
 //    UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 //    Snapshot *snapshot = [currentSnapshots objectAtIndex:0];
-//
-//    [cell setPictureImage:snapshot.snapshotImage];
+//    SnapshotMedia *meida = [snapshot.mediaList objectAtIndex:0];
+//    [cell setPictureImage:meida.resultImage];
 //    return;
     DMProgressHUD *hud = [DMProgressHUD showHUDAddedTo:self.view animation:DMProgressHUDAnimationGradient maskType:DMProgressHUDMaskTypeNone];
     hud.mode = DMProgressHUDModeProgress;
@@ -521,10 +521,11 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 //        }
 //    });
     
-//    UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-//    Snapshot *snapshot = [currentSnapshots objectAtIndex:0];
-//    SnapshotMedia *media = [snapshot.mediaList objectAtIndex:0];
-//    [cell setPictureImage:media.resultImage];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//        [cell setPictureImage:image];
+//    });
+    
     return;
 }
 @end

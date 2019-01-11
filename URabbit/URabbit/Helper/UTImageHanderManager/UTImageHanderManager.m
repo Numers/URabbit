@@ -74,9 +74,73 @@
     return colorSpace;
 }
 
--(UIImage *) bgImageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size{
-    size_t bytesPerRow = size.width * 4;
+-(CGImageRef)cgImageFromSampleBufferRef:(CMSampleBufferRef)sampleBufferRef {
+    @autoreleasepool {
+        // 为媒体数据设置一个CMSampleBufferRef
+        CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBufferRef);
+        // 锁定 pixel buffer 的基地址，保证在内存中可用
+        CVPixelBufferLockBaseAddress(imageBuffer, 0);
+        // 得到 pixel buffer 的基地址
+        void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+        // 得到 pixel buffer 的行字节数
+        size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+        // 得到 pixel buffer 的宽和高
+        size_t width = CVPixelBufferGetWidth(imageBuffer);
+        size_t height = CVPixelBufferGetHeight(imageBuffer);
+        // 创建一个依赖于设备的 RGB 颜色空间
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        // 用抽样缓存的数据创建一个位图格式的图形上下文（graphic context）对象
+        CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8, bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+        //根据这个位图 context 中的像素创建一个 Quartz image 对象
+        CGImageRef quartzImage = CGBitmapContextCreateImage(context);
+        // 解锁 pixel buffer
+        CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
+        // CVPixelBufferRelease(imageBuffer);
+        // Free up the context and color space
+        CGContextRelease(context);
+        CGColorSpaceRelease(colorSpace);
+        return quartzImage;
+    }
+}
+
+-(size_t)bytesPerRowFromSampleBuffer:(CMSampleBufferRef)sampleBuffer{
+    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    return bytesPerRow;
+}
+
+
+-(UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer {
+    // 为媒体数据设置一个CMSampleBuffer的Core Video图像缓存对象
+    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    size_t width = CVPixelBufferGetWidth(imageBuffer);
+    size_t height = CVPixelBufferGetHeight(imageBuffer);
+    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    // 锁定pixel buffer的基地址
+    CVPixelBufferLockBaseAddress(imageBuffer, 0);
     
+    // 得到pixel buffer的基地址
+    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+    
+    // 创建一个依赖于设备的RGB颜色空间
+    //    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    // 用抽样缓存的数据创建一个位图格式的图形上下文（graphics context）对象
+    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
+                                                 bytesPerRow, colorSpace,   kCGBitmapByteOrder32Big |kCGImageAlphaPremultipliedFirst);
+    // 根据这个位图context中的像素数据创建一个Quartz image对象
+    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
+    UIImage *resultImage = [UIImage imageWithCGImage:quartzImage];
+    CGImageRelease(quartzImage);
+    // 解锁pixel buffer
+    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+    
+    CGContextRelease(context);
+    //    CGColorSpaceRelease(colorSpace);
+    return resultImage;
+}
+
+-(UIImage *) bgImageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size bytesPerRow:(size_t)bytesPerRow{
     // 用抽样缓存的数据创建一个位图格式的图形上下文（graphics context）对象
     CGContextRef context = CGBitmapContextCreate(pixelBuffer, size.width, size.height, 8,
                                                  bytesPerRow, colorSpace,  kCGBitmapByteOrder32Little |kCGImageAlphaPremultipliedFirst);
@@ -96,9 +160,7 @@
 }
 
 
--(UIImage *) imageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size{
-    size_t bytesPerRow = size.width * 4;
-    
+-(UIImage *) imageFromPixelBuffer:(void *) pixelBuffer size:(CGSize)size bytesPerRow:(size_t)bytesPerRow{
     // 用抽样缓存的数据创建一个位图格式的图形上下文（graphics context）对象
     CGContextRef context = CGBitmapContextCreate(pixelBuffer, size.width, size.height, 8,
                                                  bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
@@ -140,14 +202,14 @@
     return baseAddress;
 }
 
-- (CVPixelBufferRef)pixelBufferFromImage:(UIImage *)image size:(CGSize)size {
+- (CVPixelBufferRef)pixelBufferFromImage:(UIImage *)image size:(CGSize)size bytesPerRow:(size_t)bytesPerRow{
     if (pxbuffer == NULL) {
         NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                                  [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
                                  [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey,
                                  nil];
         CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, size.width,
-                                              size.height, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
+                                              size.height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef) options,
                                               &pxbuffer);
         NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
     }
@@ -165,7 +227,7 @@
     NSParameterAssert(pxdata != NULL);
     
     CGContextRef context = CGBitmapContextCreate(pxdata, size.width,
-                                                 size.height, 8, 4*size.width, colorSpace,
+                                                 size.height, 8, bytesPerRow, colorSpace,
                                                  kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     NSParameterAssert(context);
     CGImageRef imageRef = image.CGImage;
@@ -181,7 +243,7 @@
 }
 
 
-- (CVPixelBufferRef)pixelBufferAdaptFromImage:(UIImage *)image size:(CGSize)size {
+- (CVPixelBufferRef)pixelBufferAdaptFromImage:(UIImage *)image size:(CGSize)size  bytesPerRow:(size_t)bytesPerRow{
     CVPixelBufferRef pxbuffer = NULL;
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
@@ -196,7 +258,7 @@
     NSParameterAssert(pxdata != NULL);
     
     CGContextRef context = CGBitmapContextCreate(pxdata, size.width,
-                                                 size.height, 8, 4*size.width, colorSpace,
+                                                 size.height, 8, bytesPerRow, colorSpace,
                                                 kCGImageAlphaNoneSkipFirst);
     NSParameterAssert(context);
     CGImageRef imageRef = image.CGImage;
@@ -300,36 +362,6 @@
 
 
 
-
--(UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer {
-    // 为媒体数据设置一个CMSampleBuffer的Core Video图像缓存对象
-    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    size_t width = CVPixelBufferGetWidth(imageBuffer);
-    size_t height = CVPixelBufferGetHeight(imageBuffer);
-    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-    // 锁定pixel buffer的基地址
-    CVPixelBufferLockBaseAddress(imageBuffer, 0);
-    
-    // 得到pixel buffer的基地址
-    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-    
-    // 创建一个依赖于设备的RGB颜色空间
-    //    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    
-    // 用抽样缓存的数据创建一个位图格式的图形上下文（graphics context）对象
-    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
-                                                 bytesPerRow, colorSpace,   kCGBitmapByteOrder32Big |kCGImageAlphaPremultipliedFirst);
-    // 根据这个位图context中的像素数据创建一个Quartz image对象
-    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
-    UIImage *resultImage = [UIImage imageWithCGImage:quartzImage];
-    CGImageRelease(quartzImage);
-    // 解锁pixel buffer
-    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-    
-    CGContextRelease(context);
-    //    CGColorSpaceRelease(colorSpace);
-    return resultImage;
-}
 
 -(void *) imagePixelBufferFromSampleBuffer:(CMSampleBufferRef) sampleBuffer {
     // 为媒体数据设置一个CMSampleBuffer的Core Video图像缓存对象
@@ -462,27 +494,6 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     memcpy(toData, fromData, size.width * size.height * 4);
     CVPixelBufferUnlockBaseAddress(fromPixelBuffer, 0);
     CVPixelBufferUnlockBaseAddress(toPixelBuffer, 0);
-}
-
--(UIImage *)blendImage:(UIImage *)image1 withOtherImage:(void *)templateImageBuffer
-{
-    void *image1Buffer = [self baseAddressWithCVPixelBuffer:[self pixelBufferFromImage:image1 size:image1.size]];
-    
-    unsigned long pixelNum = image1.size.width * image1.size.height;
-    uint32_t* pCurPtr = image1Buffer;
-    uint32_t* bCurPtr = templateImageBuffer;
-    for (unsigned long i = 0; i < pixelNum; i++, pCurPtr++,bCurPtr++)
-    {
-        uint8_t* btr = (uint8_t*)bCurPtr;
-        uint8_t* ptr = (uint8_t*)pCurPtr;
-        if (ptr[0] > 0) {
-            btr[1] = btr[1] | ptr[1];
-            btr[2] = btr[2] | ptr[2];
-            btr[3] = btr[3] | ptr[3];
-        }
-    }
-    UIImage *resultImage = [self generalImageWithBuffer:templateImageBuffer size:image1.size];
-    return resultImage;
 }
 
 - (CVPixelBufferRef)pixelBufferFrom32BGRAData:(void *)framedata size:(CGSize)size

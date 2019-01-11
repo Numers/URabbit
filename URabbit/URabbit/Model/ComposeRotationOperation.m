@@ -25,6 +25,7 @@
     self = [super init];
     if (self) {
         currentTemplateSampleBufferRef = templateSampleBufferRef;
+        bytesPerRow = [[UTImageHanderManager shareManager] bytesPerRowFromSampleBuffer:currentTemplateSampleBufferRef];
         currentMaskSampleBufferRef = maskSampleBufferRef;
         currentFrame = frame;
         currentSnapshotMedias = snapshotMedias;
@@ -41,15 +42,16 @@
     @autoreleasepool {
         if (currentTemplateSampleBufferRef) {
             void *templatePixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:currentTemplateSampleBufferRef];
-            UIImage *templateImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:templatePixelBuffer size:currentPixelSize];
+            UIImage *templateImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:templatePixelBuffer size:currentPixelSize bytesPerRow:bytesPerRow];
             UIImage *theResultImage = nil;
             if (currentSnapshotMedias.count > 0) {
                 UIImage *maskImage = nil;
                 if (currentMaskSampleBufferRef) {
                     void *maskPixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:currentMaskSampleBufferRef];
+                    
                     [[UTImageHanderManager shareManager] convertImagePixelReverse:maskPixelBuffer size:currentPixelSize];
                     
-                    maskImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:maskPixelBuffer size:currentPixelSize];
+                    maskImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:maskPixelBuffer size:currentPixelSize bytesPerRow:bytesPerRow];
                 }
                 
                 UIImage *tempResultImage = [self imageWithMask:maskImage frameAxios:currentSnapshotMedias frameIndex:currentFrame pixelSize:currentPixelSize];
@@ -69,20 +71,21 @@
             }else{
                 resultImage = theResultImage;
             }
+
             if (currentFrame % halfVideoFps == 0) {
                 if ([self.delegate respondsToSelector:@selector(sendImage:frame:)]) {
                     [self.delegate sendImage:resultImage frame:currentFrame];
                 }
             }
             
-            CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:currentPixelSize];
+            CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:currentPixelSize bytesPerRow:bytesPerRow];
             void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
-            memcpy(templatePixelBuffer, resultBaseAddress, 4*currentPixelSize.width*currentPixelSize.height);
+            memcpy(templatePixelBuffer, resultBaseAddress, bytesPerRow * currentPixelSize.height);
             [filter removeOutputFramebuffer];
             if (currentMaskSampleBufferRef) {
                 CFRelease(currentMaskSampleBufferRef);
             }
-            
+
             if ([self.delegate respondsToSelector:@selector(sendSampleBufferRef:frame:)]) {
                 [self.delegate sendSampleBufferRef:currentTemplateSampleBufferRef frame:currentFrame];
             }

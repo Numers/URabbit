@@ -22,6 +22,7 @@
     if (self) {
         currentSnapshot = snapshot;
         currentTemplateSampleBufferRef = templateSampleBufferRef;
+        bytesPerRow = [[UTImageHanderManager shareManager] bytesPerRowFromSampleBuffer:currentTemplateSampleBufferRef];
         currentFrame = frame;
         currentPixelSize = pixelSize;
         currentMaskImage = maskImage;
@@ -34,13 +35,13 @@
     @autoreleasepool {
         if (currentTemplateSampleBufferRef) {
             void *templatePixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:currentTemplateSampleBufferRef];
-            UIImage *templateImage = [[UTImageHanderManager shareManager] bgImageFromPixelBuffer:templatePixelBuffer size:currentPixelSize];
+            UIImage *templateImage = [[UTImageHanderManager shareManager] bgImageFromPixelBuffer:templatePixelBuffer size:currentPixelSize bytesPerRow:bytesPerRow];
 
             UIImage *resultImage = [self coverImageWithBackgroundImage:templateImage maskImage:currentMaskImage snapImage:currentSnapshot.snapshotImage size:currentPixelSize];
 
-            CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:currentPixelSize];
+            CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:currentPixelSize bytesPerRow:bytesPerRow];
             void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
-            memcpy(templatePixelBuffer, resultBaseAddress, 4*currentPixelSize.width*currentPixelSize.height);
+            memcpy(templatePixelBuffer, resultBaseAddress, bytesPerRow*currentPixelSize.height);
             
             if ([self.delegate respondsToSelector:@selector(sendSampleBufferRef:frame:)]) {
                 [self.delegate sendSampleBufferRef:currentTemplateSampleBufferRef frame:currentFrame];

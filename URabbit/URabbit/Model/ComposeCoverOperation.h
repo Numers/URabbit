@@ -14,6 +14,7 @@
     CMSampleBufferRef currentTemplateSampleBufferRef;
     NSInteger currentFrame;
     CGSize currentPixelSize;
+    size_t bytesPerRow;
     Snapshot *currentSnapshot;
     UIImage *currentMaskImage;
 }

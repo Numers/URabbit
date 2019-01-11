@@ -18,7 +18,9 @@
     NSMutableArray *currentSnapshotMedias;
     NSMutableArray *currentSnapshotTexts;
     CGSize currentPixelSize;
+    size_t bytesPerRow;
     int halfVideoFps;
+    
 }
 @property(nonatomic,weak) id<ComposeOperationProtocol> delegate;
 -(instancetype)initWithTemplateSampleBufferRef:(CMSampleBufferRef)templateSampleBufferRef maskSampleBufferRef:(CMSampleBufferRef)maskSampleBufferRef frame:(NSInteger)frame snapshotMedias:(NSMutableArray *)snapshotMedias snapshotText:(NSMutableArray *)snapshotTexts pixelSize:(CGSize)pixelSize fps:(CGFloat)fps;
