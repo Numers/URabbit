@@ -77,12 +77,6 @@
     [scrollView setContentInset:UIEdgeInsetsMake(0, 0, [UIDevice safeAreaBottomHeight], 0)];
     [self.view addSubview:scrollView];
     
-    videoInfoView = [[UTVideoInfoView alloc] initWithVideoSize:currentHomeTemplate.videoSize frame:CGRectMake(0,17, SCREEN_WIDTH, 0)];
-    [scrollView addSubview:videoInfoView];
-    videoAuthorView = [[UTVideoAuthorView alloc] initWithFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
-    videoAuthorView.delegate = self;
-    [scrollView addSubview:videoAuthorView];
-    
     makeButtonView = [[UTDownloadButtonView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - [UIDevice safeAreaBottomHeight] - 105.0f, SCREEN_WIDTH, 105.0f)];
     makeButtonView.delegate = self;
     [self.view addSubview:makeButtonView];
@@ -169,6 +163,17 @@
         NSDictionary *resultDic = (NSDictionary *)data;
         if (resultDic) {
             HomeTemplate *template = [[HomeTemplate alloc] initWithDictionary:resultDic];
+            
+            if (videoInfoView && videoAuthorView) {
+                
+            }else{
+                videoInfoView = [[UTVideoInfoView alloc] initWithVideoSize:template.videoSize frame:CGRectMake(0,17, SCREEN_WIDTH, 0)];
+                [scrollView addSubview:videoInfoView];
+                videoAuthorView = [[UTVideoAuthorView alloc] initWithFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
+                videoAuthorView.delegate = self;
+                [scrollView addSubview:videoAuthorView];
+            }
+            
             [videoInfoView setHomeTemplate:template];
             [videoAuthorView setFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
             [videoAuthorView setHomeTemplate:template];

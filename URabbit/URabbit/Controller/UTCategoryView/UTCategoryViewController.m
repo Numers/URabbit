@@ -8,6 +8,7 @@
 
 #import "UTCategoryViewController.h"
 #import "RecommendTemplate.h"
+#import "UINavigationController+NavigationBar.h"
 #import "TYTabPagerBar.h"
 #import "TYPagerController.h"
 #import "UTCategoryPageViewController.h"
@@ -79,7 +80,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
-    
+    [self.navigationController setStatusBarStyle:UIStatusBarStyleDefault];
     [self reloadData];
 }
 
@@ -122,6 +123,7 @@
 
 - (void)pagerTabBar:(TYTabPagerBar *)pagerTabBar didSelectItemAtIndex:(NSInteger)index {
     [_pagerController scrollToControllerAtIndex:index animate:YES];
+    defaultSelectIndex = index;
 }
 
 #pragma mark - TYPagerControllerDataSource
