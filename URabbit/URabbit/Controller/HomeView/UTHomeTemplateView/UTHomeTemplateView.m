@@ -136,7 +136,7 @@ NSString *homeTemplateCollectionViewCellIdentify = @"HomeTemplateCollectionViewC
     }
     
     [dataSource addObjectsFromArray:datasource];
-    [collectionView reloadData];
+    [collectionView reloadData]; 
 }
 
 -(void)clickCategoryButton
@@ -159,6 +159,7 @@ NSString *homeTemplateCollectionViewCellIdentify = @"HomeTemplateCollectionViewC
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UTHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:homeTemplateCollectionViewCellIdentify forIndexPath:indexPath];
+    [cell setNeedsDisplay];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         HomeTemplate *template = [dataSource objectAtIndex:indexPath.row];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -183,7 +184,8 @@ NSString *homeTemplateCollectionViewCellIdentify = @"HomeTemplateCollectionViewC
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     HomeTemplate *template = [dataSource objectAtIndex:indexPath.row];
     CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
-    CGFloat height = width * (template.videoSize.height / template.videoSize.width) + HeadViewHeight;
+    CGFloat ratio = template.videoSize.height / template.videoSize.width;
+    CGFloat height = width * ratio + HeadViewHeight;
     return CGSizeMake(width,height);
 }
 

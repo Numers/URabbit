@@ -35,6 +35,10 @@
     currentSnapshot = snapshot;
     CGFloat height = self.frame.size.height;
     CGFloat width = height * (snapshot.videoSize.width / snapshot.videoSize.height);
+    if (width > self.frame.size.width) {
+        width = self.frame.size.width;
+        height = width * (snapshot.videoSize.height / snapshot.videoSize.width);
+    }
     currentStyle = style;
     if (style == TemplateStyleGoodNight) {
         editView = [[UTPhotoEditCanMoveView alloc] initWithSnapshot:snapshot frame:CGRectMake(0, 0, width, height)];
