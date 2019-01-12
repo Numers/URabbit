@@ -120,6 +120,7 @@
     [self.view addSubview:_scrollView];
     
     homeRecommendView = [[UTHomeRecommendView alloc] initWithFrame:CGRectMake(0, recommendViewHeight, SCREEN_WIDTH, recommendViewHeight)];
+    [homeRecommendView setHidden:YES];
     homeRecommendView.delegate = self;
     [homeRecommendView setHeadImage:[UIImage imageNamed:@"jingxuan"] headTitle:@"推荐合集"];
     [_scrollView addSubview:homeRecommendView];
@@ -269,7 +270,11 @@
             }
             [homeRecommendView setDatasource:recommendList];
             if (recommendList.count > 0) {
+                [homeRecommendView setHidden:NO];
                 [self updateViewHeight:167.0f identify:HomeRecommendViewIdentify];
+            }else{
+                [homeRecommendView setHidden:YES];
+                [self updateViewHeight:-8.0f identify:HomeRecommendViewIdentify];
             }
         }
     }];

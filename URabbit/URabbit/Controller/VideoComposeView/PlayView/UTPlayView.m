@@ -138,7 +138,7 @@ static NSString *playCollectionViewCellIdentify = @"PlayCollectionViewCellIdenti
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 1.0f;
+    return 0.0f;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -151,7 +151,10 @@ static NSString *playCollectionViewCellIdentify = @"PlayCollectionViewCellIdenti
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(18.7f,43.0f);
+    UIImage *img = [dataSource objectAtIndex:indexPath.row];
+    CGFloat height = 43.0f;
+    CGFloat width =  (height-10) * (img.size.width / img.size.height);
+    return CGSizeMake(width,height);
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView

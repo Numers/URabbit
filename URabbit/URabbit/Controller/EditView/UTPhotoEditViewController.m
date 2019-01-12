@@ -325,7 +325,9 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 }
 
 - (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(48.0f,80.0f);
+    CGFloat height = 80.0f;
+    CGFloat width = height * (currentResource.videoSize.width / currentResource.videoSize.height);
+    return CGSizeMake(width,height);
 }
 
 - (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
