@@ -8,6 +8,7 @@
 
 #import "AnimationForMedia.h"
 #import "AnimationManager.h"
+#import "AnimationForMediaFrame.h"
 
 @implementation AnimationForMedia
 -(instancetype)initWithDictionary:(NSDictionary *)dic startFrame:(NSInteger)startFrame endFrame:(NSInteger)endFrame fps:(CGFloat)fps parentDic:(NSDictionary *)parentDic
@@ -119,6 +120,15 @@
         id endAlpha = [dic objectForKey:@"endAlpha"];
         if (endAlpha) {
             _endAlpha = [endAlpha floatValue];
+        }
+        
+        _mediaFrames = [NSMutableArray array];
+        NSArray *frames = [dic objectForKey:@"frames"];
+        if (frames) {
+            for (NSDictionary * frameDic in frames) {
+                AnimationForMediaFrame *frame = [[AnimationForMediaFrame alloc] initWithDictionary:frameDic];
+                [_mediaFrames addObject:frame];
+            }
         }
         
         _parentMediaAnimation = [[ParentMediaAnimation alloc] initWithDictionary:parentDic];

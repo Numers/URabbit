@@ -59,6 +59,7 @@
 		14266C8E21A59794008A1926 /* UTKeyboardTextFieldManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C8D21A59794008A1926 /* UTKeyboardTextFieldManager.m */; };
 		14266C9121A5CBFD008A1926 /* ComposeCoverStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */; };
 		14266C9421A5CC46008A1926 /* ComposeCoverOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */; };
+		1429600521EB5B84003D1700 /* AnimationForMediaFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1429600421EB5B84003D1700 /* AnimationForMediaFrame.m */; };
 		142A3C4821AE3B3F00EF02D3 /* GPUImageBeautyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A3C4721AE3B3F00EF02D3 /* GPUImageBeautyFilter.m */; };
 		142A3C4A21AE769F00EF02D3 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142A3C4921AE769F00EF02D3 /* CoreText.framework */; };
 		142AC2FC21AC393900368ABE /* SelPlaybackControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 142AC2F121AC393900368ABE /* SelPlaybackControls.m */; };
@@ -473,6 +474,8 @@
 		14266C9021A5CBFD008A1926 /* ComposeCoverStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeCoverStrategy.m; sourceTree = "<group>"; };
 		14266C9221A5CC46008A1926 /* ComposeCoverOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeCoverOperation.h; sourceTree = "<group>"; };
 		14266C9321A5CC46008A1926 /* ComposeCoverOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeCoverOperation.m; sourceTree = "<group>"; };
+		1429600321EB5B84003D1700 /* AnimationForMediaFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationForMediaFrame.h; sourceTree = "<group>"; };
+		1429600421EB5B84003D1700 /* AnimationForMediaFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationForMediaFrame.m; sourceTree = "<group>"; };
 		142A3C4621AE3B3F00EF02D3 /* GPUImageBeautyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBeautyFilter.h; sourceTree = "<group>"; };
 		142A3C4721AE3B3F00EF02D3 /* GPUImageBeautyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageBeautyFilter.m; sourceTree = "<group>"; };
 		142A3C4921AE769F00EF02D3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -1690,6 +1693,8 @@
 				1473D5C721B684C000AB946D /* VIPPrice.m */,
 				14BFFFBE21D0C5AD00BFDD73 /* ParentMediaAnimation.h */,
 				14BFFFBF21D0C5AD00BFDD73 /* ParentMediaAnimation.m */,
+				1429600321EB5B84003D1700 /* AnimationForMediaFrame.h */,
+				1429600421EB5B84003D1700 /* AnimationForMediaFrame.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2391,6 +2396,7 @@
 				14580391216F2D6F006BB33D /* UIImage+FixImage.m in Sources */,
 				148D0F7B219D1FF800B4E59A /* ComposeAnimationStrategy.m in Sources */,
 				1425A8E321A9AB94007A0C2E /* UTEditUserInfoViewController.m in Sources */,
+				1429600521EB5B84003D1700 /* AnimationForMediaFrame.m in Sources */,
 				1421EB7921BA52A600BCCD7B /* UTWebViewController.m in Sources */,
 				14E4442D21B6B759008062EF /* UTAboutViewController.m in Sources */,
 				14678FFB218EE07500CD7F4B /* HomeTemplate.m in Sources */,

@@ -80,6 +80,9 @@
             operation.delegate = self;
             [self.operationQueue addOperation:operation];
         }else{
+            if (maskSampleBufferRef) {
+                CFRelease(maskSampleBufferRef);
+            }
             ComposeNomalOperation *normalOperation = [[ComposeNomalOperation alloc] initWithTemplateSampleBufferRef:templateSampleBufferRef frame:index];
             normalOperation.delegate = self;
             [self.operationQueue addOperation:normalOperation];

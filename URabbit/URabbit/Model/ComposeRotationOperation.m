@@ -14,6 +14,7 @@
 #import "AnimationForMedia.h"
 #import "UTImageHanderManager.h"
 #import "UIImage+FixImage.h"
+#import "AnimationForMediaFrame.h"
 @interface ComposeRotationOperation()
 {
     GPUImageTwoInputFilter *filter;
@@ -181,7 +182,13 @@
     
     for(FrameAxios *axios in frameAxiosList){
         AnimationForMedia *animation = axios.animationForMedia;
-        UIImage *animationResultImage = [self animationImageWithFrameAxios:axios frameIndex:index pixelSize:pixelSize];
+        UIImage *animationResultImage = nil;
+        if (animation.mediaFrames.count > 0) {
+            animationResultImage = [self frameImageWithFrameAxios:axios frameIndex:index pixelSize:pixelSize];
+        }else{
+            animationResultImage = [self animationImageWithFrameAxios:axios frameIndex:index pixelSize:pixelSize];
+        }
+        
         CGFloat width = pixelSize.width * animation.widthPercent;
         CGFloat height = pixelSize.height * animation.heightPercent;
         UIImage *resultImage = nil;
@@ -196,6 +203,7 @@
         CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
         CGContextDrawImage(mainViewContentContext, CGRectMake(-width / 2, -height/2, width, height), resultImage.CGImage);
         CGContextRestoreGState(mainViewContentContext);
+        
     }
     CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
     UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
@@ -271,6 +279,50 @@
         CGContextRestoreGState(mainViewContentContext);
     }
     
+    
+    CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    CGImageRelease(newImageRef);
+    CGContextRelease(mainViewContentContext);
+    return newImage;
+}
+
+-(UIImage *)frameImageWithFrameAxios:(FrameAxios *)frameAxios frameIndex:(NSInteger)index pixelSize:(CGSize)pixelSize
+{
+    AnimationForMedia *animation = frameAxios.animationForMedia;
+    if ((index - animation.range.location) >= animation.mediaFrames.count) {
+        return nil;
+    }
+    
+    AnimationForMediaFrame *frameStatus = [animation.mediaFrames objectAtIndex:index - animation.range.location ];
+    SnapshotMedia *media = frameAxios.snapshotMedia;
+
+    UIImage *tempImage = media.resultImage;
+    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, pixelSize.width, pixelSize.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    
+    if (frameStatus.alpha < 1.0f) {
+        tempImage = [tempImage imageByApplyingAlpha:frameStatus.alpha];
+    }
+    
+    if (frameStatus.blur > 0.0f) {
+        tempImage = [self GPUImageStyleWithImage:tempImage blur:frameStatus.blur];
+    }
+    
+    CGFloat width = pixelSize.width * frameStatus.widthPercent;
+    CGFloat height = pixelSize.height * frameStatus.heightPercent;
+    
+    tempImage = [tempImage scaledToFillSize:CGSizeMake(width, height)];
+    
+    CGContextSaveGState(mainViewContentContext);
+    CGFloat centerX = pixelSize.width * frameStatus.locationCenterXPercent;
+    CGFloat centerY = pixelSize.height * (1-frameStatus.locationCenterYPercent);
+    
+    
+    CGContextTranslateCTM(mainViewContentContext, centerX, centerY);
+    CGContextRotateCTM(mainViewContentContext,-frameStatus.angle * M_PI / 180);
+    CGContextDrawImage(mainViewContentContext, CGRectMake(-width / 2, -height / 2, width, height), tempImage.CGImage);
+    CGContextRestoreGState(mainViewContentContext);
     
     CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
     UIImage *newImage = [UIImage imageWithCGImage:newImageRef];

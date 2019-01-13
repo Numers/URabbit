@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ParentMediaAnimation.h"
 
+@class AnimationForMediaFrame;
 @interface AnimationForMedia : NSObject
 @property(nonatomic) AnimationType type;
 @property(nonatomic, copy) NSString *name;
@@ -30,6 +31,8 @@
 @property(nonatomic) CGPoint endCoordinate;
 @property(nonatomic) CGFloat startBlur;
 @property(nonatomic) CGFloat endBlur;
+
+@property(nonatomic, strong) NSMutableArray *mediaFrames;
 
 @property(nonatomic) CGFloat fps;
 

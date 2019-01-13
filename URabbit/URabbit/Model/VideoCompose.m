@@ -231,7 +231,7 @@
                 [self stopWrite];
             }
         }
-//        [NSThread sleepForTimeInterval:0.1];
+//        [NSThread sleepForTimeInterval:0.05];
     });
 }
 
