@@ -358,6 +358,7 @@
         CGContextSaveGState(mainViewContentContext);
         CGContextTranslateCTM(mainViewContentContext, currentCenterPoint.x, size.height - currentCenterPoint.y);
         CATextLayer *layerText = [CATextLayer layer];
+        layerText.wrapped = YES;
         layerText.backgroundColor = [UIColor clearColor].CGColor;
         layerText.contentsScale = [UIScreen mainScreen].scale;
         layerText.bounds = CGRectMake(0, 0, width, height);
