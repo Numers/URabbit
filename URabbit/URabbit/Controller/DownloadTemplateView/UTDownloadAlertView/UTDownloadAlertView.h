@@ -20,6 +20,7 @@
     UIView *backgroundView;
 }
 @property(nonatomic, weak) id<UTDownloadAlertViewProtocl> delegate;
+-(void)setDesctiption:(NSString *)description;
 -(void)alert;
 -(void)dismiss:(void (^)(void))callback;
 @end

@@ -39,7 +39,7 @@ static GeneralManager *generalManager;
         if (data) {
             NSString *newVersion = [data objectForKey:@"version"];
             NSString *currentVersion = [AppUtils appVersion];
-            if ([AppUtils compareVersion:currentVersion to:newVersion] < 0) {
+            if ([AppUtils compareVersion:currentVersion greatThan:newVersion] < 0) {
                 downloadHtml = [data objectForKey:@"url"];
 //                NSString *downloadHtml = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=%@",[AppUtils URLEncodedString:link]];
 //                NSString *downloadHtml = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id1329918420?mt=8"];

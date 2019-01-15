@@ -39,7 +39,7 @@
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
-+(NSInteger)compareVersion:(NSString *)version1 to:(NSString *)version2
++(NSInteger)compareVersion:(NSString *)version1 greatThan:(NSString *)version2
 {
     if (!version1 && !version2) {
         return 0;

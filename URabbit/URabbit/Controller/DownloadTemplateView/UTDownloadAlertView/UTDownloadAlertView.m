@@ -27,12 +27,7 @@
         descLabel = [[UILabel alloc] init];
         [descLabel setTextAlignment:NSTextAlignmentCenter];
         [descLabel setNumberOfLines:0];
-        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-        style.lineSpacing = 14.0f;
-        style.alignment = NSTextAlignmentCenter;
-        NSDictionary *attributeDic = [NSDictionary dictionaryWithObjectsAndKeys:style,NSParagraphStyleAttributeName,[UIFont systemFontOfSize:14.0f],NSFontAttributeName,[UIColor colorFromHexString:@"#333333"],NSForegroundColorAttributeName, nil];
-        NSAttributedString *attributeString = [[NSAttributedString alloc] initWithString:@"该模板需要升级为VIP会员才能使用\n确定前往升级吗？" attributes:attributeDic];
-        [descLabel setAttributedText:attributeString];
+        [self setDesctiption:@"该模板需要升级为VIP会员才能使用\n确定前往升级吗？"];
         [backgroundView addSubview:descLabel];
         
         comfirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -79,6 +74,16 @@
         make.leading.equalTo(backgroundView.leading).offset(27);
         make.trailing.equalTo(backgroundView.trailing).offset(-27);
     }];
+}
+
+-(void)setDesctiption:(NSString *)description
+{
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.lineSpacing = 14.0f;
+    style.alignment = NSTextAlignmentCenter;
+    NSDictionary *attributeDic = [NSDictionary dictionaryWithObjectsAndKeys:style,NSParagraphStyleAttributeName,[UIFont systemFontOfSize:14.0f],NSFontAttributeName,[UIColor colorFromHexString:@"#333333"],NSForegroundColorAttributeName, nil];
+    NSAttributedString *attributeString = [[NSAttributedString alloc] initWithString:description attributes:attributeDic];
+    [descLabel setAttributedText:attributeString];
 }
 
 -(void)alert

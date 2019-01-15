@@ -100,13 +100,13 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row) {
-        case 0:
-        {
-            UTMemberScrollViewController *memeberScrollVC = [[UTMemberScrollViewController alloc] init];
-            [memeberScrollVC setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:memeberScrollVC animated:YES];
-        }
-            break;
+//        case 0:
+//        {
+//            UTMemberScrollViewController *memeberScrollVC = [[UTMemberScrollViewController alloc] init];
+//            [memeberScrollVC setHidesBottomBarWhenPushed:YES];
+//            [self.navigationController pushViewController:memeberScrollVC animated:YES];
+//        }
+//            break;
 //        case 1:
 //        {
 //            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -115,14 +115,14 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
 //            [self.navigationController pushViewController:memberCoinVC animated:YES];
 //        }
 //            break;
-        case 1:
+        case 0:
         {
             UTMemberCompositonViewController *memberCompositionVC = [[UTMemberCompositonViewController alloc] init];
             [memberCompositionVC setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:memberCompositionVC animated:YES];
         }
             break;
-        case 2:
+        case 1:
         {
             UTShareViewController *shareVC = [[UTShareViewController alloc] init];
             [self presentViewController:shareVC animated:YES completion:^{
@@ -130,7 +130,7 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
             }];
         }
             break;
-        case 3:
+        case 2:
         {
             UTUserSettingViewController *userSettingVC = [[UTUserSettingViewController alloc] init];
             [userSettingVC setHidesBottomBarWhenPushed:YES];
@@ -154,7 +154,7 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -177,19 +177,19 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
 {
     UTUserCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:userCenterTableViewCellIdentify forIndexPath:indexPath];
     switch (indexPath.row) {
-        case 0:
-            [cell setIcon:[UIImage imageNamed:@"huiyuanIconImage"] leftTitle:@"VIP会员" rightTitle:@"畅想专属特权" isShowBottomLine:YES];
-            break;
+//        case 0:
+//            [cell setIcon:[UIImage imageNamed:@"huiyuanIconImage"] leftTitle:@"VIP会员" rightTitle:@"畅想专属特权" isShowBottomLine:YES];
+//            break;
 //        case 1:
 //            [cell setIcon:[UIImage imageNamed:@"jinbiIconImage"] leftTitle:@"我的金币" rightTitle:@"88金币" isShowBottomLine:YES];
 //            break;
-        case 1:
+        case 0:
             [cell setIcon:[UIImage imageNamed:@"zuopinIconImage"] leftTitle:@"作品合集" rightTitle:@"" isShowBottomLine:YES];
             break;
-        case 2:
+        case 1:
             [cell setIcon:[UIImage imageNamed:@"fenxiangIconImage"] leftTitle:@"分享好友" rightTitle:@"" isShowBottomLine:YES];
             break;
-        case 3:
+        case 2:
             [cell setIcon:[UIImage imageNamed:@"shezhiIconImage"] leftTitle:@"设置" rightTitle:@"" isShowBottomLine:NO];
             break;
         default:

@@ -18,6 +18,10 @@
         _title = [dic objectForKey:@"title"];
         _coverUrl = [dic objectForKey:@"coverUrl"];
         _latestVersion = [dic objectForKey:@"iosVersion"];
+        _templateVersion = [dic objectForKey:@"version"];
+        if (_templateVersion == nil) {
+            _templateVersion = @"NoVersion";
+        }
         _isVip = [[dic objectForKey:@"isVip"] boolValue];
         _duration = [[dic objectForKey:@"duration"] doubleValue];
         _fps = [[dic objectForKey:@"frameRate"] doubleValue];

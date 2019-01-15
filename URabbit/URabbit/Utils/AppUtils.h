@@ -27,7 +27,7 @@
  @param version2 版本号2
  @return 1/version1 大于 version2  -1/version1 小于 version2 0 / 相等
  */
-+(NSInteger)compareVersion:(NSString *)version1 to:(NSString *)version2;
++(NSInteger)compareVersion:(NSString *)version1 greatThan:(NSString *)version2;
 
 
 /**

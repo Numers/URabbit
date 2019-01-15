@@ -16,6 +16,7 @@
 #import "UTPhotoEditViewController.h"
 #import "UTDownloadNetworkAPIManager.h"
 #import "NetWorkManager.h"
+#import "GeneralManager.h"
 
 #import "Custom.h"
 #import "Resource.h"
@@ -364,7 +365,7 @@
 -(BOOL)unzipFile:(NSString *)zipFile directory:(NSString *)directory
 {
     [AppUtils showHudProgress:@"解压资源" forView:self.view];
-    NSString *unzipFileName = [NSString stringWithFormat:@"unzip-%ld",currentHomeTemplate.templateId];
+    NSString *unzipFileName = [NSString stringWithFormat:@"unzip-%ld-%@",currentHomeTemplate.templateId,currentHomeTemplate.templateVersion];
     BOOL result =  [AppUtils unzipWithFilePath:zipFile destinationPath:directory unzipFileName:unzipFileName];
     [AppUtils hidenHudProgressForView:self.view];
     return result;
@@ -444,6 +445,14 @@
 #pragma -mark UTDownloadButtonViewProtocol
 -(void)beginDownload
 {
+    if ([AppUtils compareVersion:currentHomeTemplate.latestVersion greatThan:[AppUtils appVersion]] > 0) {
+        downloadAlertView = [[UTDownloadAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [downloadAlertView setDesctiption:@"该模板需要更新app才能使用\n确定前往更新吗？"];
+        downloadAlertView.delegate = self;
+        [downloadAlertView alert];
+        return;
+    }
+    
     Member *host = [[AppStartManager shareManager] currentMember];
     if (host == nil) {
         UTLoginScrollViewController *loginScrollVC = [[UTLoginScrollViewController alloc] init];
@@ -455,6 +464,7 @@
     if (currentHomeTemplate.isVip) {
         if (!host.isVip) {
             downloadAlertView = [[UTDownloadAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+            [downloadAlertView setDesctiption:@"该模板需要更新app才能使用\n确定前往更新吗？"];
             downloadAlertView.delegate = self;
             [downloadAlertView alert];
             return;
@@ -462,8 +472,8 @@
     }
     
     NSString *videoDic = [AppUtils createDirectoryWithUniqueIndex:currentHomeTemplate.templateId];
-    NSString *zipPath = [NSString stringWithFormat:@"%@/resource-%ld.zip",videoDic,currentHomeTemplate.templateId];
-    NSString *unzipFileDirectory = [NSString stringWithFormat:@"%@/unzip-%ld",videoDic,currentHomeTemplate.templateId];
+    NSString *zipPath = [NSString stringWithFormat:@"%@/resource-%ld-%@.zip",videoDic,currentHomeTemplate.templateId,currentHomeTemplate.templateVersion];
+    NSString *unzipFileDirectory = [NSString stringWithFormat:@"%@/unzip-%ld-%@",videoDic,currentHomeTemplate.templateId,currentHomeTemplate.templateVersion];
     if ([[NSFileManager defaultManager] fileExistsAtPath:zipPath]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             if ([[NSFileManager defaultManager] fileExistsAtPath:unzipFileDirectory]) {
@@ -493,37 +503,6 @@
             [makeButtonView setProgress:[downloadProgress fractionCompleted]];
         }];
     }
-    
-//    [self generateMaterial];
-//    if (materia.materialType == MaterialMask) {
-//        EditInfo *info = [[EditInfo alloc] init];
-//        info.editImage = @"template1";
-//        info.editScreenShotImage = [UIImage imageNamed:info.editImage];
-//        info.originSize = materia.videoSize;
-//        info.editImageCenterXPercent = 0.5;
-//        info.editImageCenterYPercent = (544.0f/2)/960.0f;
-//        info.range = NSMakeRange(0, 375);
-//        info.filterType = FilterAddBlend;
-//        [editInfoList addObject:info];
-//    }
-//
-//    if (materia.materialType == MaterialAnimation) {
-//        NSData *animationData = [NSData dataWithContentsOfFile:materia.animationFile];
-//        NSString *jsonString = [[NSString alloc] initWithData:animationData encoding:NSUTF8StringEncoding];
-//        NSDictionary *animationDic = [AppUtils objectWithJsonString:jsonString];
-//        NSArray *editInfos = [animationDic objectForKey:@"editInfo"];
-//        for (NSDictionary *dic in editInfos) {
-//            EditInfo *info = [[EditInfo alloc] initWithDictinary:dic fps:materia.fps];
-//            info.originSize = materia.videoSize;
-//            [editInfoList addObject:info];
-//        }
-//
-//        NSArray *animationInfos = [animationDic objectForKey:@"animationInfo"];
-//        for (NSDictionary *infoDic in animationInfos) {
-//            AnimationInfo *info = [[AnimationInfo alloc] initWithDictionary:infoDic fps:materia.fps];
-//            [animationInfoList addObject:info];
-//        }
-//    }
 }
 
 #pragma -mark UTDownloadAlertViewProtocl
@@ -532,9 +511,10 @@
     if (downloadAlertView) {
         [downloadAlertView dismiss:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                UTMemberScrollViewController *memberScrollVC = [[UTMemberScrollViewController alloc] initWithTransitionMethod:NO];
-                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberScrollVC];
-                [self presentViewController:nav animated:YES completion:nil];
+//                UTMemberScrollViewController *memberScrollVC = [[UTMemberScrollViewController alloc] initWithTransitionMethod:NO];
+//                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberScrollVC];
+//                [self presentViewController:nav animated:YES completion:nil];
+                [[GeneralManager defaultManager] jumpToDownloadHtml];
             });
         }];
     }
