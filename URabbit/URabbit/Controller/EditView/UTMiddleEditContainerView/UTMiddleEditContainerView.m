@@ -70,8 +70,12 @@ static NSString *photoEditCollectionViewCellIdentify = @"PhotoEditCollectionView
 
 -(UIImage *)deSelectIndexPath:(NSIndexPath *)indexPath
 {
-    UTPhotoEditCollectionViewCell *cell = (UTPhotoEditCollectionViewCell *)[cells objectAtIndex:indexPath.row];
-    return [cell tranferViewToImage];
+    UIImage *image = nil;
+    if (cells.count > indexPath.row) {
+        UTPhotoEditCollectionViewCell *cell = (UTPhotoEditCollectionViewCell *)[cells objectAtIndex:indexPath.row];
+        image = [cell tranferViewToImage];
+    }
+    return image;
 }
 
 -(void)generateImagesToCompose

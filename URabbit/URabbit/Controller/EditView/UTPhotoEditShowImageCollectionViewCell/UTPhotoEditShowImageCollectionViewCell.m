@@ -39,7 +39,9 @@
 
 -(void)setPictureImage:(UIImage *)image
 {
-    [imageView setImage:image];
+    if (image) {
+        [imageView setImage:image];
+    }
 }
 
 -(void)setIsSelected:(BOOL)selected

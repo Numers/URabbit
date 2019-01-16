@@ -245,6 +245,12 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 
 -(void)nextStep
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:selectedRow inSection:0];
+        UIImage *image = [containerView deSelectIndexPath:indexPath];
+        UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        [cell setPictureImage:image];
+    });
     [containerView generateImagesToCompose];
 //    UTPhotoEditShowImageCollectionViewCell *cell = (UTPhotoEditShowImageCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 //    Snapshot *snapshot = [currentSnapshots objectAtIndex:0];
@@ -313,8 +319,10 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         Snapshot *info = [currentSnapshots objectAtIndex:indexPath.row];
+        UIImage *image = [containerView deSelectIndexPath:indexPath];
         dispatch_async(dispatch_get_main_queue(), ^{
             [cell setupCellWithSnapshot:info index:indexPath.row+1];
+            [cell setPictureImage:image];
         });
     });
     return cell;
