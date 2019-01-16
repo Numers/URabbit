@@ -144,10 +144,24 @@
                                     <action selector="clickLoginWithQQ:" destination="PXl-d3-UeU" eventType="touchUpInside" id="YMv-Xb-t3N"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-HN-Fua">
+                                <rect key="frame" x="112.5" y="318" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="mu3-iG-Avg"/>
+                                    <constraint firstAttribute="width" constant="150" id="nA9-kx-OX1"/>
+                                </constraints>
+                                <state key="normal" title="隐私协议">
+                                    <color key="titleColor" red="0.34901960780000002" green="0.66666666669999997" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickProtocolBtn:" destination="PXl-d3-UeU" eventType="touchUpInside" id="Opr-r3-fef"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tM1-pl-9hN" firstAttribute="trailing" secondItem="NSl-rT-GP0" secondAttribute="trailing" constant="25" id="3Wn-Oy-gF2"/>
+                            <constraint firstItem="vNf-HN-Fua" firstAttribute="centerX" secondItem="M2M-pe-qDK" secondAttribute="centerX" id="3jH-Q5-hlF"/>
                             <constraint firstItem="tM1-pl-9hN" firstAttribute="bottom" secondItem="gTN-xJ-MiK" secondAttribute="bottom" constant="48" id="53P-eU-ijQ"/>
                             <constraint firstItem="tM1-pl-9hN" firstAttribute="trailing" secondItem="nlh-rm-KnR" secondAttribute="trailing" constant="30" id="6WL-sz-Rbt"/>
                             <constraint firstItem="8Q1-s5-ykb" firstAttribute="top" secondItem="Hre-gA-s1V" secondAttribute="bottom" constant="10" id="761-Mm-lil"/>
@@ -172,6 +186,7 @@
                             <constraint firstItem="tM1-pl-9hN" firstAttribute="trailing" secondItem="rgw-0C-b54" secondAttribute="trailing" constant="25" id="fJS-Hu-j1t"/>
                             <constraint firstItem="WBd-J2-1K0" firstAttribute="top" secondItem="NSl-rT-GP0" secondAttribute="bottom" constant="62" id="fln-9U-bLR"/>
                             <constraint firstItem="tM1-pl-9hN" firstAttribute="trailing" secondItem="Hf0-RC-88q" secondAttribute="trailing" constant="25" id="gAG-Ol-7kT"/>
+                            <constraint firstItem="vNf-HN-Fua" firstAttribute="top" secondItem="WBd-J2-1K0" secondAttribute="bottom" constant="15" id="gVg-0W-uwp"/>
                             <constraint firstItem="tM1-pl-9hN" firstAttribute="trailing" secondItem="eez-vC-LZh" secondAttribute="trailing" constant="25" id="lcc-Ve-c1Q"/>
                             <constraint firstItem="axx-u8-oLl" firstAttribute="top" secondItem="Oqb-nd-mdx" secondAttribute="bottom" constant="10" id="mva-AK-Ux6"/>
                             <constraint firstItem="Hf0-RC-88q" firstAttribute="top" secondItem="NSl-rT-GP0" secondAttribute="bottom" constant="15" id="o4b-1g-3re"/>

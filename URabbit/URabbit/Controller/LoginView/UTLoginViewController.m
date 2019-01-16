@@ -162,6 +162,13 @@
     }];
 }
 
+-(IBAction)clickProtocolBtn:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(gotoProtocolView)]) {
+        [self.delegate gotoProtocolView];
+    }
+}
+
 -(IBAction)clickLoginWithWeixin:(id)sender
 {
     [[UTUMShareManager shareManager] getUserInfoForPlatform:UMSocialPlatformType_WechatSession complete:^(UMSocialUserInfoResponse *result) {

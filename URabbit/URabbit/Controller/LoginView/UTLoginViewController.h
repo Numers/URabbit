@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol UTLoginViewProtocol <NSObject>
 -(void)loginsuccess;
+-(void)gotoProtocolView;
 @end
 @interface UTLoginViewController : UIViewController
 @property(nonatomic, weak) id<UTLoginViewProtocol> delegate;
