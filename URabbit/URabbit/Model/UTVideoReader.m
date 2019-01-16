@@ -20,33 +20,37 @@
 
 -(void)createVideoReader:(NSString *)url pixelFormatType:(OSType)formatType;
 {
-    NSDictionary *optDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
-    _asset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:url] options:optDict];
-    NSError *error;
-    _reader = [[AVAssetReader alloc] initWithAsset:_asset error:&error];
-    if (error) {
-        NSLog(@"video reader create failed");
+    if (![AppUtils isNullStr:url]) {
+        NSDictionary *optDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+        _asset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:url] options:optDict];
+        NSError *error;
+        _reader = [[AVAssetReader alloc] initWithAsset:_asset error:&error];
+        if (error) {
+            NSLog(@"video reader create failed");
+        }
+        NSArray* videoTracks = [_asset tracksWithMediaType:AVMediaTypeVideo];
+        _track = [videoTracks firstObject];
+        NSDictionary* options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:
+                                                                    formatType] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+        _output = [[AVAssetReaderTrackOutput alloc] initWithTrack:_track outputSettings:options];
+        _output.alwaysCopiesSampleData = NO;
+        if ([_reader canAddOutput:_output]) {
+            [_reader addOutput:_output];
+        }
+        [_reader startReading];
     }
-    NSArray* videoTracks = [_asset tracksWithMediaType:AVMediaTypeVideo];
-    _track = [videoTracks firstObject];
-    NSDictionary* options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:
-                                                                formatType] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
-    _output = [[AVAssetReaderTrackOutput alloc] initWithTrack:_track outputSettings:options];
-    _output.alwaysCopiesSampleData = NO;
-    if ([_reader canAddOutput:_output]) {
-        [_reader addOutput:_output];
-    }
-    [_reader startReading];
 }
 
 -(CMSampleBufferRef)readVideoFrames:(int)frame
 {
     CMSampleBufferRef imagePixelBuffer = nil;
-    if ([_reader status] == AVAssetReaderStatusReading && _track.nominalFrameRate > 0) {
-        imagePixelBuffer =  [_output copyNextSampleBuffer];
-    }else{
-        
-        [_reader cancelReading];
+    if (_reader) {
+        if ([_reader status] == AVAssetReaderStatusReading && _track.nominalFrameRate > 0) {
+            imagePixelBuffer =  [_output copyNextSampleBuffer];
+        }else{
+            
+            [_reader cancelReading];
+        }
     }
     return imagePixelBuffer;
 }
