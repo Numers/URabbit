@@ -14,6 +14,7 @@
 #import "UTVideoReader.h"
 #import "Frame.h"
 
+#import "UTVideoManager.h"
 #import "ComposeRotationOperation.h"
 #import "ComposeNomalOperation.h"
 
@@ -21,6 +22,7 @@
 -(void)initlizeData
 {
     [super initlizeData];
+    self.resource.totalFrame = [[UTVideoManager shareManager] getTotalFramesWithVideoPath:self.resource.fgVideo];
     self.frames = [NSMutableArray array];
     for (int i = 0; i < self.resource.totalFrame; i++) {
         Frame *frame = [[Frame alloc] init];

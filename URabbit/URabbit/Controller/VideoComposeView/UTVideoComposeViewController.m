@@ -170,18 +170,15 @@
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if (imageView.frame.size.width > SCREEN_WIDTH) {
-            [imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.view).offset([UIDevice safeAreaTopHeight] + 9);
-                make.bottom.equalTo(playView.top).offset(-23).priorityHigh();
-                make.centerX.equalTo(self.view.mas_centerX);
-                make.leading.equalTo(self.view).offset(5);
-            }];
-            [imageView updateConstraintsIfNeeded];
-        }
-    });
+    if (imageView.frame.size.width > SCREEN_WIDTH) {
+        [imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view).offset([UIDevice safeAreaTopHeight] + 9);
+            make.bottom.equalTo(playView.top).offset(-23).priorityHigh();
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.leading.equalTo(self.view).offset(5);
+        }];
+        [imageView updateConstraintsIfNeeded];
+    }
 }
 
 -(void)navigationBarSetting
