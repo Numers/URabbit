@@ -8,9 +8,11 @@
 
 #import "UTHomeViewController.h"
 #import "UTHomeRecommendView.h"
+#import "UTHomeCollectionFootReusableView.h"
 #import "RecommendTemplate.h"
 
-#import "UTHomeTemplateView.h"
+#import "WSLWaterFlowLayout.h"
+#import "UTHomeCollectionViewCell.h"
 #import "HomeTemplate.h"
 #import "UTDownloadTemplateViewController.h"
 #import "UTUserCenterViewController.h"
@@ -21,23 +23,20 @@
 #import "UTHomeNetworkAPIManager.h"
 #import "AppStartManager.h"
 #import "UINavigationController+NavigationBar.h"
-#define HomeRecommendViewIdentify @"fenlei"
-#define ChoosenTemplateViewIdentify @"jingxuan"
-#define LatestTemplateViewIdentify @"latest"
-@interface UTHomeViewController ()<HomeTemplateViewProtocol,UTHomeRecommendViewProtocl>
+
+NSString *homeTemplateCollectionViewCellIdentify = @"HomeTemplateCollectionViewCellIdentify";
+NSString *homeTemplateCollectionHeadViewIdentify = @"HomeTemplateCollectionHeadViewIdentify";
+NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootViewIdentify";
+@interface UTHomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,UTHomeRecommendViewProtocl>
 {
     UTHomeRecommendView *homeRecommendView;
     NSMutableArray *recommendList;
     
-    UTHomeTemplateView *choosenTemplateView;
     NSMutableArray *choosenTemplateList;
     
-    UTHomeTemplateView *latestTemplateView;
-    NSMutableArray *latestTemplateList;
-    
-    CGFloat recommendViewHeight;
-    CGFloat choosenTemplateViewHeight;
-    CGFloat latestTemplateViewHeight;
+    NSInteger currentPage;
+    NSInteger currentSize;
+    BOOL hasMore;
 }
 @property(nonatomic, strong)  UIView *searchBarBackgroundView;
 //@property(nonatomic, strong)  UISearchBar *searchBar;
@@ -47,7 +46,7 @@
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong)  UIView *topLineView;
 
-@property(nonatomic, strong) UIScrollView *scrollView;;
+@property(nonatomic, strong) UICollectionView *collectionView;
 @end
 
 @implementation UTHomeViewController
@@ -56,13 +55,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:ViewBackgroundColor];
+    currentPage = 1;
+    currentSize = 10;
+    hasMore = YES;
     recommendList = [NSMutableArray array];
     choosenTemplateList = [NSMutableArray array];
-    latestTemplateList = [NSMutableArray array];
-//    recommendViewHeight = 167.0f;
-    recommendViewHeight = -8.0f;
-    choosenTemplateViewHeight = 0.0f;
-    latestTemplateViewHeight = 0.0f;
     
     _topLineView = [[UIView alloc] init];
     [_topLineView setBackgroundColor:[UIColor whiteColor]];
@@ -113,34 +110,32 @@
 //    _filterButton.imageEdgeInsets = UIEdgeInsetsMake(0, _filterButton.frame.size.width - _filterButton.imageView.frame.origin.x - _filterButton.imageView.frame.size.width-5, 0, 0);
 //    _filterButton.titleEdgeInsets = UIEdgeInsetsMake(0, -(_filterButton.frame.size.width - _filterButton.imageView.frame.size.width ), 0, 0);
     
-    _scrollView = [[UIScrollView alloc] init];
-    [_scrollView setShowsVerticalScrollIndicator:NO];
-    [_scrollView setShowsHorizontalScrollIndicator:NO];
-    [_scrollView setBackgroundColor:[UIColor colorFromHexString:@"#F0F1F3"]];
-    [self.view addSubview:_scrollView];
-    
-    homeRecommendView = [[UTHomeRecommendView alloc] initWithFrame:CGRectMake(0, recommendViewHeight, SCREEN_WIDTH, recommendViewHeight)];
-    [homeRecommendView setHidden:YES];
-    homeRecommendView.delegate = self;
-    [homeRecommendView setHeadImage:[UIImage imageNamed:@"jingxuan"] headTitle:@"推荐合集"];
-    [_scrollView addSubview:homeRecommendView];
-    
-    choosenTemplateView = [[UTHomeTemplateView alloc] initWithFrame:CGRectMake(0, recommendViewHeight + 8, SCREEN_WIDTH, choosenTemplateViewHeight)];
-    choosenTemplateView.delegate = self;
-    [choosenTemplateView setHeadImage:[UIImage imageNamed:@"jingxuan"] headTitle:@"精选模板" viewIdentify:ChoosenTemplateViewIdentify];
-    [_scrollView addSubview:choosenTemplateView];
-    
-    latestTemplateView = [[UTHomeTemplateView alloc] initWithFrame:CGRectMake(0, recommendViewHeight + 8 + choosenTemplateViewHeight + 8, SCREEN_WIDTH, latestTemplateViewHeight)];
-    latestTemplateView.delegate = self;
-    [latestTemplateView setHeadImage:[UIImage imageNamed:@"jingxuan"] headTitle:@"最新模板" viewIdentify:LatestTemplateViewIdentify];
-    [_scrollView addSubview:latestTemplateView];
+    WSLWaterFlowLayout *layout = [[WSLWaterFlowLayout alloc] init];
+    layout.flowLayoutStyle = WSLWaterFlowVerticalEqualWidth;
+    layout.delegate = self;
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    [_collectionView registerClass:[UTHomeCollectionViewCell class] forCellWithReuseIdentifier:homeTemplateCollectionViewCellIdentify];
+    [_collectionView registerClass:[UTHomeRecommendView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:homeTemplateCollectionHeadViewIdentify];
+    [_collectionView registerClass:[UTHomeCollectionFootReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:homeTemplateCollectionFootViewIdentify];
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+    [_collectionView setBackgroundColor:[UIColor clearColor]];
+    [_collectionView setShowsHorizontalScrollIndicator:NO];
+    [_collectionView setShowsVerticalScrollIndicator:NO];
+    [_collectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [self.view addSubview:_collectionView];
     
     [self addConstraints];
-    [self setScrollViewContentSize];
-    _scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self requestData];
+    _collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self refreshPageData];
     }];
-    [self requestData];
+    
+    _collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self requestChoosenTemplateList];
+    }];
+    if (![_collectionView.mj_header isRefreshing]) {
+        [_collectionView.mj_header beginRefreshing];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -213,7 +208,7 @@
 //        make.bottom.equalTo(_searchBarBackgroundView.bottom);
 //    }];
     
-    [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_topLineView.bottom);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
@@ -221,45 +216,49 @@
     }];
 }
 
--(void)setScrollViewContentSize
-{
-    CGFloat height = recommendViewHeight;
-    if (choosenTemplateViewHeight > 0) {
-        [choosenTemplateView setHidden:NO];
-        height += choosenTemplateViewHeight + 8;
-    }else{
-        [choosenTemplateView setHidden:YES];
-    }
-    
-    if (latestTemplateViewHeight > 0) {
-        [latestTemplateView setHidden:NO];
-        height += latestTemplateViewHeight + 8;
-    }else{
-        [latestTemplateView setHidden:YES];
-    }
-    
-    [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH, height)];
-}
-
 -(void)requestData
 {
-    [AppUtils showLoadingInView:self.view];
-    [self requestWithRecommendList];
+    if (currentPage == 1) {
+        [AppUtils showLoadingInView:self.view];
+        [self requestWithRecommendList];
+    }
     [self requestChoosenTemplateList];
-    [self requestLatestTemplateList];
+//    [self requestLatestTemplateList];
+}
+
+-(void)refreshPageData
+{
+    currentPage = 1;
+    hasMore = YES;
+    [_collectionView.mj_footer resetNoMoreData];
+    [self requestData];
 }
 
 -(void)endRefresh
 {
-    if ([_scrollView.mj_header isRefreshing]) {
-        [_scrollView.mj_header endRefreshing];
+    if ([_collectionView.mj_header isRefreshing]) {
+        [_collectionView.mj_header endRefreshing];
+    }
+    
+    if ([_collectionView.mj_footer isRefreshing]) {
+        if (hasMore) {
+            [_collectionView.mj_footer endRefreshing];
+        }else{
+            [_collectionView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }else{
+        if (hasMore) {
+            
+        }else{
+            [_collectionView.mj_footer endRefreshingWithNoMoreData];
+        }
     }
 }
 
 -(void)requestWithRecommendList
 {
     if (recommendList.count > 0) {
-        [recommendList removeAllObjects];
+        return;
     }
     [[UTHomeNetworkAPIManager shareManager] getReccmmendTemplateCallback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         NSArray *templateArr = (NSArray *)data;
@@ -268,13 +267,9 @@
                 RecommendTemplate *template = [[RecommendTemplate alloc] initWithDictionary:dic];
                 [recommendList addObject:template];
             }
-            [homeRecommendView setDatasource:recommendList];
+            
             if (recommendList.count > 0) {
-                [homeRecommendView setHidden:NO];
-                [self updateViewHeight:167.0f identify:HomeRecommendViewIdentify];
-            }else{
-                [homeRecommendView setHidden:YES];
-                [self updateViewHeight:-8.0f identify:HomeRecommendViewIdentify];
+                [_collectionView reloadData];
             }
         }
     }];
@@ -282,44 +277,119 @@
 
 -(void)requestChoosenTemplateList
 {
-    if (choosenTemplateList.count > 0) {
-        [choosenTemplateList removeAllObjects];
+    if (currentPage == 1) {
+        if (choosenTemplateList.count > 0) {
+            [choosenTemplateList removeAllObjects];
+        }
     }
     
-    [[UTHomeNetworkAPIManager shareManager] getChoiceRecommendTemplateWithPage:1 size:50 callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+    [[UTHomeNetworkAPIManager shareManager] getChoiceRecommendTemplateWithPage:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        if (currentPage == 1) {
+            [AppUtils hiddenLoadingInView:self.view];
+        }
         NSArray *templateArr = (NSArray *)data;
         if (templateArr && templateArr.count > 0) {
+            if (templateArr.count < currentSize) {
+                hasMore = NO;
+            }
             for (NSDictionary *dic in templateArr) {
                 HomeTemplate *template = [[HomeTemplate alloc] initWithDictionary:dic];
                 if (template.duration > 0) {
                     [choosenTemplateList addObject:template];
                 }
             }
-            [choosenTemplateView setDatasource:choosenTemplateList];
-        }
-    }];
-}
-
--(void)requestLatestTemplateList
-{
-    if (latestTemplateList.count > 0) {
-        [latestTemplateList removeAllObjects];
-    }
-    
-    [[UTHomeNetworkAPIManager shareManager] getNewTemplateWithPage:1 size:50 callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
-        [AppUtils hiddenLoadingInView:self.view];
-        NSArray *templateArr = (NSArray *)data;
-        if (templateArr && templateArr.count > 0) {
-            for (NSDictionary *dic in templateArr) {
-                HomeTemplate *template = [[HomeTemplate alloc] initWithDictionary:dic];
-                if (template.duration > 0) {
-                    [latestTemplateList addObject:template];
-                }
-            }
-            [latestTemplateView setDatasource:latestTemplateList];
+            currentPage ++;
+            [_collectionView reloadData];
+        }else{
+            hasMore = NO;
         }
         [self endRefresh];
     }];
+}
+
+#pragma mark - WSLWaterFlowLayoutDelegate
+//返回每个item大小
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    HomeTemplate *template = [choosenTemplateList objectAtIndex:indexPath.row];
+    CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
+    CGFloat ratio = template.videoSize.height / template.videoSize.width;
+    CGFloat height = width * ratio + 50.0f;
+    return CGSizeMake(width,height);
+}
+
+/** 头视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
+    return CGSizeMake(SCREEN_WIDTH, 225);
+}
+/** 脚视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForFooterViewInSection:(NSInteger)section{
+    return CGSizeMake(0, 0.01);
+}
+
+/** 列数*/
+-(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 2;
+}
+
+/** 列间距*/
+-(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 15;
+}
+/** 行间距*/
+-(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 0;
+}
+/** 边缘之间的间距*/
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    
+    return UIEdgeInsetsMake(0, 15, 0, 15);
+}
+
+
+#pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return choosenTemplateList.count;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        UTHomeRecommendView *recommendView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:homeTemplateCollectionHeadViewIdentify forIndexPath:indexPath];
+        if (recommendList.count > 0) {
+            recommendView.delegate = self;
+            [recommendView setHeadImage:[UIImage imageNamed:@"jingxuan"] headTitle:@"推荐合集"];
+            [recommendView setDatasource:recommendList];
+        }
+        return recommendView;
+    }else{
+        UTHomeCollectionFootReusableView *footView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:homeTemplateCollectionFootViewIdentify forIndexPath:indexPath];
+        return footView;
+    }
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UTHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:homeTemplateCollectionViewCellIdentify forIndexPath:indexPath];
+    [cell setNeedsDisplay];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        HomeTemplate *template = [choosenTemplateList objectAtIndex:indexPath.row];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [cell setupCellWithHomeTemplate:template];
+        });
+    });
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    HomeTemplate *template = [choosenTemplateList objectAtIndex:indexPath.row];
+    [self selectHomeTemplate:template];
 }
 
 #pragma -mark IBAction
@@ -329,43 +399,6 @@
     [self.navigationController pushViewController:userCenterVC animated:YES];
 }
 #pragma -mark HomeTemplateViewProtocol
--(void)updateViewHeight:(CGFloat)height identify:(id)identify
-{
-    if ([HomeRecommendViewIdentify isEqualToString:identify]) {
-        recommendViewHeight = height;
-    }
-    
-    if ([ChoosenTemplateViewIdentify isEqualToString:identify]) {
-        choosenTemplateViewHeight = height;
-    }
-    
-    if ([LatestTemplateViewIdentify isEqualToString:identify]) {
-        latestTemplateViewHeight = height;
-    }
-    
-    if (recommendViewHeight > 0) {
-        if (homeRecommendView) {
-            [homeRecommendView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, recommendViewHeight)];
-            [homeRecommendView setNeedsUpdateConstraints];
-        }
-    }
-    
-    if (choosenTemplateViewHeight > 0) {
-        if (choosenTemplateView) {
-            [choosenTemplateView setFrame:CGRectMake(0, recommendViewHeight + 8, SCREEN_WIDTH, choosenTemplateViewHeight)];
-            [choosenTemplateView setNeedsUpdateConstraints];
-        }
-    }
-    
-    if (latestTemplateViewHeight > 0) {
-        if (latestTemplateView) {
-            [latestTemplateView setFrame:CGRectMake(0, recommendViewHeight + 8 + choosenTemplateViewHeight + 8, SCREEN_WIDTH, latestTemplateViewHeight)];
-            [latestTemplateView setNeedsUpdateConstraints];
-        }
-    }
-    [self setScrollViewContentSize];
-}
-
 -(void)selectHomeTemplate:(HomeTemplate *)homeTemplate
 {
     UTDownloadTemplateViewController *downloadTemplateVC = [[UTDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];

@@ -10,7 +10,7 @@
 @protocol UTHomeRecommendViewProtocl <NSObject>
 -(void)gotoCategoryViewWithIndex:(NSInteger)index;
 @end
-@interface UTHomeRecommendView : UIView
+@interface UTHomeRecommendView : UICollectionReusableView
 @property(nonatomic, weak) id<UTHomeRecommendViewProtocl> delegate;
 -(void)setHeadImage:(UIImage *)image headTitle:(NSString *)title;
 -(void)setDatasource:(NSArray *)datasource;
