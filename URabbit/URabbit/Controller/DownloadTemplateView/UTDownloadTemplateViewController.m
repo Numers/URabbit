@@ -37,8 +37,10 @@
 #import "UTMemberScrollViewController.h"
 #import "UTDownloadAlertView.h"
 #import "UTAuthorViewController.h"
+#import "UTShareViewController.h"
+#import "UTUMShareManager.h"
 
-@interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol,UTDownloadAlertViewProtocl,UTVideoAuthorViewProtocol>
+@interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol,UTDownloadAlertViewProtocl,UTVideoAuthorViewProtocol,UTShareViewProtocol>
 {
     HomeTemplate *currentHomeTemplate;
     Composition *composition;
@@ -399,7 +401,11 @@
 
 -(void)clickShareButton
 {
-    
+    UTShareViewController *shareVC = [[UTShareViewController alloc] init];
+    shareVC.delegate = self;
+    [self presentViewController:shareVC animated:YES completion:^{
+        
+    }];
 }
 
 -(void)clickCollectionButton
@@ -525,5 +531,34 @@
 {
     UTAuthorViewController *authorVC = [[UTAuthorViewController alloc] initWithAuthor:currentHomeTemplate.author];
     [self.navigationController pushViewController:authorVC animated:YES];
+}
+
+#pragma -mark UTShareViewProtocol
+-(void)sendShareToWeixin
+{
+    [[UTUMShareManager shareManager] shareVideoToPlatformType:UMSocialPlatformType_WechatSession title:currentHomeTemplate.title description:currentHomeTemplate.summary thumImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:currentHomeTemplate.coverUrl]]] videoUrl:currentHomeTemplate.demoUrl callback:^(id response) {
+        
+    }];
+}
+
+-(void)sendShareToFriend
+{
+    [[UTUMShareManager shareManager] shareVideoToPlatformType:UMSocialPlatformType_WechatTimeLine title:currentHomeTemplate.title description:currentHomeTemplate.summary thumImage:nil videoUrl:currentHomeTemplate.demoUrl callback:^(id response) {
+        
+    }];
+}
+
+-(void)sendShareToQQ
+{
+    [[UTUMShareManager shareManager] shareVideoToPlatformType:UMSocialPlatformType_QQ title:currentHomeTemplate.title description:currentHomeTemplate.summary thumImage:nil videoUrl:currentHomeTemplate.demoUrl callback:^(id response) {
+        
+    }];
+}
+
+-(void)sendShareToWeibo
+{
+    [[UTUMShareManager shareManager] shareVideoToPlatformType:UMSocialPlatformType_Sina title:currentHomeTemplate.title description:currentHomeTemplate.summary thumImage:nil videoUrl:currentHomeTemplate.demoUrl callback:^(id response) {
+        
+    }];
 }
 @end

@@ -55,14 +55,14 @@
     //代理获取itemSize
     UIEdgeInsets edgeInsets = [self.delegate collectionView:self.collectionView layout:self insetForSectionAtIndex:indexPath.section];
     CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
-    NSLog(@"前大小:%@",NSStringFromCGSize(itemSize));
+//    NSLog(@"前大小:%@",NSStringFromCGSize(itemSize));
     
     CGFloat itemWidth = (kScreenWidth - (kColumnCount - 1)*kInterItemSpacing-edgeInsets.left-edgeInsets.right) / kColumnCount;
     
     CGFloat itemHeight = itemWidth*itemSize.height/itemSize.width;
     //得到等比例大小
     itemSize = CGSizeMake(itemWidth, itemHeight);
-    NSLog(@"得到等比例大小:%@",NSStringFromCGSize(itemSize));
+//    NSLog(@"得到等比例大小:%@",NSStringFromCGSize(itemSize));
     //获取列数中高度最低的一组
     NSUInteger miniClo = 0;
     CGFloat miniHeight = [_cloArray[miniClo] floatValue];

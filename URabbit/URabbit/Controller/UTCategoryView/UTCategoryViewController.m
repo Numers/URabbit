@@ -55,7 +55,7 @@
     tabBar.layout.normalTextColor = [UIColor blackColor];
     tabBar.layout.selectedTextFont = [UIFont systemFontOfSize:17];
     tabBar.layout.selectedTextColor = [UIColor blackColor];
-    tabBar.layout.progressColor = [UIColor redColor];
+    tabBar.layout.progressColor = [UIColor colorFromHexString:@"#FFDE44"];
     tabBar.dataSource = self;
     tabBar.delegate = self;
     [tabBar registerClass:[TYTabPagerBarCell class] forCellWithReuseIdentifier:[TYTabPagerBarCell cellIdentifier]];

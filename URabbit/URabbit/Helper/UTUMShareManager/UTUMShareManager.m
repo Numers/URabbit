@@ -43,7 +43,7 @@
     }];
 }
 
-- (void)shareVedioToPlatformType:(UMSocialPlatformType)platformType title:(NSString *)title description:(NSString *)desc thumImage:(UIImage *)image videoUrl:(NSString *)videoUrl callback:(void (^)(id response))callback
+- (void)shareVideoToPlatformType:(UMSocialPlatformType)platformType title:(NSString *)title description:(NSString *)desc thumImage:(UIImage *)image videoUrl:(NSString *)videoUrl callback:(void (^)(id response))callback
 {
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
@@ -58,10 +58,10 @@
     messageObject.shareObject = shareObject;
     
     //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
         if (error) {
             NSLog(@"************Share fail with error %@*********",error);
-            [AppUtils showInfo:[NSString stringWithFormat:@"分享失败,%@",error.description]];
+//            [AppUtils showInfo:[NSString stringWithFormat:@"分享失败,%@",error.description]];
         }else{
             NSLog(@"response data is %@",data);
             callback(data);
@@ -83,10 +83,10 @@
     messageObject.shareObject = shareObject;
     
     //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
         if (error) {
             NSLog(@"************Share fail with error %@*********",error);
-            [AppUtils showInfo:[NSString stringWithFormat:@"分享失败,%@",error.description]];
+//            [AppUtils showInfo:[NSString stringWithFormat:@"分享失败,%@",error.description]];
         }else{
             NSLog(@"response data is %@",data);
             callback(data);

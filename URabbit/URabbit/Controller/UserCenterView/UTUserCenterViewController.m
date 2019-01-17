@@ -21,8 +21,9 @@
 #import "UTDraftViewController.h"
 #import "UTLoginScrollViewController.h"
 #import "UINavigationController+NavigationBar.h"
+#import "UTUMShareManager.h"
 static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIdentify";
-@interface UTUserCenterViewController ()<UITableViewDelegate,UITableViewDataSource,UTUserCenterHeadViewProtocol>
+@interface UTUserCenterViewController ()<UITableViewDelegate,UITableViewDataSource,UTUserCenterHeadViewProtocol,UTShareViewProtocol>
 {
     UTUserCenterHeadView *headView;
     Member *currentMember;
@@ -90,6 +91,13 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
     // Dispose of any resources that can be recreated.
 }
 
+-(void)shareToScence:(UMSocialPlatformType)scence
+{
+    [[UTUMShareManager shareManager] shareWebPageToPlatformType:scence title:@"有兔 · 短视频小助手" description:@"朋友圈、抖音、快手短视频制作必备神器！一秒变身创作达人，一键生成朋友圈、抖音、快手热门爆款短视频，轻松赢得无数赞赏。" thumImage:[UIImage imageNamed:@"LogoImage"] webpageUrl:@"https://www.baidu.com" callback:^(id response) {
+        
+    }];
+}
+
 #pragma -mark UITableViewDelegate|UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -125,6 +133,7 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
         case 1:
         {
             UTShareViewController *shareVC = [[UTShareViewController alloc] init];
+            shareVC.delegate = self;
             [self presentViewController:shareVC animated:YES completion:^{
                 
             }];
@@ -225,5 +234,26 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
     UTLoginScrollViewController *loginScrollVC = [[UTLoginScrollViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginScrollVC];
     [self presentViewController:nav animated:YES completion:nil];
+}
+
+#pragma -mark UTShareViewProtocol
+-(void)sendShareToWeixin
+{
+    [self shareToScence:UMSocialPlatformType_WechatSession];
+}
+
+-(void)sendShareToFriend
+{
+    [self shareToScence:UMSocialPlatformType_WechatTimeLine];
+}
+
+-(void)sendShareToQQ
+{
+    [self shareToScence:UMSocialPlatformType_QQ];
+}
+
+-(void)sendShareToWeibo
+{
+    [self shareToScence:UMSocialPlatformType_Sina];
 }
 @end
