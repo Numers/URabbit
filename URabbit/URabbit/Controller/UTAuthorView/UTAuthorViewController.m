@@ -9,17 +9,19 @@
 #import "UTAuthorViewController.h"
 #import "UTDownloadTemplateViewController.h"
 #import "UTAuthorHeadView.h"
+#import "UTAuthorCollectionFootReusableView.h"
 #import "UTAuthorNetworkAPIManager.h"
 #import "HomeTemplate.h"
 #import "Author.h"
-#import "LJJWaterFlowLayout.h"
+#import "WSLWaterFlowLayout.h"
 #import "UTAuthorCollectionViewCell.h"
 #import "UINavigationController+NavigationBar.h"
 #import <MJRefresh/MJRefresh.h>
 
 static NSString *authorCollectionViewCellIdentify = @"AuthorCollectionViewCellIdentify";
 static NSString *authorHeadViewIdentify = @"AuthorHeadViewIdentify";
-@interface UTAuthorViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LJJWaterFlowLayoutProtocol>
+static NSString *authorFootViewIdentify = @"AuthorFootViewIdentify";
+@interface UTAuthorViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WSLWaterFlowLayoutDelegate>
 {
     Author *currentAuthor;
     UTAuthorHeadView *headView;
@@ -57,19 +59,18 @@ static NSString *authorHeadViewIdentify = @"AuthorHeadViewIdentify";
     
     _navHeightConstraint.constant = [UIDevice safeAreaTopHeight];
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-//    layout.delegate = self;
-    layout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 110);
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    WSLWaterFlowLayout *layout = [[WSLWaterFlowLayout alloc] init];
+    layout.flowLayoutStyle = WSLWaterFlowVerticalEqualWidth;
+    layout.delegate = self;
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:layout];
     [collectionView registerClass:[UTAuthorCollectionViewCell class] forCellWithReuseIdentifier:authorCollectionViewCellIdentify];
     [collectionView registerClass:[UTAuthorHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:authorHeadViewIdentify];
+    [collectionView registerClass:[UTAuthorCollectionFootReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:authorFootViewIdentify];
     collectionView.delegate = self;
     collectionView.dataSource = self;
     [collectionView setBackgroundColor:[UIColor clearColor]];
     [collectionView setShowsHorizontalScrollIndicator:NO];
     [collectionView setShowsVerticalScrollIndicator:NO];
-    [collectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     [self.view addSubview:collectionView];
     
     [self makeConstraints];
@@ -91,7 +92,7 @@ static NSString *authorHeadViewIdentify = @"AuthorHeadViewIdentify";
         make.top.equalTo(_navBarView.bottom).offset(0);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
-        make.bottom.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaBottomHeight]);
     }];
 }
 
@@ -175,6 +176,43 @@ static NSString *authorHeadViewIdentify = @"AuthorHeadViewIdentify";
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - WSLWaterFlowLayoutDelegate
+//返回每个item大小
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    HomeTemplate *template = [dataSource objectAtIndex:indexPath.row];
+    CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
+    CGFloat height = width * (template.videoSize.height / template.videoSize.width) + 50;
+    return CGSizeMake(width,height);
+}
+
+/** 头视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
+    return CGSizeMake(SCREEN_WIDTH, 128.0f);
+}
+/** 脚视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForFooterViewInSection:(NSInteger)section{
+    return CGSizeZero;
+}
+
+/** 列数*/
+-(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 2;
+}
+
+/** 列间距*/
+-(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 15;
+}
+/** 行间距*/
+-(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 0;
+}
+/** 边缘之间的间距*/
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    
+    return UIEdgeInsetsMake(18, 15, 0, 15);
+}
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -188,11 +226,16 @@ static NSString *authorHeadViewIdentify = @"AuthorHeadViewIdentify";
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    UTAuthorHeadView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:authorHeadViewIdentify forIndexPath:indexPath];
-    if (headView) {
-        [headView setAuthor:currentAuthor];
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        UTAuthorHeadView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:authorHeadViewIdentify forIndexPath:indexPath];
+        if (headView) {
+            [headView setAuthor:currentAuthor];
+        }
+        return headView;
+    }else{
+        UTAuthorCollectionFootReusableView *footView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:authorFootViewIdentify forIndexPath:indexPath];
+        return footView;
     }
-    return headView;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -205,25 +248,6 @@ static NSString *authorHeadViewIdentify = @"AuthorHeadViewIdentify";
         });
     });
     return cell;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(18, 15, 0, 15);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 15.0f;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 15.0f;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    HomeTemplate *template = [dataSource objectAtIndex:indexPath.row];
-    CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
-    CGFloat height = width * (template.videoSize.height / template.videoSize.width) + 50;
-    return CGSizeMake(width,height);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

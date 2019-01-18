@@ -11,9 +11,10 @@
 #import "UTDownloadTemplateViewController.h"
 #import "UTCategoryPageCollectionViewCell/UTCategoryPageCollectionViewCell.h"
 #import "HomeTemplate.h"
+#import "WSLWaterFlowLayout.h"
 #import <MJRefresh/MJRefresh.h>
 static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCellIdentify";
-@interface UTCategoryPageViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface UTCategoryPageViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WSLWaterFlowLayoutDelegate>
 {
     long currentCategoryId;
     UICollectionView *collectionView;
@@ -43,10 +44,9 @@ static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCe
     hasMore = YES;
     dataSource = [NSMutableArray array];
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    //    layout.delegate = self;
-//    layout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 110);
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    WSLWaterFlowLayout *layout = [[WSLWaterFlowLayout alloc] init];
+    layout.flowLayoutStyle = WSLWaterFlowVerticalEqualWidth;
+    layout.delegate = self;
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:layout];
     [collectionView registerClass:[UTCategoryPageCollectionViewCell class] forCellWithReuseIdentifier:categoryCollectionViewCellIdentify];
     collectionView.delegate = self;
@@ -78,7 +78,7 @@ static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCe
         make.top.equalTo(self.view).offset(0);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
-        make.bottom.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaBottomHeight]);
     }];
 }
 
@@ -146,6 +146,43 @@ static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCe
     }];
 }
 
+#pragma mark - WSLWaterFlowLayoutDelegate
+//返回每个item大小
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    HomeTemplate *template = [dataSource objectAtIndex:indexPath.row];
+    CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
+    CGFloat height = width * (template.videoSize.height / template.videoSize.width) + 50;
+    return CGSizeMake(width,height);
+}
+
+/** 头视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
+    return CGSizeZero;
+}
+/** 脚视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForFooterViewInSection:(NSInteger)section{
+    return CGSizeZero;
+}
+
+/** 列数*/
+-(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 2;
+}
+
+/** 列间距*/
+-(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 15;
+}
+/** 行间距*/
+-(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 0;
+}
+/** 边缘之间的间距*/
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    
+    return UIEdgeInsetsMake(18, 15, 0, 15);
+}
+
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -167,25 +204,6 @@ static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCe
         });
     });
     return cell;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(18, 15, 0, 15);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 15.0f;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 15.0f;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    HomeTemplate *template = [dataSource objectAtIndex:indexPath.row];
-    CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
-    CGFloat height = width * (template.videoSize.height / template.videoSize.width) + 50;
-    return CGSizeMake(width,height);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

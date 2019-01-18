@@ -9,14 +9,14 @@
 #import "UTMemberCompositonViewController.h"
 #import "UTMemberCompositonCollectionViewCell.h"
 #import "Composition.h"
-#import "LJJWaterFlowLayout.h"
+#import "WSLWaterFlowLayout.h"
 #import "AppStartManager.h"
 #import "UINavigationController+NavigationBar.h"
 
 #import "UTMemberCompositionDetailsViewController.h"
 
 static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositionCollectionViewCellIdentify";
-@interface UTMemberCompositonViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LJJWaterFlowLayoutProtocol>
+@interface UTMemberCompositonViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WSLWaterFlowLayoutDelegate>
 {
     UICollectionView *collectionView;
     NSMutableArray *dataSource;
@@ -30,9 +30,9 @@ static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositi
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#F8F8F8"]];
     dataSource = [NSMutableArray array];
-    LJJWaterFlowLayout *layout = [[LJJWaterFlowLayout alloc] init];
+    WSLWaterFlowLayout *layout = [[WSLWaterFlowLayout alloc] init];
+    layout.flowLayoutStyle = WSLWaterFlowVerticalEqualWidth;
     layout.delegate = self;
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:layout];
     [collectionView registerClass:[UTMemberCompositonCollectionViewCell class] forCellWithReuseIdentifier:memberCompositionCollectionViewCellIdentify];
     collectionView.delegate = self;
@@ -53,7 +53,7 @@ static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositi
         make.top.equalTo(self.view).offset(6);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
-        make.bottom.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaBottomHeight]);
     }];
 }
 
@@ -97,6 +97,43 @@ static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositi
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - WSLWaterFlowLayoutDelegate
+//返回每个item大小
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    Composition *compositon = [dataSource objectAtIndex:indexPath.row];
+    CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
+    CGFloat height = width * (compositon.videoHeight / compositon.videoWidth) + 50;
+    return CGSizeMake(width,height);
+}
+
+/** 头视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
+    return CGSizeZero;
+}
+/** 脚视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForFooterViewInSection:(NSInteger)section{
+    return CGSizeZero;
+}
+
+/** 列数*/
+-(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 2;
+}
+
+/** 列间距*/
+-(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 15;
+}
+/** 行间距*/
+-(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 0;
+}
+/** 边缘之间的间距*/
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    
+    return UIEdgeInsetsMake(18, 15, 0, 15);
+}
+
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -118,25 +155,6 @@ static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositi
         });
     });
     return cell;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(18, 15, 0, 15);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 15.0f;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 15.0f;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    Composition *compositon = [dataSource objectAtIndex:indexPath.row];
-    CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
-    CGFloat height = width * (compositon.videoHeight / compositon.videoWidth) + 50;
-    return CGSizeMake(width,height);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

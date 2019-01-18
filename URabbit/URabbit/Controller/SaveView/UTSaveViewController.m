@@ -10,14 +10,14 @@
 #import "SavedTemplate.h"
 #import "HomeTemplate.h"
 #import "UTDownloadTemplateViewController.h"
-#import "LJJWaterFlowLayout.h"
+#import "WSLWaterFlowLayout.h"
 #import "UTSaveTemplateCollectionViewCell.h"
 #import "UTUserSaveNetworkAPIManager.h"
 #import "UINavigationController+NavigationBar.h"
 #import <MJRefresh/MJRefresh.h>
 
 static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollectionViewCellIdentify";
-@interface UTSaveViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LJJWaterFlowLayoutProtocol>
+@interface UTSaveViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WSLWaterFlowLayoutDelegate>
 {
     UIView *navBackView;
     UICollectionView *collectionView;
@@ -43,9 +43,9 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     navBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, [UIDevice safeAreaTopHeight])];
     [navBackView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:navBackView];
-    LJJWaterFlowLayout *layout = [[LJJWaterFlowLayout alloc] init];
+    WSLWaterFlowLayout *layout = [[WSLWaterFlowLayout alloc] init];
+    layout.flowLayoutStyle = WSLWaterFlowVerticalEqualWidth;
     layout.delegate = self;
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:layout];
     [collectionView registerClass:[UTSaveTemplateCollectionViewCell class] forCellWithReuseIdentifier:savedTemplateCollectionViewCellIdentify];
     collectionView.delegate = self;
@@ -63,8 +63,10 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self requestUserSavedTemplate];
     }];
-    [collectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [self refreshPageData];
+    
+    if (![collectionView.mj_header isRefreshing]) {
+        [collectionView.mj_header beginRefreshing];
+    }
 }
 
 -(void)makeConstraints
@@ -73,7 +75,7 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
         make.top.equalTo(navBackView.bottom).offset(6);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
-        make.bottom.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaBottomHeight]);
     }];
 }
 
@@ -161,6 +163,43 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     }];
 }
 
+#pragma mark - WSLWaterFlowLayoutDelegate
+//返回每个item大小
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    SavedTemplate *savedTemplate = [dataSource objectAtIndex:indexPath.row];
+    CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
+    CGFloat height = width * (savedTemplate.videoHeight / savedTemplate.videoWidth) + 50;
+    return CGSizeMake(width,height);
+}
+
+/** 头视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
+    return CGSizeZero;
+}
+/** 脚视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForFooterViewInSection:(NSInteger)section{
+    return CGSizeZero;
+}
+
+/** 列数*/
+-(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 2;
+}
+
+/** 列间距*/
+-(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 15;
+}
+/** 行间距*/
+-(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 0;
+}
+/** 边缘之间的间距*/
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    
+    return UIEdgeInsetsMake(18, 15, 0, 15);
+}
+
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -182,25 +221,6 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
         });
     });
     return cell;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(18, 15, 0, 15);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 15.0f;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 15.0f;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    SavedTemplate *savedTemplate = [dataSource objectAtIndex:indexPath.row];
-    CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
-    CGFloat height = width * (savedTemplate.videoHeight / savedTemplate.videoWidth) + 50;
-    return CGSizeMake(width,height);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

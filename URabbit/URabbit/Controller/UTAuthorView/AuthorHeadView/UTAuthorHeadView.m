@@ -74,8 +74,8 @@
     
     [summaryLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self).offset(15);
+        make.trailing.equalTo(self).offset(-15);
         make.top.equalTo(headImageView.bottom).offset(19);
-        make.height.equalTo(@(17));
     }];
 }
 

@@ -122,7 +122,6 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
     [_collectionView setBackgroundColor:[UIColor clearColor]];
     [_collectionView setShowsHorizontalScrollIndicator:NO];
     [_collectionView setShowsVerticalScrollIndicator:NO];
-    [_collectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     [self.view addSubview:_collectionView];
     
     [self addConstraints];
@@ -319,11 +318,14 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
 
 /** 头视图Size */
 -(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
-    return CGSizeMake(SCREEN_WIDTH, 225);
+    if (recommendList.count > 0) {
+        return CGSizeMake(SCREEN_WIDTH, 225);
+    }
+    return CGSizeZero;
 }
 /** 脚视图Size */
 -(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForFooterViewInSection:(NSInteger)section{
-    return CGSizeMake(0, 0.01);
+    return CGSizeMake(0, 0);
 }
 
 /** 列数*/
