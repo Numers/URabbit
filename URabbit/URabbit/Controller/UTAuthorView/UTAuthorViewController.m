@@ -157,7 +157,18 @@ static NSString *authorFootViewIdentify = @"AuthorFootViewIdentify";
                     template.templateId = [[dic objectForKey:@"id"] longValue];
                     template.title = [dic objectForKey:@"title"];
                     template.coverUrl = [dic objectForKey:@"coverUrl"];
-                    template.videoSize = CGSizeMake(544, 960);
+                    CGFloat videoWidth = 544.0f;
+                    id width = [dic objectForKey:@"width"];
+                    if (width) {
+                        videoWidth = [width floatValue];
+                    }
+                    
+                    CGFloat videoHeight = 960.0f;
+                    id height = [dic objectForKey:@"height"];
+                    if (height) {
+                        videoHeight = [height floatValue];
+                    }
+                    template.videoSize = CGSizeMake(videoWidth, videoHeight);
                     [dataSource addObject:template];
                 }
                 currentPage ++;

@@ -146,8 +146,19 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
                     savedTemplate.templateId = [[dic objectForKey:@"id"] longValue];
                     savedTemplate.title = [dic objectForKey:@"title"];
                     savedTemplate.coverUrl = [dic objectForKey:@"coverUrl"];
-                    savedTemplate.videoWidth = 544;
-                    savedTemplate.videoHeight = 960;
+                    id width = [dic objectForKey:@"width"];
+                    if (width) {
+                        savedTemplate.videoWidth = [width floatValue];
+                    }else{
+                        savedTemplate.videoWidth = 544;
+                    }
+                    
+                    id height = [dic objectForKey:@"height"];
+                    if (height) {
+                        savedTemplate.videoHeight = [height floatValue];
+                    }else{
+                        savedTemplate.videoHeight = 960;
+                    }
                     savedTemplate.bg_tableName = SavedTemplateTableName;
                     [dataSource addObject:savedTemplate];
                 }
