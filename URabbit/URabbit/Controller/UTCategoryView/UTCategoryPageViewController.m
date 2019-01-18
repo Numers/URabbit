@@ -54,7 +54,6 @@ static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCe
     [collectionView setBackgroundColor:[UIColor clearColor]];
     [collectionView setShowsHorizontalScrollIndicator:NO];
     [collectionView setShowsVerticalScrollIndicator:NO];
-    [collectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     [self.view addSubview:collectionView];
     
     [self makeConstraints];

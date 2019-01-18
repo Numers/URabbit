@@ -38,10 +38,8 @@ static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositi
     collectionView.delegate = self;
     collectionView.dataSource = self;
     [collectionView setBackgroundColor:[UIColor whiteColor]];
-    [collectionView setContentInset:UIEdgeInsetsMake(18, 0, 0, 0)];
     [collectionView setShowsHorizontalScrollIndicator:NO];
     [collectionView setShowsVerticalScrollIndicator:NO];
-    [collectionView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     [self.view addSubview:collectionView];
     
     [self makeConstraints];
