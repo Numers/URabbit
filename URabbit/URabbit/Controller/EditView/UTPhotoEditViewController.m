@@ -61,6 +61,8 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     NSInteger totalRatio;
     
     CGFloat currentProgress;
+    
+    BOOL isComposing;
 }
 @end
 
@@ -72,6 +74,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
         currentResource = resource;
         currentSnapshots = [NSMutableArray arrayWithArray:snapshots];
         currentComposition = composition;
+        isComposing = NO;
     }
     return self;
 }
@@ -245,6 +248,11 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 
 -(void)nextStep
 {
+    if (isComposing) {
+        return;
+    } else {
+        isComposing = YES;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:selectedRow inSection:0];
         UIImage *image = [containerView deSelectIndexPath:indexPath];
@@ -263,7 +271,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
     hud.style = DMProgressHUDStyleDark;
     hud.text = @"合成中...";
     currentProgress = 0.0f;
-    videoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
+    videoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId identify:@"compose"];
     
     float fps = currentResource.fps;
     if (currentResource.style == TemplateStyleGoodNight) {
@@ -462,7 +470,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                 
                 if (currentResource.fgWebp) {
                     [self setHudProgress:1.0f step:ComposeStepAnimation isCompletely:NO callback:nil];
-                    NSString *videoUrl = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
+                    NSString *videoUrl = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId identify:@"composeWebp"];
                     __weak typeof(self) weakSelf = self;
                     [[UTVideoManager shareManager] addWebpWithMovieUrl:outPutURL withWebpPath:currentResource.fgWebp output:videoUrl videoSize:currentResource.videoSize completely:^(BOOL isSucess) {
                         if (success) {
@@ -475,8 +483,10 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                             }];
                             
                         }
+                        isComposing = NO;
                     }];
                 }else{
+                    isComposing = NO;
                     __weak typeof(self) weakSelf = self;
                     [self setHudProgress:1.0f step:ComposeStepAnimation isCompletely:YES callback:^{
                         [weakSelf pushVideoComposeViewWithMovieUrl:outPutURL];
@@ -485,7 +495,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
             }];
         }else{
             if (currentResource.fgWebp) {
-                NSString *videoUrl = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
+                NSString *videoUrl = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId identify:@"composeWebp"];
                 [[UTVideoManager shareManager] addWebpWithMovieUrl:videoPath withWebpPath:currentResource.fgWebp output:videoUrl videoSize:currentResource.videoSize completely:^(BOOL isSucess) {
                     if (success) {
                         if ([[NSFileManager defaultManager] fileExistsAtPath:videoPath]) {
@@ -496,8 +506,10 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
                              [weakSelf pushVideoComposeViewWithMovieUrl:videoUrl];
                         }];
                     }
+                    isComposing = NO;
                 }];
             }else{
+                isComposing = NO;
                 __weak typeof(self) weakSelf = self;
                 [self setHudProgress:1.0f step:ComposeStepVideo isCompletely:YES callback:^{
                     [weakSelf pushVideoComposeViewWithMovieUrl:videoPath];

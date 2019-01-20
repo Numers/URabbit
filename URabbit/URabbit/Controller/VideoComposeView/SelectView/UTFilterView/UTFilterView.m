@@ -25,11 +25,11 @@ static NSString *filterCollectionViewCellIdentify = @"FilterCollectionViewCellId
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
         [self setUserInteractionEnabled:YES];
-        
+        _isLoadData = NO;
         PSTCollectionViewFlowLayout *layout = [[PSTCollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-        collectionView = [[PSTCollectionView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 76) collectionViewLayout:layout];
+        collectionView = [[PSTCollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:layout];
         [collectionView registerClass:[UTFilterCollectionViewCell class] forCellWithReuseIdentifier:filterCollectionViewCellIdentify];
         [collectionView setContentInset:UIEdgeInsetsMake(0, 15, 0, 15)];
         [collectionView setBounces:NO];
@@ -38,12 +38,21 @@ static NSString *filterCollectionViewCellIdentify = @"FilterCollectionViewCellId
         collectionView.delegate = self;
         collectionView.dataSource = self;
         [collectionView setBackgroundColor:[UIColor clearColor]];
-        [collectionView setCenter:CGPointMake(frame.size.width / 2, frame.size.height / 2)];
         [self addSubview:collectionView];
-        
+        [self makeConstraints];
         dataSource = [NSMutableArray array];
     }
     return self;
+}
+
+-(void)makeConstraints
+{
+    [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mas_centerY);
+        make.leading.equalTo(self);
+        make.trailing.equalTo(self);
+        make.height.equalTo(@(76));
+    }];
 }
 
 -(void)setFilterList:(NSMutableArray *)list
@@ -52,9 +61,10 @@ static NSString *filterCollectionViewCellIdentify = @"FilterCollectionViewCellId
         [dataSource removeAllObjects];
     }
     selectIndex = 0;
+    _isLoadData = YES;
     [dataSource addObjectsFromArray:list];
     [collectionView reloadData];
-    [collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0] animated:NO scrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally];
+    [collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0] animated:NO scrollPosition:PSTCollectionViewScrollPositionNone];
 }
 
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
@@ -95,9 +105,9 @@ static NSString *filterCollectionViewCellIdentify = @"FilterCollectionViewCellId
     return 0.0f;
 }
 
-- (UIEdgeInsets)collectionView:(PSTCollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 0, 0, 0);
-}
+//- (UIEdgeInsets)collectionView:(PSTCollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+//    return UIEdgeInsetsMake(0, 0, 0, 0);
+//}
 
 - (CGSize)collectionView:(PSTCollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(50.0f,76.0f);

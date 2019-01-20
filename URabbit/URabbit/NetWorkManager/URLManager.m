@@ -28,7 +28,7 @@ static URLManager *manager;
 -(void)setUrlWithState:(BOOL)state
 {
     if (state) {
-        BaseURL = @"http://47.97.126.151:8080/urabbit-core";
+        BaseURL = @"http://119.3.79.67:8090/ut";
     }else{
         BaseURL = @"http://119.3.79.67:8080/ut";
     }

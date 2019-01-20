@@ -1031,7 +1031,7 @@
     return [AppUtils createDirectory:directory];
 }
 
-+(NSString *)videoPathWithDirectory:(NSString *)directory
++(NSString *)videoPathWithDirectory:(NSString *)directory identify:(NSString *)identify
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -1047,16 +1047,21 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyyMMddHHmmss";
-    NSString *outPutFileName = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-    NSString *filePath =  [directory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",outPutFileName]];
+    NSString *outPutFileName = [formatter stringFromDate:[NSDate date]];
+    NSString *filePath;
+    if (identify) {
+        filePath =  [directory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-%@.mp4",outPutFileName,identify]];
+    }else{
+        filePath =  [directory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",outPutFileName]];
+    }
     return filePath;
 }
 
-+(NSString *)videoPathWithUniqueIndex:(long)index
++(NSString *)videoPathWithUniqueIndex:(long)index identify:(NSString *)identify
 {
     NSString *directory = [AppUtils createDirectoryWithUniqueIndex:index];
     if (directory) {
-        return [AppUtils videoPathWithDirectory:directory];
+        return [AppUtils videoPathWithDirectory:directory identify:identify];
     }
     return nil;
 }

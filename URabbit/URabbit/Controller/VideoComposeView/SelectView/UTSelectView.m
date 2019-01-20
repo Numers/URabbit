@@ -14,39 +14,43 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
+        filterView = [[UTFilterView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        filterView.delegate = self;
+        [filterView setHidden:YES];
+        [self addSubview:filterView];
+        
+        musicView = [[UTMusicView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        musicView.delegate = self;
+        [musicView setHidden:YES];
+        [self addSubview:musicView];
     }
     return self;
 }
 
 -(void)showViewWithIndex:(NSInteger)index
 {
-    for (UIView *subView in self.subviews) {
-        [subView removeFromSuperview];
-    }
     switch (index) {
         case 0:
         {
-            if (filterView == nil) {
-                filterView = [[UTFilterView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-                filterView.delegate = self;
+            [filterView setHidden:NO];
+            [musicView setHidden:YES];
+            if (![filterView isLoadData]) {
                 if ([self.delegate respondsToSelector:@selector(requestFilterViewDataSource)]) {
                     NSMutableArray *datasource = [self.delegate requestFilterViewDataSource];
                     [filterView setFilterList:datasource];
                 }
             }
-            [self addSubview:filterView];
         }
             break;
         case 1:
         {
-            if (musicView == nil) {
-                musicView = [[UTMusicView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-                musicView.delegate = self;
+            [filterView setHidden:YES];
+            [musicView setHidden:NO];
+            if (![musicView isLoadData]) {
                 if ([self.delegate respondsToSelector:@selector(requestMusicViewDataSource)]) {
-                   [self.delegate requestMusicViewDataSource];
+                    [self.delegate requestMusicViewDataSource];
                 }
             }
-            [self addSubview:musicView];
         }
             break;
             

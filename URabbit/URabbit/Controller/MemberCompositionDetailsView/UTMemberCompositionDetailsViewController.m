@@ -21,6 +21,7 @@
 @property(nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property(nonatomic, strong) IBOutlet UIButton *shareButton;
 @property(nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property(nonatomic, strong) IBOutlet NSLayoutConstraint *navHeight;
 @end
 
 @implementation UTMemberCompositionDetailsViewController
@@ -37,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _navHeight.constant = [UIDevice safeAreaTopHeight];
     compositionInfoView = [[UTMemberCompositionInfoView alloc] initWithVideoSize:CGSizeMake(currentCompositon.videoWidth, currentCompositon.videoHeight) frame:CGRectMake(0, 51, SCREEN_WIDTH, 0)];
     [_scrollView addSubview:compositionInfoView];
     [compositionInfoView setupViewWithComposition:currentCompositon];

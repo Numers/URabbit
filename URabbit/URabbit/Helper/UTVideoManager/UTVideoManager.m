@@ -135,10 +135,11 @@
 -(void)filterMovieWithInputUrl:(NSString *)inputUrl outputUrl:(NSString *)outputUrl videoSize:(CGSize)size filter:(GPUImageOutput<GPUImageInput> *)filter completely:(void (^)(BOOL result))callback
 {
     NSURL *inputURL = [NSURL fileURLWithPath:inputUrl];
+    AVAsset *asset = [AVAsset assetWithURL:inputURL];
     if (movieFile) {
         movieFile = nil;
     }
-    movieFile = [[GPUImageMovie alloc] initWithURL:inputURL];
+    movieFile = [[GPUImageMovie alloc] initWithAsset:asset];
     movieFile.runBenchmark = YES;
     movieFile.playAtActualSpeed = NO;
     [movieFile addTarget:filter];
@@ -155,7 +156,7 @@
     }
     movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:outputURL size:size];
     [filter addTarget:movieWriter];
-    AVAsset *asset = [AVAsset assetWithURL:inputURL];
+    
     if ([[asset tracksWithMediaType:AVMediaTypeAudio] count] > 0){
         movieWriter.shouldPassthroughAudio = YES;
         movieFile.audioEncodingTarget = movieWriter;
@@ -166,6 +167,7 @@
 
     [movieFile enableSynchronizedEncodingUsingMovieWriter:movieWriter];
     [movieWriter startRecording];
+    [NSThread sleepForTimeInterval:0.2];
     [movieFile startProcessing];
     
     __weak typeof(movieWriter) weakWriter = movieWriter;
@@ -237,7 +239,9 @@
         if (session.error) {
             NSLog(@"%@",session.error.description);
         }
-        callback();
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callback();
+        });
     }];
 }
 

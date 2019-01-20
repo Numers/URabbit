@@ -375,8 +375,8 @@
  */
 +(NSString *)createDirectory:(NSString *)directory;
 +(NSString *)createDirectoryWithUniqueIndex:(long)index;
-+(NSString *)videoPathWithDirectory:(NSString *)directory;
-+(NSString *)videoPathWithUniqueIndex:(long)index;
++(NSString *)videoPathWithDirectory:(NSString *)directory identify:(NSString *)identify;
++(NSString *)videoPathWithUniqueIndex:(long)index identify:(NSString *)identify;
 
 
 /**

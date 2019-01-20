@@ -12,6 +12,7 @@
 -(void)selectFilter:(FilterInfo *)info;
 @end
 @interface UTFilterView : UIView
+@property(nonatomic) BOOL isLoadData;
 @property(nonatomic, weak) id<UTFilterViewProtocol> delegate;
 -(void)setFilterList:(NSMutableArray *)list;
 @end

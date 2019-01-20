@@ -364,9 +364,12 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         UTHomeRecommendView *recommendView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:homeTemplateCollectionHeadViewIdentify forIndexPath:indexPath];
         if (recommendList.count > 0) {
+            [recommendView setHidden:NO];
             recommendView.delegate = self;
             [recommendView setHeadImage:[UIImage imageNamed:@"jingxuan"] headTitle:@"推荐合集"];
             [recommendView setDatasource:recommendList];
+        }else{
+            [recommendView setHidden:YES];
         }
         return recommendView;
     }else{

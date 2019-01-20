@@ -1051,6 +1051,7 @@
                         <viewLayoutGuide key="safeArea" id="wDq-Tx-3dz"/>
                     </view>
                     <connections>
+                        <outlet property="navHeight" destination="xoh-sc-G3Q" id="krG-z7-bRd"/>
                         <outlet property="scrollView" destination="498-28-9ra" id="ldF-U0-rtG"/>
                         <outlet property="shareButton" destination="vib-ge-g75" id="hDV-pc-H4z"/>
                         <outlet property="titleLabel" destination="CDz-6K-UKm" id="Pl6-7c-mKZ"/>

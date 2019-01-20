@@ -49,6 +49,8 @@
     float duration;
     
     BOOL isInDraft;
+    
+    BOOL isSaving;
 }
 @end
 
@@ -63,6 +65,7 @@
         currentComposition = composition;
         currentDraftTemplate = draftTemplate;
         isInDraft = fromDraft;
+        isSaving = NO;
     }
     return self;
 }
@@ -199,6 +202,11 @@
 
 -(void)save
 {
+    if (isSaving) {
+        return;
+    } else {
+        isSaving = YES;
+    }
     [self stopVideo];
     if (movieFile) {
         [movieFile endProcessing];
@@ -206,33 +214,39 @@
     [NSThread sleepForTimeInterval:0.2];
     [AppUtils showLoadingInView:self.view];
     if (audioURL) {
-        NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
+        NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId identify:@"merge"];
         
         [[UTVideoManager shareManager] mergeMovie:movieURL withAudio:audioURL output:tempVideoPath completely:^{
             GPUImageOutput<GPUImageInput> *movieFilter = [[UTImageHanderManager shareManager] filterWithFilterType:currentFilterType];
-            NSString *videoCompeletelyPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
+            NSString *videoCompeletelyPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId identify:@"complete"];
             [[UTVideoManager shareManager] filterMovieWithInputUrl:tempVideoPath outputUrl:videoCompeletelyPath videoSize:resource.videoSize filter:movieFilter completely:^(BOOL result) {
                 if (result) {
-                    [AppUtils hiddenLoadingInView:self.view];
-                    currentComposition.moviePath = videoCompeletelyPath;
-                    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoCompeletelyPath)) {
-                        //保存相册核心代码
-                        UISaveVideoAtPathToSavedPhotosAlbum(videoCompeletelyPath, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
-                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [AppUtils hiddenLoadingInView:self.view];
+                        currentComposition.moviePath = videoCompeletelyPath;
+                        isSaving = NO;
+                        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoCompeletelyPath)) {
+                            //保存相册核心代码
+                            UISaveVideoAtPathToSavedPhotosAlbum(videoCompeletelyPath, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
+                        }
+                    });
                 }
             }];
         }];
     }else{
         GPUImageOutput<GPUImageInput> *movieFilter = [[UTImageHanderManager shareManager] filterWithFilterType:currentFilterType];
-        NSString *videoCompeletelyPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId];
+        NSString *videoCompeletelyPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId identify:@"complete"];
         [[UTVideoManager shareManager] filterMovieWithInputUrl:movieURL outputUrl:videoCompeletelyPath videoSize:resource.videoSize filter:movieFilter completely:^(BOOL result) {
             if (result) {
-                [AppUtils hiddenLoadingInView:self.view];
-                currentComposition.moviePath = videoCompeletelyPath;
-                if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoCompeletelyPath)) {
-                    //保存相册核心代码
-                    UISaveVideoAtPathToSavedPhotosAlbum(videoCompeletelyPath, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [AppUtils hiddenLoadingInView:self.view];
+                    currentComposition.moviePath = videoCompeletelyPath;
+                    isSaving = NO;
+                    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoCompeletelyPath)) {
+                        //保存相册核心代码
+                        UISaveVideoAtPathToSavedPhotosAlbum(videoCompeletelyPath, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
+                    }
+                });
             }
         }];
     }

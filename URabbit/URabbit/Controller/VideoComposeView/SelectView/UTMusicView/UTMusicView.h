@@ -12,6 +12,7 @@
 -(void)selectMusic:(MusicInfo *)info;
 @end
 @interface UTMusicView : UIView
+@property(nonatomic) BOOL isLoadData;
 @property(nonatomic, weak) id<UTMusicViewProtocol> delegate;
 -(void)setMusicList:(NSMutableArray *)list;
 @end
