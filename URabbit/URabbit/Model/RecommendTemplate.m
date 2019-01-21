@@ -13,7 +13,7 @@
 {
     self = [super init];
     if (self) {
-        _coverImage = [dic objectForKey:@"coverUrl"];
+        _coverImage = [dic objectForKey:@"icon"];
         _name = [dic objectForKey:@"name"];
         _categoryId = [[dic objectForKey:@"id"] longValue];
     }
