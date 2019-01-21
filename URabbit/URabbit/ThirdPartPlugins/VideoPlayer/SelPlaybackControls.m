@@ -195,6 +195,22 @@ static const CGFloat PlaybackControlsAutoHideTimeInterval = 0.3f;
 /** 是否处于全屏状态 */
 - (void)setIsFullScreen:(BOOL)isFullScreen
 {
+    if (isFullScreen) {
+        if (_bottomControlsBar) {
+            [_bottomControlsBar mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(self);
+                make.bottom.equalTo(self).offset(-[UIDevice safeAreaBottomHeight]);
+                make.height.equalTo(@30);
+            }];
+        }
+    }else{
+        if (_bottomControlsBar) {
+            [_bottomControlsBar mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.equalTo(self);
+                make.height.equalTo(@30);
+            }];
+        }
+    }
     _isFullScreen = isFullScreen;
     self.fullScreenButton.selected = _isFullScreen;
 }

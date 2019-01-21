@@ -85,4 +85,9 @@
     [videoDescLabel setFrame:CGRectMake(70, videoDurationLabel.frame.origin.y + videoDurationLabel.frame.size.height + 15, SCREEN_WIDTH - 140, size.height)];
     [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, playView.frame.size.height + 93 + size.height + 5)];
 }
+
+-(void)pausePlayView
+{
+    [playView _pauseVideo];
+}
 @end

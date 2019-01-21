@@ -65,6 +65,14 @@
     [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH,compositionInfoView.frame.origin.y + compositionInfoView.frame.size.height + 65)];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (compositionInfoView) {
+        [compositionInfoView pausePlayView];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -448,6 +448,15 @@
     return [[NSFileManager defaultManager] fileExistsAtPath:zipPath];
 }
 
+-(void)sendShareWithPlatform:(UMSocialPlatformType)type
+{
+    NSString *coverUrl = [NSString stringWithFormat:@"%@?x-oss-process=image/crop,h_200,w_200,g_center/format,png",currentHomeTemplate.coverUrl];
+    NSString *shareUrl = [NSString stringWithFormat:@"https://www.utsdk.com/templet.html?id=%ld",currentHomeTemplate.templateId];
+    NSData *coverData = [NSData dataWithContentsOfURL:[NSURL URLWithString:coverUrl]];
+    [[UTUMShareManager shareManager] shareWebPageToPlatformType:type title:currentHomeTemplate.title description:currentHomeTemplate.summary thumImage:coverData webpageUrl:shareUrl callback:^(id response) {
+        
+    }];
+}
 #pragma -mark UTDownloadButtonViewProtocol
 -(void)beginDownload
 {
@@ -536,29 +545,21 @@
 #pragma -mark UTShareViewProtocol
 -(void)sendShareToWeixin
 {
-    [[UTUMShareManager shareManager] shareVideoToPlatformType:UMSocialPlatformType_WechatSession title:currentHomeTemplate.title description:currentHomeTemplate.summary thumImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:currentHomeTemplate.coverUrl]]] videoUrl:currentHomeTemplate.demoUrl callback:^(id response) {
-        
-    }];
+    [self sendShareWithPlatform:UMSocialPlatformType_WechatSession];
 }
 
 -(void)sendShareToFriend
 {
-    [[UTUMShareManager shareManager] shareVideoToPlatformType:UMSocialPlatformType_WechatTimeLine title:currentHomeTemplate.title description:currentHomeTemplate.summary thumImage:nil videoUrl:currentHomeTemplate.demoUrl callback:^(id response) {
-        
-    }];
+    [self sendShareWithPlatform:UMSocialPlatformType_WechatTimeLine];
 }
 
 -(void)sendShareToQQ
 {
-    [[UTUMShareManager shareManager] shareVideoToPlatformType:UMSocialPlatformType_QQ title:currentHomeTemplate.title description:currentHomeTemplate.summary thumImage:nil videoUrl:currentHomeTemplate.demoUrl callback:^(id response) {
-        
-    }];
+    [self sendShareWithPlatform:UMSocialPlatformType_QQ];
 }
 
 -(void)sendShareToWeibo
 {
-    [[UTUMShareManager shareManager] shareVideoToPlatformType:UMSocialPlatformType_Sina title:currentHomeTemplate.title description:currentHomeTemplate.summary thumImage:nil videoUrl:currentHomeTemplate.demoUrl callback:^(id response) {
-        
-    }];
+    [self sendShareWithPlatform:UMSocialPlatformType_Sina];
 }
 @end

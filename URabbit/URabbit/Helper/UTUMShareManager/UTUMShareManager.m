@@ -69,7 +69,7 @@
     }];
 }
 
-- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType title:(NSString *)title description:(NSString *)desc thumImage:(UIImage *)image webpageUrl:(NSString *)webpageUrl callback:(void (^)(id response))callback
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType title:(NSString *)title description:(NSString *)desc thumImage:(id)image webpageUrl:(NSString *)webpageUrl callback:(void (^)(id response))callback
 {
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];

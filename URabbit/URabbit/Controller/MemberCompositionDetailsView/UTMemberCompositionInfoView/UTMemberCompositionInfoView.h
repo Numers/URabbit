@@ -20,4 +20,5 @@
 
 -(instancetype)initWithVideoSize:(CGSize)size frame:(CGRect)frame;
 -(void)setupViewWithComposition:(Composition *)composition;
+-(void)pausePlayView;
 @end

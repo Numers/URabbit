@@ -11,6 +11,7 @@
 @interface GeneralManager : NSObject
 {
     NSString *downloadHtml;
+    NSDictionary *shareConfig;
 }
 +(id)defaultManager;
 
@@ -18,4 +19,5 @@
 -(void)getNewAppVersion;
 -(void)jumpToDownloadHtml;
 -(void)sendRegID;
+-(void)shareConfig:(void (^)(NSDictionary *))callback;
 @end

@@ -17,7 +17,7 @@
 
 - (void)shareVideoToPlatformType:(UMSocialPlatformType)platformType title:(NSString *)title description:(NSString *)desc thumImage:(UIImage *)image videoUrl:(NSString *)videoUrl callback:(void (^)(id response))callback;
 
-- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType title:(NSString *)title description:(NSString *)desc thumImage:(UIImage *)image webpageUrl:(NSString *)webpageUrl callback:(void (^)(id response))callback;
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType title:(NSString *)title description:(NSString *)desc thumImage:(id)image webpageUrl:(NSString *)webpageUrl callback:(void (^)(id response))callback;
 
 -(void)indirectShareVideo:(NSURL *)url;
 @end

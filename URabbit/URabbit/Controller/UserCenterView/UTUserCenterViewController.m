@@ -22,6 +22,7 @@
 #import "UTLoginScrollViewController.h"
 #import "UINavigationController+NavigationBar.h"
 #import "UTUMShareManager.h"
+#import "GeneralManager.h"
 static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIdentify";
 @interface UTUserCenterViewController ()<UITableViewDelegate,UITableViewDataSource,UTUserCenterHeadViewProtocol,UTShareViewProtocol>
 {
@@ -93,9 +94,19 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
 
 -(void)shareToScence:(UMSocialPlatformType)scence
 {
-    [[UTUMShareManager shareManager] shareWebPageToPlatformType:scence title:@"有兔 · 短视频小助手" description:@"朋友圈、抖音、快手短视频制作必备神器！一秒变身创作达人，一键生成朋友圈、抖音、快手热门爆款短视频，轻松赢得无数赞赏。" thumImage:[UIImage imageNamed:@"LogoImage"] webpageUrl:@"https://www.baidu.com" callback:^(id response) {
-        
+    [[GeneralManager defaultManager] shareConfig:^(NSDictionary *config) {
+        if (config) {
+            NSString *shareTitle = [config objectForKey:@"shareTitle"];
+            NSString *shareSummery = [config objectForKey:@"shareSummery"];
+            NSString *shareThumbnail = [config objectForKey:@"shareThumbnail"];
+            NSData *shareThumbData = [NSData dataWithContentsOfURL:[NSURL URLWithString:shareThumbnail]];
+            NSString *shareUrl = [config objectForKey:@"shareUrl"];
+            [[UTUMShareManager shareManager] shareWebPageToPlatformType:scence title:shareTitle description:shareSummery thumImage:shareThumbData webpageUrl:shareUrl callback:^(id response) {
+                
+            }];
+        }
     }];
+    
 }
 
 #pragma -mark UITableViewDelegate|UITableViewDataSource

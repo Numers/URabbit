@@ -87,4 +87,18 @@ static GeneralManager *generalManager;
         [AppUtils setUrlWithState:YES];
     }
 }
+
+-(void)shareConfig:(void (^)(NSDictionary *))callback
+{
+    if (shareConfig) {
+        callback(shareConfig);
+        return;
+    }
+    [[NetWorkRequestManager shareManager] get:UT_ShareConfig_API parameters:nil callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        if (data) {
+            shareConfig = [NSDictionary dictionaryWithDictionary:data];
+        }
+        callback(data);
+    } isNotify:NO];
+}
 @end
