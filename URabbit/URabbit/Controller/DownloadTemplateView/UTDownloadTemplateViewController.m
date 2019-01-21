@@ -39,6 +39,7 @@
 #import "UTAuthorViewController.h"
 #import "UTShareViewController.h"
 #import "UTUMShareManager.h"
+#import "UTVideoManager.h"
 
 @interface UTDownloadTemplateViewController ()<UTDownloadButtonViewProtocol,UTDownloadAlertViewProtocl,UTVideoAuthorViewProtocol,UTShareViewProtocol>
 {
@@ -235,10 +236,14 @@
     resource = [[Resource alloc] initWithDictionary:resourceDic basePath:resourceBaseDirectory];
     resource.videoSize = currentHomeTemplate.videoSize;
     resource.duration = currentHomeTemplate.duration;
-    resource.fps = currentHomeTemplate.fps;
+    if (resource.fgVideo) {
+        resource.fps = [[UTVideoManager shareManager] getFpsWithVideoPath:resource.fgVideo];
+        resource.totalFrame = [[UTVideoManager shareManager] getTotalFramesWithVideoPath:resource.fgVideo];
+    }else{
+        resource.fps = currentHomeTemplate.fps;
+        resource.totalFrame = currentHomeTemplate.totalFrame;
+    }
     resource.style = currentHomeTemplate.style;
-    resource.totalFrame = currentHomeTemplate.totalFrame;
-    
     NSData *customData = [NSData dataWithContentsOfFile:customPath];
     NSDictionary *customDic = [AppUtils objectWithJsonString:[[NSString alloc] initWithData:customData encoding:NSUTF8StringEncoding]];
     custom = [[Custom alloc] initWithDictionary:customDic];
