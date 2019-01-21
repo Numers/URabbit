@@ -168,7 +168,7 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
                 {
                     UTWebViewController *webVC = [[UTWebViewController alloc] init];
                     webVC.navTitle = @"帮助中心";
-                    webVC.loadUrl = @"https://www.baidu.com";
+                    webVC.loadUrl = @"https://www.utsdk.com/help.html";
                     [self.navigationController pushViewController:webVC animated:YES];
                 }
                     break;
