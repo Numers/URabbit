@@ -34,7 +34,11 @@
 
 -(IBAction)clickVersionCheckBtn:(id)sender
 {
-    [[GeneralManager defaultManager] getNewAppVersion];
+    [[GeneralManager defaultManager] getNewAppVersion:^(BOOL hasNew) {
+        if (!hasNew) {
+            [AppUtils showInfo:@"当前是最新版本"];
+        }
+    }];
 }
 
 -(IBAction)clickScoreBtn:(id)sender

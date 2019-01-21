@@ -33,13 +33,14 @@ static GeneralManager *generalManager;
     }
 }
 
--(void)getNewAppVersion
+-(void)getNewAppVersion:(void(^)(BOOL hasNew))callback
 {
     [[NetWorkRequestManager shareManager] get:UT_UpdateVersion_API parameters:nil callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         if (data) {
             NSString *newVersion = [data objectForKey:@"version"];
             NSString *currentVersion = [AppUtils appVersion];
             if ([AppUtils compareVersion:currentVersion greatThan:newVersion] < 0) {
+                callback(YES);
                 downloadHtml = [data objectForKey:@"url"];
 //                NSString *downloadHtml = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=%@",[AppUtils URLEncodedString:link]];
 //                NSString *downloadHtml = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id1329918420?mt=8"];
@@ -62,7 +63,11 @@ static GeneralManager *generalManager;
                 [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:^{
                     
                 }];
+            }else{
+                callback(NO);
             }
+        }else{
+            callback(NO);
         }
     } isNotify:NO];
 }
