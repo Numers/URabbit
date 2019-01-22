@@ -79,6 +79,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     selectView = [[UTSelectView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT - [UIDevice safeAreaBottomHeight] - 106, SCREEN_WIDTH, 106)];
     selectView.delegate = self;
     [self.view addSubview:selectView];
