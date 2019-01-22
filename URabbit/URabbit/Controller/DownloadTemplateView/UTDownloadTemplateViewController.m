@@ -151,11 +151,11 @@
     Member *host = [[AppStartManager shareManager] currentMember];
     if (host && [host.saveTemplates containsObject:@(currentHomeTemplate.templateId)]) {
         rightItem2 = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"collectionImage"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
-        rightItem2.imageInsets = UIEdgeInsetsMake(0, 15, 0, -10);
+        rightItem2.imageInsets = UIEdgeInsetsMake(0, 10, 0, -10);
         isSaved = YES;
     }else{
         rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"unCollectionImage"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCollectionButton)];
-        rightItem2.imageInsets = UIEdgeInsetsMake(0, 15, 0, -10);
+        rightItem2.imageInsets = UIEdgeInsetsMake(0, 10, 0, -10);
         isSaved = NO;
     }
     [self.navigationItem setRightBarButtonItems:@[rightItem1,rightItem2]];
