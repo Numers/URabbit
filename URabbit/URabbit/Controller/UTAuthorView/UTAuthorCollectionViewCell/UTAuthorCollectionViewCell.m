@@ -67,7 +67,11 @@
 
 -(void)setupCellWithHomeTemplate:(HomeTemplate *)homeTemplate
 {
-    [templateImageView sd_setImageWithURL:[NSURL URLWithString:homeTemplate.coverUrl] placeholderImage:[UIImage imageNamed:@"CoverPlaceholdImage"]];
+    [templateImageView sd_setImageWithURL:[NSURL URLWithString:homeTemplate.coverUrl] placeholderImage:[UIImage imageNamed:@"CoverPlaceholdImage"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if ([[imageURL absoluteString] isEqualToString:homeTemplate.coverUrl]) {
+            [templateImageView setContentMode:UIViewContentModeScaleAspectFill];
+        }
+    }];
     [nameLabel setText:homeTemplate.title];
     if (homeTemplate.isVip) {
         [vipLabel setHidden:NO];

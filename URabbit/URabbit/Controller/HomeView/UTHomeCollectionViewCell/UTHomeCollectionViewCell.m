@@ -17,7 +17,7 @@
     if (self) {
         templateImageView = [[UIImageView alloc] init];
         [templateImageView setBackgroundColor:[UIColor colorWithRed:241.0f/ 255 green:241.0f/ 255 blue:241.0f/ 255 alpha:1.0f]];
-        [templateImageView setContentMode:UIViewContentModeScaleAspectFill];
+        [templateImageView setContentMode:UIViewContentModeScaleAspectFit];
         [templateImageView.layer setCornerRadius:5];
         [templateImageView.layer setMasksToBounds:YES];
         [self addSubview:templateImageView];
@@ -68,7 +68,11 @@
 
 -(void)setupCellWithHomeTemplate:(HomeTemplate *)homeTemplate
 {
-    [templateImageView sd_setImageWithURL:[NSURL URLWithString:homeTemplate.coverUrl] placeholderImage:[UIImage imageNamed:@"CoverPlaceholdImage"]];
+    [templateImageView sd_setImageWithURL:[NSURL URLWithString:homeTemplate.coverUrl] placeholderImage:[UIImage imageNamed:@"CoverPlaceholdImage"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if ([[imageURL absoluteString] isEqualToString:homeTemplate.coverUrl]) {
+            [templateImageView setContentMode:UIViewContentModeScaleAspectFill];
+        }
+    }];
     [nameLabel setText:homeTemplate.title];
     if (homeTemplate.isVip) {
         [vipLabel setHidden:NO];

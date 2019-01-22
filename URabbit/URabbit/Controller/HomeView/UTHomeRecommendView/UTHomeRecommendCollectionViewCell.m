@@ -18,7 +18,7 @@
         recommendImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         [recommendImageView.layer setCornerRadius:5];
         [recommendImageView.layer masksToBounds];
-        [recommendImageView setContentMode:UIViewContentModeScaleAspectFit];
+        [recommendImageView setContentMode:UIViewContentModeScaleAspectFill];
         [self addSubview:recommendImageView];
         
         nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height - 30, frame.size.width, 20)];
