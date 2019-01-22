@@ -74,7 +74,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
+    [self.view setBackgroundColor:[UIColor colorFromHexString:@"#FFFFFF"]];
     snapshotList = [NSMutableArray array];
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -138,14 +138,14 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationItem setTitle:currentHomeTemplate.title];
-    [self.navigationController setTranslucentView];
+    [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
     
     [self setRightItems];
 }
 
 -(void)setRightItems
 {
-    UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"share_button"] style:UIBarButtonItemStylePlain target:self action:@selector(clickShareButton)];
+    UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"share_button"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(clickShareButton)];
     
     UIBarButtonItem *rightItem2;
     Member *host = [[AppStartManager shareManager] currentMember];

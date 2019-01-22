@@ -33,7 +33,7 @@
         nameLabel = [[UILabel alloc] init];
         [nameLabel setTextAlignment:NSTextAlignmentLeft];
         [nameLabel setFont:[UIFont systemFontOfSize:14.0f]];
-        [nameLabel setTextColor:[UIColor whiteColor]];
+        [nameLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
         [self addSubview:nameLabel];
         
         [self makeContraints];

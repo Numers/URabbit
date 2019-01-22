@@ -167,8 +167,8 @@
     }];
     [manager startMonitoring];
     
-    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#FFFFFF"])]];
-    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#FFFFFF"])]];
+    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#737373"])]];
+    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#737373"])]];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-CGFLOAT_MAX, 0)
                                                          forBarMetrics:UIBarMetricsDefault];
     [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
@@ -212,13 +212,13 @@
     
     UTHomeViewController *homeVC = [[UTHomeViewController alloc] init];
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:homeVC];
-    [nav1 setTranslucentView];
+    [self setNavigationColor:nav1];
     
     UTUserCenterViewController *userCenterVC = [[UTUserCenterViewController alloc] init];
     UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:userCenterVC];
     [self setNavigationColor:nav2];
-    [nav2.navigationBar setBackIndicatorImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#333333"])]];
-    [nav2.navigationBar setBackIndicatorTransitionMaskImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#333333"])]];
+    [nav2.navigationBar setBackIndicatorImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#737373"])]];
+    [nav2.navigationBar setBackIndicatorTransitionMaskImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#737373"])]];
     
     [_tabBarController setViewControllers:@[nav1,nav2]];
     LLTabBar *tabBar = [[LLTabBar alloc] initWithFrame:_tabBarController.tabBar.bounds];

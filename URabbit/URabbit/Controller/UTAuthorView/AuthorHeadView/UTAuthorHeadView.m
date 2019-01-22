@@ -22,7 +22,7 @@
         
         nickNameLabel = [[UILabel alloc] init];
         [nickNameLabel setFont:[UIFont boldSystemFontOfSize:16]];
-        [nickNameLabel setTextColor:[UIColor whiteColor]];
+        [nickNameLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
         [nickNameLabel setTextAlignment:NSTextAlignmentLeft];
         [self addSubview:nickNameLabel];
         
@@ -82,7 +82,7 @@
 -(NSAttributedString *)generateWithTitle:(NSString *)title count:(NSInteger)count
 {
     NSMutableAttributedString *attributeString = [AppUtils generateAttriuteStringWithStr:title WithColor:[UIColor colorFromHexString:@"#999999"] WithFont:[UIFont systemFontOfSize:14]];
-    NSAttributedString *countString = [AppUtils generateAttriuteStringWithStr:[NSString stringWithFormat:@" %ld",count] WithColor:[UIColor whiteColor] WithFont:[UIFont systemFontOfSize:14]];
+    NSAttributedString *countString = [AppUtils generateAttriuteStringWithStr:[NSString stringWithFormat:@" %ld",count] WithColor:[UIColor colorFromHexString:@"#333333"] WithFont:[UIFont systemFontOfSize:14]];
     [attributeString appendAttributedString:countString];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.alignment = NSTextAlignmentLeft;

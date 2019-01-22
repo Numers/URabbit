@@ -23,6 +23,8 @@
 #import "Resource.h"
 #import "Snapshot.h"
 
+#import "UINavigationController+NavigationBar.h"
+
 #import "UTVideoComposeViewController.h"
 #import "PSTCollectionView.h"
 
@@ -184,6 +186,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 
 -(void)navigationBarSetting
 {
+    [self.navigationController setTranslucentView];
     UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStylePlain target:self action:@selector(nextStep)];
     [rightItem1 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
 //    UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithTitle:@"存草稿" style:UIBarButtonItemStylePlain target:self action:@selector(saveInDraft)];

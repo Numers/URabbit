@@ -50,8 +50,8 @@ static NSString *authorFootViewIdentify = @"AuthorFootViewIdentify";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
-    [_navBarView setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
+    [self.view setBackgroundColor:[UIColor colorFromHexString:@"#FFFFFF"]];
+    [_navBarView setBackgroundColor:[UIColor colorFromHexString:@"#FFFFFF"]];
     currentPage = 1;
     currentSize = 20;
     hasMore = YES;

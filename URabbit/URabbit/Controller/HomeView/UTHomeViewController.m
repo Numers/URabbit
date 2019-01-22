@@ -81,7 +81,7 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
     _titleLabel = [[UILabel alloc] init];
     [_titleLabel setText:@"有兔"];
     [_titleLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
-    [_titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
+    [_titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [_titleLabel setTextAlignment: NSTextAlignmentCenter];
     [self.view addSubview:_titleLabel];
     

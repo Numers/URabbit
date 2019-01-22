@@ -27,7 +27,7 @@
         
         authorNameLabel = [[UILabel alloc] init];
         [authorNameLabel setFont:[UIFont systemFontOfSize:14.0f]];
-        [authorNameLabel setTextColor:[UIColor colorFromHexString:@"#999999"]];
+        [authorNameLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
         [self addSubview:authorNameLabel];
         
         nextImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"next_button"]];

@@ -15,7 +15,7 @@
     self.navigationBar.shadowImage = [UIImage new];
     self.navigationBar.translucent = YES;
     [self adaptTitle:[UIColor colorFromHexString:@"#333333"]];
-    self.navigationBar.tintColor = [UIColor colorFromHexString:@"#333333"];
+    self.navigationBar.tintColor = [UIColor colorFromHexString:@"#737373"];
     [self setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
@@ -48,7 +48,7 @@
 -(void)adaptTitle:(UIColor *)color
 {
     UIFont *font;
-    font = [UIFont boldSystemFontOfSize:17];
+    font = [UIFont systemFontOfSize:17];
     [self setTitleTextColor:color WithFont:font];
 }
 

@@ -696,7 +696,7 @@
     //  设置虚线颜色为blackColor
     [shapeLayer setStrokeColor:lineColor.CGColor];
     //  设置虚线宽度
-    [shapeLayer setLineWidth:0.5];
+    [shapeLayer setLineWidth:1];
     [shapeLayer setLineJoin:kCALineJoinRound];
     //  设置线宽，线间距
     [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:lineLength], [NSNumber numberWithInt:lineSpacing], nil]];
