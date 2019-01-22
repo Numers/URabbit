@@ -37,7 +37,7 @@ PODS:
   - SSZipArchive (2.1.4)
   - TUSafariActivity (1.0.4)
   - TYPagerController (2.1.2)
-  - UMCCommon (1.5.3)
+  - UMCCommon (2.0.0)
   - UMCShare/Core (6.9.5):
     - UMCCommon
   - UMCShare/Social/ReducedQQ (6.9.5):
@@ -119,7 +119,7 @@ SPEC CHECKSUMS:
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   TYPagerController: 262556ecef99986d26ed77fb1288a198ed42f4af
-  UMCCommon: 016af43c0f769feb1ae1861d65aaf2b23b89c9c7
+  UMCCommon: 79b5a614c958db367113eed5740109d9a98e1223
   UMCShare: 552b29753f1b4da87b51d96545ed19e6263df397
   WZLBadge: 9ec779dcfd94c825518b395e8315fccaabff1bfa
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54

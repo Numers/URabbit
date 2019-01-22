@@ -218,7 +218,7 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
 -(void)requestData
 {
     if (currentPage == 1) {
-        [AppUtils showLoadingInView:self.view];
+        [AppUtils showGIFHudProgress:@"" forView:self.view];
         [self requestWithRecommendList];
     }
     [self requestChoosenTemplateList];
@@ -284,7 +284,7 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
     
     [[UTHomeNetworkAPIManager shareManager] getChoiceRecommendTemplateWithPage:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         if (currentPage == 1) {
-            [AppUtils hiddenLoadingInView:self.view];
+            [AppUtils hiddenGIFHud:self.view];
         }
         NSArray *templateArr = (NSArray *)data;
         if (templateArr && templateArr.count > 0) {

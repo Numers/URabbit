@@ -113,12 +113,16 @@ static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCe
 -(void)requestHomeTemplate
 {
     if (currentPage == 1) {
+        [AppUtils showGIFHudProgress:@"" forView:self.view];
         if (dataSource.count > 0) {
             [dataSource removeAllObjects];
         }
     }
 
     [[UTCategoryNetworkAPIManager shareManager] getCategoryTemplateWithCategoryId:currentCategoryId Page:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        if (currentPage == 1) {
+            [AppUtils hiddenGIFHud:self.view];
+        }
         if (data) {
             NSArray *templateArray = (NSArray *)data;
             if (templateArray && templateArray.count > 0) {

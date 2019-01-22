@@ -119,9 +119,9 @@
 
 -(IBAction)clickLoginBtn:(id)sender
 {
-    [AppUtils showLoadingInView:self.view];
+    [AppUtils showGIFHudProgress:@"" forView:self.view];
     [[UTLoginNetworkAPIManager shareManager] loginWithMobile:_mobieTextField.text checkCode:_validateCodeTextField.text callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
-        [AppUtils hiddenLoadingInView:self.view];
+        [AppUtils hiddenGIFHud:self.view];
         if (data) {
             NSDictionary *memberInfo = (NSDictionary *)data;
             Member *member = [[Member alloc] initWithDictionary:memberInfo];
@@ -147,9 +147,9 @@
     if ([@"女" isEqualToString:result.gender]) {
         sexType = Female;
     }
-    [AppUtils showLoadingInView:self.view];
+    [AppUtils showGIFHudProgress:@"" forView:self.view];
     [[UTLoginNetworkAPIManager shareManager] loginPlatformWithOid:oid type:type nickName:nickName portrait:portrait gender:sexType callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
-        [AppUtils hiddenLoadingInView:self.view];
+        [AppUtils hiddenGIFHud:self.view];
         if (data) {
             NSDictionary *memberInfo = (NSDictionary *)data;
             Member *member = [[Member alloc] initWithDictionary:memberInfo];

@@ -18,6 +18,7 @@
 #import "SSZipArchive.h"
 #import "UIImage+FixImage.h"
 #import <YYImage/YYImage.h>
+#import <YYImage/YYAnimatedImageView.h>
 #define MBTAG  1001 //显示文本的提示tag
 #define MBProgressTAG 1002 //加载带循转小图标的控件tag
 #define MBProgressAddViewTAG 1003 //加载带小图标的控件tag
@@ -449,10 +450,9 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         //提示成功
-        UIWindow *appRootView = [UIApplication sharedApplication].keyWindow;
-        MBProgressHUD *newhud = (MBProgressHUD *)[appRootView viewWithTag:MBProgressGIFTAG];
+        MBProgressHUD *newhud = (MBProgressHUD *)[view viewWithTag:MBProgressGIFTAG];
         if (newhud == nil) {
-            newhud = [[MBProgressHUD alloc] initWithView:appRootView];
+            newhud = [[MBProgressHUD alloc] initWithView:view];
             newhud.tag = MBProgressGIFTAG;
             newhud.userInteractionEnabled = NO;
             newhud.bezelView.backgroundColor = [UIColor clearColor];//这儿表示无背景
@@ -477,11 +477,12 @@
              *
              *  如果修改动画图片就在这里修改
              */
-            NSData *data = [NSData dataWithContentsOfFile:@"pkkd"];
-            UIImage *images=[UIImage sd_animatedGIFWithData:data];
-            
-            newhud.customView = [[UIImageView alloc] initWithImage:images];
-            [appRootView addSubview:newhud];
+
+            YYImage *gifImage = [YYImage imageNamed:@"loading"];
+            YYAnimatedImageView *gifImageView = [[YYAnimatedImageView alloc] initWithImage:gifImage];
+            newhud.customView = gifImageView;
+            [view addSubview:newhud];
+            [view bringSubviewToFront:newhud];
         }
         
         newhud.label.text = title;
@@ -493,8 +494,7 @@
 +(void)hiddenGIFHud:(UIView *)view
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIWindow *appRootView = [UIApplication sharedApplication].keyWindow;
-        MBProgressHUD *hud = [appRootView viewWithTag:MBProgressGIFTAG];
+        MBProgressHUD *hud = [view viewWithTag:MBProgressGIFTAG];
         if (hud != nil) {
             hud.removeFromSuperViewOnHide = YES;
             [hud hideAnimated:YES];

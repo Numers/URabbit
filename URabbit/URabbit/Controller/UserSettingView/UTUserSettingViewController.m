@@ -85,13 +85,13 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
 
 -(void)deleteCache
 {
-    [AppUtils showLoadingInView:self.view];
+    [AppUtils showGIFHudProgress:@"" forView:self.view];
     NSString * cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     [AppUtils deleteFolderFilesAtPath:cacheDir];
     [LoadedTemplate bg_clear:LoadedTableName];
     [Composition bg_clear:CompositionTableName];
     [DraftTemplate bg_clear:DraftTemplateTableName];
-    [AppUtils hiddenLoadingInView:self.view];
+    [AppUtils hiddenGIFHud:self.view];
     [_tableView reloadData];
 }
 

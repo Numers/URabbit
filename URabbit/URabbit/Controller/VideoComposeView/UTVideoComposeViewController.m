@@ -212,7 +212,7 @@
         [movieFile endProcessing];
     }
     [NSThread sleepForTimeInterval:0.2];
-    [AppUtils showLoadingInView:self.view];
+    [AppUtils showGIFHudProgress:@"" forView:self.view];
     if (audioURL) {
         NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId identify:@"merge"];
         
@@ -222,7 +222,7 @@
             [[UTVideoManager shareManager] filterMovieWithInputUrl:tempVideoPath outputUrl:videoCompeletelyPath videoSize:resource.videoSize filter:movieFilter completely:^(BOOL result) {
                 if (result) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [AppUtils hiddenLoadingInView:self.view];
+                        [AppUtils hiddenGIFHud:self.view];
                         currentComposition.moviePath = videoCompeletelyPath;
                         isSaving = NO;
                         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoCompeletelyPath)) {
@@ -239,7 +239,7 @@
         [[UTVideoManager shareManager] filterMovieWithInputUrl:movieURL outputUrl:videoCompeletelyPath videoSize:resource.videoSize filter:movieFilter completely:^(BOOL result) {
             if (result) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [AppUtils hiddenLoadingInView:self.view];
+                    [AppUtils hiddenGIFHud:self.view];
                     currentComposition.moviePath = videoCompeletelyPath;
                     isSaving = NO;
                     if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoCompeletelyPath)) {

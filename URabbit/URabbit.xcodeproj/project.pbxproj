@@ -13,6 +13,7 @@
 		04372B9221A1123400F206E3 /* UTRegisterFirstStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9121A1123400F206E3 /* UTRegisterFirstStepViewController.m */; };
 		04372B9521A1132900F206E3 /* UTRegisterSecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */; };
 		04372B9821A1134100F206E3 /* UTRegisterThirdStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */; };
+		140606B221F720F600872366 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 140606B121F720F600872366 /* loading@2x.gif */; };
 		1421EB7521BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1421EB7421BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.m */; };
 		1421EB7921BA52A600BCCD7B /* UTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1421EB7821BA52A600BCCD7B /* UTWebViewController.m */; };
 		1422A54721AF94F40025D859 /* AnimationForText.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422A54621AF94F40025D859 /* AnimationForText.m */; };
@@ -218,6 +219,7 @@
 		04372B9421A1132900F206E3 /* UTRegisterSecondStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterSecondStepViewController.m; sourceTree = "<group>"; };
 		04372B9621A1134100F206E3 /* UTRegisterThirdStepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTRegisterThirdStepViewController.h; sourceTree = "<group>"; };
 		04372B9721A1134100F206E3 /* UTRegisterThirdStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTRegisterThirdStepViewController.m; sourceTree = "<group>"; };
+		140606B121F720F600872366 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
 		1421EB7321BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTVideoComposeNetworkAPIManager.h; sourceTree = "<group>"; };
 		1421EB7421BA1C0B00BCCD7B /* UTVideoComposeNetworkAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTVideoComposeNetworkAPIManager.m; sourceTree = "<group>"; };
 		1421EB7721BA52A600BCCD7B /* UTWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTWebViewController.h; sourceTree = "<group>"; };
@@ -1579,6 +1581,7 @@
 		14580353216F2BCC006BB33D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				140606B121F720F600872366 /* loading@2x.gif */,
 				14580354216F2BCC006BB33D /* AppUtils.m */,
 				14580355216F2BCC006BB33D /* GlobalVar.h */,
 				14580357216F2BCC006BB33D /* AppUtils.h */,
@@ -2250,6 +2253,7 @@
 				14580374216F2BCC006BB33D /* muber.gif in Resources */,
 				1458035D216F2BCC006BB33D /* iconfont.ttf in Resources */,
 				145B613C216F27B700DA950E /* Assets.xcassets in Resources */,
+				140606B221F720F600872366 /* loading@2x.gif in Resources */,
 				145B613A216F27B600DA950E /* Main.storyboard in Resources */,
 				14254EF821B0EB18003C1E89 /* XFCameraController.xib in Resources */,
 			);
