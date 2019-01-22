@@ -25,6 +25,8 @@
         configuration.statusBarHideState = SelStatusBarHideStateFollowControls;
         configuration.videoGravity = SelVideoGravityResizeAspect;
         playView = [[SelVideoPlayer alloc] initWithFrame:CGRectMake(57, 0, playerWidth, playerHeight) configuration:configuration];
+        [playView.layer setCornerRadius:5.0f];
+        [playView.layer setMasksToBounds:YES];
         [self addSubview:playView];
         
         videoNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, playView.frame.origin.y + playView.frame.size.height + 31, SCREEN_WIDTH, 22)];

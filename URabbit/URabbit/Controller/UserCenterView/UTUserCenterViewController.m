@@ -42,7 +42,7 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
     headView = [[UTUserCenterHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 184)];
     headView.delegate = self;
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    [_tableView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    [_tableView setBackgroundColor:[UIColor colorFromHexString:@"#F8F8F8"]];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [_tableView registerClass:[UTUserCenterTableViewCell class] forCellReuseIdentifier:userCenterTableViewCellIdentify];
