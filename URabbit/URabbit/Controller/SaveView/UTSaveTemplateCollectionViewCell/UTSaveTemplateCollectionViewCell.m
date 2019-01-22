@@ -51,6 +51,7 @@
 
 -(void)setupCellWithSavedTemplate:(SavedTemplate *)savedTemplate
 {
+    [templateImageView setContentMode:UIViewContentModeScaleAspectFit];
     [templateImageView sd_setImageWithURL:[NSURL URLWithString:savedTemplate.coverUrl] placeholderImage:[UIImage imageNamed:@"CoverPlaceholdImage"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if ([[imageURL absoluteString] isEqualToString:savedTemplate.coverUrl]) {
             [templateImageView setContentMode:UIViewContentModeScaleAspectFill];
