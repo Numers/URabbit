@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="4m9-ur-7yx">
-                                <rect key="frame" x="164" y="223" width="86" height="73"/>
+                                <rect key="frame" x="144.66666666666666" y="252.66666666666663" width="86" height="73"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有兔 · 短视频小助手" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BmV-eN-K7H">
-                                <rect key="frame" x="144" y="696" width="126" height="17"/>
+                                <rect key="frame" x="124.66666666666669" y="738" width="126" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -31,12 +31,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BmV-eN-K7H" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3nZ-HO-QxE"/>
-                            <constraint firstItem="4m9-ur-7yx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="203" id="EjF-wV-tlR">
-                                <variation key="heightClass=compact-widthClass=compact" constant="146"/>
-                                <variation key="heightClass=regular-widthClass=compact" constant="203"/>
-                            </constraint>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BmV-eN-K7H" secondAttribute="bottom" constant="23" id="Koi-Qc-uTF"/>
                             <constraint firstItem="4m9-ur-7yx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="lJa-0r-8YM"/>
+                            <constraint firstItem="4m9-ur-7yx" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-117" id="yt0-zE-sBU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
