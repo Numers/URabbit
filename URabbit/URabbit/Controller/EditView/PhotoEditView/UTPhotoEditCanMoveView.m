@@ -182,11 +182,9 @@
             ratio = height / width;
         }
     }
-    PHAuthorizationStatus authStatusAlbm  = [PHPhotoLibrary authorizationStatus];
-    if (authStatusAlbm == PHAuthorizationStatusAuthorized || authStatusAlbm == PHAuthorizationStatusNotDetermined) {
-        if ([self.delegate respondsToSelector:@selector(openImagePickerViewWithScale:)]) {
-            [self.delegate openImagePickerViewWithScale:ratio];
-        }
+    
+    if ([self.delegate respondsToSelector:@selector(openImagePickerViewWithScale:)]) {
+        [self.delegate openImagePickerViewWithScale:ratio];
     }
 }
 

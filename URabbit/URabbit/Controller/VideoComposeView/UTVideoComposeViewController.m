@@ -26,6 +26,9 @@
 #import "DraftTemplate.h"
 #import "UINavigationController+NavigationBar.h"
 
+#import <Photos/PHPhotoLibrary.h>
+#import <LGAlertView/LGAlertView.h>
+
 @interface UTVideoComposeViewController ()<UTPlaySubViewProtocol,UTSelectViewProtocol>
 {
     Resource *resource;
@@ -49,6 +52,7 @@
     float duration;
     
     BOOL isInDraft;
+    BOOL isInCompositon;
     
     BOOL isSaving;
 }
@@ -66,6 +70,7 @@
         currentDraftTemplate = draftTemplate;
         isInDraft = fromDraft;
         isSaving = NO;
+        isInCompositon = NO;
     }
     return self;
 }
@@ -126,6 +131,14 @@
         if (!isInDraft) {
             if ([[NSFileManager defaultManager] fileExistsAtPath:movieURL]) {
                 [[NSFileManager defaultManager] removeItemAtPath:movieURL error:nil];
+            }
+        }
+        
+        if (!isInCompositon) {
+            if (currentComposition.moviePath) {
+                if ([[NSFileManager defaultManager] fileExistsAtPath:currentComposition.moviePath]) {
+                    [[NSFileManager defaultManager] removeItemAtPath:currentComposition.moviePath error:nil];
+                }
             }
         }
         
@@ -200,6 +213,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)alertPhotoAuthorization
+{
+    LGAlertView *alertView = [[LGAlertView alloc] initWithTitle:nil message:@"有兔没有权限访问您的相册，请在“设置>隐私>照片>有兔>”中开启访问权限" style:LGAlertViewStyleAlert buttonTitles:@[@"确定"] cancelButtonTitle:@"取消" destructiveButtonTitle:nil actionHandler:^(LGAlertView *alertView, NSString *title, NSUInteger index) {
+        NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        if (@available(iOS 10.0,*)) {
+            if ([[UIApplication sharedApplication] canOpenURL:settingURL]) {
+                [[UIApplication sharedApplication] openURL:settingURL options:@{} completionHandler:^(BOOL success) {
+                    
+                }];
+            }
+        }else{
+            [[UIApplication sharedApplication] openURL:settingURL];
+        }
+        
+    } cancelHandler:^(LGAlertView *alertView) {
+        
+    } destructiveHandler:^(LGAlertView *alertView) {
+        
+    }];
+    [alertView setMessageFont:[UIFont systemFontOfSize:14]];
+    [alertView setMessageTextColor:[UIColor colorFromHexString:@"#333333"]];
+    [alertView setButtonsFont:[UIFont systemFontOfSize:14]];
+    [alertView setButtonsTitleColor:[UIColor colorFromHexString:@"#333333"]];
+    [alertView setCancelButtonFont:[UIFont systemFontOfSize:14]];
+    [alertView setCancelButtonTitleColor:[UIColor colorFromHexString:@"#999999"]];
+    [alertView showAnimated:YES completionHandler:^{
+        
+    }];
+}
+
 -(void)save
 {
     if (isSaving) {
@@ -210,6 +253,11 @@
     [self stopVideo];
     if (movieFile) {
         [movieFile endProcessing];
+    }
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied){
+        [self alertPhotoAuthorization];
+        return;
     }
     [NSThread sleepForTimeInterval:0.2];
     [AppUtils showGIFHudProgress:@"" forView:self.view];
@@ -256,10 +304,12 @@
 - (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     if (error) {
         NSLog(@"保存视频失败%@", error.localizedDescription);
+        [AppUtils showInfo:@"保存失败，请再试一次"];
     }
     else {
         NSLog(@"保存视频成功");
         [currentComposition bg_save];
+        isInCompositon = YES;
         UTVideoComposeSuccessViewController *videoComposeSuccessVC = [[UTVideoComposeSuccessViewController alloc] initWithVideoURL:[NSURL fileURLWithPath:videoPath]];
         [self.navigationController pushViewController:videoComposeSuccessVC animated:YES];
     }
