@@ -92,7 +92,7 @@ static NSString *authorFootViewIdentify = @"AuthorFootViewIdentify";
         make.top.equalTo(_navBarView.bottom).offset(0);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaBottomHeight]);
+        make.bottom.equalTo(self.view);
     }];
 }
 

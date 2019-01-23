@@ -211,7 +211,7 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
         make.top.equalTo(_topLineView.bottom);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaBottomHeight]);
+        make.bottom.equalTo(self.view);
     }];
 }
 

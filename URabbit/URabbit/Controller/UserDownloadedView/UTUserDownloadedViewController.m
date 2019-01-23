@@ -63,7 +63,7 @@ static NSString *userDownloadedCollectionViewCellIdentify = @"UserDownloadedColl
         make.top.equalTo(self.view).offset(6);
         make.leading.equalTo(self.view);
         make.trailing.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-[UIDevice safeAreaBottomHeight]);
+        make.bottom.equalTo(self.view);
     }];
 }
 
