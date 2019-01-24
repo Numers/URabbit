@@ -1140,7 +1140,6 @@
 +(void)trackMTAEventNo:(NSString *)eventNo pageNo:(NSString *)pageNo parameters:(NSDictionary *)parameters;
 {
     NSDictionary *trackDic = [[AppStartManager shareManager] trackDictionaryWithPageNO:pageNo eventNo:eventNo parameters:parameters];
-    MTAErrorCode code = [MTA trackCustomKeyValueEvent:eventNo props:trackDic];
-    NSLog(@"%ld",code);
+    [MTA trackCustomKeyValueEvent:eventNo props:trackDic];
 }
 @end
