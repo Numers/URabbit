@@ -74,7 +74,7 @@ static NSString *userSettingTableViewCellIdentify = @"UserSettingTableViewCellId
     [alertView setMessageFont:[UIFont systemFontOfSize:14]];
     [alertView setMessageTextColor:[UIColor colorFromHexString:@"#333333"]];
     [alertView setButtonsFont:[UIFont systemFontOfSize:14]];
-    [alertView setButtonsTitleColor:[UIColor colorFromHexString:ThemeHexColor]];
+    [alertView setButtonsTitleColor:[UIColor colorFromHexString:@"#333333"]];
     [alertView setCancelButtonFont:[UIFont systemFontOfSize:14]];
     [alertView setCancelButtonTitleColor:[UIColor colorFromHexString:@"#999999"]];
     [alertView showAnimated:YES completionHandler:^{

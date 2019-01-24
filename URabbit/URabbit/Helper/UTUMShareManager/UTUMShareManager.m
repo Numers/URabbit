@@ -21,6 +21,19 @@
 
 - (void)getUserInfoForPlatform:(UMSocialPlatformType)platformType complete:(void (^)(UMSocialUserInfoResponse *result))callback
 {
+    if (![[UMSocialManager defaultManager] isInstall:platformType]) {
+        if (platformType == UMSocialPlatformType_Sina) {
+            [AppUtils showInfo:@"未安装微博"];
+        }else if (platformType == UMSocialPlatformType_WechatSession){
+            [AppUtils showInfo:@"未安装微信"];
+        }else if (platformType == UMSocialPlatformType_WechatTimeLine){
+            [AppUtils showInfo:@"未安装微信"];
+        }else if (platformType == UMSocialPlatformType_QQ){
+            [AppUtils showInfo:@"未安装QQ"];
+        }
+        return;
+    }
+    
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:platformType currentViewController:nil completion:^(id result, NSError *error) {
         if (!error) {
             UMSocialUserInfoResponse *resp = result;
@@ -71,6 +84,32 @@
 
 - (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType title:(NSString *)title description:(NSString *)desc thumImage:(id)image webpageUrl:(NSString *)webpageUrl callback:(void (^)(id response))callback
 {
+    if (![[UMSocialManager defaultManager] isInstall:platformType]) {
+        if (platformType == UMSocialPlatformType_Sina) {
+            [AppUtils showInfo:@"未安装微博"];
+        }else if (platformType == UMSocialPlatformType_WechatSession){
+            [AppUtils showInfo:@"未安装微信"];
+        }else if (platformType == UMSocialPlatformType_WechatTimeLine){
+            [AppUtils showInfo:@"未安装微信"];
+        }else if (platformType == UMSocialPlatformType_QQ){
+            [AppUtils showInfo:@"未安装QQ"];
+        }
+        return;
+    }
+    
+    if (![[UMSocialManager defaultManager] isSupport:platformType]) {
+        if (platformType == UMSocialPlatformType_Sina) {
+            [AppUtils showInfo:@"该版本微博不支持分享"];
+        }else if (platformType == UMSocialPlatformType_WechatSession){
+            [AppUtils showInfo:@"该版本微信不支持分享"];
+        }else if (platformType == UMSocialPlatformType_WechatTimeLine){
+            [AppUtils showInfo:@"该版本微信不支持分享"];
+        }else if (platformType == UMSocialPlatformType_QQ){
+            [AppUtils showInfo:@"该版本QQ不支持分享"];
+        }
+        return;
+    }
+    
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
@@ -89,15 +128,6 @@
 //            [AppUtils showInfo:[NSString stringWithFormat:@"分享失败,%@",error.description]];
         }else{
             NSLog(@"response data is %@",data);
-            if (platformType == UMSocialPlatformType_Sina) {
-                
-            }else if (platformType == UMSocialPlatformType_WechatSession){
-                
-            }else if (platformType == UMSocialPlatformType_WechatTimeLine){
-                
-            }else if (platformType == UMSocialPlatformType_QQ){
-                
-            }
             callback(data);
         }
     }];

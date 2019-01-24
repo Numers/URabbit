@@ -1140,6 +1140,6 @@
 +(void)trackMTAEventNo:(NSString *)eventNo pageNo:(NSString *)pageNo parameters:(NSDictionary *)parameters;
 {
     NSDictionary *trackDic = [[AppStartManager shareManager] trackDictionaryWithPageNO:pageNo eventNo:eventNo parameters:parameters];
-    [MTA trackCustomKeyValueEvent:eventNo props:trackDic];
+    [MTA trackCustomKeyValueEvent:eventNo props:trackDic appkey:nil isRealTime:YES];
 }
 @end

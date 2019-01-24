@@ -368,13 +368,13 @@
     if (parameters) {
         [dic setValuesForKeysWithDictionary:parameters];
     }
-    [dic setObject:pageNo forKey:@"pageNo"];
-    [dic setObject:eventNo forKey:@"eventNo"];
+    [dic setObject:[NSString stringWithFormat:@"\"%@\"",pageNo] forKey:@"pageNo"];
+    [dic setObject:[NSString stringWithFormat:@"\"%@\"",eventNo] forKey:@"eventNo"];
     [dic setObject:[self getDeviceToken] forKey:@"deviceToken"];
     if (host) {
-        [dic setObject:host.memberId forKey:@"userId"];
+        [dic setObject:[NSString stringWithFormat:@"\"%@\"",host.memberId] forKey:@"userid"];
     }else{
-        [dic setObject:@"0" forKey:@"userId"];
+        [dic setObject:@"\"0\"" forKey:@"userid"];
     }
     
     if (deviceModel == nil) {

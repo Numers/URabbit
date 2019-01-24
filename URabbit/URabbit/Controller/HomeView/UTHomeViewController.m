@@ -394,8 +394,8 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HomeTemplate *template = [choosenTemplateList objectAtIndex:indexPath.row];
+    [AppUtils trackMTAEventNo:@"3" pageNo:@"2" parameters:@{@"templetId":[NSString stringWithFormat:@"\"%ld\"",template.templateId]}];
     [self selectHomeTemplate:template];
-    [AppUtils trackMTAEventNo:@"3" pageNo:@"2" parameters:@{@"templetId":@(template.templateId)}];
 }
 
 #pragma -mark IBAction
@@ -422,7 +422,7 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
 -(void)gotoCategoryViewWithIndex:(NSInteger)index
 {
     RecommendTemplate *recommend = [recommendList objectAtIndex:index];
-    [AppUtils trackMTAEventNo:@"2" pageNo:@"1" parameters:@{@"categoryId":@(recommend.categoryId)}];
+    [AppUtils trackMTAEventNo:@"2" pageNo:@"1" parameters:@{@"categoryId":[NSString stringWithFormat:@"\"%ld\"",recommend.categoryId]}];
     UTCategoryViewController *categoryVC = [[UTCategoryViewController alloc] initWithItems:recommendList selectIndex:index];
     [self.navigationController pushViewController:categoryVC animated:YES];
 }

@@ -27,8 +27,13 @@
     self.needShowUpdateAlert = YES;
     [UMConfigure initWithAppkey:@"5bfce226b465f589030001ec" channel:nil];
     [self configUSharePlatforms];
-    
-    [MTA startWithAppkey:@"IJ34HITFR69X"];
+    [[MTAConfig getInstance] setSmartReporting:YES];
+    [[MTAConfig getInstance] setAutoTrackPage:NO];
+    [[MTAConfig getInstance] setReportStrategy:MTA_STRATEGY_INSTANT];
+    [[MTAConfig getInstance] setDebugEnable:YES];
+    if ([MTA startWithAppkey:@"IJ34HITFR69X" checkedSdkVersion:MTA_SDK_VERSION]) {
+        NSLog(@"MTA Start successs!");
+    }
     
     [TBCityIconFont setFontName:@"iconfont"];
     [[AppStartManager shareManager] startApp];
