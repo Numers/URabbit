@@ -17,6 +17,7 @@
 
 -(void)getGlovalVarWithVersion;
 -(void)getNewAppVersion:(void(^)(BOOL hasNew))callback;
+-(NSString *)returnDownloadHtml;
 -(void)jumpToDownloadHtml;
 -(void)sendRegID;
 -(void)shareConfig:(void (^)(NSDictionary *))callback;

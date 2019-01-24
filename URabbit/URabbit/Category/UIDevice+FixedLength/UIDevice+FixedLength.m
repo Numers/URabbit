@@ -8,6 +8,7 @@
 
 #import "UIDevice+FixedLength.h"
 #import "AppStartManager.h"
+#import <sys/utsname.h>
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
@@ -43,6 +44,17 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 #define SafeAreaBottomHeight (IPHONE_X ? 34 : 0)
 @implementation UIDevice (FixedLength)
++(NSString *)deviceModel
+{
+    struct utsname systemInfo;
+    
+    uname(&systemInfo);
+    
+    NSString* code = [NSString stringWithCString:systemInfo.machine
+                                        encoding:NSUTF8StringEncoding];
+    return code;
+}
+
 +(CGFloat)adaptHeightWithIphone6Length:(CGFloat)height
 {
     CGFloat tempLength = height * (SCREEN_HEIGHT / 667.0f);

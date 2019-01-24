@@ -12,6 +12,9 @@
 #import <UMShare/UMShare.h>
 #import "GeneralManager.h"
 
+#import "MTA.h"
+#import "MTAConfig.h"
+
 @interface AppDelegate ()
 
 @end
@@ -24,6 +27,8 @@
     self.needShowUpdateAlert = YES;
     [UMConfigure initWithAppkey:@"5bfce226b465f589030001ec" channel:nil];
     [self configUSharePlatforms];
+    
+    [MTA startWithAppkey:@"IJ34HITFR69X"];
     
     [TBCityIconFont setFontName:@"iconfont"];
     [[AppStartManager shareManager] startApp];

@@ -33,6 +33,11 @@ static GeneralManager *generalManager;
     }
 }
 
+-(NSString *)returnDownloadHtml
+{
+    return downloadHtml;
+}
+
 -(void)getNewAppVersion:(void(^)(BOOL hasNew))callback
 {
     [[NetWorkRequestManager shareManager] get:UT_UpdateVersion_API parameters:nil callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {

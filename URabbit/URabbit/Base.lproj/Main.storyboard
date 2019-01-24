@@ -1385,8 +1385,8 @@
                                     <constraint firstAttribute="width" secondItem="Ic5-Uf-mLA" secondAttribute="height" multiplier="1:1" id="T5v-KP-jE5"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.0.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SNv-vr-yqb">
-                                <rect key="frame" x="173" y="167" width="29" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SNv-vr-yqb">
+                                <rect key="frame" x="172.5" y="167" width="30.5" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="qEU-qn-7N5"/>
                                 </constraints>
@@ -1465,6 +1465,11 @@
                         <viewLayoutGuide key="safeArea" id="dem-XT-CT9"/>
                     </view>
                     <connections>
+                        <outlet property="arrowButton" destination="MrG-mG-iEl" id="f64-ku-gCo"/>
+                        <outlet property="lineView1" destination="b1Z-gA-9m3" id="vpS-K9-myX"/>
+                        <outlet property="lineView2" destination="lrt-Nk-Lsk" id="x8Z-6h-StO"/>
+                        <outlet property="scoreButton" destination="Iun-cx-4gs" id="JSs-vX-pxW"/>
+                        <outlet property="versionCheckButton" destination="Vyh-IA-p1z" id="N5o-ei-uI2"/>
                         <outlet property="versionLabel" destination="SNv-vr-yqb" id="AC9-vu-Bfn"/>
                     </connections>
                 </viewController>

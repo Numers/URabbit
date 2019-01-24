@@ -18,15 +18,17 @@
     UILabel *saveLabel;
     
     NSURL *videoUrl;
+    long currentTemplateId;
 }
 @end
 
 @implementation UTVideoComposeSuccessViewController
--(instancetype)initWithVideoURL:(NSURL *)videoURL
+-(instancetype)initWithVideoURL:(NSURL *)videoURL templateId:(long)templateId
 {
     self = [super init];
     if (self) {
         videoUrl = videoURL;
+        currentTemplateId = templateId;
     }
     return self;
 }
@@ -105,6 +107,7 @@
 }
 
 -(void)share{
+    [AppUtils trackMTAEventNo:@"6" pageNo:@"2" parameters:@{@"templetId":@(currentTemplateId)}];
     [[UTUMShareManager shareManager] indirectShareVideo:videoUrl];
 }
 @end

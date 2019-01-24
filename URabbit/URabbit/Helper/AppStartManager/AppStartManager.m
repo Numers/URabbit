@@ -28,7 +28,10 @@
 #import "Resource.h"
 #import "UTVideoManager.h"
 
+#import <SAMKeychain/SAMKeychain.h>
 
+#define DeviceTokenService @"com.ut.deviceTokenService"
+#define DeviceTokenAccount @"com.ut.deviceTokenAccount"
 #define HostProfilePlist @"PersonProfile.plist"
 @interface AppStartManager()<LLTabBarDelegate>
 @end
@@ -131,6 +134,19 @@
     return member;
 }
 
+-(NSString *)getDeviceToken
+{
+    if (deviceToken == nil) {
+        NSString *token = [SAMKeychain passwordForService:DeviceTokenService account:DeviceTokenAccount];
+        if (token == nil) {
+            token = [AppUtils getUUID];
+            [SAMKeychain setPassword:token forService:DeviceTokenService account:DeviceTokenAccount];
+        }
+        deviceToken = token;
+    }
+    return deviceToken;
+}
+
 /**
  app启动时处理事件
  */
@@ -146,19 +162,23 @@
             case AFNetworkReachabilityStatusUnknown:
             {
 //                [AppUtils showInfo:@"未知网络类型"];
+                networkStatus = @"Unknow";
                 break;
             }
             case AFNetworkReachabilityStatusNotReachable:
             {
 //                [AppUtils showInfo:@"网络正在开小差"];
+                networkStatus = @"NoReachable";
                 break;
             }
             case AFNetworkReachabilityStatusReachableViaWWAN:
             {
+                networkStatus = @"mobile";
                 break;
             }
             case AFNetworkReachabilityStatusReachableViaWiFi:
             {
+                networkStatus = @"wifi";
                 break;
             }
             default:
@@ -185,6 +205,8 @@
     }else{
         [self setHomeView];
     }
+    
+    [AppUtils trackMTAEventNo:@"1" pageNo:@"1" parameters:nil];
 }
 
 -(void)setNavigationColor:(UINavigationController *)nav
@@ -338,5 +360,38 @@
         _tabBarController = nil;
     }
     [AppUtils localUserDefaultsValue:@"0" forKey:KMY_AutoLogin];
+}
+
+-(NSDictionary *)trackDictionaryWithPageNO:(NSString *)pageNo eventNo:(NSString *)eventNo parameters:(NSDictionary *)parameters
+{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    if (parameters) {
+        [dic setValuesForKeysWithDictionary:parameters];
+    }
+    [dic setObject:pageNo forKey:@"pageNo"];
+    [dic setObject:eventNo forKey:@"eventNo"];
+    [dic setObject:[self getDeviceToken] forKey:@"deviceToken"];
+    if (host) {
+        [dic setObject:host.memberId forKey:@"userId"];
+    }else{
+        [dic setObject:@"0" forKey:@"userId"];
+    }
+    
+    if (deviceModel == nil) {
+        deviceModel = [UIDevice deviceModel];
+    }
+    
+    if (deviceModel) {
+        [dic setObject:deviceModel forKey:@"model"];
+    }
+    
+    [dic setObject:@"iphone" forKey:@"brand"];
+    [dic setObject:@"IOS" forKey:@"OS"];
+    [dic setObject:[NSString stringWithFormat:@"V%@",[AppUtils appVersion]] forKey:@"appVersion"];
+    if (networkStatus) {
+        [dic setObject:networkStatus forKey:@"networkStatus"];
+    }
+
+    return dic;
 }
 @end

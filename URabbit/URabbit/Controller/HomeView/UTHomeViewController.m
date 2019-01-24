@@ -395,6 +395,7 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
 {
     HomeTemplate *template = [choosenTemplateList objectAtIndex:indexPath.row];
     [self selectHomeTemplate:template];
+    [AppUtils trackMTAEventNo:@"3" pageNo:@"2" parameters:@{@"templetId":@(template.templateId)}];
 }
 
 #pragma -mark IBAction
@@ -420,6 +421,8 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
 #pragma -mark UTHomeRecommendViewProtocl
 -(void)gotoCategoryViewWithIndex:(NSInteger)index
 {
+    RecommendTemplate *recommend = [recommendList objectAtIndex:index];
+    [AppUtils trackMTAEventNo:@"2" pageNo:@"1" parameters:@{@"categoryId":@(recommend.categoryId)}];
     UTCategoryViewController *categoryVC = [[UTCategoryViewController alloc] initWithItems:recommendList selectIndex:index];
     [self.navigationController pushViewController:categoryVC animated:YES];
 }

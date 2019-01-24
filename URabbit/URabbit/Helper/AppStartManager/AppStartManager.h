@@ -12,6 +12,9 @@
 @interface AppStartManager : NSObject
 {
     Member *host;
+    NSString *deviceToken; //设备唯一标示
+    NSString *networkStatus; // 网络类型
+    NSString *deviceModel; //设备类型
 }
 @property(nonatomic, strong) UINavigationController *navigationController;
 @property(nonatomic, strong) UITabBarController *tabBarController;
@@ -35,8 +38,6 @@
 -(void)setMember:(Member *)member;
 
 -(void)removeLocalHostMemberData;
-
-
 /**
  push到home界面
  */
@@ -61,4 +62,12 @@
  app退出登录时处理事件
  */
 -(void)loginout;
+
+
+/**
+ 上报信息
+
+ @return 上报信息字典
+ */
+-(NSDictionary *)trackDictionaryWithPageNO:(NSString *)pageNo eventNo:(NSString *)eventNo parameters:(NSDictionary *)parameters;
 @end

@@ -404,4 +404,21 @@
 +(void)deleteFolderFilesAtPath:(NSString *)folderPath;
 
 +(UIFont*)customFontWithPath:(NSString*)path isDirectory:(BOOL)isDir size:(CGFloat)size;
+
+
+/**
+ 获取uuid
+
+ @return uuid
+ */
++ (NSString *)getUUID;
+
+/**
+ 数据上报
+
+ @param eventNo 事件NO
+ @param pageNo 页面No
+ @param parameters 额外参数
+ */
++(void)trackMTAEventNo:(NSString *)eventNo pageNo:(NSString *)pageNo parameters:(NSDictionary *)parameters;
 @end

@@ -19,6 +19,7 @@
 #import "UIImage+FixImage.h"
 #import <YYImage/YYImage.h>
 #import <YYImage/YYAnimatedImageView.h>
+#import "MTA.h"
 #define MBTAG  1001 //显示文本的提示tag
 #define MBProgressTAG 1002 //加载带循转小图标的控件tag
 #define MBProgressAddViewTAG 1003 //加载带小图标的控件tag
@@ -1126,5 +1127,20 @@
     }
     CGFontRelease(fontRef);
     return font;
+}
+
+// 普通的获取UUID的方法
++ (NSString *)getUUID {
+    CFUUIDRef puuid = CFUUIDCreate( nil );
+    CFStringRef uuidString = CFUUIDCreateString(nil, puuid);
+    NSString *result = (NSString *)CFBridgingRelease(CFStringCreateCopy( NULL, uuidString));
+    return result;
+}
+
++(void)trackMTAEventNo:(NSString *)eventNo pageNo:(NSString *)pageNo parameters:(NSDictionary *)parameters;
+{
+    NSDictionary *trackDic = [[AppStartManager shareManager] trackDictionaryWithPageNO:pageNo eventNo:eventNo parameters:parameters];
+    MTAErrorCode code = [MTA trackCustomKeyValueEvent:eventNo props:trackDic];
+    NSLog(@"%ld",code);
 }
 @end

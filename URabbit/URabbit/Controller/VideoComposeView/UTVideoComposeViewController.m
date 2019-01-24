@@ -261,6 +261,7 @@
         return;
     }
     [NSThread sleepForTimeInterval:0.2];
+    [AppUtils trackMTAEventNo:@"5" pageNo:@"2" parameters:@{@"templetId":@(currentComposition.templateId)}];
     [AppUtils showGIFHudProgress:@"" forView:self.view];
     if (audioURL) {
         NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId identify:@"merge"];
@@ -311,7 +312,7 @@
         NSLog(@"保存视频成功");
         [currentComposition bg_save];
         isInCompositon = YES;
-        UTVideoComposeSuccessViewController *videoComposeSuccessVC = [[UTVideoComposeSuccessViewController alloc] initWithVideoURL:[NSURL fileURLWithPath:videoPath]];
+        UTVideoComposeSuccessViewController *videoComposeSuccessVC = [[UTVideoComposeSuccessViewController alloc] initWithVideoURL:[NSURL fileURLWithPath:videoPath] templateId:currentComposition.templateId];
         [self.navigationController pushViewController:videoComposeSuccessVC animated:YES];
     }
 }

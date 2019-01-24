@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property(nonatomic, copy) NSString *regId;
+@property(nonatomic, copy) NSString *deviceToken; //设备唯一标示
 @property(nonatomic) BOOL needShowUpdateAlert;
 
 @end

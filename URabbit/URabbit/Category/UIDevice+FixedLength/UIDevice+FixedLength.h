@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIDevice (FixedLength)
++(NSString *)deviceModel;
 +(CGFloat)safeAreaTopHeight;
 +(CGFloat)safeAreaTabbarHeight;
 +(CGFloat)safeAreaBottomHeight;

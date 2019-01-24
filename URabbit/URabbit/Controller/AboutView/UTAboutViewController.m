@@ -11,6 +11,11 @@
 
 @interface UTAboutViewController ()
 @property(nonatomic, strong) IBOutlet UILabel *versionLabel;
+@property(nonatomic, strong) IBOutlet UIButton *scoreButton;
+@property(nonatomic, strong) IBOutlet UIButton *arrowButton;
+@property(nonatomic, strong) IBOutlet UIView *lineView1;
+@property(nonatomic, strong) IBOutlet UIView *lineView2;
+@property(nonatomic, strong) IBOutlet UIButton *versionCheckButton;
 @end
 
 @implementation UTAboutViewController
@@ -19,6 +24,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [_versionLabel setText:[AppUtils appVersion]];
+    NSString *downLoadHtml = [[GeneralManager defaultManager] returnDownloadHtml];
+    if (downLoadHtml) {
+        [_scoreButton setHidden:NO];
+        [_arrowButton setHidden:NO];
+        [_versionCheckButton setHidden:NO];
+        [_lineView1 setHidden:NO];
+        [_lineView2 setHidden:NO];
+    }else{
+        [_scoreButton setHidden:YES];
+        [_arrowButton setHidden:YES];
+        [_versionCheckButton setHidden:YES];
+        [_lineView1 setHidden:YES];
+        [_lineView2 setHidden:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

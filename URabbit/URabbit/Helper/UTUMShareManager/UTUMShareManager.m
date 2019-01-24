@@ -89,6 +89,15 @@
 //            [AppUtils showInfo:[NSString stringWithFormat:@"分享失败,%@",error.description]];
         }else{
             NSLog(@"response data is %@",data);
+            if (platformType == UMSocialPlatformType_Sina) {
+                
+            }else if (platformType == UMSocialPlatformType_WechatSession){
+                
+            }else if (platformType == UMSocialPlatformType_WechatTimeLine){
+                
+            }else if (platformType == UMSocialPlatformType_QQ){
+                
+            }
             callback(data);
         }
     }];
@@ -109,7 +118,13 @@
         
         if (completed)
         {
-            
+            if ([activityType isEqualToString:@"com.tencent.xin.sharetimeline"]) {
+                
+            }else if ([activityType isEqualToString:@"com.tencent.mqq.ShareExtension"]){
+                
+            }else if ([activityType isEqualToString:@"com.sina.weibo.ShareExtension"]){
+                
+            }
         }
         else
         {

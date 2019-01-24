@@ -22,7 +22,6 @@ PODS:
     - BGFMDB/FMDB
   - BGFMDB/FMDB (2.0.13)
   - DMProgressHUD (0.0.6)
-  - iCards (1.1.0)
   - IconFont (0.0.2)
   - KINWebBrowser (1.3.2):
     - ARChromeActivity (= 1.0.5)
@@ -31,6 +30,10 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.15.7)
+  - QQ_MTA (2.5.0):
+    - QQ_MTA/BasicAnalysis (= 2.5.0)
+  - QQ_MTA/BasicAnalysis (2.5.0)
+  - SAMKeychain (1.5.3)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -53,7 +56,6 @@ PODS:
     - UMCCommon
     - UMCShare/Core
     - UMCShare/Social/ReducedWeChat
-  - WZLBadge (1.2.6)
   - YYImage (1.0.4):
     - YYImage/Core (= 1.0.4)
   - YYImage/Core (1.0.4)
@@ -64,20 +66,20 @@ DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - BGFMDB (~> 2.0.9)
   - DMProgressHUD
-  - iCards
   - IconFont (~> 0.0.2)
   - KINWebBrowser
   - LGAlertView (~> 2.0.0)
   - Masonry
   - MBProgressHUD (~> 1.0.0)
   - MJRefresh
+  - QQ_MTA
+  - SAMKeychain
   - SDWebImage (~> 4.0.0)
   - SSZipArchive
   - TYPagerController
   - UMCShare/Social/ReducedQQ
   - UMCShare/Social/ReducedSina
   - UMCShare/Social/WeChat
-  - WZLBadge
   - YYImage
   - YYImage/WebP
 
@@ -87,20 +89,20 @@ SPEC REPOS:
     - ARChromeActivity
     - BGFMDB
     - DMProgressHUD
-    - iCards
     - IconFont
     - KINWebBrowser
     - LGAlertView
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - QQ_MTA
+    - SAMKeychain
     - SDWebImage
     - SSZipArchive
     - TUSafariActivity
     - TYPagerController
     - UMCCommon
     - UMCShare
-    - WZLBadge
     - YYImage
 
 SPEC CHECKSUMS:
@@ -108,22 +110,22 @@ SPEC CHECKSUMS:
   ARChromeActivity: 821c7849b566f49583987468733a896fee35aa4d
   BGFMDB: 48e6823027232402a678acc7f71484b1fc9171d0
   DMProgressHUD: 08d99c8a3db0ae7a0c2d79c6939e8c32a5f8bfa1
-  iCards: 9f29cbfc7770572e02d35767632bd01508e8afd2
   IconFont: 2ea71fd37ea03acdb6025050dd36318de9fa37d9
   KINWebBrowser: 27aa857a2aa39063ed102cca781d130b679d205f
   LGAlertView: 9a5dcbf4f81b02b718083539d7f222280adc9547
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  QQ_MTA: 1bed9c567c10c9b7b6b8c7c847832fd1d14b8e2a
+  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   TYPagerController: 262556ecef99986d26ed77fb1288a198ed42f4af
   UMCCommon: 79b5a614c958db367113eed5740109d9a98e1223
   UMCShare: 552b29753f1b4da87b51d96545ed19e6263df397
-  WZLBadge: 9ec779dcfd94c825518b395e8315fccaabff1bfa
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: 2d3a3f222d3f026dabc2440b111ce9633e05e070
+PODFILE CHECKSUM: 781c50f9b52ab9e32c19b4e5fe3e1909669d854c
 
 COCOAPODS: 1.5.3
