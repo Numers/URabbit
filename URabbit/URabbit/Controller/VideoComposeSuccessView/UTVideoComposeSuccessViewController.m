@@ -107,7 +107,7 @@
 }
 
 -(void)share{
-    [AppUtils trackMTAEventNo:@"6" pageNo:@"2" parameters:@{@"templetId":[NSString stringWithFormat:@"\"%ld\"",currentTemplateId]}];
+    [AppUtils trackMTAEventNo:@"6" pageNo:@"2" parameters:@{@"templetId":[NSString stringWithFormat:@"%ld",currentTemplateId]}];
     [[UTUMShareManager shareManager] indirectShareVideo:videoUrl];
 }
 @end

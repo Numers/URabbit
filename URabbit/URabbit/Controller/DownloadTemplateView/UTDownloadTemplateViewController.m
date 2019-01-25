@@ -465,7 +465,7 @@
 #pragma -mark UTDownloadButtonViewProtocol
 -(void)beginDownload
 {
-    [AppUtils trackMTAEventNo:@"4" pageNo:@"2" parameters:@{@"templetId":[NSString stringWithFormat:@"\"%ld\"",currentHomeTemplate.templateId]}];
+    [AppUtils trackMTAEventNo:@"4" pageNo:@"2" parameters:@{@"templetId":[NSString stringWithFormat:@"%ld",currentHomeTemplate.templateId]}];
     if ([AppUtils compareVersion:currentHomeTemplate.latestVersion greatThan:[AppUtils appVersion]] > 0) {
         downloadAlertView = [[UTDownloadAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [downloadAlertView setDesctiption:@"该模板需要更新app才能使用\n确定前往更新吗？"];

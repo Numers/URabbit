@@ -261,7 +261,7 @@
         return;
     }
     [NSThread sleepForTimeInterval:0.2];
-    [AppUtils trackMTAEventNo:@"5" pageNo:@"2" parameters:@{@"templetId":[NSString stringWithFormat:@"\"%ld\"",currentComposition.templateId]}];
+    [AppUtils trackMTAEventNo:@"5" pageNo:@"2" parameters:@{@"templetId":[NSString stringWithFormat:@"%ld",currentComposition.templateId]}];
     [AppUtils showGIFHudProgress:@"" forView:self.view];
     if (audioURL) {
         NSString *tempVideoPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId identify:@"merge"];
