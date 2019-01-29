@@ -32,6 +32,7 @@ static NetWorkManager *scNetWorkManager;
     }
     [dic setObject:UTAppKey forKey:@"UT-App-Key"];
     [dic setObject:@"ios" forKey:@"User-Agent-Platform"];
+    [dic setObject:[AppUtils appVersion] forKey:@"User-Agent-App-Version"];
     [dic setObject:UTAppSecret forKey:@"UT-App-Secret"];
     [dic setObject:[NSString stringWithFormat:@"%.0f",now] forKey:@"UT-Timestamp"];
     return dic;
