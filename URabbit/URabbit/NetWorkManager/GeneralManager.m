@@ -98,6 +98,22 @@ static GeneralManager *generalManager;
     }
 }
 
+-(BOOL)isAuditSucess
+{
+    BOOL result = NO;
+    NSString *appVersion = [AppUtils appVersion];
+    if ([appVersion isEqualToString:submissionVersion]) {
+        if (submissionStatus == 2) {
+            result = YES;
+        }else{
+            result = NO;
+        }
+    }else{
+        result = YES;
+    }
+    return result;
+}
+
 -(void)shareConfig:(void (^)(NSDictionary *))callback
 {
     if (shareConfig) {
@@ -107,6 +123,8 @@ static GeneralManager *generalManager;
     [[NetWorkRequestManager shareManager] get:UT_ShareConfig_API parameters:nil callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         if (data) {
             shareConfig = [NSDictionary dictionaryWithDictionary:data];
+            submissionStatus = [[data objectForKey:@"iosSubmissionVersionStatus"] integerValue];
+            submissionVersion = [data objectForKey:@"iosSubmissionVersion"];
         }
         callback(data);
     } isNotify:NO];

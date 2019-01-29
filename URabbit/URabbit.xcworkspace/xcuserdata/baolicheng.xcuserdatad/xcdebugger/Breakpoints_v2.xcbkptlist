@@ -550,11 +550,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "570032903.0818141"
+            timestampString = "570437590.5255671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "-addConstraints"
             landmarkType = "7">
             <Locations>
@@ -867,11 +867,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "570032903.082357"
+            timestampString = "570437590.525861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "-addConstraints"
             landmarkType = "7">
          </BreakpointContent>
@@ -2475,11 +2475,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "570032903.085156"
+            timestampString = "570437590.527179"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5859,7 +5859,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/NetWorkManager/GeneralManager.m"
-            timestampString = "570032903.091543"
+            timestampString = "570437590.529937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -5922,7 +5922,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/NetWorkManager/GeneralManager.m"
-            timestampString = "570032903.091581"
+            timestampString = "570437590.5303251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -5938,7 +5938,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/NetWorkManager/GeneralManager.m"
-            timestampString = "570032903.091615"
+            timestampString = "570437590.530562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
@@ -5986,11 +5986,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "570032903.091722"
+            timestampString = "570437590.530906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-viewWillAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -6002,11 +6002,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "570032903.091765"
+            timestampString = "570437590.531037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "-viewWillAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -7182,7 +7182,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/NetWorkManager/GeneralManager.m"
-            timestampString = "570032903.0941401"
+            timestampString = "570437590.5321341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -7518,11 +7518,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "570032903.094785"
+            timestampString = "570437590.532596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "-requestWithRecommendList"
             landmarkType = "7">
          </BreakpointContent>
@@ -8492,22 +8492,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "570032903.096292"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "-collectionView:viewForSupplementaryElementOfKind:atIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeRecommendView/UTHomeRecommendView.m"
             timestampString = "569429494.269928"
             startingColumnNumber = "9223372036854775807"
@@ -9400,11 +9384,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "570032903.097523"
+            timestampString = "570437590.5339381"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "-requestWithRecommendList"
             landmarkType = "7">
          </BreakpointContent>
@@ -9576,7 +9560,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/NetWorkManager/GeneralManager.m"
-            timestampString = "570032903.097856"
+            timestampString = "570437590.534206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
@@ -9592,11 +9576,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "570032903.097895"
+            timestampString = "570437590.534447"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "294"
-            endingLineNumber = "294"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
             landmarkName = "-requestChoosenTemplateList"
             landmarkType = "7">
          </BreakpointContent>
@@ -9608,11 +9592,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "570032903.0979379"
+            timestampString = "570437590.534492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "-requestWithRecommendList"
             landmarkType = "7">
          </BreakpointContent>
@@ -9704,11 +9688,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/Controller/HomeView/UTHomeViewController.m"
-            timestampString = "570032903.098063"
+            timestampString = "570437590.534583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "-requestChoosenTemplateList"
             landmarkType = "7">
          </BreakpointContent>
@@ -9982,6 +9966,86 @@
             startingLineNumber = "34"
             endingLineNumber = "34"
             landmarkName = "-application:didFinishLaunchingWithOptions:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/NetWorkManager/GeneralManager.m"
+            timestampString = "570437590.534866"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-shareConfig:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/NetWorkManager/GeneralManager.m"
+            timestampString = "570437590.535089"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "-shareConfig:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/NetWorkManager/GeneralManager.m"
+            timestampString = "570437590.535297"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "-shareConfig:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/NetWorkManager/GeneralManager.m"
+            timestampString = "570437590.535503"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-shareConfig:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/NetWorkManager/GeneralManager.m"
+            timestampString = "570437590.535705"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-isAuditSucess"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

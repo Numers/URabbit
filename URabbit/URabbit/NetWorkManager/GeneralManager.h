@@ -11,6 +11,8 @@
 @interface GeneralManager : NSObject
 {
     NSString *downloadHtml;
+    NSInteger submissionStatus;
+    NSString *submissionVersion;
     NSDictionary *shareConfig;
 }
 +(id)defaultManager;
@@ -18,6 +20,7 @@
 -(void)getGlovalVarWithVersion;
 -(void)getNewAppVersion:(void(^)(BOOL hasNew))callback;
 -(NSString *)returnDownloadHtml;
+-(BOOL)isAuditSucess;
 -(void)jumpToDownloadHtml;
 -(void)sendRegID;
 -(void)shareConfig:(void (^)(NSDictionary *))callback;

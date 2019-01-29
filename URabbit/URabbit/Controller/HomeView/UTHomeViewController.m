@@ -22,6 +22,7 @@
 
 #import "UTHomeNetworkAPIManager.h"
 #import "AppStartManager.h"
+#import "GeneralManager.h"
 #import "UINavigationController+NavigationBar.h"
 
 NSString *homeTemplateCollectionViewCellIdentify = @"HomeTemplateCollectionViewCellIdentify";
@@ -227,10 +228,14 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
 
 -(void)refreshPageData
 {
-    currentPage = 1;
-    hasMore = YES;
-    [_collectionView.mj_footer resetNoMoreData];
-    [self requestData];
+    [[GeneralManager defaultManager] shareConfig:^(NSDictionary *dic) {
+        if (dic) {
+            currentPage = 1;
+            hasMore = YES;
+            [_collectionView.mj_footer resetNoMoreData];
+            [self requestData];
+        }
+    }];
 }
 
 -(void)endRefresh
@@ -318,8 +323,10 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
 
 /** 头视图Size */
 -(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
-    if (recommendList.count > 0) {
-        return CGSizeMake(SCREEN_WIDTH, 225);
+    if ([[GeneralManager defaultManager] isAuditSucess]) {
+        if (recommendList.count > 0) {
+            return CGSizeMake(SCREEN_WIDTH, 225);
+        }
     }
     return CGSizeZero;
 }
@@ -361,17 +368,22 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        UTHomeRecommendView *recommendView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:homeTemplateCollectionHeadViewIdentify forIndexPath:indexPath];
-        if (recommendList.count > 0) {
-            [recommendView setHidden:NO];
-            recommendView.delegate = self;
-            [recommendView setHeadImage:[UIImage imageNamed:@"jingxuan"] headTitle:@"推荐合集"];
-            [recommendView setDatasource:recommendList];
+    if ([[GeneralManager defaultManager] isAuditSucess]) {
+        if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+            UTHomeRecommendView *recommendView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:homeTemplateCollectionHeadViewIdentify forIndexPath:indexPath];
+            if (recommendList.count > 0) {
+                [recommendView setHidden:NO];
+                recommendView.delegate = self;
+                [recommendView setHeadImage:[UIImage imageNamed:@"jingxuan"] headTitle:@"推荐合集"];
+                [recommendView setDatasource:recommendList];
+            }else{
+                [recommendView setHidden:YES];
+            }
+            return recommendView;
         }else{
-            [recommendView setHidden:YES];
+            UTHomeCollectionFootReusableView *footView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:homeTemplateCollectionFootViewIdentify forIndexPath:indexPath];
+            return footView;
         }
-        return recommendView;
     }else{
         UTHomeCollectionFootReusableView *footView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:homeTemplateCollectionFootViewIdentify forIndexPath:indexPath];
         return footView;

@@ -25,7 +25,8 @@
     // Do any additional setup after loading the view.
     [_versionLabel setText:[AppUtils appVersion]];
     NSString *downLoadHtml = [[GeneralManager defaultManager] returnDownloadHtml];
-    if (downLoadHtml) {
+    BOOL isAuditSuccess = [[GeneralManager defaultManager] isAuditSucess];
+    if (downLoadHtml && isAuditSuccess) {
         [_scoreButton setHidden:NO];
         [_arrowButton setHidden:NO];
         [_versionCheckButton setHidden:NO];
