@@ -30,7 +30,7 @@ static URLManager *manager;
     if (state) {
         BaseURL = @"http://119.3.79.67:8090/ut";
     }else{
-        BaseURL = @"http://119.3.79.67:8080/ut";
+        BaseURL = @"http://119.3.79.67:8090/ut";
     }
 }
 @end

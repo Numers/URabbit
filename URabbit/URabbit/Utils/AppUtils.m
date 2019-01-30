@@ -57,7 +57,14 @@
         return 1;
     }
     
-    NSComparisonResult result = [version1 compare:version2 options:NSNumericSearch];
+    NSString *version;
+    if ([version1 isKindOfClass:[NSString class]]) {
+        version = version1;
+    }else{
+        version = [NSString stringWithFormat:@"%@",version1];
+    }
+    
+    NSComparisonResult result = [version compare:version2 options:NSNumericSearch];
     if (result == NSOrderedDescending) {
         return 1;
     }else if (result == NSOrderedAscending){
