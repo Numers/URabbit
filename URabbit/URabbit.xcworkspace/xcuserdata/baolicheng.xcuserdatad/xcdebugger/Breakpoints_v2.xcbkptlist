@@ -2364,7 +2364,7 @@
                   moduleName = "URabbit"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-                  timestampString = "570028202.514365"
+                  timestampString = "570540823.247582"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "510"
@@ -2379,7 +2379,7 @@
                   moduleName = "URabbit"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-                  timestampString = "570028202.516886"
+                  timestampString = "570540823.251539"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "510"
@@ -2394,7 +2394,7 @@
                   moduleName = "URabbit"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/baolicheng/Documents/MyCode/URabbit/URabbit/URabbit/Controller/DownloadTemplateView/UTDownloadTemplateViewController.m"
-                  timestampString = "570028202.519504"
+                  timestampString = "570540823.254324"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "510"
@@ -8413,7 +8413,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/NetWorkManager/URLManager.m"
-            timestampString = "570522218.5460449"
+            timestampString = "570612084.354015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -8429,7 +8429,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "URabbit/NetWorkManager/URLManager.m"
-            timestampString = "570522218.546407"
+            timestampString = "570612084.35454"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
@@ -10094,6 +10094,22 @@
             startingLineNumber = "67"
             endingLineNumber = "67"
             landmarkName = "+compareVersion:greatThan:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "URabbit/NetWorkManager/GeneralManager.m"
+            timestampString = "570540140.924356"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "-shareConfig:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
