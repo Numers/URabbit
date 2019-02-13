@@ -60,9 +60,17 @@
     CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
     CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, size.width, size.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     
-    CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, size.width, size.height), bgImage.CGImage);
-    CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, size.width, size.height), snapImage.CGImage);
-    CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, size.width, size.height), maskImage.CGImage);
+    if (bgImage) {
+        CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, size.width, size.height), bgImage.CGImage);
+    }
+    
+    if (snapImage) {
+        CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, size.width, size.height), snapImage.CGImage);
+    }
+    
+    if (maskImage) {
+        CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, size.width, size.height), maskImage.CGImage);
+    }
     
     CGImageRef newImageRef = CGBitmapContextCreateImage(mainViewContentContext);
     UIImage *newImage = [UIImage imageWithCGImage:newImageRef];

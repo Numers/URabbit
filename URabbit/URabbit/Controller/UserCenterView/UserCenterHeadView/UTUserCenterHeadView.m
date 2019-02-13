@@ -17,7 +17,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setBackgroundColor:[UIColor whiteColor]];
+        [self setBackgroundColor:[UIColor colorFromHexString:@"#FFDE44"]];
         headImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headIconImage"]];
         [headImageView.layer setCornerRadius:30.0f];
         [headImageView.layer setMasksToBounds:YES];
@@ -85,10 +85,12 @@
         [self addSubview:downloadNumberDescLabel];
         
         line1View = [[UIView alloc] init];
+        [line1View setHidden:YES];
         [line1View setBackgroundColor:[UIColor colorFromHexString:@"#F1F1F1"]];
         [self addSubview:line1View];
         
         line2View = [[UIView alloc] init];
+        [line2View setHidden:YES];
         [line2View setBackgroundColor:[UIColor colorFromHexString:@"#F1F1F1"]];
         [self addSubview:line2View];
         

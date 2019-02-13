@@ -51,7 +51,7 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
     if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [_tableView setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
-    [_tableView setSectionHeaderHeight:8];
+//    [_tableView setSectionHeaderHeight:8];
     //设置layoutMargins(iOS8之后)
     if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         [_tableView setLayoutMargins:UIEdgeInsetsZero];
@@ -79,7 +79,7 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-    [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
+    [self.navigationController setNavigationViewColor:[UIColor colorFromHexString:@"#FFDE44"]];
     [self.navigationController setStatusBarStyle:UIStatusBarStyleDefault];
     [self.navigationItem setTitle:@"个人中心"];
     
@@ -164,7 +164,7 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 8;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

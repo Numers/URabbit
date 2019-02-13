@@ -62,6 +62,10 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
     recommendList = [NSMutableArray array];
     choosenTemplateList = [NSMutableArray array];
     
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, [UIDevice safeAreaTopHeight])];
+    [backView setBackgroundColor:[UIColor colorFromHexString:@"#FFDE44"]];
+    [self.view addSubview:backView];
+    
     _topLineView = [[UIView alloc] init];
     [_topLineView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:_topLineView];
@@ -70,14 +74,15 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
 //    [_searchBarBackgroundView.layer setCornerRadius:16.0f];
 //    [_searchBarBackgroundView.layer setMasksToBounds:YES];
 //    [self.view addSubview:_searchBarBackgroundView];
-    _userCenterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_userCenterButton addTarget:self action:@selector(clickUserCenterButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_userCenterButton];
     
-    _userCenterImageView = [[UIImageView alloc] init];
-    [_userCenterImageView.layer setCornerRadius:16];
-    [_userCenterImageView.layer setMasksToBounds:YES];
-    [self.view insertSubview:_userCenterImageView belowSubview:_userCenterButton];
+//    _userCenterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [_userCenterButton addTarget:self action:@selector(clickUserCenterButton) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:_userCenterButton];
+    
+//    _userCenterImageView = [[UIImageView alloc] init];
+//    [_userCenterImageView.layer setCornerRadius:16];
+//    [_userCenterImageView.layer setMasksToBounds:YES];
+//    [self.view insertSubview:_userCenterImageView belowSubview:_userCenterButton];
     
     _titleLabel = [[UILabel alloc] init];
     [_titleLabel setText:@"有兔"];
@@ -173,19 +178,19 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
         make.centerX.equalTo(self.view.centerX);
     }];
     
-    [_userCenterButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.view).offset(0);
-        make.width.equalTo(@(49));
-        make.height.equalTo(@(32));
-        make.centerY.equalTo(_titleLabel.mas_centerY);
-    }];
-    
-    [_userCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.view).offset(15);
-        make.width.equalTo(@(32));
-        make.height.equalTo(@(32));
-        make.centerY.equalTo(_titleLabel.mas_centerY);
-    }];
+//    [_userCenterButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(self.view).offset(0);
+//        make.width.equalTo(@(49));
+//        make.height.equalTo(@(32));
+//        make.centerY.equalTo(_titleLabel.mas_centerY);
+//    }];
+//    
+//    [_userCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(self.view).offset(15);
+//        make.width.equalTo(@(32));
+//        make.height.equalTo(@(32));
+//        make.centerY.equalTo(_titleLabel.mas_centerY);
+//    }];
     
 //    [_filterButton mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.trailing.equalTo(self.view);

@@ -21,7 +21,6 @@
     [self setTintColor:[UIColor colorFromHexString:@"#333333"]];
     [self.progressView setTrackTintColor:[UIColor whiteColor]];
     [self.progressView setProgressTintColor:[UIColor colorFromHexString:@"#2D99F6"]];
-    [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
     
     if ([AppUtils isNetworkURL:_loadUrl]) {
         [self webViewLoadUrl];

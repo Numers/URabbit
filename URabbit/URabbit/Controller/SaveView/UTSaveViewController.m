@@ -83,14 +83,14 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
+    [self.navigationController setNavigationViewColor:[UIColor colorFromHexString:@"#FFDE44"]];
     [self.navigationItem setTitle:@"我的收藏"];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
+    [self.navigationController setNavigationViewColor:[UIColor colorFromHexString:@"#FFDE44"]];
 }
 
 - (void)didReceiveMemoryWarning {

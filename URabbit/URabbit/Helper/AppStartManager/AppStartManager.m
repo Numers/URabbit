@@ -234,19 +234,35 @@
     
     UTHomeViewController *homeVC = [[UTHomeViewController alloc] init];
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:homeVC];
-    [self setNavigationColor:nav1];
+//    [self setNavigationColor:nav1];
     
     UTUserCenterViewController *userCenterVC = [[UTUserCenterViewController alloc] init];
     UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:userCenterVC];
-    [self setNavigationColor:nav2];
+//    [self setNavigationColor:nav2];
     [nav2.navigationBar setBackIndicatorImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#737373"])]];
     [nav2.navigationBar setBackIndicatorTransitionMaskImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#737373"])]];
     
     [_tabBarController setViewControllers:@[nav1,nav2]];
-    LLTabBar *tabBar = [[LLTabBar alloc] initWithFrame:_tabBarController.tabBar.bounds];
-    tabBar.tabBarItemAttributes = @[@{kLLTabBarItemAttributeTitle:@"首页",kLLTabBarItemAttributeNormalImageName:@"tabbar_home_normal",kLLTabBarItemAttributeSelectedImageName:@"tabbar_home_select",kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},@{kLLTabBarItemAttributeTitle:@"拍摄",kLLTabBarItemAttributeNormalImageName:@"tabbar_camera_normal",kLLTabBarItemAttributeSelectedImageName:@"tabbar_camera_select",kLLTabBarItemAttributeType : @(LLTabBarItemRise)},@{kLLTabBarItemAttributeTitle:@"我的",kLLTabBarItemAttributeNormalImageName:@"tabbar_usercenter_normal",kLLTabBarItemAttributeSelectedImageName:@"tabbar_usercenter_select",kLLTabBarItemAttributeType : @(LLTabBarItemNormal)}];
-    tabBar.delegate = self;
-    [_tabBarController.tabBar addSubview:tabBar];
+//    LLTabBar *tabBar = [[LLTabBar alloc] initWithFrame:_tabBarController.tabBar.bounds];
+//    tabBar.tabBarItemAttributes = @[@{kLLTabBarItemAttributeTitle:@"首页",kLLTabBarItemAttributeNormalImageName:@"tabbar_home_normal",kLLTabBarItemAttributeSelectedImageName:@"tabbar_home_select",kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},@{kLLTabBarItemAttributeTitle:@"拍摄",kLLTabBarItemAttributeNormalImageName:@"tabbar_camera_normal",kLLTabBarItemAttributeSelectedImageName:@"tabbar_camera_select",kLLTabBarItemAttributeType : @(LLTabBarItemRise)},@{kLLTabBarItemAttributeTitle:@"我的",kLLTabBarItemAttributeNormalImageName:@"tabbar_usercenter_normal",kLLTabBarItemAttributeSelectedImageName:@"tabbar_usercenter_select",kLLTabBarItemAttributeType : @(LLTabBarItemNormal)}];
+//    tabBar.tabBarItemAttributes = @[@{kLLTabBarItemAttributeTitle:@"首页",kLLTabBarItemAttributeNormalImageName:@"tabbar_home_normal",kLLTabBarItemAttributeSelectedImageName:@"tabbar_home_select",kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},@{kLLTabBarItemAttributeTitle:@"我的",kLLTabBarItemAttributeNormalImageName:@"tabbar_usercenter_normal",kLLTabBarItemAttributeSelectedImageName:@"tabbar_usercenter_select",kLLTabBarItemAttributeType : @(LLTabBarItemNormal)}];
+//    tabBar.delegate = self;
+//    [_tabBarController.tabBar addSubview:tabBar];
+    
+    UITabBar *tabBar = _tabBarController.tabBar;
+    [tabBar setTranslucent:NO];
+    UITabBarItem *item1 = [tabBar.items objectAtIndex:0];
+    [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#4A4A4A"]} forState:UIControlStateNormal];
+    [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#FFDE44"]} forState:UIControlStateSelected];
+    [item1 setImage:[[UIImage imageNamed:@"tabbar_home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item1 setSelectedImage:[[UIImage imageNamed:@"tabbar_home_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    item1.title = @"首页";
+    UITabBarItem *item2 = [tabBar.items objectAtIndex:1];
+    [item2 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#4A4A4A"]} forState:UIControlStateNormal];
+    [item2 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#FFDE44"]} forState:UIControlStateSelected];
+    [item2 setImage:[[UIImage imageNamed:@"tabbar_usercenter_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item2 setSelectedImage:[[UIImage imageNamed:@"tabbar_usercenter_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    item2.title = @"我的";
 }
 
 #pragma -mark protocol LLTabBarDelegate
@@ -313,9 +329,8 @@
 ///////////////////////////////////////////////////////
 -(void)setHomeView
 {
-//    [self generateTabBarController];
-    UTHomeViewController *homeVC = [[UTHomeViewController alloc] init];
-    _navigationController = [[UINavigationController alloc] initWithRootViewController:homeVC];
+    [self generateTabBarController];
+    _navigationController = [[UINavigationController alloc] initWithRootViewController:_tabBarController];
     [_navigationController setNavigationBarHidden:YES];
     [self setNavigationColor:_navigationController];
     [[(AppDelegate *)[UIApplication sharedApplication].delegate window] setRootViewController:_navigationController];

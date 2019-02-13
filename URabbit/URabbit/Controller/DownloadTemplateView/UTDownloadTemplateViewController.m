@@ -129,6 +129,12 @@
     }
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationViewColor:[UIColor colorFromHexString:@"#FFDE44"]];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -137,9 +143,9 @@
 -(void)navigationBarSetting
 {
     [self.navigationController setNavigationBarHidden:NO];
+     [self.navigationController setNavigationViewColor:[UIColor colorFromHexString:@"#FFDE44"]];
     [self.navigationItem setTitle:currentHomeTemplate.title];
-    [self.navigationController setNavigationViewColor:[UIColor whiteColor]];
-    
+   
     [self setRightItems];
 }
 
@@ -239,6 +245,9 @@
     if (resource.fgVideo) {
         resource.fps = [[UTVideoManager shareManager] getFpsWithVideoPath:resource.fgVideo];
         resource.totalFrame = [[UTVideoManager shareManager] getTotalFramesWithVideoPath:resource.fgVideo];
+    }else if (resource.bgVideo){
+        resource.fps = [[UTVideoManager shareManager] getFpsWithVideoPath:resource.bgVideo];
+        resource.totalFrame = [[UTVideoManager shareManager] getTotalFramesWithVideoPath:resource.bgVideo];
     }else{
         resource.fps = currentHomeTemplate.fps;
         resource.totalFrame = currentHomeTemplate.totalFrame;
