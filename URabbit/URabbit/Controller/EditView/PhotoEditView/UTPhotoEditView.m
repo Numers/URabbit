@@ -18,6 +18,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self.layer setCornerRadius:5.0f];
+        [self.layer setMasksToBounds:YES];
         if (snapshot.foregroundImage) {
             _templateImageView = [[UTTplImageLayerView alloc] init];
             UIImage *templateImage = [UIImage imageWithContentsOfFile:snapshot.foregroundImage];

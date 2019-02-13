@@ -40,7 +40,7 @@ static NSString *playCollectionViewCellIdentify = @"PlayCollectionViewCellIdenti
         [self addSubview:collectionView];
         
         whiteLine = [[UIView alloc] init];
-        [whiteLine setBackgroundColor:[UIColor whiteColor]];
+        [whiteLine setBackgroundColor:[UIColor colorFromHexString:@"#999999"]];
         [self addSubview:whiteLine];
         [self makeConstraints];
     }
@@ -67,7 +67,7 @@ static NSString *playCollectionViewCellIdentify = @"PlayCollectionViewCellIdenti
         make.top.equalTo(self);
         make.bottom.equalTo(self);
         make.centerX.equalTo(self.centerX);
-        make.width.equalTo(@(1));
+        make.width.equalTo(@(2));
     }];
 }
 

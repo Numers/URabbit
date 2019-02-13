@@ -21,6 +21,9 @@
 }
 @property(nonatomic, weak) id<UTDownloadAlertViewProtocl> delegate;
 -(void)setDesctiption:(NSString *)description;
+-(void)setLogoImage:(UIImage *)image;
+-(void)setButtonTitle:(NSString *)title;
+-(void)setContainerViewFrame:(CGRect)rect;
 -(void)alert;
 -(void)dismiss:(void (^)(void))callback;
 @end

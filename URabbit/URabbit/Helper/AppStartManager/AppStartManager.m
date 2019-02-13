@@ -252,13 +252,13 @@
     UITabBar *tabBar = _tabBarController.tabBar;
     [tabBar setTranslucent:NO];
     UITabBarItem *item1 = [tabBar.items objectAtIndex:0];
-    [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#4A4A4A"]} forState:UIControlStateNormal];
+    [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#999999"]} forState:UIControlStateNormal];
     [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#FFDE44"]} forState:UIControlStateSelected];
     [item1 setImage:[[UIImage imageNamed:@"tabbar_home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [item1 setSelectedImage:[[UIImage imageNamed:@"tabbar_home_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     item1.title = @"首页";
     UITabBarItem *item2 = [tabBar.items objectAtIndex:1];
-    [item2 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#4A4A4A"]} forState:UIControlStateNormal];
+    [item2 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#999999"]} forState:UIControlStateNormal];
     [item2 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#FFDE44"]} forState:UIControlStateSelected];
     [item2 setImage:[[UIImage imageNamed:@"tabbar_usercenter_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [item2 setSelectedImage:[[UIImage imageNamed:@"tabbar_usercenter_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];

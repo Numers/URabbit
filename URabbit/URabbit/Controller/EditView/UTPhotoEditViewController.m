@@ -84,7 +84,7 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     draftTemplate = [[DraftTemplate alloc] init];
     draftTemplate.memberId = currentComposition.memberId;
     draftTemplate.templateId = currentComposition.templateId;
@@ -186,9 +186,9 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 
 -(void)navigationBarSetting
 {
-    [self.navigationController setTranslucentView];
+    [self.navigationController setNavigationViewColor:[UIColor colorFromHexString:@"#FFDE44"]];
     UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStylePlain target:self action:@selector(nextStep)];
-    [rightItem1 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [rightItem1 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#333333"]} forState:UIControlStateNormal];
 //    UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithTitle:@"存草稿" style:UIBarButtonItemStylePlain target:self action:@selector(saveInDraft)];
 //    [rightItem2 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#999999"]} forState:UIControlStateNormal];
 //    [self.navigationItem setRightBarButtonItems:@[rightItem1,rightItem2]];

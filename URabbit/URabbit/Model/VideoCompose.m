@@ -211,6 +211,9 @@
     dispatch_async(videoWriterQueue, ^{
         NSLog(@"did write %ld",frame);
         if (sampleBufferRef) {
+            while (![videoWriterInput isReadyForMoreMediaData]) {
+                [NSThread sleepForTimeInterval:0.05];
+            }
             if([videoWriterInput isReadyForMoreMediaData]){
                 BOOL success = [self writeToMovie:sampleBufferRef frame:frame];
                 if (success) {

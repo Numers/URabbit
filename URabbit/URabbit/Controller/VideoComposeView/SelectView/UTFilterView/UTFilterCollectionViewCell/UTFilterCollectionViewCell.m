@@ -21,6 +21,7 @@
         [self addSubview:filterImageView];
         
         nameLabel = [[UILabel alloc] init];
+        [nameLabel setBackgroundColor:[UIColor whiteColor]];
         [nameLabel setFont:[UIFont systemFontOfSize:10.0f]];
         [nameLabel setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:nameLabel];
@@ -40,7 +41,7 @@
     
     [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(filterImageView.bottom);
-        make.bottom.equalTo(self);
+        make.bottom.equalTo(self).offset(0);
         make.leading.equalTo(self);
         make.trailing.equalTo(self);
     }];
@@ -67,8 +68,13 @@
         self.layer.borderColor = [UIColor colorFromHexString:@"#FFDE44"].CGColor;
     }else{
         [nameLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
-        self.layer.borderWidth = 0.01;
-        self.layer.borderColor = [UIColor clearColor].CGColor;
+        self.layer.borderWidth = 0.5;
+        self.layer.borderColor = [UIColor colorFromHexString:@"#F5F5F5"].CGColor;
+    
+//        //shadow不能masksToBounds=YES
+//        [nameLabel.layer setShadowOpacity:0.5f];
+//        [nameLabel.layer setShadowOffset:CGSizeMake(0, 1.0)];
+//        [nameLabel.layer setShadowColor:[UIColor colorFromHexString:@"#F5F5F5"].CGColor];
     }
 }
 @end

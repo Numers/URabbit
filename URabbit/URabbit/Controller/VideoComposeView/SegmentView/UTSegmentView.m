@@ -26,7 +26,7 @@
         [scrollView addSubview:lineView];
         
         bottomLineView = [[UIView alloc] init];
-        [bottomLineView setBackgroundColor:[UIColor whiteColor]];
+        [bottomLineView setBackgroundColor:[UIColor colorFromHexString:@"#F5F5F5"]];
         [self addSubview:bottomLineView];
         
         [self makeContraints];
@@ -69,7 +69,7 @@
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.tag = i;
             [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-            NSAttributedString *titleString = [AppUtils generateAttriuteStringWithStr:title WithColor:[UIColor whiteColor] WithFont:[UIFont systemFontOfSize:14.0f]];
+            NSAttributedString *titleString = [AppUtils generateAttriuteStringWithStr:title WithColor:[UIColor colorFromHexString:@"#999999"] WithFont:[UIFont systemFontOfSize:14.0f]];
             [button setAttributedTitle:titleString forState:UIControlStateNormal];
             [button setFrame:CGRectMake(i * 58, 0, 58, 36)];
             [scrollView addSubview:button];
@@ -110,13 +110,13 @@
     if (selectedIndex >=0 && selectedIndex != index) {
         UIButton *btn = [_buttons objectAtIndex:selectedIndex];
         NSString *title = [_titleList objectAtIndex:selectedIndex];
-        NSAttributedString *attrString = [AppUtils generateAttriuteStringWithStr:title WithColor:[UIColor whiteColor] WithFont:[UIFont systemFontOfSize:14]];
+        NSAttributedString *attrString = [AppUtils generateAttriuteStringWithStr:title WithColor:[UIColor colorFromHexString:@"#999999"] WithFont:[UIFont systemFontOfSize:14]];
         [btn setAttributedTitle:attrString forState:UIControlStateNormal];
     }
     
     UIButton *selectBtn = [_buttons objectAtIndex:index];
     NSString *title = [_titleList objectAtIndex:index];
-    NSAttributedString *tempAttrString = [AppUtils generateAttriuteStringWithStr:title WithColor:[UIColor colorFromHexString:@"#FFDE44"] WithFont:[UIFont systemFontOfSize:14]];
+    NSAttributedString *tempAttrString = [AppUtils generateAttriuteStringWithStr:title WithColor:[UIColor colorFromHexString:@"#333333"] WithFont:[UIFont systemFontOfSize:14]];
     [selectBtn setAttributedTitle:tempAttrString forState:UIControlStateNormal];
     if (animation) {
         [UIView animateWithDuration:0.25 animations:^{

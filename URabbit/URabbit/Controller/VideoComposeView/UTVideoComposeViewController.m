@@ -28,8 +28,10 @@
 
 #import <Photos/PHPhotoLibrary.h>
 #import <LGAlertView/LGAlertView.h>
+#import "UTDownloadAlertView.h"
+#import "UTUMShareManager.h"
 
-@interface UTVideoComposeViewController ()<UTPlaySubViewProtocol,UTSelectViewProtocol>
+@interface UTVideoComposeViewController ()<UTPlaySubViewProtocol,UTSelectViewProtocol,UTDownloadAlertViewProtocl>
 {
     Resource *resource;
     NSString *movieURL;
@@ -55,6 +57,8 @@
     BOOL isInCompositon;
     
     BOOL isSaving;
+    
+    UTDownloadAlertView *shareAlertView;
 }
 @end
 
@@ -78,7 +82,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorFromHexString:@"#121722"]];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     self.automaticallyAdjustsScrollViewInsets = NO;
     selectView = [[UTSelectView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT - [UIDevice safeAreaBottomHeight] - 106, SCREEN_WIDTH, 106)];
     selectView.delegate = self;
@@ -98,6 +102,8 @@
     [self.view addSubview:playView];
     
     imageView = [[GPUImageView alloc] init];
+    [imageView.layer setCornerRadius:15.0f];
+    [imageView.layer setMasksToBounds:YES];
     [self.view addSubview:imageView];
     [self makeConstraints];
     
@@ -201,9 +207,9 @@
 -(void)navigationBarSetting
 {
     [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setTranslucentView];
+    [self.navigationController setNavigationViewColor:[UIColor colorFromHexString:@"#FFDE44"]];
     UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
-    [rightItem1 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [rightItem1 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#333333"]} forState:UIControlStateNormal];
     UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithTitle:@"存草稿" style:UIBarButtonItemStylePlain target:self action:@selector(saveInDraft)];
     [rightItem2 setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#999999"]} forState:UIControlStateNormal];
     [self.navigationItem setRightBarButtonItems:@[rightItem1,rightItem2]];
@@ -312,8 +318,16 @@
         NSLog(@"保存视频成功");
         [currentComposition bg_save];
         isInCompositon = YES;
-        UTVideoComposeSuccessViewController *videoComposeSuccessVC = [[UTVideoComposeSuccessViewController alloc] initWithVideoURL:[NSURL fileURLWithPath:videoPath] templateId:currentComposition.templateId];
-        [self.navigationController pushViewController:videoComposeSuccessVC animated:YES];
+        
+        shareAlertView = [[UTDownloadAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [shareAlertView setDesctiption:@"制作成功\n已保存到本地相册"];
+        [shareAlertView setButtonTitle:@"立即分享"];
+        [shareAlertView setContainerViewFrame:CGRectMake(0, 0, 280, 320)];
+        [shareAlertView setLogoImage:[UIImage imageNamed:@"MovieImage"]];
+        shareAlertView.delegate = self;
+        [shareAlertView alert];
+//        UTVideoComposeSuccessViewController *videoComposeSuccessVC = [[UTVideoComposeSuccessViewController alloc] initWithVideoURL:[NSURL fileURLWithPath:videoPath] templateId:currentComposition.templateId];
+//        [self.navigationController pushViewController:videoComposeSuccessVC animated:YES];
     }
 }
 
@@ -563,5 +577,21 @@
             }];
         }
     }
+}
+
+#pragma -mark UTDownloadAlertViewProtocl
+-(void)didComfirm
+{
+    if (shareAlertView) {
+        [shareAlertView dismiss:^{
+            shareAlertView = nil;
+            [self share];
+        }];
+    }
+}
+
+-(void)share{
+    [AppUtils trackMTAEventNo:@"6" pageNo:@"2" parameters:@{@"templetId":[NSString stringWithFormat:@"%ld",currentComposition.templateId]}];
+    [[UTUMShareManager shareManager] indirectShareVideo:[NSURL fileURLWithPath:currentComposition.moviePath]];
 }
 @end

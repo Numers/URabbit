@@ -86,6 +86,25 @@
     [descLabel setAttributedText:attributeString];
 }
 
+-(void)setLogoImage:(UIImage *)image
+{
+    [vipImageView setImage:image];
+}
+
+-(void)setButtonTitle:(NSString *)title
+{
+    NSAttributedString *comfirmTitle = [AppUtils generateAttriuteStringWithStr:title WithColor:[UIColor colorFromHexString:@"#333333"] WithFont:[UIFont systemFontOfSize:14.0f]];
+    [comfirmButton setAttributedTitle:comfirmTitle forState:UIControlStateNormal];
+}
+
+-(void)setContainerViewFrame:(CGRect)rect
+{
+    if (backgroundView) {
+        [backgroundView setFrame:rect];
+        [backgroundView setCenter:CGPointMake(self.frame.size.width / 2.0f, self.frame.size.height / 2.0f)];
+    }
+}
+
 -(void)alert
 {
     UIWindow *rootWindow = [UIApplication sharedApplication].keyWindow;

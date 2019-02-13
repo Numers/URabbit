@@ -87,8 +87,8 @@
         self.layer.borderColor = [UIColor colorFromHexString:@"#FFDE44"].CGColor;
     }else{
         [nameLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
-        self.layer.borderWidth = 0.01;
-        self.layer.borderColor = [UIColor clearColor].CGColor;
+        self.layer.borderWidth = 0.5;
+        self.layer.borderColor = [UIColor colorFromHexString:@"#F5F5F5"].CGColor;
     }
 }
 @end
