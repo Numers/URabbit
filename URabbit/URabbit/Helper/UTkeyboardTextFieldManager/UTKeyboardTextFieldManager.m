@@ -38,13 +38,16 @@
 
 -(void)destroyKeyboardTextField
 {
-    [keyboardTextField removeFromSuperview];
-    keyboardTextField = nil;
+    if (keyboardTextField) {
+        [keyboardTextField removeFromSuperview];
+        keyboardTextField = nil;
+    }
 }
 
 #pragma -mark UTKeyboardTextFieldProtocol
 -(void)resignFirstResponseWithText:(NSString *)text
 {
+    [self destroyKeyboardTextField];
     if (currentCallback) {
         currentCallback(text);
     }
