@@ -185,7 +185,13 @@
             }
             
             [videoInfoView setHomeTemplate:template];
-            [videoAuthorView setFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
+            if ([[GeneralManager defaultManager] isAuditSucess]){
+                [videoAuthorView setFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
+            }else{
+                [videoAuthorView setHidden:YES];
+                [videoAuthorView setFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 0)];
+            }
+            
             [videoAuthorView setHomeTemplate:template];
             [scrollView setContentSize:CGSizeMake(SCREEN_WIDTH, 17 + videoInfoView.frame.size.height + videoAuthorView.frame.size.height + makeButtonView.frame.size.height)];
             currentHomeTemplate = template;
