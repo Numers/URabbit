@@ -18,6 +18,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self setBackgroundColor:[UIColor blackColor]];
         [self.layer setCornerRadius:5.0f];
         [self.layer setMasksToBounds:YES];
         if (snapshot.foregroundImage) {
