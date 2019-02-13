@@ -28,9 +28,9 @@ static URLManager *manager;
 -(void)setUrlWithState:(BOOL)state
 {
     if (state) {
-        BaseURL = @"http://119.3.79.67:8080/ut";
+        BaseURL = @"http://119.3.79.67:8090/ut";  //正式环境
     }else{
-        BaseURL = @"http://119.3.79.67:8090/ut";
+        BaseURL = @"http://119.3.79.67:8080/ut";  //测试环境
     }
 }
 @end
