@@ -67,10 +67,10 @@
     [vipDescLabel setHidden:!isShow];
 }
 
--(void)setButtonTitle:(NSString *)title
+-(void)setButtonTitle:(NSString *)title enable:(BOOL)enable
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [downloadButton setEnabled:YES];
+        [downloadButton setEnabled:enable];
         [downloadButton setTitle:title forState:UIControlStateNormal];
     });
 }

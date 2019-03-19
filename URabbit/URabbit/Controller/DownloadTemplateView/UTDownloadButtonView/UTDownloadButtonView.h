@@ -18,5 +18,5 @@
 @property(nonatomic, weak) id<UTDownloadButtonViewProtocol> delegate;
 -(void)setTitle:(NSString *)title isShowVipLabel:(BOOL)isShow;
 -(void)setProgress:(CGFloat)progress;
--(void)setButtonTitle:(NSString *)title;
+-(void)setButtonTitle:(NSString *)title enable:(BOOL)enable;
 @end

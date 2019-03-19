@@ -12,13 +12,17 @@
 #import "TYTabPagerBar.h"
 #import "TYPagerController.h"
 #import "UTCategoryPageViewController.h"
+#import "UTHomeNetworkAPIManager.h"
 
 @interface UTCategoryViewController ()<TYTabPagerBarDataSource,TYTabPagerBarDelegate,TYPagerControllerDataSource,TYPagerControllerDelegate>
 {
-    NSArray *itemArray;
+    NSMutableArray *itemArray;
     NSInteger defaultSelectIndex;
+    
+    BOOL needRequestItems;
 }
 @property(nonatomic, strong) IBOutlet UIButton *backButton;
+@property(nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property(nonatomic, strong) IBOutlet UIView *navBarView;
 @property(nonatomic, strong) IBOutlet NSLayoutConstraint *navHeightConstraint;
 @property (nonatomic, weak) TYTabPagerBar *tabBar;
@@ -31,8 +35,21 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self = [storyboard instantiateViewControllerWithIdentifier:@"UTCategoryViewIdentify"];
     if (self) {
-        itemArray = items;
+        needRequestItems = NO;
+        itemArray = [NSMutableArray arrayWithArray:items];
         defaultSelectIndex = index;
+    }
+    return self;
+}
+
+-(instancetype)init
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"UTCategoryViewIdentify"];
+    if (self) {
+        needRequestItems = YES;
+        itemArray = [NSMutableArray array];
+        defaultSelectIndex = 0;
     }
     return self;
 }
@@ -45,6 +62,17 @@
     _navHeightConstraint.constant = [UIDevice safeAreaTopHeight];
     [self addTabPageBar];
     [self addPagerController];
+    
+    if (needRequestItems) {
+        [_backButton setHidden:YES];
+        [_titleLabel setText:@"首页"];
+        [_navBarView setBackgroundColor:[UIColor colorFromHexString:@"#FFDE44"]];
+        [self beginMoniteNetwork];
+    }else{
+        [_titleLabel setText:@"全部模板"];
+        [_backButton setHidden:NO];
+        [self reloadData];
+    }
 }
 
 - (void)addTabPageBar {
@@ -81,7 +109,6 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController setStatusBarStyle:UIStatusBarStyleDefault];
-    [self reloadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -94,6 +121,34 @@
     [super viewWillLayoutSubviews];
     _tabBar.frame = CGRectMake(0, [UIDevice safeAreaTopHeight], CGRectGetWidth(self.view.frame), 36);
     _pagerController.view.frame = CGRectMake(0, CGRectGetMaxY(_tabBar.frame), CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)- CGRectGetMaxY(_tabBar.frame));
+}
+
+-(void)beginMoniteNetwork
+{
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status != AFNetworkReachabilityStatusNotReachable) {
+            [self requestWithRecommendList];
+        }
+    }];
+    [manager startMonitoring];
+}
+
+-(void)requestWithRecommendList
+{
+    if (itemArray.count > 0) {
+        return;
+    }
+    [[UTHomeNetworkAPIManager shareManager] getReccmmendTemplateCallback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+        NSArray *templateArr = (NSArray *)data;
+        if (templateArr && templateArr.count > 0) {
+            for (NSDictionary *dic in templateArr) {
+                RecommendTemplate *template = [[RecommendTemplate alloc] initWithDictionary:dic];
+                [itemArray addObject:template];
+            }
+        }
+        [self reloadData];
+    }];
 }
 
 -(IBAction)clickBackBtn:(id)sender
@@ -150,6 +205,7 @@
 
 - (void)reloadData {
     [_tabBar reloadData];
+    [_pagerController reloadData];
 //    [_tabBar scrollToItemFromIndex:0 toIndex:defaultSelectIndex animate:NO];
     [_pagerController scrollToControllerAtIndex:defaultSelectIndex animate:NO];
 }

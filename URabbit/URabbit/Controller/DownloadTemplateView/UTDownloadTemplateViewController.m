@@ -186,7 +186,9 @@
             
             [videoInfoView setHomeTemplate:template];
             if ([[GeneralManager defaultManager] isAuditSucess]){
-                [videoAuthorView setFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
+//                [videoAuthorView setFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 77)];
+                [videoAuthorView setHidden:YES];
+                [videoAuthorView setFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 0)];
             }else{
                 [videoAuthorView setHidden:YES];
                 [videoAuthorView setFrame:CGRectMake(0, videoInfoView.frame.origin.y + videoInfoView.frame.size.height, SCREEN_WIDTH, 0)];
@@ -522,8 +524,10 @@
             }
         });
     }else{
+        [AppUtils showGIFHudProgress:@"" forView:self.view];
         [[NetWorkManager defaultManager] downloadFileWithOption:nil withInferface:currentHomeTemplate.downloadUrl savedPath:zipPath downloadSuccess:^(NSURL *filePath) {
-            [makeButtonView setButtonTitle:@"一键制作"];
+            [AppUtils hiddenGIFHud:self.view];
+            [makeButtonView setButtonTitle:@"一键制作" enable:YES];
             [loadedTemplate bg_saveOrUpdate];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 BOOL result = [self unzipFile:zipPath directory:videoDic];
@@ -532,11 +536,13 @@
                 }
             });
         } downloadFailure:^(NSError *error) {
+            [AppUtils hiddenGIFHud:self.view];
             [AppUtils showInfo:@"下载失败"];
-            [makeButtonView setButtonTitle:@"一键制作"];
+            [makeButtonView setButtonTitle:@"一键制作" enable:YES];
         } progress:^(NSProgress *downloadProgress) {
             NSLog(@"下载了%lf",[downloadProgress fractionCompleted]);
-            [makeButtonView setProgress:[downloadProgress fractionCompleted]];
+            [makeButtonView setButtonTitle:@"下载中..." enable:NO];
+//            [makeButtonView setProgress:[downloadProgress fractionCompleted]];
         }];
     }
 }

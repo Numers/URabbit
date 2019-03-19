@@ -224,6 +224,7 @@ static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCe
 {
     HomeTemplate *homeTemplate = [dataSource objectAtIndex:indexPath.row];
     UTDownloadTemplateViewController *downloadTemplateVC = [[UTDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
+    downloadTemplateVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:downloadTemplateVC animated:YES];
 }
 

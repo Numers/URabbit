@@ -8,6 +8,7 @@
 
 #import "UTHomeRecommendView.h"
 #import "UTHomeRecommendCollectionViewCell.h"
+#import "GeneralManager.h"
 
 static NSString *homeRecommendCollectionViewCellIdentify = @"HomeRecommendCollectionViewCellIdentify";
 @interface UTHomeRecommendView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -59,13 +60,15 @@ static NSString *homeRecommendCollectionViewCellIdentify = @"HomeRecommendCollec
         [chooseHeadLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
         [chooseHeaderView addSubview:chooseHeadLabel];
         
-        categoryButton = [[UIButton alloc] init];
-        [categoryButton addTarget:self action:@selector(clickCategoryButton) forControlEvents:UIControlEventTouchUpInside];
-        [categoryButton setImage:[UIImage imageNamed:@"nextIconImage"] forState:UIControlStateNormal];
-        [categoryButton setTitle:@"全部" forState:UIControlStateNormal];
-        [categoryButton setTitleColor:[UIColor colorFromHexString:@"#B4B4B4"] forState:UIControlStateNormal];
-        [categoryButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-        [chooseHeaderView addSubview:categoryButton];
+        if([[GeneralManager defaultManager] isAuditSucess]){
+            categoryButton = [[UIButton alloc] init];
+            [categoryButton addTarget:self action:@selector(clickCategoryButton) forControlEvents:UIControlEventTouchUpInside];
+            [categoryButton setImage:[UIImage imageNamed:@"nextIconImage"] forState:UIControlStateNormal];
+            [categoryButton setTitle:@"全部" forState:UIControlStateNormal];
+            [categoryButton setTitleColor:[UIColor colorFromHexString:@"#B4B4B4"] forState:UIControlStateNormal];
+            [categoryButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+            [chooseHeaderView addSubview:categoryButton];
+        }
         
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -132,12 +135,14 @@ static NSString *homeRecommendCollectionViewCellIdentify = @"HomeRecommendCollec
         make.centerY.equalTo(chooseHeaderView.centerY);
     }];
     
-    [categoryButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(chooseHeaderView.mas_trailing).offset(15);
-        make.top.equalTo(chooseHeaderView.mas_top);
-        make.bottom.equalTo(chooseHeaderView.mas_bottom);
-        make.width.equalTo(@(100));
-    }];
+    if (categoryButton) {
+        [categoryButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.trailing.equalTo(chooseHeaderView.mas_trailing).offset(15);
+            make.top.equalTo(chooseHeaderView.mas_top);
+            make.bottom.equalTo(chooseHeaderView.mas_bottom);
+            make.width.equalTo(@(100));
+        }];
+    }
 }
 
 -(void)layoutSubviews

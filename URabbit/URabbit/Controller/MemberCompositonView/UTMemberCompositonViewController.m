@@ -80,8 +80,8 @@ static NSString *memberCompositionCollectionViewCellIdentify = @"MemberCompositi
     NSArray *dataArray = [Composition bg_find:CompositionTableName where:sqlStirng];
     if (dataArray && dataArray.count > 0) {
         [dataSource addObjectsFromArray:dataArray];
-        [collectionView reloadData];
     }
+    [collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

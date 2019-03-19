@@ -134,7 +134,7 @@
     [item setImage:normalImage forState:UIControlStateNormal];
     [item setImage:selectedImage forState:UIControlStateSelected];
     [item setTitleColor:[UIColor colorFromHexString:@"#333333"] forState:UIControlStateNormal];
-    [item setTitleColor:[UIColor colorFromHexString:@"#FF5858"] forState:UIControlStateSelected];
+    [item setTitleColor:[UIColor colorFromHexString:@"#FFDE44"] forState:UIControlStateSelected];
     item.tabBarItemType = tabBarItemType;
     
     return item;

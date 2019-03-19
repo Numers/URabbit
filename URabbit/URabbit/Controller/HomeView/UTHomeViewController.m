@@ -432,6 +432,7 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
 -(void)gotoCategoryView
 {
     UTCategoryViewController *categoryVC = [[UTCategoryViewController alloc] initWithItems:recommendList selectIndex:0];
+    categoryVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:categoryVC animated:YES];
 }
 
@@ -441,6 +442,7 @@ NSString *homeTemplateCollectionFootViewIdentify = @"HomeTemplateCollectionFootV
     RecommendTemplate *recommend = [recommendList objectAtIndex:index];
     [AppUtils trackMTAEventNo:@"2" pageNo:@"1" parameters:@{@"categoryId":[NSString stringWithFormat:@"%ld",recommend.categoryId]}];
     UTCategoryViewController *categoryVC = [[UTCategoryViewController alloc] initWithItems:recommendList selectIndex:index];
+    categoryVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:categoryVC animated:YES];
 }
 @end

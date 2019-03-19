@@ -58,18 +58,18 @@
         [saveNumberDescLabel setText:@"收藏夹"];
         [self addSubview:saveNumberDescLabel];
         
-        draftNumberLabel = [[UILabel alloc] init];
-        [draftNumberLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
-        [draftNumberLabel setFont:[UIFont systemFontOfSize:18.0f]];
-        [draftNumberLabel setTextAlignment:NSTextAlignmentCenter];
-        [self addSubview:draftNumberLabel];
-        
-        draftNumberDescLabel = [[UILabel alloc] init];
-        [draftNumberDescLabel setTextColor:[UIColor colorFromHexString:@"#999999"]];
-        [draftNumberDescLabel setFont:[UIFont systemFontOfSize:12.0f]];
-        [draftNumberDescLabel setTextAlignment:NSTextAlignmentCenter];
-        [draftNumberDescLabel setText:@"草稿箱"];
-        [self addSubview:draftNumberDescLabel];
+//        draftNumberLabel = [[UILabel alloc] init];
+//        [draftNumberLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
+//        [draftNumberLabel setFont:[UIFont systemFontOfSize:18.0f]];
+//        [draftNumberLabel setTextAlignment:NSTextAlignmentCenter];
+//        [self addSubview:draftNumberLabel];
+//
+//        draftNumberDescLabel = [[UILabel alloc] init];
+//        [draftNumberDescLabel setTextColor:[UIColor colorFromHexString:@"#999999"]];
+//        [draftNumberDescLabel setFont:[UIFont systemFontOfSize:12.0f]];
+//        [draftNumberDescLabel setTextAlignment:NSTextAlignmentCenter];
+//        [draftNumberDescLabel setText:@"草稿箱"];
+//        [self addSubview:draftNumberDescLabel];
         
         downloadNumberLabel = [[UILabel alloc] init];
         [downloadNumberLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
@@ -89,10 +89,10 @@
         [line1View setBackgroundColor:[UIColor colorFromHexString:@"#F1F1F1"]];
         [self addSubview:line1View];
         
-        line2View = [[UIView alloc] init];
-        [line2View setHidden:YES];
-        [line2View setBackgroundColor:[UIColor colorFromHexString:@"#F1F1F1"]];
-        [self addSubview:line2View];
+//        line2View = [[UIView alloc] init];
+//        [line2View setHidden:YES];
+//        [line2View setBackgroundColor:[UIColor colorFromHexString:@"#F1F1F1"]];
+//        [self addSubview:line2View];
         
         downloadButton = [[UIButton alloc] init];
         [downloadButton addTarget:self action:@selector(downloadButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -104,10 +104,10 @@
         [saveButton setBackgroundColor:[UIColor clearColor]];
         [self addSubview:saveButton];
         
-        draftButton = [[UIButton alloc] init];
-        [draftButton addTarget:self action:@selector(draftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [draftButton setBackgroundColor:[UIColor clearColor]];
-        [self addSubview:draftButton];
+//        draftButton = [[UIButton alloc] init];
+//        [draftButton addTarget:self action:@selector(draftButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//        [draftButton setBackgroundColor:[UIColor clearColor]];
+//        [self addSubview:draftButton];
         
         [self makeConstraints];
     }
@@ -142,10 +142,17 @@
         make.height.equalTo(@(17));
     }];
     
-    [saveNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [line1View mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(headImageView.bottom).offset(26);
         make.centerX.equalTo(self.centerX);
-        make.width.equalTo(@(SCREEN_WIDTH / 3));
+        make.width.equalTo(@(1));
+        make.height.equalTo(@(46));
+    }];
+    
+    [saveNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(line1View.mas_top);
+        make.leading.equalTo(line1View.mas_trailing);
+        make.trailing.equalTo(self.mas_trailing);
         make.height.equalTo(@(25));
     }];
     
@@ -154,13 +161,6 @@
         make.leading.equalTo(saveNumberLabel.leading);
         make.trailing.equalTo(saveNumberLabel.trailing);
         make.height.equalTo(@(17));
-    }];
-    
-    [line1View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(saveNumberLabel.top);
-        make.bottom.equalTo(saveNumberDescLabel.bottom);
-        make.trailing.equalTo(saveNumberLabel.leading);
-        make.width.equalTo(@(1));
     }];
     
     [downloadNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -177,27 +177,6 @@
         make.trailing.equalTo(downloadNumberLabel.trailing);
     }];
     
-    [line2View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(saveNumberLabel.top);
-        make.bottom.equalTo(saveNumberDescLabel.bottom);
-        make.leading.equalTo(saveNumberLabel.trailing);
-        make.width.equalTo(@(1));
-    }];
-    
-    [draftNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(saveNumberLabel.top);
-        make.bottom.equalTo(saveNumberLabel.bottom);
-        make.trailing.equalTo(self);
-        make.leading.equalTo(line2View.trailing);
-    }];
-    
-    [draftNumberDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(saveNumberDescLabel.top);
-        make.bottom.equalTo(saveNumberDescLabel.bottom);
-        make.leading.equalTo(draftNumberLabel.leading);
-        make.trailing.equalTo(draftNumberLabel.trailing);
-    }];
-    
     [downloadButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self);
         make.trailing.equalTo(line1View.leading);
@@ -205,20 +184,119 @@
         make.bottom.equalTo(line1View.bottom);
     }];
     
-    [draftButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(line2View.trailing);
-        make.trailing.equalTo(self);
-        make.top.equalTo(line2View.top);
-        make.bottom.equalTo(line2View.bottom);
-    }];
-    
     [saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(line1View.trailing);
-        make.trailing.equalTo(line2View.leading);
+        make.trailing.equalTo(self.mas_trailing);
         make.top.equalTo(line1View.top);
         make.bottom.equalTo(line1View.bottom);
     }];
 }
+
+//-(void)makeConstraints
+//{
+//    [headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(self).offset(25);
+//        make.top.equalTo(self).offset(26);
+//        make.width.equalTo(@(60));
+//        make.height.equalTo(@(60));
+//    }];
+//
+//    [noLoginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(headImageView.trailing).offset(0);
+//        make.centerY.equalTo(headImageView.centerY);
+//        make.height.equalTo(@(30));
+//        make.width.equalTo(@(134));
+//    }];
+//
+//    [nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(headImageView.trailing).offset(15);
+//        make.centerY.equalTo(headImageView.centerY).offset(-13);
+//        make.height.equalTo(@(22));
+//    }];
+//
+//    [memberIdLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(headImageView.trailing).offset(15);
+//        make.centerY.equalTo(headImageView.centerY).offset(10);
+//        make.height.equalTo(@(17));
+//    }];
+//
+//    [saveNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(headImageView.bottom).offset(26);
+//        make.centerX.equalTo(self.centerX);
+//        make.width.equalTo(@(SCREEN_WIDTH / 3));
+//        make.height.equalTo(@(25));
+//    }];
+//
+//    [saveNumberDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(saveNumberLabel.bottom).offset(4);
+//        make.leading.equalTo(saveNumberLabel.leading);
+//        make.trailing.equalTo(saveNumberLabel.trailing);
+//        make.height.equalTo(@(17));
+//    }];
+//
+//    [line1View mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(saveNumberLabel.top);
+//        make.bottom.equalTo(saveNumberDescLabel.bottom);
+//        make.trailing.equalTo(saveNumberLabel.leading);
+//        make.width.equalTo(@(1));
+//    }];
+//
+//    [downloadNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(saveNumberLabel.top);
+//        make.bottom.equalTo(saveNumberLabel.bottom);
+//        make.leading.equalTo(self);
+//        make.trailing.equalTo(line1View.leading);
+//    }];
+//
+//    [downloadNumberDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(saveNumberDescLabel.top);
+//        make.bottom.equalTo(saveNumberDescLabel.bottom);
+//        make.leading.equalTo(downloadNumberLabel.leading);
+//        make.trailing.equalTo(downloadNumberLabel.trailing);
+//    }];
+//
+//    [line2View mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(saveNumberLabel.top);
+//        make.bottom.equalTo(saveNumberDescLabel.bottom);
+//        make.leading.equalTo(saveNumberLabel.trailing);
+//        make.width.equalTo(@(1));
+//    }];
+//
+//    [draftNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(saveNumberLabel.top);
+//        make.bottom.equalTo(saveNumberLabel.bottom);
+//        make.trailing.equalTo(self);
+//        make.leading.equalTo(line2View.trailing);
+//    }];
+//
+//    [draftNumberDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(saveNumberDescLabel.top);
+//        make.bottom.equalTo(saveNumberDescLabel.bottom);
+//        make.leading.equalTo(draftNumberLabel.leading);
+//        make.trailing.equalTo(draftNumberLabel.trailing);
+//    }];
+//
+//    [downloadButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(self);
+//        make.trailing.equalTo(line1View.leading);
+//        make.top.equalTo(line1View.top);
+//        make.bottom.equalTo(line1View.bottom);
+//    }];
+//
+//    [draftButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(line2View.trailing);
+//        make.trailing.equalTo(self);
+//        make.top.equalTo(line2View.top);
+//        make.bottom.equalTo(line2View.bottom);
+//    }];
+//
+//    [saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(line1View.trailing);
+//        make.trailing.equalTo(line2View.leading);
+//        make.top.equalTo(line1View.top);
+//        make.bottom.equalTo(line1View.bottom);
+//    }];
+//}
 
 -(void)setCurrentMember:(Member *)member
 {
