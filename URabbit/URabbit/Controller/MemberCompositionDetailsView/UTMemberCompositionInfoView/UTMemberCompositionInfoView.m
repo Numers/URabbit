@@ -92,4 +92,9 @@
 {
     [playView _pauseVideo];
 }
+
+-(void)destroyPlayView
+{
+    [playView _deallocPlayer];
+}
 @end

@@ -541,8 +541,8 @@
             [makeButtonView setButtonTitle:@"一键制作" enable:YES];
         } progress:^(NSProgress *downloadProgress) {
             NSLog(@"下载了%lf",[downloadProgress fractionCompleted]);
-            [makeButtonView setButtonTitle:@"下载中..." enable:NO];
-//            [makeButtonView setProgress:[downloadProgress fractionCompleted]];
+//            [makeButtonView setButtonTitle:@"下载中..." enable:NO];
+            [makeButtonView setProgress:[downloadProgress fractionCompleted]];
         }];
     }
 }

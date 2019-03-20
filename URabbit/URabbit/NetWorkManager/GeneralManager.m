@@ -100,6 +100,7 @@ static GeneralManager *generalManager;
 
 -(BOOL)isAuditSucess
 {
+    return NO;
     BOOL result = NO;
     NSString *appVersion = [AppUtils appVersion];
     if ([appVersion isEqualToString:submissionVersion]) {

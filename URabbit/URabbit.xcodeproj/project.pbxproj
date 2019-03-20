@@ -105,6 +105,7 @@
 		14482F1F21A46FCC00D640F1 /* UTPictureImageLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F1E21A46FCC00D640F1 /* UTPictureImageLayerView.m */; };
 		14482F2221A475FF00D640F1 /* UTPhotoEditCanMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F2121A475FF00D640F1 /* UTPhotoEditCanMoveView.m */; };
 		14482F2521A4761D00D640F1 /* UTPhotoEditNotMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14482F2421A4761D00D640F1 /* UTPhotoEditNotMoveView.m */; };
+		144A9CE222421E3000F1680C /* URVideoComposeResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144A9CE122421E3000F1680C /* URVideoComposeResultViewController.m */; };
 		144F840B21F0AA9A0093E94A /* WSLWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 144F840921F0AA9A0093E94A /* WSLWaterFlowLayout.m */; };
 		144F840F21F0BCF40093E94A /* UTHomeCollectionFootReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 144F840E21F0BCF40093E94A /* UTHomeCollectionFootReusableView.m */; };
 		1457681E21BFA76300E3D932 /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1457681A21BFA76300E3D932 /* VPImageCropperViewController.m */; };
@@ -567,6 +568,8 @@
 		14482F2121A475FF00D640F1 /* UTPhotoEditCanMoveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditCanMoveView.m; sourceTree = "<group>"; };
 		14482F2321A4761D00D640F1 /* UTPhotoEditNotMoveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTPhotoEditNotMoveView.h; sourceTree = "<group>"; };
 		14482F2421A4761D00D640F1 /* UTPhotoEditNotMoveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTPhotoEditNotMoveView.m; sourceTree = "<group>"; };
+		144A9CE022421E3000F1680C /* URVideoComposeResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URVideoComposeResultViewController.h; sourceTree = "<group>"; };
+		144A9CE122421E3000F1680C /* URVideoComposeResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URVideoComposeResultViewController.m; sourceTree = "<group>"; };
 		144F840921F0AA9A0093E94A /* WSLWaterFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLWaterFlowLayout.m; sourceTree = "<group>"; };
 		144F840A21F0AA9A0093E94A /* WSLWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLWaterFlowLayout.h; sourceTree = "<group>"; };
 		144F840D21F0BCF40093E94A /* UTHomeCollectionFootReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTHomeCollectionFootReusableView.h; sourceTree = "<group>"; };
@@ -1399,6 +1402,15 @@
 			path = UTPictureImageLayerView;
 			sourceTree = "<group>";
 		};
+		144A9CDF22421DF300F1680C /* VideoComposeResultView */ = {
+			isa = PBXGroup;
+			children = (
+				144A9CE022421E3000F1680C /* URVideoComposeResultViewController.h */,
+				144A9CE122421E3000F1680C /* URVideoComposeResultViewController.m */,
+			);
+			path = VideoComposeResultView;
+			sourceTree = "<group>";
+		};
 		144F840821F0AA790093E94A /* WSLWaterFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -1732,6 +1744,7 @@
 		14580397216F2FF2006BB33D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				144A9CDF22421DF300F1680C /* VideoComposeResultView */,
 				14FA70C921E0A84500A5E447 /* UTCategoryView */,
 				14E4320621BE77DC00C0CB9C /* UTAuthorView */,
 				1421EB7621BA524B00BCCD7B /* UTWebView */,
@@ -2505,6 +2518,7 @@
 				1425A8C421A8707A007A0C2E /* UTMemberCoinViewController.m in Sources */,
 				1422A54721AF94F40025D859 /* AnimationForText.m in Sources */,
 				14FA70CC21E0A86A00A5E447 /* UTCategoryViewController.m in Sources */,
+				144A9CE222421E3000F1680C /* URVideoComposeResultViewController.m in Sources */,
 				14EDA16821A310EE00C1BD3E /* Author.m in Sources */,
 				1423E2A221ACE6D0005A9F6E /* UTDraftViewController.m in Sources */,
 			);

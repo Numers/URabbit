@@ -1022,7 +1022,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vib-ge-g75">
-                                <rect key="frame" x="15" y="607" width="345" height="44"/>
+                                <rect key="frame" x="0.0" y="607" width="375" height="44"/>
                                 <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="dub-I8-6fu"/>
@@ -1040,11 +1040,11 @@
                             <constraint firstItem="wDq-Tx-3dz" firstAttribute="bottom" secondItem="vib-ge-g75" secondAttribute="bottom" constant="16" id="9KU-Ib-gIC"/>
                             <constraint firstItem="wDq-Tx-3dz" firstAttribute="bottom" secondItem="498-28-9ra" secondAttribute="bottom" id="AE3-C1-OWE"/>
                             <constraint firstItem="wDq-Tx-3dz" firstAttribute="trailing" secondItem="498-28-9ra" secondAttribute="trailing" id="HOJ-ES-QU2"/>
-                            <constraint firstItem="wDq-Tx-3dz" firstAttribute="trailing" secondItem="vib-ge-g75" secondAttribute="trailing" constant="15" id="QAS-Ew-5Ht"/>
+                            <constraint firstItem="wDq-Tx-3dz" firstAttribute="trailing" secondItem="vib-ge-g75" secondAttribute="trailing" id="QAS-Ew-5Ht"/>
                             <constraint firstItem="498-28-9ra" firstAttribute="top" secondItem="a5u-1x-YCa" secondAttribute="bottom" id="TLo-cu-age"/>
                             <constraint firstItem="wDq-Tx-3dz" firstAttribute="trailing" secondItem="a5u-1x-YCa" secondAttribute="trailing" id="k4l-YP-9Gz"/>
                             <constraint firstItem="a5u-1x-YCa" firstAttribute="leading" secondItem="wDq-Tx-3dz" secondAttribute="leading" id="kGO-0e-uiv"/>
-                            <constraint firstItem="vib-ge-g75" firstAttribute="leading" secondItem="wDq-Tx-3dz" secondAttribute="leading" constant="15" id="qq0-FB-Ykh"/>
+                            <constraint firstItem="vib-ge-g75" firstAttribute="leading" secondItem="wDq-Tx-3dz" secondAttribute="leading" id="qq0-FB-Ykh"/>
                             <constraint firstItem="a5u-1x-YCa" firstAttribute="top" secondItem="M0G-AL-RSd" secondAttribute="top" id="rxR-wP-mT5"/>
                             <constraint firstItem="498-28-9ra" firstAttribute="leading" secondItem="wDq-Tx-3dz" secondAttribute="leading" id="tuF-uT-taT"/>
                         </constraints>

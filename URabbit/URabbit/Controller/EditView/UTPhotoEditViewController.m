@@ -26,6 +26,8 @@
 #import "UINavigationController+NavigationBar.h"
 
 #import "UTVideoComposeViewController.h"
+#import "URVideoComposeResultViewController.h"
+#import "GeneralManager.h"
 #import "PSTCollectionView.h"
 
 #import "Composition.h"
@@ -198,8 +200,22 @@ static NSString *photoEditShowImageCollectionViewCellIdentify = @"PhotoEditShowI
 -(void)pushVideoComposeViewWithMovieUrl:(NSString *)movieUrl
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:movieUrl composition:currentComposition draftTemplate:draftTemplate isFromDraft:NO];
-        [self.navigationController pushViewController:videoComposeVC animated:YES];
+        if ([[GeneralManager defaultManager] isAuditSucess]) {
+            UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:currentResource movieUrl:movieUrl composition:currentComposition draftTemplate:draftTemplate isFromDraft:NO];
+            [self.navigationController pushViewController:videoComposeVC animated:YES];
+        }else{
+            NSString *videoCompeletelyPath = [AppUtils videoPathWithUniqueIndex:currentComposition.templateId identify:@"complete"];
+            [[UTVideoManager shareManager] mergeMovie:movieUrl withAudio:currentResource.music output:videoCompeletelyPath completely:^{
+                if ([[NSFileManager defaultManager] fileExistsAtPath:movieUrl]) {
+                    [[NSFileManager defaultManager] removeItemAtPath:movieUrl error:nil];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    URVideoComposeResultViewController *videoComposeResultVC = [[URVideoComposeResultViewController alloc] initWithResource:currentResource movieUrl:videoCompeletelyPath composition:currentComposition draftTemplate:draftTemplate isFromDraft:NO];
+                    [self.navigationController pushViewController:videoComposeResultVC animated:YES];
+                });
+            }];
+        }
     });
 }
 

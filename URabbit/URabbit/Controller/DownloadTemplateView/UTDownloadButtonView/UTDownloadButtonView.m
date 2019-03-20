@@ -31,12 +31,10 @@
         [self addSubview:vipDescLabel];
         
         downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [downloadButton setFrame:CGRectMake(0, 33, frame.size.width - 30, 44)];
+        [downloadButton setFrame:CGRectMake(0, 0, frame.size.width, 44)];
         [downloadButton setTitleColor:[UIColor colorFromHexString:@"#333333"] forState:UIControlStateNormal];
         [downloadButton setTitle:@"一键制作" forState:UIControlStateNormal];
-        [downloadButton gradientButtonWithSize:CGSizeMake(frame.size.width - 30, 44) colorArray:@[[UIColor colorFromHexString:@"#FED546"],[UIColor colorFromHexString:@"#FEBD43"]] percentageArray:@[@(0.1),@(1)] gradientType:GradientFromLeftToRight];
-        [downloadButton.layer setCornerRadius:22.0f];
-        [downloadButton.layer setMasksToBounds:YES];
+        [downloadButton gradientButtonWithSize:CGSizeMake(frame.size.width, 44) colorArray:@[[UIColor colorFromHexString:@"#FED546"],[UIColor colorFromHexString:@"#FEBD43"]] percentageArray:@[@(0.1),@(1)] gradientType:GradientFromLeftToRight];
         [downloadButton addTarget:self action:@selector(clickDownloadButton) forControlEvents:UIControlEventTouchUpInside];
         [downloadButton setCenter:CGPointMake(frame.size.width / 2.0f, frame.size.height / 2.0f)];
         [self addSubview:downloadButton];

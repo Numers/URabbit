@@ -45,9 +45,7 @@
     
     [_shareButton setTitleColor:[UIColor colorFromHexString:@"#333333"] forState:UIControlStateNormal];
     [_shareButton setBackgroundColor:[UIColor clearColor]];
-    [_shareButton gradientButtonWithSize:CGSizeMake(SCREEN_WIDTH - 30, 44) colorArray:@[[UIColor colorFromHexString:@"#FED546"],[UIColor colorFromHexString:@"#FEBD43"]] percentageArray:@[@(0.1),@(1)] gradientType:GradientFromLeftToRight];
-    [_shareButton.layer setCornerRadius:22.0f];
-    [_shareButton.layer setMasksToBounds:YES];
+    [_shareButton gradientButtonWithSize:CGSizeMake(SCREEN_WIDTH, 44) colorArray:@[[UIColor colorFromHexString:@"#FED546"],[UIColor colorFromHexString:@"#FEBD43"]] percentageArray:@[@(0.1),@(1)] gradientType:GradientFromLeftToRight];
     
     [_titleLabel setText:currentCompositon.title];
 }
@@ -69,7 +67,7 @@
 {
     [super viewWillDisappear:animated];
     if (compositionInfoView) {
-        [compositionInfoView pausePlayView];
+        [compositionInfoView destroyPlayView];
     }
 }
 
