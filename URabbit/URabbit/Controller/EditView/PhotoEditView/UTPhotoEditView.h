@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Snapshot,UTTplImageLayerView,UTPictureImageLayerView;
+@class Snapshot,URTplImageLayerView,URPictureImageLayerView;
 @protocol UTPhotoEditViewProtocol <NSObject>
 -(void)openImagePickerViewWithScale:(CGFloat)scale;
 @end
@@ -15,7 +15,7 @@
 {
     
 }
-@property(nonatomic, strong) UTTplImageLayerView *templateImageView;
+@property(nonatomic, strong) URTplImageLayerView *templateImageView;
 @property(nonatomic, weak) id<UTPhotoEditViewProtocol> delegate;
 -(instancetype)initWithSnapshot:(Snapshot *)snapshot frame:(CGRect)frame;
 @end

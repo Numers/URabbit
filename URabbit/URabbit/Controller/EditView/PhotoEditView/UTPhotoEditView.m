@@ -9,8 +9,8 @@
 #import "UTPhotoEditView.h"
 #import "Snapshot.h"
 #import "SnapshotMedia.h"
-#import "UTPictureImageLayerView.h"
-#import "UTTplImageLayerView.h"
+#import "URPictureImageLayerView.h"
+#import "URTplImageLayerView.h"
 #import <Photos/Photos.h>
 
 @implementation UTPhotoEditView
@@ -22,7 +22,7 @@
         [self.layer setCornerRadius:5.0f];
         [self.layer setMasksToBounds:YES];
         if (snapshot.foregroundImage) {
-            _templateImageView = [[UTTplImageLayerView alloc] init];
+            _templateImageView = [[URTplImageLayerView alloc] init];
             UIImage *templateImage = [UIImage imageWithContentsOfFile:snapshot.foregroundImage];
             [_templateImageView setImage:templateImage];
             [self addSubview:_templateImageView];

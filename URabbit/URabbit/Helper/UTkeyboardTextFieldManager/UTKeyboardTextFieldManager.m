@@ -7,10 +7,10 @@
 //
 
 #import "UTKeyboardTextFieldManager.h"
-#import "UTKeyboardTextField.h"
-@interface UTKeyboardTextFieldManager()<UTKeyboardTextFieldProtocol>
+#import "URKeyboardTextField.h"
+@interface UTKeyboardTextFieldManager()<URKeyboardTextFieldProtocol>
 {
-    UTKeyboardTextField *keyboardTextField;
+    URKeyboardTextField *keyboardTextField;
     KeyboardTextFieldCallback currentCallback;
 }
 @end
@@ -29,7 +29,7 @@
 {
     currentCallback = callback;
     if (keyboardTextField == nil) {
-        keyboardTextField = [[UTKeyboardTextField alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 50)];
+        keyboardTextField = [[URKeyboardTextField alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 50)];
         keyboardTextField.delegate = self;
         [[UIApplication sharedApplication].keyWindow addSubview:keyboardTextField];
     }

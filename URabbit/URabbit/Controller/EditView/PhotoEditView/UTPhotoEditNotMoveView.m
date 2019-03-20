@@ -10,14 +10,14 @@
 #import "Snapshot.h"
 #import "SnapshotMedia.h"
 #import "SnapshotText.h"
-#import "UTTextLabel.h"
+#import "URTextLabel.h"
 #import "Text.h"
-#import "UTPictureImageLayerView.h"
-#import "UTTplImageLayerView.h"
+#import "URPictureImageLayerView.h"
+#import "URTplImageLayerView.h"
 #import "UTImageHanderManager.h"
 
 #import "UTKeyboardTextFieldManager.h"
-@interface UTPhotoEditNotMoveView()<UTTextLabelProtocol,UTPictureImageLayerViewProtocol>
+@interface UTPhotoEditNotMoveView()<URTextLabelProtocol,URPictureImageLayerViewProtocol>
 {
     Snapshot *currentSnapshot;
     NSString *selectMediaName;
@@ -173,7 +173,7 @@
     CGContextRelease(mainViewContentContext);
     return newImage;
 }
-#pragma -mark UTTextLabelProtocol
+#pragma -mark URTextLabelProtocol
 -(void)didSelectTextLabelWithName:(NSString *)name content:(NSString *)content
 {
     [[UTKeyboardTextFieldManager shareManager] showKeyboardTextFieldWithText:content callback:^(NSString *text) {
@@ -185,7 +185,7 @@
     }];
 }
 
-#pragma -mark UTPictureImageLayerViewProtocol
+#pragma -mark URPictureImageLayerViewProtocol
 -(void)selectPictureWithMediaName:(NSString *)mediaName
 {
     selectMediaName = mediaName;

@@ -8,7 +8,7 @@
 
 #import "SnapshotText.h"
 #import "Custom.h"
-#import "UTTextLabel.h"
+#import "URTextLabel.h"
 #import "Text.h"
 @implementation SnapshotText
 -(instancetype)initWithDictionary:(NSDictionary *)dic withCustom:(Custom *)custom
@@ -22,7 +22,7 @@
         _angle = [[dic objectForKey:@"angle"] floatValue];
         _opacity = [[dic objectForKey:@"pellucidity"] floatValue];
         NSString *textName = [dic objectForKey:@"name"];
-        _textLabel = [[UTTextLabel alloc] init];
+        _textLabel = [[URTextLabel alloc] init];
         if (textName) {
             _textName = textName;
             _textLabel.textName = textName;

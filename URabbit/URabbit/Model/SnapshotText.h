@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Text,Custom,UTTextLabel,AnimationForText;
+@class Text,Custom,URTextLabel,AnimationForText;
 @interface SnapshotText : NSObject
 @property(nonatomic, strong) Text *text;
 @property(nonatomic, copy) NSString *textName;
@@ -20,7 +20,7 @@
 
 @property(nonatomic, strong) NSMutableArray<AnimationForText *> *animationForTextList;
 
-@property(nonatomic, strong) UTTextLabel *textLabel;
+@property(nonatomic, strong) URTextLabel *textLabel;
 
 -(void)changeText:(NSString *)text;
 -(instancetype)initWithDictionary:(NSDictionary *)dic withCustom:(Custom *)custom;

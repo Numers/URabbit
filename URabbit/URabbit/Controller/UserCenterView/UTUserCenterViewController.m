@@ -13,12 +13,12 @@
 #import "AppStartManager.h"
 #import "UTMemberScrollViewController.h"
 #import "UTMemberCoinViewController.h"
-#import "UTMemberCompositonViewController.h"
-#import "UTUserSettingViewController.h"
-#import "UTShareViewController.h"
-#import "UTUserDownloadedViewController.h"
-#import "UTSaveViewController.h"
-#import "UTDraftViewController.h"
+#import "URMemberCompositonViewController.h"
+#import "URUserSettingViewController.h"
+#import "URShareViewController.h"
+#import "URUserDownloadedViewController.h"
+#import "URSaveViewController.h"
+#import "URDraftViewController.h"
 #import "UTLoginScrollViewController.h"
 #import "UINavigationController+NavigationBar.h"
 #import "UTUMShareManager.h"
@@ -136,14 +136,14 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
 //            break;
         case 0:
         {
-            UTMemberCompositonViewController *memberCompositionVC = [[UTMemberCompositonViewController alloc] init];
+            URMemberCompositonViewController *memberCompositionVC = [[URMemberCompositonViewController alloc] init];
             [memberCompositionVC setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:memberCompositionVC animated:YES];
         }
             break;
         case 1:
         {
-            UTShareViewController *shareVC = [[UTShareViewController alloc] init];
+            URShareViewController *shareVC = [[URShareViewController alloc] init];
             shareVC.delegate = self;
             [self presentViewController:shareVC animated:YES completion:^{
                 
@@ -152,7 +152,7 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
             break;
         case 2:
         {
-            UTUserSettingViewController *userSettingVC = [[UTUserSettingViewController alloc] init];
+            URUserSettingViewController *userSettingVC = [[URUserSettingViewController alloc] init];
             [userSettingVC setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:userSettingVC animated:YES];
         }
@@ -221,21 +221,21 @@ static NSString *userCenterTableViewCellIdentify = @"UserCenterTableViewCellIden
 #pragma -mark UTUserCenterHeadViewProtocol
 -(void)gotoLoadedView
 {
-    UTUserDownloadedViewController *userDownloadedVC = [[UTUserDownloadedViewController alloc] init];
+    URUserDownloadedViewController *userDownloadedVC = [[URUserDownloadedViewController alloc] init];
     [userDownloadedVC setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:userDownloadedVC animated:YES];
 }
 
 -(void)gotoSaveView
 {
-    UTSaveViewController *saveVC = [[UTSaveViewController alloc] init];
+    URSaveViewController *saveVC = [[URSaveViewController alloc] init];
     [saveVC setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:saveVC animated:YES];
 }
 
 -(void)gotoDraftView
 {
-    UTDraftViewController *draftVC = [[UTDraftViewController alloc] init];
+    URDraftViewController *draftVC = [[URDraftViewController alloc] init];
     [draftVC setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:draftVC animated:YES];
 }

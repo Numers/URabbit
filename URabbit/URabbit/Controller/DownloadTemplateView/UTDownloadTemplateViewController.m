@@ -36,8 +36,8 @@
 #import "UTLoginScrollViewController.h"
 #import "UTMemberScrollViewController.h"
 #import "UTDownloadAlertView.h"
-#import "UTAuthorViewController.h"
-#import "UTShareViewController.h"
+#import "URAuthorViewController.h"
+#import "URShareViewController.h"
 #import "UTUMShareManager.h"
 #import "UTVideoManager.h"
 
@@ -423,7 +423,7 @@
 
 -(void)clickShareButton
 {
-    UTShareViewController *shareVC = [[UTShareViewController alloc] init];
+    URShareViewController *shareVC = [[URShareViewController alloc] init];
     shareVC.delegate = self;
     [self presentViewController:shareVC animated:YES completion:^{
         
@@ -565,7 +565,7 @@
 #pragma -mark UTVideoAuthorViewProtocol
 -(void)didTapClickAuthorView
 {
-    UTAuthorViewController *authorVC = [[UTAuthorViewController alloc] initWithAuthor:currentHomeTemplate.author];
+    URAuthorViewController *authorVC = [[URAuthorViewController alloc] initWithAuthor:currentHomeTemplate.author];
     [self.navigationController pushViewController:authorVC animated:YES];
 }
 

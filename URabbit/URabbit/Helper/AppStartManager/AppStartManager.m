@@ -14,7 +14,7 @@
 #import "AFNetworkReachabilityManager.h"
 #import "AppLaunchManager.h"
 #import "PushMessageManager.h"
-#import "UTCategoryViewController.h"
+#import "URCategoryViewController.h"
 #import "UTVideoComposeViewController.h"
 #import "UTUserCenterViewController.h"
 #import "UTGuidViewController.h"
@@ -232,7 +232,7 @@
     _tabBarController = [[UITabBarController alloc] init];
     [_tabBarController.navigationItem setHidesBackButton:YES];
     
-    UTCategoryViewController *categoryVC = [[UTCategoryViewController alloc] init];
+    URCategoryViewController *categoryVC = [[URCategoryViewController alloc] init];
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:categoryVC];
 //    [self setNavigationColor:nav1];
     

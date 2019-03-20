@@ -10,7 +10,7 @@
 #import "UTLoginViewController.h"
 #import "UINavigationController+NavigationBar.h"
 #import "TPKeyboardAvoidingScrollView.h"
-#import "UTWebViewController.h"
+#import "URWebViewController.h"
 
 @interface UTLoginScrollViewController ()<UTLoginViewProtocol>
 {
@@ -82,7 +82,7 @@
 
 -(void)gotoProtocolView
 {
-    UTWebViewController *webVC = [[UTWebViewController alloc] init];
+    URWebViewController *webVC = [[URWebViewController alloc] init];
     webVC.navTitle = @"隐私协议";
     webVC.loadUrl = @"https://www.utsdk.com/privacy.html";
     [self.navigationController pushViewController:webVC animated:YES];

@@ -12,7 +12,7 @@
 {
     SnapshotMedia *snapshotMedia;
     UITapGestureRecognizer *tapGesture;
-    UTPictureImageLayerView *pictureImageView;
+    URPictureImageLayerView *pictureImageView;
     UIPanGestureRecognizer *panGesture;
     UIPinchGestureRecognizer *pinGesture;
     UIRotationGestureRecognizer *rotateGesture;

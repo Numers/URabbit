@@ -8,7 +8,7 @@
 
 #import "SnapshotMedia.h"
 #import "Custom.h"
-#import "UTPictureImageLayerView.h"
+#import "URPictureImageLayerView.h"
 
 @implementation SnapshotMedia
 -(instancetype)initWithDictionary:(NSDictionary *)dic basePath:(NSString *)basePath withCustom:(Custom *)custom
@@ -29,12 +29,12 @@
         if (demoImage) {
             NSString *imagePath = [NSString stringWithFormat:@"%@/%@",basePath,demoImage];
             _demoImage = [UIImage imageWithContentsOfFile:imagePath];
-            _demoImageView = [[UTPictureImageLayerView alloc] init];
+            _demoImageView = [[URPictureImageLayerView alloc] init];
             _demoImageView.mediaName = _mediaName;
             [_demoImageView setImage:_demoImage];
         }else{
             _demoImage = [UIImage imageNamed:@"EditDefaultImage"];
-            _demoImageView = [[UTPictureImageLayerView alloc] init];
+            _demoImageView = [[URPictureImageLayerView alloc] init];
             _demoImageView.mediaName = _mediaName;
             [_demoImageView setImage:_demoImage];
         }
