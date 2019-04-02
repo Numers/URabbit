@@ -67,7 +67,7 @@
 //        maskSampleBufferRef = [[_maskVideoReaders objectAtIndex:0] readVideoFrames:index];
 //    }
 //    if (index < _frames.count) {
-//        CGSize pixelSize = [[UTImageHanderManager shareManager] sizeForSampleBuffer:templateSampleBufferRef];
+//        CGSize pixelSize = [[URImageHanderManager shareManager] sizeForSampleBuffer:templateSampleBufferRef];
 //        if (pixelSize.width == 0 && pixelSize.height == 0) {
 //            NSLog(@"图片size为0");
 //            return nil;
@@ -76,11 +76,11 @@
 //        if (frame.axiosIndex != -1) {
 //            AxiosInfo *axiosInfo = [_axiosInfos objectAtIndex:frame.axiosIndex];
 //            @autoreleasepool {
-//                void *templatePixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:templateSampleBufferRef];
-//                UIImage *templateImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:templatePixelBuffer size:pixelSize];
-//                void *maskPixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:maskSampleBufferRef];
-//                [[UTImageHanderManager shareManager] convertImagePixelReverse:maskPixelBuffer size:pixelSize];
-//                UIImage *maskImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:maskPixelBuffer size:pixelSize];
+//                void *templatePixelBuffer = [[URImageHanderManager shareManager] baseAddressFromSampleBuffer:templateSampleBufferRef];
+//                UIImage *templateImage = [[URImageHanderManager shareManager] imageFromPixelBuffer:templatePixelBuffer size:pixelSize];
+//                void *maskPixelBuffer = [[URImageHanderManager shareManager] baseAddressFromSampleBuffer:maskSampleBufferRef];
+//                [[URImageHanderManager shareManager] convertImagePixelReverse:maskPixelBuffer size:pixelSize];
+//                UIImage *maskImage = [[URImageHanderManager shareManager] imageFromPixelBuffer:maskPixelBuffer size:pixelSize];
 //                //            UIImage *currentMaskImage = [invertFilter imageByFilteringImage:maskImage];
 //
 //                if (true) {
@@ -99,10 +99,10 @@
 //                            [self.delegate composeImage:resultImage];
 //                        }
 //                    }
-//                    CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:pixelSize];
-//                    void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
+//                    CVPixelBufferRef resultPixelBuffer = [[URImageHanderManager shareManager] pixelBufferFromImage:resultImage size:pixelSize];
+//                    void *resultBaseAddress = [[URImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
 //                    //                CVPixelBufferRef resultPixelBuffer = [[filter framebufferForOutput] pixelBuffer];
-//                    //                void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
+//                    //                void *resultBaseAddress = [[URImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
 //                    memcpy(templatePixelBuffer, resultBaseAddress, 4*pixelSize.width*pixelSize.height);
 //                    [tempPic1 removeTarget:filter];
 //                    CVPixelBufferRelease(resultPixelBuffer);
@@ -110,8 +110,8 @@
 //            }
 //        }else{
 //            @autoreleasepool {
-//                void *templatePixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:templateSampleBufferRef];
-//                UIImage *templateImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:templatePixelBuffer size:pixelSize];
+//                void *templatePixelBuffer = [[URImageHanderManager shareManager] baseAddressFromSampleBuffer:templateSampleBufferRef];
+//                UIImage *templateImage = [[URImageHanderManager shareManager] imageFromPixelBuffer:templatePixelBuffer size:pixelSize];
 //                if (index % halfVideoFps == 0) {
 //                    if ([self.delegate respondsToSelector:@selector(composeImage:)]) {
 //                        [self.delegate composeImage:templateImage];

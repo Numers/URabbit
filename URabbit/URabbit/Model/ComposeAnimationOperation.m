@@ -7,7 +7,7 @@
 //
 
 #import "ComposeAnimationOperation.h"
-#import "UTImageHanderManager.h"
+#import "URImageHanderManager.h"
 @interface ComposeAnimationOperation()
 {
     
@@ -29,7 +29,7 @@
     @autoreleasepool {
         UIImage *whiteImage = [self imageWithColor:[UIColor whiteColor]];
         if (whiteImage) {
-            CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferAdaptFromImage:whiteImage size:currentPixelSize bytesPerRow:4*currentPixelSize.width];
+            CVPixelBufferRef resultPixelBuffer = [[URImageHanderManager shareManager] pixelBufferAdaptFromImage:whiteImage size:currentPixelSize bytesPerRow:4*currentPixelSize.width];
             if ([self.delegate respondsToSelector:@selector(sendPixelBufferRef:frame:)]) {
                 [self.delegate sendPixelBufferRef:resultPixelBuffer frame:currentFrame];
             }

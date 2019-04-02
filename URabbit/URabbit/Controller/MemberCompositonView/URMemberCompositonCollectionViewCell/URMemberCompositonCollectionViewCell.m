@@ -8,7 +8,7 @@
 
 #import "URMemberCompositonCollectionViewCell.h"
 #import "Composition.h"
-#import "UTVideoManager.h"
+#import "URVideoManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 @implementation URMemberCompositonCollectionViewCell
 -(instancetype)initWithFrame:(CGRect)frame
@@ -52,7 +52,7 @@
 
 -(void)setupCellWithCompositon:(Composition *)compositon
 {
-    UIImage *previewImage = [[UTVideoManager shareManager] getVideoPreViewImage:[NSURL fileURLWithPath:compositon.moviePath]];
+    UIImage *previewImage = [[URVideoManager shareManager] getVideoPreViewImage:[NSURL fileURLWithPath:compositon.moviePath]];
     [templateImageView setImage:previewImage];
     [nameLabel setText:compositon.title];
 }

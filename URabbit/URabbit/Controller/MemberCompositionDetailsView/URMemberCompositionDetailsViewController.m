@@ -11,7 +11,7 @@
 #import "Composition.h"
 #import "UINavigationController+NavigationBar.h"
 #import "UIButton+Gradient.h"
-#import "UTUMShareManager.h"
+#import "URUMShareManager.h"
 
 @interface URMemberCompositionDetailsViewController ()
 {
@@ -94,6 +94,6 @@
 
 -(IBAction)clickShareBtn:(id)sender
 {
-    [[UTUMShareManager shareManager] indirectShareVideo:[NSURL fileURLWithPath:currentCompositon.moviePath]];
+    [[URUMShareManager shareManager] indirectShareVideo:[NSURL fileURLWithPath:currentCompositon.moviePath]];
 }
 @end

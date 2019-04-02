@@ -7,7 +7,7 @@
 //
 
 #import "VideoCompose.h"
-#import "UTImageHanderManager.h"
+#import "URImageHanderManager.h"
 
 @implementation VideoCompose
 -(instancetype)initWithVideoUrl:(NSString *)url videoSize:(CGSize)size fps:(int32_t)fps totalFrames:(NSInteger)frames

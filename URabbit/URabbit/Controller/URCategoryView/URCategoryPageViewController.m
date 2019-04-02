@@ -7,11 +7,13 @@
 //
 
 #import "URCategoryPageViewController.h"
-#import "UTCategoryNetworkAPIManager.h"
-#import "UTDownloadTemplateViewController.h"
+#import "URCategoryNetworkAPIManager.h"
+#import "URDownloadTemplateViewController.h"
 #import "URCategoryPageCollectionViewCell/URCategoryPageCollectionViewCell.h"
 #import "HomeTemplate.h"
 #import "WSLWaterFlowLayout.h"
+#import "GeneralManager.h"
+#import "URHomeNetworkAPIManager.h"
 #import <MJRefresh/MJRefresh.h>
 static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCellIdentify";
 @interface URCategoryPageViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WSLWaterFlowLayoutDelegate>
@@ -118,54 +120,96 @@ static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCe
             [dataSource removeAllObjects];
         }
     }
-
-    [[UTCategoryNetworkAPIManager shareManager] getCategoryTemplateWithCategoryId:currentCategoryId Page:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
-        if (currentPage == 1) {
-            [AppUtils hiddenGIFHud:self.view];
-        }
-        if (data) {
-            NSArray *templateArray = (NSArray *)data;
-            if (templateArray && templateArray.count > 0) {
-                if (templateArray.count < currentSize) {
+    
+    if ([[GeneralManager defaultManager] isAuditSucess]) {
+        [[URCategoryNetworkAPIManager shareManager] getCategoryTemplateWithCategoryId:currentCategoryId Page:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+            if (currentPage == 1) {
+                [AppUtils hiddenGIFHud:self.view];
+            }
+            if (data) {
+                NSArray *templateArray = (NSArray *)data;
+                if (templateArray && templateArray.count > 0) {
+                    if (templateArray.count < currentSize) {
+                        hasMore = NO;
+                    }
+                    for (NSDictionary *dic in templateArray) {
+                        HomeTemplate *template = [[HomeTemplate alloc] init];
+                        template.templateId = [[dic objectForKey:@"id"] longValue];
+                        template.title = [dic objectForKey:@"title"];
+                        template.coverUrl = [dic objectForKey:@"coverUrl"];
+                        CGFloat videoWidth = 544.0f;
+                        id width = [dic objectForKey:@"width"];
+                        if (width) {
+                            videoWidth = [width floatValue];
+                        }
+                        
+                        CGFloat videoHeight = 960.0f;
+                        id height = [dic objectForKey:@"height"];
+                        if (height) {
+                            videoHeight = [height floatValue];
+                        }
+                        template.videoSize = CGSizeMake(videoWidth, videoHeight);
+                        [dataSource addObject:template];
+                    }
+                    currentPage ++;
+                    [collectionView reloadData];
+                }else{
                     hasMore = NO;
                 }
-                for (NSDictionary *dic in templateArray) {
-                    HomeTemplate *template = [[HomeTemplate alloc] init];
-                    template.templateId = [[dic objectForKey:@"id"] longValue];
-                    template.title = [dic objectForKey:@"title"];
-                    template.coverUrl = [dic objectForKey:@"coverUrl"];
-                    CGFloat videoWidth = 544.0f;
-                    id width = [dic objectForKey:@"width"];
-                    if (width) {
-                        videoWidth = [width floatValue];
-                    }
-                    
-                    CGFloat videoHeight = 960.0f;
-                    id height = [dic objectForKey:@"height"];
-                    if (height) {
-                        videoHeight = [height floatValue];
-                    }
-                    template.videoSize = CGSizeMake(videoWidth, videoHeight);
-                    [dataSource addObject:template];
-                }
-                currentPage ++;
-                [collectionView reloadData];
             }else{
                 hasMore = NO;
             }
-        }else{
-            hasMore = NO;
-        }
-        [self endRefresh];
-    }];
+            [self endRefresh];
+        }];
+    }else{
+        [[URHomeNetworkAPIManager shareManager] getChoiceRecommendTemplateWithPage:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+            if (currentPage == 1) {
+                [AppUtils hiddenGIFHud:self.view];
+            }
+            if (data) {
+                NSArray *templateArray = (NSArray *)data;
+                if (templateArray && templateArray.count > 0) {
+                    if (templateArray.count < currentSize) {
+                        hasMore = NO;
+                    }
+                    for (NSDictionary *dic in templateArray) {
+                        HomeTemplate *template = [[HomeTemplate alloc] init];
+                        template.templateId = [[dic objectForKey:@"id"] longValue];
+                        template.title = [dic objectForKey:@"title"];
+                        template.coverUrl = [dic objectForKey:@"coverUrl"];
+                        CGFloat videoWidth = 544.0f;
+                        id width = [dic objectForKey:@"width"];
+                        if (width) {
+                            videoWidth = [width floatValue];
+                        }
+                        
+                        CGFloat videoHeight = 960.0f;
+                        id height = [dic objectForKey:@"height"];
+                        if (height) {
+                            videoHeight = [height floatValue];
+                        }
+                        template.videoSize = CGSizeMake(videoWidth, videoHeight);
+                        [dataSource addObject:template];
+                    }
+                    currentPage ++;
+                    [collectionView reloadData];
+                }else{
+                    hasMore = NO;
+                }
+            }else{
+                hasMore = NO;
+            }
+            [self endRefresh];
+        }];
+    }
 }
 
 #pragma mark - WSLWaterFlowLayoutDelegate
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     HomeTemplate *template = [dataSource objectAtIndex:indexPath.row];
-    CGFloat width = (SCREEN_WIDTH - 45) / 2.0f;
-    CGFloat height = width * (template.videoSize.height / template.videoSize.width) + 50;
+    CGFloat width = (SCREEN_WIDTH - 30) / 2.0f;
+    CGFloat height = width * (template.videoSize.height / template.videoSize.width);
     return CGSizeMake(width,height);
 }
 
@@ -185,16 +229,16 @@ static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCe
 
 /** 列间距*/
 -(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 15;
+    return 10;
 }
 /** 行间距*/
 -(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 0;
+    return 10;
 }
 /** 边缘之间的间距*/
 -(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
     
-    return UIEdgeInsetsMake(18, 15, 0, 15);
+    return UIEdgeInsetsMake(18, 10, 0, 10);
 }
 
 #pragma -mark UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
@@ -223,7 +267,7 @@ static NSString *categoryCollectionViewCellIdentify = @"CategoryCollectionViewCe
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HomeTemplate *homeTemplate = [dataSource objectAtIndex:indexPath.row];
-    UTDownloadTemplateViewController *downloadTemplateVC = [[UTDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
+    URDownloadTemplateViewController *downloadTemplateVC = [[URDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
     downloadTemplateVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:downloadTemplateVC animated:YES];
 }

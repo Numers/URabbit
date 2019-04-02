@@ -7,10 +7,10 @@
 //
 
 #import "URAuthorViewController.h"
-#import "UTDownloadTemplateViewController.h"
+#import "URDownloadTemplateViewController.h"
 #import "URAuthorHeadView.h"
 #import "URAuthorCollectionFootReusableView.h"
-#import "UTAuthorNetworkAPIManager.h"
+#import "URAuthorNetworkAPIManager.h"
 #import "HomeTemplate.h"
 #import "Author.h"
 #import "WSLWaterFlowLayout.h"
@@ -145,7 +145,7 @@ static NSString *authorFootViewIdentify = @"AuthorFootViewIdentify";
             [dataSource removeAllObjects];
         }
     }
-    [[UTAuthorNetworkAPIManager shareManager] requestAuthorCompositionsWithAuthorId:currentAuthor.authorId page:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+    [[URAuthorNetworkAPIManager shareManager] requestAuthorCompositionsWithAuthorId:currentAuthor.authorId page:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         if (data) {
             NSArray *templateArray = (NSArray *)data;
             if (templateArray && templateArray.count > 0) {
@@ -264,7 +264,7 @@ static NSString *authorFootViewIdentify = @"AuthorFootViewIdentify";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HomeTemplate *homeTemplate = [dataSource objectAtIndex:indexPath.row];
-    UTDownloadTemplateViewController *downloadTemplateVC = [[UTDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
+    URDownloadTemplateViewController *downloadTemplateVC = [[URDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
     [self.navigationController pushViewController:downloadTemplateVC animated:YES];
 }
 

@@ -12,7 +12,7 @@
 #import "SnapshotText.h"
 #import "Text.h"
 #import "AnimationForMedia.h"
-#import "UTImageHanderManager.h"
+#import "URImageHanderManager.h"
 #import "UIImage+FixImage.h"
 #import "AnimationForMediaFrame.h"
 @interface ComposeRotationOperation()
@@ -26,7 +26,7 @@
     self = [super init];
     if (self) {
         currentTemplateSampleBufferRef = templateSampleBufferRef;
-        bytesPerRow = [[UTImageHanderManager shareManager] bytesPerRowFromSampleBuffer:currentTemplateSampleBufferRef];
+        bytesPerRow = [[URImageHanderManager shareManager] bytesPerRowFromSampleBuffer:currentTemplateSampleBufferRef];
         currentMaskSampleBufferRef = maskSampleBufferRef;
         currentFrame = frame;
         currentSnapshotMedias = snapshotMedias;
@@ -42,17 +42,17 @@
 {
     @autoreleasepool {
         if (currentTemplateSampleBufferRef) {
-            void *templatePixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:currentTemplateSampleBufferRef];
-            UIImage *templateImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:templatePixelBuffer size:currentPixelSize bytesPerRow:bytesPerRow];
+            void *templatePixelBuffer = [[URImageHanderManager shareManager] baseAddressFromSampleBuffer:currentTemplateSampleBufferRef];
+            UIImage *templateImage = [[URImageHanderManager shareManager] imageFromPixelBuffer:templatePixelBuffer size:currentPixelSize bytesPerRow:bytesPerRow];
             UIImage *theResultImage = nil;
             if (currentSnapshotMedias.count > 0) {
                 UIImage *maskImage = nil;
                 if (currentMaskSampleBufferRef) {
-                    void *maskPixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:currentMaskSampleBufferRef];
+                    void *maskPixelBuffer = [[URImageHanderManager shareManager] baseAddressFromSampleBuffer:currentMaskSampleBufferRef];
                     
-                    [[UTImageHanderManager shareManager] convertImagePixelReverse:maskPixelBuffer size:currentPixelSize];
+                    [[URImageHanderManager shareManager] convertImagePixelReverse:maskPixelBuffer size:currentPixelSize];
                     
-                    maskImage = [[UTImageHanderManager shareManager] imageFromPixelBuffer:maskPixelBuffer size:currentPixelSize bytesPerRow:bytesPerRow];
+                    maskImage = [[URImageHanderManager shareManager] imageFromPixelBuffer:maskPixelBuffer size:currentPixelSize bytesPerRow:bytesPerRow];
                 }
                 
                 UIImage *tempResultImage = [self imageWithMask:maskImage frameAxios:currentSnapshotMedias frameIndex:currentFrame pixelSize:currentPixelSize];
@@ -79,8 +79,8 @@
                 }
             }
             
-            CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:currentPixelSize bytesPerRow:bytesPerRow];
-            void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
+            CVPixelBufferRef resultPixelBuffer = [[URImageHanderManager shareManager] pixelBufferFromImage:resultImage size:currentPixelSize bytesPerRow:bytesPerRow];
+            void *resultBaseAddress = [[URImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
             memcpy(templatePixelBuffer, resultBaseAddress, bytesPerRow * currentPixelSize.height);
             [filter removeOutputFramebuffer];
             if (currentMaskSampleBufferRef) {
@@ -103,7 +103,7 @@
 {
     FrameAxios *frameAxios = [frameAxiosList objectAtIndex:0];
     AnimationForMedia *animation = frameAxios.animationForMedia;
-    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGColorSpaceRef colorSpace = [[URImageHanderManager shareManager] currentColorSpaceRef];
     CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, pixelSize.width, pixelSize.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     if (maskImage) {
         CGImageRef maskRef = maskImage.CGImage;
@@ -177,7 +177,7 @@
 
 -(UIImage *)snapshotImageWithFrameAxios:(NSMutableArray *)frameAxiosList frameIndex:(NSInteger)index pixelSize:(CGSize)pixelSize
 {
-    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGColorSpaceRef colorSpace = [[URImageHanderManager shareManager] currentColorSpaceRef];
     CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, pixelSize.width, pixelSize.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     
     for(FrameAxios *axios in frameAxiosList){
@@ -218,7 +218,7 @@
     SnapshotMedia *media = frameAxios.snapshotMedia;
     CGImageRef mediaResultImageRef = media.resultImage.CGImage;
     
-    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGColorSpaceRef colorSpace = [[URImageHanderManager shareManager] currentColorSpaceRef];
     CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, pixelSize.width, pixelSize.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     
     if (animation.type == AnimationRotation) {
@@ -298,7 +298,7 @@
     SnapshotMedia *media = frameAxios.snapshotMedia;
 
     UIImage *tempImage = media.resultImage;
-    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGColorSpaceRef colorSpace = [[URImageHanderManager shareManager] currentColorSpaceRef];
     CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, pixelSize.width, pixelSize.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     
     if (frameStatus.alpha < 1.0f) {
@@ -340,7 +340,7 @@
 
 -(UIImage *)addTextlayerWithSnapshotTexts:(NSMutableArray *)frameAxiosList onImage:(UIImage *)image pixelSize:(CGSize)size
 {
-    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGColorSpaceRef colorSpace = [[URImageHanderManager shareManager] currentColorSpaceRef];
     CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, size.width, size.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     CGContextDrawImage(mainViewContentContext, CGRectMake(0, 0, size.width, size.height), image.CGImage);
     for (FrameAxios *axios in frameAxiosList) {
@@ -431,7 +431,7 @@
 
 -(UIImage *)imageWithTextLayer:(CATextLayer *)textLayer size:(CGSize)size
 {
-    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGColorSpaceRef colorSpace = [[URImageHanderManager shareManager] currentColorSpaceRef];
     CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, size.width, size.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     CGContextTranslateCTM(mainViewContentContext, 0, size.height);
     CGContextScaleCTM(mainViewContentContext, 1, -1);

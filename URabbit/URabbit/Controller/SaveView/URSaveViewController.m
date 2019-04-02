@@ -9,10 +9,10 @@
 #import "URSaveViewController.h"
 #import "SavedTemplate.h"
 #import "HomeTemplate.h"
-#import "UTDownloadTemplateViewController.h"
+#import "URDownloadTemplateViewController.h"
 #import "WSLWaterFlowLayout.h"
 #import "URSaveTemplateCollectionViewCell.h"
-#import "UTUserSaveNetworkAPIManager.h"
+#import "URUserSaveNetworkAPIManager.h"
 #import "UINavigationController+NavigationBar.h"
 #import <MJRefresh/MJRefresh.h>
 
@@ -134,7 +134,7 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
             [dataSource removeAllObjects];
         }
     }
-    [[UTUserSaveNetworkAPIManager shareManager] requestUserSavedTemplateWithPage:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+    [[URUserSaveNetworkAPIManager shareManager] requestUserSavedTemplateWithPage:currentPage size:currentSize callback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         if (data) {
             NSArray *savedTemplateArray = (NSArray *)data;
             if (savedTemplateArray && savedTemplateArray.count > 0) {
@@ -242,7 +242,7 @@ static NSString *savedTemplateCollectionViewCellIdentify = @"SavedTemplateCollec
     homeTemplate.templateId = savedTemplate.templateId;
     homeTemplate.title = savedTemplate.title;
     homeTemplate.videoSize = CGSizeMake(savedTemplate.videoWidth, savedTemplate.videoHeight);
-    UTDownloadTemplateViewController *downloadTemplateVC = [[UTDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
+    URDownloadTemplateViewController *downloadTemplateVC = [[URDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
     [self.navigationController pushViewController:downloadTemplateVC animated:YES];
 }
 @end

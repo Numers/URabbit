@@ -13,14 +13,14 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Photos/PHPhotoLibrary.h>
 #import <LGAlertView/LGAlertView.h>
-#import "UTDownloadAlertView.h"
-#import "UTUMShareManager.h"
+#import "URDownloadAlertView.h"
+#import "URUMShareManager.h"
 
 #import "SelVideoPlayer.h"
 #import "SelPlayerConfiguration.h"
 #import "UIButton+Gradient.h"
 
-@interface URVideoComposeResultViewController ()<UTDownloadAlertViewProtocl>
+@interface URVideoComposeResultViewController ()<URDownloadAlertViewProtocl>
 {
     Resource *resource;
     NSString *movieURL;
@@ -30,7 +30,7 @@
     BOOL isInDraft;
     BOOL isInCompositon;
     
-    UTDownloadAlertView *shareAlertView;
+    URDownloadAlertView *shareAlertView;
 }
 
 @property(nonatomic, strong) UIButton *saveToPhotoButton;
@@ -66,14 +66,6 @@
     [_saveToPhotoButton gradientButtonWithSize:CGSizeMake(SCREEN_WIDTH, 44) colorArray:@[[UIColor colorFromHexString:@"#FED546"],[UIColor colorFromHexString:@"#FEBD43"]] percentageArray:@[@(0.1),@(1)] gradientType:GradientFromLeftToRight];
     [self.view addSubview:_saveToPhotoButton];
     
-    _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
-    [_shareButton addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
-    [_shareButton setTitleColor:[UIColor colorFromHexString:@"#333333"] forState:UIControlStateNormal];
-    [_shareButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [_shareButton setTitle:@"一键分享" forState:UIControlStateNormal];
-    [_shareButton gradientButtonWithSize:CGSizeMake(SCREEN_WIDTH, 44) colorArray:@[[UIColor colorFromHexString:@"#FED546"],[UIColor colorFromHexString:@"#FEBD43"]] percentageArray:@[@(0.1),@(1)] gradientType:GradientFromLeftToRight];
-    [self.view addSubview:_shareButton];
-    
     
     CGFloat playerHeight = SCREEN_HEIGHT -  ([UIDevice safeAreaBottomHeight] + 15 + 44 + 10 + 44 + 23 + [UIDevice safeAreaTopHeight] + 9);
     CGFloat playerWidth = playerHeight * resource.videoSize.width / resource.videoSize.height;
@@ -105,13 +97,18 @@
         make.trailing.equalTo(self.view);
         make.height.equalTo(@(44));
     }];
-    
-    [_shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(_saveToPhotoButton.mas_top).offset(-10);
-        make.leading.equalTo(self.view);
-        make.trailing.equalTo(self.view);
-        make.height.equalTo(@(44));
-    }];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self navigationBarSetting];
+}
+
+-(void)navigationBarSetting
+{
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(share)];
+    [self.navigationItem setRightBarButtonItem:item];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -198,7 +195,7 @@
         [currentComposition bg_save];
         isInCompositon = YES;
         
-        shareAlertView = [[UTDownloadAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        shareAlertView = [[URDownloadAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [shareAlertView setDesctiption:@"保存成功\n已保存到本地相册"];
         [shareAlertView setButtonTitle:@"立即分享"];
         [shareAlertView setContainerViewFrame:CGRectMake(0, 0, 280, 320)];
@@ -208,7 +205,7 @@
     }
 }
 
-#pragma -mark UTDownloadAlertViewProtocl
+#pragma -mark URDownloadAlertViewProtocl
 -(void)didComfirm
 {
     if (shareAlertView) {
@@ -222,7 +219,7 @@
 -(void)share{
     [AppUtils trackMTAEventNo:@"6" pageNo:@"2" parameters:@{@"templetId":[NSString stringWithFormat:@"%ld",currentComposition.templateId]}];
     if (![AppUtils isNullStr:movieURL]) {
-        [[UTUMShareManager shareManager] indirectShareVideo:[NSURL fileURLWithPath:movieURL]];
+        [[URUMShareManager shareManager] indirectShareVideo:[NSURL fileURLWithPath:movieURL]];
     }
 }
 @end

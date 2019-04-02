@@ -9,7 +9,7 @@
 #import "ComposeAnimation.h"
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
-#import "UTImageHanderManager.h"
+#import "URImageHanderManager.h"
 #import "GPUImage.h"
 #import "Resource.h"
 #import "Snapshot.h"
@@ -112,7 +112,7 @@
 //
 //    for (AnimationInfo *info in currentAnimationInfos) {
 //        AxiosInfo *axiosInfo = [currentAxiosInfos objectAtIndex:info.axiosIndex];
-//        GPUImageFilter *filter = [[UTImageHanderManager shareManager] filterWithFilterType:info.filterType];
+//        GPUImageFilter *filter = [[URImageHanderManager shareManager] filterWithFilterType:info.filterType];
 //        [filter useNextFrameForImageCapture];
 //        UIImage *filterImage = [filter imageByFilteringImage:axiosInfo.image];
 //        CALayer *imageLayer = [CALayer layer];

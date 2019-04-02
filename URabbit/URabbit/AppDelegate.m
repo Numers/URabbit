@@ -25,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.needShowUpdateAlert = YES;
-    [UMConfigure initWithAppkey:@"5bfce226b465f589030001ec" channel:nil];
+    [UMConfigure initWithAppkey:@"5ca334a70cafb2125300188f" channel:nil];
     [self configUSharePlatforms];
     [[MTAConfig getInstance] setSmartReporting:YES];
     [[MTAConfig getInstance] setAutoTrackPage:NO];

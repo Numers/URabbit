@@ -13,12 +13,10 @@
 #import "GeneralManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "AppLaunchManager.h"
-#import "PushMessageManager.h"
 #import "URCategoryViewController.h"
-#import "UTVideoComposeViewController.h"
-#import "UTUserCenterViewController.h"
-#import "UTGuidViewController.h"
-#import "UTLoginScrollViewController.h"
+#import "URVideoComposeViewController.h"
+#import "URUserCenterViewController.h"
+#import "URLoginScrollViewController.h"
 #import "XFCameraController.h"
 #import "UINavigationController+NavigationBar.h"
 #import "LLTabBar.h"
@@ -26,7 +24,7 @@
 #import "DraftTemplate.h"
 #import "Composition.h"
 #import "Resource.h"
-#import "UTVideoManager.h"
+#import "URVideoManager.h"
 
 #import <SAMKeychain/SAMKeychain.h>
 
@@ -236,7 +234,7 @@
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:categoryVC];
 //    [self setNavigationColor:nav1];
     
-    UTUserCenterViewController *userCenterVC = [[UTUserCenterViewController alloc] init];
+    URUserCenterViewController *userCenterVC = [[URUserCenterViewController alloc] init];
     UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:userCenterVC];
 //    [self setNavigationColor:nav2];
     [nav2.navigationBar setBackIndicatorImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#737373"])]];
@@ -292,7 +290,7 @@
         draftTemplate.summary = @"";
         draftTemplate.bg_tableName = DraftTemplateTableName;
         draftTemplate.movieUrl = [videoUrl absoluteString];
-        draftTemplate.resourceFps = [[UTVideoManager shareManager] getFpsWithVideoPath:draftTemplate.movieUrl];
+        draftTemplate.resourceFps = [[URVideoManager shareManager] getFpsWithVideoPath:draftTemplate.movieUrl];
         draftTemplate.resourceMusic = [audioUrl absoluteString];
         
         Composition *composition = [[Composition alloc] init];
@@ -313,7 +311,7 @@
         
         [weakCameraController dismissViewControllerAnimated:YES completion:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:resource movieUrl:draftTemplate.movieUrl composition:composition draftTemplate:draftTemplate isFromDraft:YES];
+                URVideoComposeViewController *videoComposeVC = [[URVideoComposeViewController alloc] initWithResource:resource movieUrl:draftTemplate.movieUrl composition:composition draftTemplate:draftTemplate isFromDraft:YES];
                 [videoComposeVC setHidesBottomBarWhenPushed:YES];
                 UINavigationController *selectNav = [_tabBarController selectedViewController];
                 [selectNav pushViewController:videoComposeVC animated:YES];
@@ -347,16 +345,9 @@
     [_tabBarController setSelectedIndex:0];
 }
 
--(void)setGuidView
-{
-    UTGuidViewController *guidVC = [[UTGuidViewController alloc] init];
-    _navigationController = [[UINavigationController alloc] initWithRootViewController:guidVC];
-    [[(AppDelegate *)[UIApplication sharedApplication].delegate window] setRootViewController:_navigationController];
-}
-
 -(void)setLoginView
 {
-    UTLoginScrollViewController *loginScrollVC = [[UTLoginScrollViewController alloc] init];
+    URLoginScrollViewController *loginScrollVC = [[URLoginScrollViewController alloc] init];
     _navigationController = [[UINavigationController alloc] initWithRootViewController:loginScrollVC];
     [[(AppDelegate *)[UIApplication sharedApplication].delegate window] setRootViewController:_navigationController];
     

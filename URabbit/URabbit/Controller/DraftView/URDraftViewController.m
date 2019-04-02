@@ -12,7 +12,7 @@
 #import "WSLWaterFlowLayout.h"
 #import "AppStartManager.h"
 #import "UINavigationController+NavigationBar.h"
-#import "UTVideoComposeViewController.h"
+#import "URVideoComposeViewController.h"
 #import "Composition.h"
 #import "Resource.h"
 
@@ -166,7 +166,7 @@ static NSString *draftCollectionViewCellIdentify = @"DraftCollectionViewCellIden
     resource.fps = draftTemplate.resourceFps;
     resource.videoSize = CGSizeMake(draftTemplate.videoWidth, draftTemplate.videoHeight);
     
-    UTVideoComposeViewController *videoComposeVC = [[UTVideoComposeViewController alloc] initWithResource:resource movieUrl:draftTemplate.movieUrl composition:composition draftTemplate:draftTemplate isFromDraft:YES];
+    URVideoComposeViewController *videoComposeVC = [[URVideoComposeViewController alloc] initWithResource:resource movieUrl:draftTemplate.movieUrl composition:composition draftTemplate:draftTemplate isFromDraft:YES];
     [self.navigationController pushViewController:videoComposeVC animated:YES];
 }
 

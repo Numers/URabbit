@@ -8,7 +8,7 @@
 
 #import "URUserSettingViewController.h"
 #import "URUserSettingTableViewCell.h"
-#import "UREditUserInfoViewController.h"
+//#import "UREditUserInfoViewController.h"
 #import "URAboutViewController.h"
 #import "URWebViewController.h"
 #import "AppStartManager.h"

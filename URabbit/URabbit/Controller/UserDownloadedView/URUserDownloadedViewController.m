@@ -12,7 +12,7 @@
 #import "WSLWaterFlowLayout.h"
 #import "AppStartManager.h"
 #import "UINavigationController+NavigationBar.h"
-#import "UTDownloadTemplateViewController.h"
+#import "URDownloadTemplateViewController.h"
 #import "HomeTemplate.h"
 
 static NSString *userDownloadedCollectionViewCellIdentify = @"UserDownloadedCollectionViewCellIdentify";
@@ -151,7 +151,7 @@ static NSString *userDownloadedCollectionViewCellIdentify = @"UserDownloadedColl
     homeTemplate.templateId = loadedTemplate.templateId;
     homeTemplate.title = loadedTemplate.title;
     homeTemplate.videoSize = CGSizeMake(loadedTemplate.videoWidth, loadedTemplate.videoHeight);
-    UTDownloadTemplateViewController *downloadTemplateVC = [[UTDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
+    URDownloadTemplateViewController *downloadTemplateVC = [[URDownloadTemplateViewController alloc] initWithHomeTemplate:homeTemplate];
     [self.navigationController pushViewController:downloadTemplateVC animated:YES];
 }
 

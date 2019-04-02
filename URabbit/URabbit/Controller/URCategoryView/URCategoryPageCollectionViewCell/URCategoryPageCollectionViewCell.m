@@ -15,11 +15,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self setBackgroundColor:[UIColor whiteColor]];
         templateImageView = [[UIImageView alloc] init];
         [templateImageView setContentMode:UIViewContentModeScaleAspectFit];
         [templateImageView setBackgroundColor:[UIColor colorWithRed:241.0f/ 255 green:241.0f/ 255 blue:241.0f/ 255 alpha:1.0f]];
-        [templateImageView.layer setCornerRadius:5];
-        [templateImageView.layer setMasksToBounds:YES];
         [self addSubview:templateImageView];
         
         vipLabel = [[UILabel alloc] init];
@@ -32,6 +31,7 @@
         [templateImageView addSubview:vipLabel];
         
         nameLabel = [[UILabel alloc] init];
+        [nameLabel setHidden:YES];
         [nameLabel setTextAlignment:NSTextAlignmentLeft];
         [nameLabel setFont:[UIFont systemFontOfSize:14.0f]];
         [nameLabel setTextColor:[UIColor colorFromHexString:@"#333333"]];
@@ -55,7 +55,7 @@
         make.top.equalTo(self);
         make.leading.equalTo(self);
         make.trailing.equalTo(self);
-        make.bottom.equalTo(self).offset(-50);
+        make.bottom.equalTo(self).offset(0);
     }];
     
     [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {

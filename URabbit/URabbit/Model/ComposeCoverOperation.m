@@ -9,7 +9,7 @@
 #import "ComposeCoverOperation.h"
 #import "Snapshot.h"
 #import "GPUImage.h"
-#import "UTImageHanderManager.h"
+#import "URImageHanderManager.h"
 @interface ComposeCoverOperation()
 {
 
@@ -22,7 +22,7 @@
     if (self) {
         currentSnapshot = snapshot;
         currentTemplateSampleBufferRef = templateSampleBufferRef;
-        bytesPerRow = [[UTImageHanderManager shareManager] bytesPerRowFromSampleBuffer:currentTemplateSampleBufferRef];
+        bytesPerRow = [[URImageHanderManager shareManager] bytesPerRowFromSampleBuffer:currentTemplateSampleBufferRef];
         currentFrame = frame;
         currentPixelSize = pixelSize;
         currentMaskImage = maskImage;
@@ -34,13 +34,13 @@
 {
     @autoreleasepool {
         if (currentTemplateSampleBufferRef) {
-            void *templatePixelBuffer = [[UTImageHanderManager shareManager] baseAddressFromSampleBuffer:currentTemplateSampleBufferRef];
-            UIImage *templateImage = [[UTImageHanderManager shareManager] bgImageFromPixelBuffer:templatePixelBuffer size:currentPixelSize bytesPerRow:bytesPerRow];
+            void *templatePixelBuffer = [[URImageHanderManager shareManager] baseAddressFromSampleBuffer:currentTemplateSampleBufferRef];
+            UIImage *templateImage = [[URImageHanderManager shareManager] bgImageFromPixelBuffer:templatePixelBuffer size:currentPixelSize bytesPerRow:bytesPerRow];
 
             UIImage *resultImage = [self coverImageWithBackgroundImage:templateImage maskImage:currentMaskImage snapImage:currentSnapshot.snapshotImage size:currentPixelSize];
 
-            CVPixelBufferRef resultPixelBuffer = [[UTImageHanderManager shareManager] pixelBufferFromImage:resultImage size:currentPixelSize bytesPerRow:bytesPerRow];
-            void *resultBaseAddress = [[UTImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
+            CVPixelBufferRef resultPixelBuffer = [[URImageHanderManager shareManager] pixelBufferFromImage:resultImage size:currentPixelSize bytesPerRow:bytesPerRow];
+            void *resultBaseAddress = [[URImageHanderManager shareManager] baseAddressWithCVPixelBuffer:resultPixelBuffer];
             memcpy(templatePixelBuffer, resultBaseAddress, bytesPerRow*currentPixelSize.height);
             
             if ([self.delegate respondsToSelector:@selector(sendSampleBufferRef:frame:)]) {
@@ -57,7 +57,7 @@
 
 -(UIImage *)coverImageWithBackgroundImage:(UIImage *)bgImage maskImage:(UIImage *)maskImage snapImage:(UIImage *)snapImage size:(CGSize)size
 {
-    CGColorSpaceRef colorSpace = [[UTImageHanderManager shareManager] currentColorSpaceRef];
+    CGColorSpaceRef colorSpace = [[URImageHanderManager shareManager] currentColorSpaceRef];
     CGContextRef mainViewContentContext = CGBitmapContextCreate(NULL, size.width, size.height,8,0, colorSpace,kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     
     if (bgImage) {

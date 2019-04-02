@@ -60,7 +60,7 @@ NSString *const kLLTabBarItemAttributeType = @"LLTabBarItemAttributeType";
 	if (imageSize.width != 0 && imageSize.height != 0) {
         CGFloat imageViewCenterY = CGRectGetHeight(self.frame) - 6 - titleSize.height - imageSize.height / 2 - 5;
         if (_tabBarItemType == LLTabBarItemRise) {
-            imageViewCenterY -= 6;
+            imageViewCenterY -= 16;
         }
 		self.imageView.center = CGPointMake(CGRectGetWidth(self.frame) / 2, imageViewCenterY);
 	} else {

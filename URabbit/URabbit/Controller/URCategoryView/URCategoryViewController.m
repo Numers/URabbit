@@ -12,7 +12,8 @@
 #import "TYTabPagerBar.h"
 #import "TYPagerController.h"
 #import "URCategoryPageViewController.h"
-#import "UTHomeNetworkAPIManager.h"
+#import "URHomeNetworkAPIManager.h"
+#import "GeneralManager.h"
 
 @interface URCategoryViewController ()<TYTabPagerBarDataSource,TYTabPagerBarDelegate,TYPagerControllerDataSource,TYPagerControllerDelegate>
 {
@@ -20,6 +21,8 @@
     NSInteger defaultSelectIndex;
     
     BOOL needRequestItems;
+    
+    BOOL isLoadData;
 }
 @property(nonatomic, strong) IBOutlet UIButton *backButton;
 @property(nonatomic, strong) IBOutlet UILabel *titleLabel;
@@ -57,6 +60,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    isLoadData = NO;
     [self.view setBackgroundColor:ViewBackgroundColor];
     [_backButton setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e621", IconfontGoBackDefaultSize, [UIColor colorFromHexString:@"#333333"])] forState:UIControlStateNormal];
     _navHeightConstraint.constant = [UIDevice safeAreaTopHeight];
@@ -128,7 +132,11 @@
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         if (status != AFNetworkReachabilityStatusNotReachable) {
-            [self requestWithRecommendList];
+            [[GeneralManager defaultManager] shareConfig:^(NSDictionary *dic) {
+                if (dic) {
+                    [self requestWithRecommendList];
+                }
+            }];
         }
     }];
     [manager startMonitoring];
@@ -136,18 +144,27 @@
 
 -(void)requestWithRecommendList
 {
-    if (itemArray.count > 0) {
+    if (itemArray.count > 0 || isLoadData) {
         return;
     }
-    [[UTHomeNetworkAPIManager shareManager] getReccmmendTemplateCallback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
+    isLoadData = YES;
+    [[URHomeNetworkAPIManager shareManager] getReccmmendTemplateCallback:^(NSNumber *statusCode, NSNumber *code, id data, id errorMsg) {
         NSArray *templateArr = (NSArray *)data;
         if (templateArr && templateArr.count > 0) {
-            for (NSDictionary *dic in templateArr) {
+            if ([[GeneralManager defaultManager] isAuditSucess]) {
+                for (NSDictionary *dic in templateArr) {
+                    RecommendTemplate *template = [[RecommendTemplate alloc] initWithDictionary:dic];
+                    [itemArray addObject:template];
+                }
+            }else{
+                NSDictionary *dic = [templateArr objectAtIndex:0];
                 RecommendTemplate *template = [[RecommendTemplate alloc] initWithDictionary:dic];
+                template.name = @"全部模板";
                 [itemArray addObject:template];
             }
         }
         [self reloadData];
+        isLoadData = NO;
     }];
 }
 
