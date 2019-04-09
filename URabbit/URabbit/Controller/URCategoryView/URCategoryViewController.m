@@ -69,7 +69,7 @@
     
     if (needRequestItems) {
         [_backButton setHidden:YES];
-        [_titleLabel setText:@"首页"];
+        [_titleLabel setText:@"有兔"];
         [_navBarView setBackgroundColor:[UIColor colorFromHexString:@"#FFDE44"]];
         [self beginMoniteNetwork];
     }else{

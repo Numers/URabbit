@@ -22,6 +22,16 @@
 @property(nonatomic, strong) IBOutlet UIButton *validateCodeButton;
 @property(nonatomic, strong) IBOutlet UIButton *loginButton;
 @property(nonatomic, weak) IBOutlet NSLayoutConstraint *layoutConstrait;
+
+@property(nonatomic, strong) IBOutlet UILabel *loginLabel;
+@property(nonatomic, strong) IBOutlet UIButton *button1;
+@property(nonatomic, strong) IBOutlet UILabel *label1;
+
+@property(nonatomic, strong) IBOutlet UIButton *button2;
+@property(nonatomic, strong) IBOutlet UILabel *label2;
+
+@property(nonatomic, strong) IBOutlet UIButton *button3;
+@property(nonatomic, strong) IBOutlet UILabel *label3;
 @end
 
 @implementation URLoginViewController
@@ -34,6 +44,82 @@
     [_loginButton setEnabled:NO];
     
     _layoutConstrait.constant = 99 + [UIDevice safeAreaTopHeight];
+    
+    NSInteger i = 0;
+    if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession])
+    {
+        if (i == 0) {
+            [_button1 setHidden:NO];
+            [_label1 setHidden:NO];
+            [_button1 setImage:[UIImage imageNamed:@"wechatImage"] forState:UIControlStateNormal];
+            [_button1 addTarget:self action:@selector(clickLoginWithWeixin) forControlEvents:UIControlEventTouchUpInside];
+            [_label1 setText:@"微信登录"];
+        }else if (i == 1){
+            [_button2 setHidden:NO];
+            [_label2 setHidden:NO];
+            [_button2 setImage:[UIImage imageNamed:@"wechatImage"] forState:UIControlStateNormal];
+            [_button2 addTarget:self action:@selector(clickLoginWithWeixin) forControlEvents:UIControlEventTouchUpInside];
+            [_label2 setText:@"微信登录"];
+        }else if (i == 2){
+            [_button3 setHidden:NO];
+            [_label3 setHidden:NO];
+            [_button3 setImage:[UIImage imageNamed:@"wechatImage"] forState:UIControlStateNormal];
+            [_button3 addTarget:self action:@selector(clickLoginWithWeixin) forControlEvents:UIControlEventTouchUpInside];
+            [_label3 setText:@"微信登录"];
+        }
+        i++;
+    }
+    
+    if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ])
+    {
+        if (i == 0) {
+            [_button1 setHidden:NO];
+            [_label1 setHidden:NO];
+            [_button1 setImage:[UIImage imageNamed:@"qqImage"] forState:UIControlStateNormal];
+            [_button1 addTarget:self action:@selector(clickLoginWithQQ) forControlEvents:UIControlEventTouchUpInside];
+            [_label1 setText:@"QQ登录"];
+        }else if (i == 1){
+            [_button2 setHidden:NO];
+            [_label2 setHidden:NO];
+            [_button2 setImage:[UIImage imageNamed:@"qqImage"] forState:UIControlStateNormal];
+            [_button2 addTarget:self action:@selector(clickLoginWithQQ) forControlEvents:UIControlEventTouchUpInside];
+            [_label2 setText:@"QQ登录"];
+        }else if (i == 2){
+            [_button3 setHidden:NO];
+            [_label3 setHidden:NO];
+            [_button3 setImage:[UIImage imageNamed:@"qqImage"] forState:UIControlStateNormal];
+            [_button3 addTarget:self action:@selector(clickLoginWithQQ) forControlEvents:UIControlEventTouchUpInside];
+            [_label3 setText:@"QQ登录"];
+        }
+        i++;
+    }
+    
+    if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_Sina]) {
+        if (i == 0) {
+            [_button1 setHidden:NO];
+            [_label1 setHidden:NO];
+            [_button1 setImage:[UIImage imageNamed:@"weiboImage"] forState:UIControlStateNormal];
+            [_button1 addTarget:self action:@selector(clickLoginWithWeibo) forControlEvents:UIControlEventTouchUpInside];
+            [_label1 setText:@"微博登录"];
+        }else if (i == 1){
+            [_button2 setHidden:NO];
+            [_label2 setHidden:NO];
+            [_button2 setImage:[UIImage imageNamed:@"weiboImage"] forState:UIControlStateNormal];
+            [_button2 addTarget:self action:@selector(clickLoginWithWeibo) forControlEvents:UIControlEventTouchUpInside];
+            [_label2 setText:@"微博登录"];
+        }else if (i == 2){
+            [_button3 setHidden:NO];
+            [_label3 setHidden:NO];
+            [_button3 setImage:[UIImage imageNamed:@"weiboImage"] forState:UIControlStateNormal];
+            [_button3 addTarget:self action:@selector(clickLoginWithWeibo) forControlEvents:UIControlEventTouchUpInside];
+            [_label3 setText:@"微博登录"];
+        }
+        i++;
+    }
+    
+    if (i == 0) {
+        [_loginLabel setHidden:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -169,21 +255,21 @@
     }
 }
 
--(IBAction)clickLoginWithWeixin:(id)sender
+-(void)clickLoginWithWeixin
 {
     [[URUMShareManager shareManager] getUserInfoForPlatform:UMSocialPlatformType_WechatSession complete:^(UMSocialUserInfoResponse *result) {
         [self loginWithLoginPlatform:LoginPlatformWechat UMSocialUserInfoResponse:result];
     }];
 }
 
--(IBAction)clickLoginWithQQ:(id)sender
+-(void)clickLoginWithQQ
 {
     [[URUMShareManager shareManager] getUserInfoForPlatform:UMSocialPlatformType_QQ complete:^(UMSocialUserInfoResponse *result) {
         [self loginWithLoginPlatform:LoginPlatformQQ UMSocialUserInfoResponse:result];
     }];
 }
 
--(IBAction)clickLoginWithWeibo:(id)sender
+-(void)clickLoginWithWeibo
 {
     [[URUMShareManager shareManager] getUserInfoForPlatform:UMSocialPlatformType_Sina complete:^(UMSocialUserInfoResponse *result) {
         [self loginWithLoginPlatform:LoginPlatformWeibo UMSocialUserInfoResponse:result];

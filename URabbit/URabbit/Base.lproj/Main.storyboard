@@ -99,37 +99,31 @@
                                     <color key="titleColor" red="0.1764705882352941" green="0.59999999999999998" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QQ登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTN-xJ-MiK">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QQ登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTN-xJ-MiK">
                                 <rect key="frame" x="165.5" y="604" width="44" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微博登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Q1-s5-ykb">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微博登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Q1-s5-ykb">
                                 <rect key="frame" x="254.5" y="604" width="50" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axx-u8-oLl">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axx-u8-oLl">
                                 <rect key="frame" x="70.5" y="604" width="50" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oqb-nd-mdx">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oqb-nd-mdx">
                                 <rect key="frame" x="68" y="539" width="55" height="55"/>
                                 <state key="normal" image="wechatImage"/>
-                                <connections>
-                                    <action selector="clickLoginWithWeixin:" destination="PXl-d3-UeU" eventType="touchUpInside" id="jYX-SY-K75"/>
-                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hre-gA-s1V">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hre-gA-s1V">
                                 <rect key="frame" x="252" y="539" width="55" height="55"/>
                                 <state key="normal" image="weiboImage"/>
-                                <connections>
-                                    <action selector="clickLoginWithWeibo:" destination="PXl-d3-UeU" eventType="touchUpInside" id="kPp-tn-YkH"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- 第三方登录 -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMC-TL-Arw">
                                 <rect key="frame" x="141.5" y="502" width="92" height="17"/>
@@ -137,12 +131,9 @@
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blG-hH-IkZ">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blG-hH-IkZ">
                                 <rect key="frame" x="160" y="539" width="55" height="55"/>
                                 <state key="normal" image="qqImage"/>
-                                <connections>
-                                    <action selector="clickLoginWithQQ:" destination="PXl-d3-UeU" eventType="touchUpInside" id="YMv-Xb-t3N"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-HN-Fua">
                                 <rect key="frame" x="112.5" y="318" width="150" height="30"/>
@@ -201,8 +192,15 @@
                         <viewLayoutGuide key="safeArea" id="tM1-pl-9hN"/>
                     </view>
                     <connections>
+                        <outlet property="button1" destination="Oqb-nd-mdx" id="2Hk-jv-D6h"/>
+                        <outlet property="button2" destination="blG-hH-IkZ" id="7mA-na-lm9"/>
+                        <outlet property="button3" destination="Hre-gA-s1V" id="w3r-Fa-xVJ"/>
+                        <outlet property="label1" destination="axx-u8-oLl" id="dSv-Nl-PKx"/>
+                        <outlet property="label2" destination="gTN-xJ-MiK" id="bML-m2-1sR"/>
+                        <outlet property="label3" destination="8Q1-s5-ykb" id="Lbw-Pc-jVg"/>
                         <outlet property="layoutConstrait" destination="Gzz-RF-0Ih" id="y7S-x0-jLh"/>
                         <outlet property="loginButton" destination="WBd-J2-1K0" id="urE-Tw-XY0"/>
+                        <outlet property="loginLabel" destination="sMC-TL-Arw" id="bN7-5B-esz"/>
                         <outlet property="mobieTextField" destination="QAc-b1-Yty" id="yiu-z1-3ed"/>
                         <outlet property="validateCodeButton" destination="nlh-rm-KnR" id="Hel-12-G8a"/>
                         <outlet property="validateCodeTextField" destination="rgw-0C-b54" id="hOU-3g-qMk"/>
